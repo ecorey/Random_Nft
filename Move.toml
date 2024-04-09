@@ -1,0 +1,11 @@
+[package]
+name = "Random_NFTS"
+edition = "legacy" 
+
+
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+
+[addresses]
+random_nfts = "0x0"
