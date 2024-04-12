@@ -5,7 +5,7 @@ module random_nfts::random_nfts {
     use sui::package::{Self, Publisher};
     use sui::object::{Self, UID};
     use sui::transfer;
-
+    use sui::display::{Self, Display};
 
 
     #[test_only]
