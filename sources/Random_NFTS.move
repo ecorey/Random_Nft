@@ -6,6 +6,7 @@ module random_nfts::random_nfts {
     use sui::object::{Self, UID};
     use sui::transfer;
     use sui::display::{Self, Display};
+    use sui::event;
 
 
     #[test_only]
