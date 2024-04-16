@@ -7,7 +7,7 @@ module random_nfts::random_nfts {
     use sui::transfer;
     use sui::display::{Self, Display};
     use sui::event;
-
+    use std::string::{utf8, String};
 
     #[test_only]
     friend random_nfts::random_nfts_tests;
@@ -31,6 +31,16 @@ module random_nfts::random_nfts {
 
 
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
