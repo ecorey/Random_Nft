@@ -20,6 +20,23 @@ module random_nfts::random_nfts {
         image_url: String,
     }
 
+    struct GnomeMonster has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+    struct GnomeRider has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+    struct GnomeSoldier has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
 
 
@@ -27,6 +44,29 @@ module random_nfts::random_nfts {
 
 
 
+    struct CapyGeneral has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+    struct CapyMonster has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+    struct CapyRider has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+    struct CapySoldier has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
 
 
