@@ -90,12 +90,12 @@ module random_nfts::random_nfts {
         ];
 
         let gnome_general_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // gnome monster
@@ -109,12 +109,12 @@ module random_nfts::random_nfts {
         ];
 
         let gnome_monster_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // gnome rider
@@ -128,12 +128,12 @@ module random_nfts::random_nfts {
         ];
 
         let gnome_rider_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // gnome rider
@@ -147,12 +147,12 @@ module random_nfts::random_nfts {
         ];
 
         let gnome_soldier_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
 
@@ -169,12 +169,12 @@ module random_nfts::random_nfts {
         ];
 
         let capy_general_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // capy monster
@@ -188,12 +188,12 @@ module random_nfts::random_nfts {
         ];
 
         let capy_monster_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // capy rider
@@ -207,12 +207,12 @@ module random_nfts::random_nfts {
         ];
 
         let capy_rider_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
         // capy soldier
@@ -226,12 +226,12 @@ module random_nfts::random_nfts {
         ];
 
         let capy_soldier_values = vector[
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
-            utf8(b""),
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
         ];
 
 
