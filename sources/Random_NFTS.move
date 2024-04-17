@@ -14,6 +14,23 @@ module random_nfts::random_nfts {
 
 
 
+    struct GnomeGeneral has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     struct RANDOM_NFTS has drop {}
@@ -22,11 +39,38 @@ module random_nfts::random_nfts {
     fun init(otw: RANDOM_NFTS, ctx: &mut TxContext) {
 
 
+
+        let gnome_general_keys = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+        let gnome_general_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+
         let publisher = package::claim(otw, ctx);
+
+        let display = display::new_with_fields<GnomeGeneral>(
+            &publisher, gnome_general_keys, gnome_general_values, ctx
+        );
+
+
+        display::update_version(&mut display);
 
 
         transfer::public_transfer(publisher, tx_context::sender(ctx));
-
+        transfer::public_transfer(display, tx_context::sender(ctx));
 
 
 
