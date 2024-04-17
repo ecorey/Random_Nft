@@ -117,10 +117,127 @@ module random_nfts::random_nfts {
             utf8(b""),
         ];
 
+        // gnome rider
+        let gnome_rider_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let gnome_rider_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+        // gnome rider
+        let gnome_soldier_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let gnome_soldier_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+
+
+        // capy characters
+        // capy general
+        let capy_general_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let capy_general_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+        // capy monster
+        let capy_monster_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let capy_monster_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+        // capy rider
+        let capy_rider_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let capy_rider_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
+        // capy soldier
+        let capy_soldier_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let capy_soldier_values = vector[
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+            utf8(b""),
+        ];
+
 
         let publisher = package::claim(otw, ctx);
 
-
+        // add gnomes to display
         // add gnome general
         let display_gnome_general = display::new_with_fields<GnomeGeneral>(
             &publisher, gnome_general_keys, gnome_general_values, ctx
@@ -137,6 +254,58 @@ module random_nfts::random_nfts {
         display::update_version(&mut display_gnome_monster);
 
 
+        // add gnome rider
+        let display_gnome_rider = display::new_with_fields<GnomeRider>(
+            &publisher, gnome_rider_keys, gnome_rider_values, ctx
+        );
+
+        display::update_version(&mut display_gnome_rider);
+
+
+        // add gnome soldier
+        let display_gnome_soldier = display::new_with_fields<GnomeSoldier>(
+            &publisher, gnome_soldier_keys, gnome_soldier_values, ctx
+        );
+
+        display::update_version(&mut display_gnome_soldier);
+
+
+
+
+        // add capybaras to display
+        // add capy general
+        let display_capy_general = display::new_with_fields<CapyGeneral>(
+            &publisher, capy_general_keys, capy_general_values, ctx
+        );
+
+        display::update_version(&mut display_capy_general);
+
+
+        // add capy monster
+        let display_capy_monster = display::new_with_fields<CapyMonster>(
+            &publisher, capy_monster_keys, capy_monster_values, ctx
+        );
+
+        display::update_version(&mut display_capy_monster);
+
+
+        // add capy rider
+        let display_capy_rider = display::new_with_fields<CapyRider>(
+            &publisher, capy_rider_keys, capy_rider_values, ctx
+        );
+
+        display::update_version(&mut display_capy_rider);
+
+
+        // add capy soldier
+        let display_capy_soldier = display::new_with_fields<CapySoldier>(
+            &publisher, capy_soldier_keys, capy_soldier_values, ctx
+        );
+
+        display::update_version(&mut display_capy_soldier);
+
+
+
 
 
         // transfer publisher
@@ -144,7 +313,13 @@ module random_nfts::random_nfts {
         // transfer character displays
         transfer::public_transfer(display_gnome_general, tx_context::sender(ctx));
         transfer::public_transfer(display_gnome_monster, tx_context::sender(ctx));
+        transfer::public_transfer(display_gnome_rider, tx_context::sender(ctx));
+        transfer::public_transfer(display_gnome_soldier, tx_context::sender(ctx));
 
+        transfer::public_transfer(display_capy_general, tx_context::sender(ctx));
+        transfer::public_transfer(display_capy_monster, tx_context::sender(ctx));
+        transfer::public_transfer(display_capy_rider, tx_context::sender(ctx));
+        transfer::public_transfer(display_capy_soldier, tx_context::sender(ctx));
 
 
     }
