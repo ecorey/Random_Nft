@@ -327,11 +327,110 @@ module random_nfts::random_nfts {
 
 
 
+    fun mint_gnome_general(ctx: &mut TxContext) : GnomeGeneral {
+        let id = object::new(ctx);
+
+        GnomeGeneral {
+            id: id,
+            name: utf8(b"gnome general"),
+            image_url: utf8(b"ipfs://gnome_general_image_url"),
+        }
+    }
+
+    fun mint_gnome_monster(ctx: &mut TxContext) : GnomeMonster {
+        let id = object::new(ctx);
+
+        GnomeMonster {
+            id: id,
+            name: utf8(b"gnome monster"),
+            image_url: utf8(b"ipfs://gnome_monster_image_url"),
+        }
+    }
+
+    fun mint_gnome_rider(ctx: &mut TxContext) : GnomeRider {
+        let id = object::new(ctx);
+
+        GnomeRider {
+            id: id,
+            name: utf8(b"gnome rider"),
+            image_url: utf8(b"ipfs://gnome_rider_image_url"),
+        }
+    }
+
+    fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldier {
+        let id = object::new(ctx);
+
+        GnomeSoldier {
+            id: id,
+            name: utf8(b"gnome soldier"),
+            image_url: utf8(b"ipfs://gnome_soldier_image_url"),
+        }
+    }
 
 
 
 
+    fun mint_capy_general(ctx: &mut TxContext) : CapyGeneral {
+        let id = object::new(ctx);
 
+        CapyGeneral {
+            id: id,
+            name: utf8(b"capy general"),
+            image_url: utf8(b"ipfs://capy_general_image_url"),
+        }
+    }
+
+    fun mint_capy_monster(ctx: &mut TxContext) : CapyMonster {
+        let id = object::new(ctx);
+
+        CapyMonster {
+            id: id,
+            name: utf8(b"capy monster"),
+            image_url: utf8(b"ipfs://capy_monster_image_url"),
+        }
+    }
+
+    fun mint_capy_rider(ctx: &mut TxContext) : CapyRider {
+        let id = object::new(ctx);
+
+        CapyRider {
+            id: id,
+            name: utf8(b"capy rider"),
+            image_url: utf8(b"ipfs://capy_rider_image_url"),
+        }
+    }
+
+
+    fun mint_capy_soldier(ctx: &mut TxContext) : CapySoldier {
+        let id = object::new(ctx);
+
+        CapySoldier {
+            id: id,
+            name: utf8(b"capy soldier"),
+            image_url: utf8(b"ipfs://capy_soldier_image_url"),
+        }
+    }
+
+
+    // MINT ARMIES
+    public fun mint_gnome_army(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
+        let gnome_general = mint_gnome_general(ctx);
+        let gnome_monster = mint_gnome_monster(ctx);
+        let gnome_rider = mint_gnome_rider(ctx);
+        let gnome_soldier = mint_gnome_soldier(ctx);
+
+        (gnome_general, gnome_monster, gnome_rider, gnome_soldier)
+    }
+
+
+    public fun mint_capy_army(ctx: &mut TxContext) : (CapyGeneral, CapyMonster, CapyRider, CapySoldier) {
+        let capy_general = mint_capy_general(ctx);
+        let capy_monster = mint_capy_monster(ctx);
+        let capy_rider = mint_capy_rider(ctx);
+        let capy_soldier = mint_capy_soldier(ctx);
+
+        (capy_general, capy_monster, capy_rider, capy_soldier)
+    }
 
 
 
