@@ -436,7 +436,47 @@ module random_nfts::random_nfts {
 
 
 
+    public fun delete_gnome_general(gnome_general: GnomeGeneral) {
+        let GnomeGeneral { id, name: _, image_url: _ } = gnome_general;
+        object::delete(id);
+    }
 
+    public fun delete_gnome_monster(gnome_monster: GnomeMonster) {
+        let GnomeMonster { id, name: _, image_url: _ } = gnome_monster;
+        object::delete(id);
+    }
+
+    public fun delete_gnome_rider(gnome_rider: GnomeRider) {
+        let GnomeRider { id, name: _, image_url: _ } = gnome_rider;
+        object::delete(id);
+    }
+
+    public fun delete_gnome_soldier(gnome_soldier: GnomeSoldier) {
+        let GnomeSoldier { id, name: _, image_url: _ } = gnome_soldier;
+        object::delete(id);
+    }
+
+
+
+    public fun delete_capy_general(capy_general: CapyGeneral) {
+        let CapyGeneral { id, name: _, image_url: _ } = capy_general;
+        object::delete(id);
+    }
+
+    public fun delete_capy_monster(capy_monster: CapyMonster) {
+        let CapyMonster { id, name: _, image_url: _ } = capy_monster;
+        object::delete(id);
+    }
+
+    public fun delete_capy_rider(capy_rider: CapyRider) {
+        let CapyRider { id, name: _, image_url: _ } = capy_rider;
+        object::delete(id);
+    }
+
+    public fun delete_capy_soldier(capy_soldier: CapySoldier) {
+        let CapySoldier { id, name: _, image_url: _ } = capy_soldier;
+        object::delete(id);
+    }
 
 
 

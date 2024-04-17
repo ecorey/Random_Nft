@@ -6,7 +6,9 @@ module random_nfts::random_nfts_tests {
     use sui::test_utils::{create_one_time_witness, assert_eq};
     use std::debug;
 
-    use random_nfts::random_nfts::{RANDOM_NFTS, init_for_testing};
+    use random_nfts::random_nfts::{RANDOM_NFTS, init_for_testing, mint_gnome_army, mint_capy_army};
+    use random_nfts::random_nfts::{delete_gnome_general, delete_gnome_monster, delete_gnome_rider, delete_gnome_soldier};
+    use random_nfts::random_nfts::{delete_capy_general, delete_capy_monster, delete_capy_rider, delete_capy_soldier};
 
 
 
@@ -48,6 +50,22 @@ module random_nfts::random_nfts_tests {
         // Test 1
         test_scenario::next_tx(scenario_val, admin);
         {
+
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_army(test_scenario::ctx(scenario_val));
+            let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_army(test_scenario::ctx(scenario_val));
+
+
+            delete_gnome_general(gnome_general);
+            delete_gnome_monster(gnome_monster);
+            delete_gnome_rider(gnome_rider);
+            delete_gnome_soldier(gnome_soldier);
+
+
+            delete_capy_general(capy_general);
+            delete_capy_monster(capy_monster);
+            delete_capy_rider(capy_rider);
+            delete_capy_soldier(capy_soldier);
+
 
         };
 
