@@ -911,43 +911,316 @@ module capy_vs_gnome::more_cards {
 
 
         // last stand
+        let last_stand_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let last_stand_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // massive onslaught
+        let massive_onslaught_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let massive_onslaught_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // battle cry
+        let battle_cry_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let battle_cry_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // decisive strike
+        let decisive_strike_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let decisive_strike_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // shield bash
+        let shield_bash_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let shield_bash_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // boost attack
+        let boost_attack_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let boost_attack_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // fortify defense
+        let fortify_defense_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let fortify_defense_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // vitality surge
+        let vitality_surge_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let vitality_surge_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // ambush
+        let ambush_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let ambush_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // quick retreat
+        let quick_retreat_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let quick_retreat_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // reinforcements
+        let reinforcements_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let reinforcements_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // peace treaty
+        let peace_treaty_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let peace_treaty_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // sabotage
+        let sabotage_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let sabotage_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // war drums
+        let war_drums_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let war_drums_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // espionage
+        let espionage_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let espionage_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
         // regroup
-        
-        // scout
+        let regroup_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
 
+        let regroup_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
+        // scout
+        let scout_keys = vector[
+            utf8(b"name"),
+            utf8(b"link"),
+            utf8(b"image_url"),
+            utf8(b"description"),
+            utf8(b"project_url"),
+            utf8(b"creator"),
+        ];
+
+        let scout_values = vector[
+            utf8(b"{name}"),
+            utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
+            utf8(b"ipfs://{image_url}"),
+            utf8(b"capy vs. gnome"),
+            utf8(b"https://capy-vs-gnome.xyz"),
+            utf8(b"unk"),
+        ];
 
         let publisher = package::claim(otw, ctx);
 
-        
+
+        // divine shield
         let display_divine_shield = display::new_with_fields<DivineShield>(
             &publisher, divine_shield_keys, divine_shield_values, ctx
         );
@@ -955,17 +1228,184 @@ module capy_vs_gnome::more_cards {
         display::update_version(&mut display_divine_shield);
 
 
+        // last stand
+        let display_last_stand = display::new_with_fields<LastStand>(
+            &publisher, last_stand_keys, last_stand_values, ctx
+        );
 
+        display::update_version(&mut display_last_stand);
 
+        // massive onslaught
+        let display_massive_onslaught = display::new_with_fields<MassiveOnslaught>(
+            &publisher, massive_onslaught_keys, massive_onslaught_values, ctx
+        );
 
+        display::update_version(&mut display_massive_onslaught);
+        
+        // battle cry
+        let display_battle_cry = display::new_with_fields<BattleCry>(
+            &publisher, battle_cry_keys, battle_cry_values, ctx
+        );
+
+        display::update_version(&mut display_battle_cry);
+
+        // decisive strike
+        let display_decisive_strike = display::new_with_fields<DecisiveStrike>(
+            &publisher, decisive_strike_keys, decisive_strike_values, ctx
+        );
+
+        display::update_version(&mut display_decisive_strike);
+
+        // shield bash
+        let display_shield_bash = display::new_with_fields<ShieldBash>(
+            &publisher, shield_bash_keys, shield_bash_values, ctx
+        );
+
+        display::update_version(&mut display_shield_bash);
+
+        // boost attack
+        let display_boost_attack = display::new_with_fields<BoostAttack>(
+            &publisher, boost_attack_keys, boost_attack_values, ctx
+        );
+
+        display::update_version(&mut display_boost_attack);
+
+        // fortify defense
+        let display_fortify_defense = display::new_with_fields<FortifyDefense>(
+            &publisher, fortify_defense_keys, fortify_defense_values, ctx
+        );
+
+        display::update_version(&mut display_fortify_defense);
+
+        // vitality surge
+        let display_vitality_surge = display::new_with_fields<VitalitySurge>(
+            &publisher, vitality_surge_keys, vitality_surge_values, ctx
+        );
+
+        display::update_version(&mut display_vitality_surge);
+
+        // ambush
+        let display_ambush= display::new_with_fields<Ambush>(
+            &publisher, ambush_keys, ambush_values, ctx
+        );
+
+        display::update_version(&mut display_ambush);
+
+        // quick retreat
+        let display_quick_retreat= display::new_with_fields<QuickRetreat>(
+            &publisher, quick_retreat_keys, quick_retreat_values, ctx
+        );
+
+        display::update_version(&mut display_quick_retreat);
+
+        // reinforcements
+        let display_reinforcements = display::new_with_fields<Reinforcements>(
+            &publisher, reinforcements_keys, reinforcements_values, ctx
+        );
+
+        display::update_version(&mut display_reinforcements);
+
+        // peace treaty
+        let display_peace_treaty = display::new_with_fields<PeaceTreaty>(
+            &publisher, peace_treaty_keys, peace_treaty_values, ctx
+        );
+
+        display::update_version(&mut display_peace_treaty);
+
+        // sabotage
+        let display_sabotage = display::new_with_fields<Sabotage>(
+            &publisher, sabotage_keys, sabotage_values, ctx
+        );
+
+        display::update_version(&mut display_sabotage);
+        
+        // war drums
+        let display_war_drums = display::new_with_fields<WarDrums>(
+            &publisher, war_drums_keys, war_drums_values, ctx
+        );
+
+        display::update_version(&mut display_war_drums);
+
+        // espionage
+        let display_espionage = display::new_with_fields<Espionage>(
+            &publisher, espionage_keys, espionage_values, ctx
+        );
+
+        display::update_version(&mut display_espionage);
+
+        // regroup
+        let display_regroup = display::new_with_fields<Regroup>(
+            &publisher, regroup_keys, regroup_values, ctx
+        );
+
+        display::update_version(&mut display_regroup);
+
+        // scout
+        let display_scout= display::new_with_fields<Scout>(
+            &publisher, scout_keys, scout_values, ctx
+        );
+
+        display::update_version(&mut display_scout);
 
 
 
         // transfer publisher
         transfer::public_transfer(publisher, tx_context::sender(ctx));
         // transfer character displays
+        
+        // divine shield
         transfer::public_transfer(display_divine_shield, tx_context::sender(ctx));
-       
+        
+        // last stand
+        transfer::public_transfer(display_last_stand, tx_context::sender(ctx));
+        
+        // massive onslaught
+        transfer::public_transfer(display_massive_onslaught, tx_context::sender(ctx));
+
+        // battle cry
+        transfer::public_transfer(display_battle_cry, tx_context::sender(ctx));
+
+        // decisive strike
+        transfer::public_transfer(display_decisive_strike, tx_context::sender(ctx));
+
+        // shield bash
+        transfer::public_transfer(display_shield_bash, tx_context::sender(ctx));
+
+        // boost attack
+        transfer::public_transfer(display_boost_attack, tx_context::sender(ctx));
+
+        // fortify defense
+        transfer::public_transfer(display_fortify_defense, tx_context::sender(ctx));
+
+        // vitality surge
+        transfer::public_transfer(display_vitality_surge, tx_context::sender(ctx));
+
+        // ambush
+        transfer::public_transfer(display_ambush, tx_context::sender(ctx));
+
+        // quick retreat
+        transfer::public_transfer(display_quick_retreat, tx_context::sender(ctx));
+
+        // reinforcements
+        transfer::public_transfer(display_reinforcements, tx_context::sender(ctx));
+
+        // peace treaty
+        transfer::public_transfer(display_peace_treaty, tx_context::sender(ctx));
+
+        // sabotage
+        transfer::public_transfer(display_sabotage, tx_context::sender(ctx));
+
+        // war drums
+        transfer::public_transfer(display_war_drums, tx_context::sender(ctx));
+
+        // espionage
+        transfer::public_transfer(display_espionage, tx_context::sender(ctx));
+
+        // regroup
+        transfer::public_transfer(display_regroup, tx_context::sender(ctx));
+
+        // scout
+        transfer::public_transfer(display_scout, tx_context::sender(ctx));
 
 
     }
