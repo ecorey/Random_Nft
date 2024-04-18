@@ -10,7 +10,7 @@ module capy_vs_gnome::more_cards {
     use std::string::{utf8, String};
 
     #[test_only]
-    friend capy_vs_gnome::capy_vs_gnome_tests;
+    friend capy_vs_gnome::more_card_tests;
 
 
 
