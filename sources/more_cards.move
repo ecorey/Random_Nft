@@ -124,8 +124,7 @@ module capy_vs_gnome::more_cards {
     public fun use_massive_onslaught( massive_onslaught: MassiveOnslaught, ctx: &mut TxContext) {
 
 
-        // For one turn, your characters cannot be reduced below 1 health. (Cost: 5 CP)
-
+        // Your characters gain +3 attack for one turn. (Cost: 5 CP)
         let MassiveOnslaught {
             id,
             name: _,
@@ -166,19 +165,138 @@ module capy_vs_gnome::more_cards {
     // ----------------------------------------------
 
     // BATTLE CRY **************************************
+    struct BattleCry has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_battle_cry( battle_cry: BattleCry, ctx: &mut TxContext) {
+
+
+        // All your characters gain +1 attack for the turn. (Cost: 3 CP)
+
+        let BattleCry {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = battle_cry; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_battle_cry(ctx: &mut TxContext) : BattleCry {
+        let id = object::new(ctx);
+
+        BattleCry {
+            id: id,
+            name: utf8(b"massivebattle cry onslaught"),
+            image_url: utf8(b"ipfs://battle_cry_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_battle_cry(battle_cry: BattleCry) {
+        let BattleCry { id, name: _, image_url: _ } = battle_cry;
+        object::delete(id);
+    }
 
 
 
 
     // DECISIVE STRIKE *********************************
+    struct DecisiveStrike has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_decisive_strike( decisive_strike: DecisiveStrike, ctx: &mut TxContext) {
+
+
+        // Deal 3 damage directly to an enemy character; this damage bypasses normal defense calculations. (Cost: 4 CP)
+
+        let DecisiveStrike {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = decisive_strike; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_decisive_strike(ctx: &mut TxContext) : DecisiveStrike {
+        let id = object::new(ctx);
+
+        DecisiveStrike {
+            id: id,
+            name: utf8(b"decisive strike"),
+            image_url: utf8(b"ipfs://decisive_strike_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_decisive_strike(decisive_strike: DecisiveStrike) {
+        let DecisiveStrike { id, name: _, image_url: _ } = decisive_strike;
+        object::delete(id);
+    }
 
 
 
 
     // SHIELD BASH *************************************
+    struct ShieldBash has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_shield_bash( shield_bash: ShieldBash, ctx: &mut TxContext) {
+
+
+        // If your character successfully defends against an attack, deal 2 damage to the attacker. (Cost: 2 CP)
+        let ShieldBash {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = shield_bash; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_shield_bash(ctx: &mut TxContext) : ShieldBash {
+        let id = object::new(ctx);
+
+        ShieldBash {
+            id: id,
+            name: utf8(b"shield bash"),
+            image_url: utf8(b"ipfs://shield_bash_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_shield_bash(shield_bash: ShieldBash) {
+        let ShieldBash { id, name: _, image_url: _ } = shield_bash;
+        object::delete(id);
+    }
 
 
 
@@ -193,18 +311,136 @@ module capy_vs_gnome::more_cards {
     // STAT MODIFIERS
     // ----------------------------------------------
     // BOOST ATTACK **************************************
+    struct BoostAttack has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_boost_attack( boost_attack: BoostAttack, ctx: &mut TxContext) {
+
+
+        // Temporarily increases a character's attack by +2 for one turn. (Cost: 2 CP)
+        let BoostAttack {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = boost_attack; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_boost_attack(ctx: &mut TxContext) : BoostAttack {
+        let id = object::new(ctx);
+
+        BoostAttack {
+            id: id,
+            name: utf8(b"boost attack"),
+            image_url: utf8(b"ipfs://boost_attack_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_boost_attack(boost_attack: BoostAttack) {
+        let BoostAttack { id, name: _, image_url: _ } = boost_attack;
+        object::delete(id);
+    }
 
 
 
 
     // FORTIFY DEFENSE *********************************
+    struct FortifyDefense has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_fortify_defense( fortify_defense: FortifyDefense, ctx: &mut TxContext) {
+
+
+        // Increases a character's defense by +2 until your next turn. (Cost: 2 CP)
+        let FortifyDefense {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = fortify_defense; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_fortify_defense(ctx: &mut TxContext) : FortifyDefense {
+        let id = object::new(ctx);
+
+        FortifyDefense {
+            id: id,
+            name: utf8(b"fortify defense"),
+            image_url: utf8(b"ipfs://fortify_defense_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_fortify_defense(fortify_defense: FortifyDefense) {
+        let FortifyDefense { id, name: _, image_url: _ } = fortify_defense;
+        object::delete(id);
+    }
 
 
 
 
     // VITALITY SURGE ********************************
+    struct VitalitySurge has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_vitality_surge( vitality_surge: VitalitySurge, ctx: &mut TxContext) {
+
+
+        // Immediately restore 3 health to a character. (Cost: 3 CP)
+        let VitalitySurge {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = vitality_surge; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_vitality_surge(ctx: &mut TxContext) : VitalitySurge {
+        let id = object::new(ctx);
+
+        VitalitySurge {
+            id: id,
+            name: utf8(b"vitality surge"),
+            image_url: utf8(b"ipfs://vitality_surge_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_vitality_surge(vitality_surge: VitalitySurge) {
+        let VitalitySurge { id, name: _, image_url: _ } = vitality_surge;
+        object::delete(id);
+    }
 
 
 
@@ -219,19 +455,137 @@ module capy_vs_gnome::more_cards {
     // ----------------------------------------------
 
     // AMBUSH **************************************
+    struct Ambush has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_ambush( ambush: Ambush, ctx: &mut TxContext) {
+
+
+        // Play this card when an opponent declares an attack; your character gains +3 to defense for that combat. (Cost: 3 CP)
+
+        let Ambush {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = ambush; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_ambush(ctx: &mut TxContext) : Ambush {
+        let id = object::new(ctx);
+
+        Ambush {
+            id: id,
+            name: utf8(b"ambush"),
+            image_url: utf8(b"ipfs://ambush_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_ambush(ambush: Ambush) {
+        let Ambush { id, name: _, image_url: _ } = ambush;
+        object::delete(id);
+    }
 
 
 
 
     // QUICK RETREAT *********************************
+    struct QuickRetreat has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_quick_retreat( quick_retreat: QuickRetreat, ctx: &mut TxContext) {
+
+
+        // Move one of your characters to a reserve position, making it untargetable until the next turn. (Cost: 2 CP)
+        let QuickRetreat {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = quick_retreat; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_quick_retreat(ctx: &mut TxContext) : QuickRetreat {
+        let id = object::new(ctx);
+
+        QuickRetreat {
+            id: id,
+            name: utf8(b"quick retreat"),
+            image_url: utf8(b"ipfs://quick_retreat_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_quick_retreat(quick_retreat: QuickRetreat) {
+        let QuickRetreat { id, name: _, image_url: _ } = quick_retreat;
+        object::delete(id);
+    }
 
 
 
 
     // REINFORCEMENTS *********************************
+    struct Reinforcements has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_reinforcements( reinforcements: Reinforcements, ctx: &mut TxContext) {
+
+
+        // Draw two cards from your deck. (Cost: 2 CP)
+        let Reinforcements {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = reinforcements; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_reinforcements(ctx: &mut TxContext) : Reinforcements {
+        let id = object::new(ctx);
+
+        Reinforcements {
+            id: id,
+            name: utf8(b"reinforcements"),
+            image_url: utf8(b"ipfs://reinforcements_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_reinforcements(reinforcements: Reinforcements) {
+        let Reinforcements { id, name: _, image_url: _ } = reinforcements;
+        object::delete(id);
+    }
 
 
 
