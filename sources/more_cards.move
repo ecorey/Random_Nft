@@ -64,7 +64,7 @@ module capy_vs_gnome::more_cards {
         object::delete(id);
     }
 
-
+    
 
     // LAST STAND *********************************
     struct LastStand has key, store {
@@ -890,7 +890,7 @@ module capy_vs_gnome::more_cards {
     fun init(otw: MORE_CARDS, ctx: &mut TxContext) {
 
 
-        // gnome general
+        // divine shield
         let divine_shield_keys = vector[
             utf8(b"name"),
             utf8(b"link"),
@@ -908,6 +908,41 @@ module capy_vs_gnome::more_cards {
             utf8(b"https://capy-vs-gnome.xyz"),
             utf8(b"unk"),
         ];
+
+
+        // last stand
+
+        // massive onslaught
+
+        // battle cry
+
+        // decisive strike
+
+        // shield bash
+
+        // boost attack
+
+        // fortify defense
+
+        // vitality surge
+
+        // ambush
+
+        // quick retreat
+
+        // reinforcements
+
+        // peace treaty
+
+        // sabotage
+
+        // war drums
+
+        // espionage
+
+        // regroup
+        
+        // scout
 
 
         let publisher = package::claim(otw, ctx);
