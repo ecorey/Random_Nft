@@ -1,4 +1,4 @@
-module random_nfts::random_nfts {
+module capy_vs_gnome::character_cards {
 
 
     use sui::tx_context::{Self, TxContext};
@@ -10,7 +10,7 @@ module random_nfts::random_nfts {
     use std::string::{utf8, String};
 
     #[test_only]
-    friend random_nfts::random_nfts_tests;
+    friend capy_vs_gnome::capy_vs_gnome_tests;
 
 
 
@@ -73,10 +73,10 @@ module random_nfts::random_nfts {
 
 
 
-    struct RANDOM_NFTS has drop {}
+    struct CHARACTER_CARDS has drop {}
 
 
-    fun init(otw: RANDOM_NFTS, ctx: &mut TxContext) {
+    fun init(otw: CHARACTER_CARDS, ctx: &mut TxContext) {
 
 
         // gnome general
@@ -412,7 +412,10 @@ module random_nfts::random_nfts {
     }
 
 
+
+
     // MINT ARMIES
+    // CHANGE OT MINT DECKS AFTER MORE CARDS IS COMPLETE
     public fun mint_gnome_army(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
         let gnome_general = mint_gnome_general(ctx);
         let gnome_monster = mint_gnome_monster(ctx);
@@ -436,6 +439,8 @@ module random_nfts::random_nfts {
 
 
 
+
+    // delete functions for gnome warriors
     public fun delete_gnome_general(gnome_general: GnomeGeneral) {
         let GnomeGeneral { id, name: _, image_url: _ } = gnome_general;
         object::delete(id);
@@ -457,7 +462,7 @@ module random_nfts::random_nfts {
     }
 
 
-
+    // delete functions for capy warriors
     public fun delete_capy_general(capy_general: CapyGeneral) {
         let CapyGeneral { id, name: _, image_url: _ } = capy_general;
         object::delete(id);
@@ -483,7 +488,7 @@ module random_nfts::random_nfts {
 
 
     #[test_only]
-    public fun init_for_testing(otw: RANDOM_NFTS, ctx: &mut TxContext) {
+    public fun init_for_testing(otw: CHARACTER_CARDS, ctx: &mut TxContext) {
         init(otw, ctx);
     }
 

@@ -1,5 +1,5 @@
 [package]
-name = "Random_NFTS"
+name = "Capy_VS_Gnome"
 edition = "legacy" 
 
 
@@ -8,4 +8,5 @@ edition = "legacy"
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
 
 [addresses]
-random_nfts = "0x0"
+capy_vs_gnome = "0x0"
+random = "0x8"

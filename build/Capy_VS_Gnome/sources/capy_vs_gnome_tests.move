@@ -1,14 +1,14 @@
 #[test_only]
-module random_nfts::random_nfts_tests {
+module capy_vs_gnome::capy_vs_gnome_tests {
 
 
     use sui::test_scenario;
     use sui::test_utils::{create_one_time_witness, assert_eq};
     use std::debug;
 
-    use random_nfts::random_nfts::{RANDOM_NFTS, init_for_testing, mint_gnome_army, mint_capy_army};
-    use random_nfts::random_nfts::{delete_gnome_general, delete_gnome_monster, delete_gnome_rider, delete_gnome_soldier};
-    use random_nfts::random_nfts::{delete_capy_general, delete_capy_monster, delete_capy_rider, delete_capy_soldier};
+    use capy_vs_gnome::character_cards::{CHARACTER_CARDS, init_for_testing, mint_gnome_army, mint_capy_army};
+    use capy_vs_gnome::character_cards::{delete_gnome_general, delete_gnome_monster, delete_gnome_rider, delete_gnome_soldier};
+    use capy_vs_gnome::character_cards::{delete_capy_general, delete_capy_monster, delete_capy_rider, delete_capy_soldier};
 
 
 
@@ -21,7 +21,7 @@ module random_nfts::random_nfts_tests {
         let scenario = test_scenario::begin(admin);
         let scenario_val = &mut scenario;
 
-        let otw = create_one_time_witness<RANDOM_NFTS>();
+        let otw = create_one_time_witness<CHARACTER_CARDS>();
 
 
         {
