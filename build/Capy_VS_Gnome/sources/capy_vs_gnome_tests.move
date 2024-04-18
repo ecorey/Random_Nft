@@ -37,7 +37,7 @@ module capy_vs_gnome::capy_vs_gnome_tests {
 
 
     #[test]
-    public fun random_nfts_tests() {
+    public fun character_card_tests() {
 
 
         let admin = @0xABC;

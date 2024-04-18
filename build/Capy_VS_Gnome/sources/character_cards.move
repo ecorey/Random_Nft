@@ -18,24 +18,45 @@ module capy_vs_gnome::character_cards {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability_one: String,
+        ability_two: String,
     }
 
     struct GnomeMonster has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
     struct GnomeRider has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
     struct GnomeSoldier has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
 
@@ -48,24 +69,45 @@ module capy_vs_gnome::character_cards {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability_one: String,
+        ability_two: String,
     }
 
     struct CapyMonster has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
     struct CapyRider has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
     struct CapySoldier has key, store {
         id: UID,
         name: String, 
         image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        ability: String,
     }
 
 
@@ -334,6 +376,12 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"gnome general"),
             image_url: utf8(b"ipfs://gnome_general_image_url"),
+            attack: 3,
+            defense: 4,
+            health: 6,
+            cost: 4,
+            ability_one: utf8(b"Rally"),
+            ability_two: utf8(b"Defensive Orders"),
         }
     }
 
@@ -344,6 +392,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"gnome monster"),
             image_url: utf8(b"ipfs://gnome_monster_image_url"),
+            attack: 6,
+            defense: 2,
+            health: 5,
+            cost: 5,
+            ability: utf8(b"Fury Assault"),
         }
     }
 
@@ -354,6 +407,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"gnome rider"),
             image_url: utf8(b"ipfs://gnome_rider_image_url"),
+            attack: 4,
+            defense: 3,
+            health: 4,
+            cost: 3,
+            ability: utf8(b"Lightning Strike"),
         }
     }
 
@@ -364,6 +422,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"ipfs://gnome_soldier_image_url"),
+            attack: 4,
+            defense: 5,
+            health: 5,
+            cost: 3,
+            ability: utf8(b"Shield Wall"),
         }
     }
 
@@ -377,6 +440,12 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"capy general"),
             image_url: utf8(b"ipfs://capy_general_image_url"),
+            attack: 3,
+            defense: 4,
+            health: 6,
+            cost: 4,
+            ability_one: utf8(b"Rally"),
+            ability_two: utf8(b"Defensive Orders"),
         }
     }
 
@@ -387,6 +456,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"capy monster"),
             image_url: utf8(b"ipfs://capy_monster_image_url"),
+            attack: 6,
+            defense: 2,
+            health: 5,
+            cost: 5,
+            ability: utf8(b"Fury Assault"),
         }
     }
 
@@ -397,6 +471,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"capy rider"),
             image_url: utf8(b"ipfs://capy_rider_image_url"),
+            attack: 4,
+            defense: 3,
+            health: 4,
+            cost: 3,
+            ability: utf8(b"Lightning Strike"),
         }
     }
 
@@ -408,6 +487,11 @@ module capy_vs_gnome::character_cards {
             id: id,
             name: utf8(b"capy soldier"),
             image_url: utf8(b"ipfs://capy_soldier_image_url"),
+            attack: 4,
+            defense: 5,
+            health: 5,
+            cost: 3,
+            ability: utf8(b"Shield Wall"),
         }
     }
 
@@ -442,44 +526,44 @@ module capy_vs_gnome::character_cards {
 
     // delete functions for gnome warriors
     public fun delete_gnome_general(gnome_general: GnomeGeneral) {
-        let GnomeGeneral { id, name: _, image_url: _ } = gnome_general;
+        let GnomeGeneral { id, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _, ability_one: _, ability_two: _} = gnome_general;
         object::delete(id);
     }
 
     public fun delete_gnome_monster(gnome_monster: GnomeMonster) {
-        let GnomeMonster { id, name: _, image_url: _ } = gnome_monster;
+        let GnomeMonster { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _ } = gnome_monster;
         object::delete(id);
     }
 
     public fun delete_gnome_rider(gnome_rider: GnomeRider) {
-        let GnomeRider { id, name: _, image_url: _ } = gnome_rider;
+        let GnomeRider { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = gnome_rider;
         object::delete(id);
     }
 
     public fun delete_gnome_soldier(gnome_soldier: GnomeSoldier) {
-        let GnomeSoldier { id, name: _, image_url: _ } = gnome_soldier;
+        let GnomeSoldier { id, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _, ability: _ } = gnome_soldier;
         object::delete(id);
     }
 
 
     // delete functions for capy warriors
     public fun delete_capy_general(capy_general: CapyGeneral) {
-        let CapyGeneral { id, name: _, image_url: _ } = capy_general;
+        let CapyGeneral { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability_one: _, ability_two: _ } = capy_general;
         object::delete(id);
     }
 
     public fun delete_capy_monster(capy_monster: CapyMonster) {
-        let CapyMonster { id, name: _, image_url: _ } = capy_monster;
+        let CapyMonster { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_monster;
         object::delete(id);
     }
 
     public fun delete_capy_rider(capy_rider: CapyRider) {
-        let CapyRider { id, name: _, image_url: _ } = capy_rider;
+        let CapyRider { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_rider;
         object::delete(id);
     }
 
     public fun delete_capy_soldier(capy_soldier: CapySoldier) {
-        let CapySoldier { id, name: _, image_url: _ } = capy_soldier;
+        let CapySoldier { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_soldier;
         object::delete(id);
     }
 
