@@ -14,8 +14,10 @@ module capy_vs_gnome::more_cards {
 
 
 
+
+
     // ONE TIME USE POWER CARDS
-    struct Rando has key, store {
+    struct DivineShield has key, store {
         id: UID,
         name: String, 
         image_url: String,
@@ -56,8 +58,23 @@ module capy_vs_gnome::more_cards {
 
 
 
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_divine_shield( divine_shield: DivineShield, ctx: &mut TxContext) {
 
 
+        // One character is immune to all damage and effects for one turn. (Cost: 5 CP)
+
+
+        let DivineShield {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = divine_shield; 
+
+        object::delete(id);
+
+    }
 
 
 
@@ -73,7 +90,7 @@ module capy_vs_gnome::more_cards {
 
 
         // gnome general
-        let rando_keys = vector[
+        let divine_shield_keys = vector[
             utf8(b"name"),
             utf8(b"link"),
             utf8(b"image_url"),
@@ -82,7 +99,7 @@ module capy_vs_gnome::more_cards {
             utf8(b"creator"),
         ];
 
-        let rando_values = vector[
+        let divine_shield_values = vector[
             utf8(b"{name}"),
             utf8(b"https://capy-vs-gnome.xyz/warrior/{id}"),
             utf8(b"ipfs://{image_url}"),
@@ -95,11 +112,11 @@ module capy_vs_gnome::more_cards {
         let publisher = package::claim(otw, ctx);
 
         
-        let display_rando = display::new_with_fields<Rando>(
-            &publisher, rando_keys, rando_values, ctx
+        let display_divine_shield = display::new_with_fields<DivineShield>(
+            &publisher, divine_shield_keys, divine_shield_values, ctx
         );
 
-        display::update_version(&mut display_rando);
+        display::update_version(&mut display_divine_shield);
 
 
 
@@ -111,7 +128,7 @@ module capy_vs_gnome::more_cards {
         // transfer publisher
         transfer::public_transfer(publisher, tx_context::sender(ctx));
         // transfer character displays
-        transfer::public_transfer(display_rando, tx_context::sender(ctx));
+        transfer::public_transfer(display_divine_shield, tx_context::sender(ctx));
        
 
 
@@ -120,13 +137,13 @@ module capy_vs_gnome::more_cards {
 
 
 
-    fun mint_rando(ctx: &mut TxContext) : Rando {
+    fun mint_divine_shield(ctx: &mut TxContext) : DivineShield {
         let id = object::new(ctx);
 
-        Rando {
+        DivineShield {
             id: id,
-            name: utf8(b"gnome general"),
-            image_url: utf8(b"ipfs://gnome_general_image_url"),
+            name: utf8(b"divine shield"),
+            image_url: utf8(b"ipfs://divine_shield_image_url"),
         }
     }
 
@@ -138,8 +155,8 @@ module capy_vs_gnome::more_cards {
 
 
     // delete functions for gnome warriors
-    public fun delete_rando(gnome_general: Rando) {
-        let Rando { id, name: _, image_url: _ } = gnome_general;
+    public fun delete_divine_shield(divine_shield: DivineShield) {
+        let DivineShield { id, name: _, image_url: _ } = divine_shield;
         object::delete(id);
     }
 
