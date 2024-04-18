@@ -14,12 +14,52 @@ module capy_vs_gnome::more_cards {
 
 
 
-    
+    // ONE TIME USE POWER CARDS
     struct Rando has key, store {
         id: UID,
         name: String, 
         image_url: String,
     }
+
+
+
+
+
+
+    // SPECIAL ACTIONS
+
+
+
+
+
+
+    // STAT MODIFIERS
+
+
+
+
+
+    // TACTICAL MOVES
+
+
+
+
+
+    // STRATEGIC EFFECTS
+
+
+
+
+
+    // UTILITY CARDS
+
+
+
+
+
+
+
+
 
 
 
