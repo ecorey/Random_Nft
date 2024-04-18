@@ -15,47 +15,17 @@ module capy_vs_gnome::more_cards {
 
 
 
+    // ----------------------------------------------
+    // ONE TIME USE POWER CARDS 
+    // ----------------------------------------------
 
-    // ONE TIME USE POWER CARDS
+
+    // DIVINE SHIELD *********************************
     struct DivineShield has key, store {
         id: UID,
         name: String, 
         image_url: String,
     }
-
-
-
-
-
-
-    // SPECIAL ACTIONS
-
-
-
-
-
-
-    // STAT MODIFIERS
-
-
-
-
-
-    // TACTICAL MOVES
-
-
-
-
-
-    // STRATEGIC EFFECTS
-
-
-
-
-
-    // UTILITY CARDS
-
-
 
 
     // when card is played it is lost, and the effect is applied to the player's character
@@ -75,6 +45,249 @@ module capy_vs_gnome::more_cards {
         object::delete(id);
 
     }
+
+
+    fun mint_divine_shield(ctx: &mut TxContext) : DivineShield {
+        let id = object::new(ctx);
+
+        DivineShield {
+            id: id,
+            name: utf8(b"divine shield"),
+            image_url: utf8(b"ipfs://divine_shield_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_divine_shield(divine_shield: DivineShield) {
+        let DivineShield { id, name: _, image_url: _ } = divine_shield;
+        object::delete(id);
+    }
+
+
+
+    // LAST STAND *********************************
+    struct LastStand has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_last_stand( last_stand: LastStand, ctx: &mut TxContext) {
+
+
+        // For one turn, your characters cannot be reduced below 1 health. (Cost: 5 CP)
+
+        let LastStand {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = last_stand; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_last_stand(ctx: &mut TxContext) : LastStand {
+        let id = object::new(ctx);
+
+        LastStand {
+            id: id,
+            name: utf8(b"last stand"),
+            image_url: utf8(b"ipfs://last_stand_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_last_stand(last_stand: LastStand) {
+        let LastStand { id, name: _, image_url: _ } = last_stand;
+        object::delete(id);
+    }
+
+
+
+
+    // MASSIVE ONSLAUGHT *********************************
+    struct MassiveOnslaught has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
+
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_massive_onslaught( massive_onslaught: MassiveOnslaught, ctx: &mut TxContext) {
+
+
+        // For one turn, your characters cannot be reduced below 1 health. (Cost: 5 CP)
+
+        let MassiveOnslaught {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = massive_onslaught; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_massive_onslaught(ctx: &mut TxContext) : MassiveOnslaught {
+        let id = object::new(ctx);
+
+        MassiveOnslaught {
+            id: id,
+            name: utf8(b"massive onslaught"),
+            image_url: utf8(b"ipfs://massive_onslaught_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_massive_onslaught(massive_onslaught: MassiveOnslaught) {
+        let MassiveOnslaught { id, name: _, image_url: _ } = massive_onslaught;
+        object::delete(id);
+    }
+
+
+
+
+
+
+
+    // ----------------------------------------------
+    // SPECIAL ACTIONS
+    // ----------------------------------------------
+
+    // BATTLE CRY **************************************
+
+
+
+
+
+    // DECISIVE STRIKE *********************************
+
+
+
+
+
+    // SHIELD BASH *************************************
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------
+    // STAT MODIFIERS
+    // ----------------------------------------------
+    // BOOST ATTACK **************************************
+
+
+
+
+
+    // FORTIFY DEFENSE *********************************
+
+
+
+
+
+    // VITALITY SURGE ********************************
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------
+    // TACTICAL MOVES
+    // ----------------------------------------------
+
+    // AMBUSH **************************************
+
+
+
+
+
+    // QUICK RETREAT *********************************
+
+
+
+
+
+    // REINFORCEMENTS *********************************
+
+
+
+
+
+
+
+
+    // ----------------------------------------------
+    // STRATEGIC EFFECTS
+    // ----------------------------------------------
+
+    // PEACE TREATY ***********************************
+
+
+
+
+
+    // SABOTAGE **************************************
+
+
+
+
+
+    // WAR DRUMS *************************************
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------
+    // UTILITY CARDS
+    // ----------------------------------------------
+
+    // ESPIONAGE **************************************
+
+
+
+
+
+    // REGROUP ***************************************
+
+
+
+
+
+    // SCOUT *****************************************
+
+
+    
+
+
 
 
 
@@ -137,28 +350,7 @@ module capy_vs_gnome::more_cards {
 
 
 
-    fun mint_divine_shield(ctx: &mut TxContext) : DivineShield {
-        let id = object::new(ctx);
-
-        DivineShield {
-            id: id,
-            name: utf8(b"divine shield"),
-            image_url: utf8(b"ipfs://divine_shield_image_url"),
-        }
-    }
-
-
-
-
-
-
-
-
-    // delete functions for gnome warriors
-    public fun delete_divine_shield(divine_shield: DivineShield) {
-        let DivineShield { id, name: _, image_url: _ } = divine_shield;
-        object::delete(id);
-    }
+    
 
 
 
