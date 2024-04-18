@@ -598,19 +598,136 @@ module capy_vs_gnome::more_cards {
     // ----------------------------------------------
 
     // PEACE TREATY ***********************************
+    struct PeaceTreaty has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_peace_treaty( peace_treaty: PeaceTreaty, ctx: &mut TxContext) {
+
+
+        // Neither player can attack for the next turn. (Cost: 2 CP)
+        let PeaceTreaty {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = peace_treaty; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_peace_treaty(ctx: &mut TxContext) : PeaceTreaty {
+        let id = object::new(ctx);
+
+        PeaceTreaty {
+            id: id,
+            name: utf8(b"peace treaty"),
+            image_url: utf8(b"ipfs://peace_treaty_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_peace_treaty(peace_treaty: PeaceTreaty) {
+        let PeaceTreaty { id, name: _, image_url: _ } = peace_treaty;
+        object::delete(id);
+    }
 
 
 
 
     // SABOTAGE **************************************
+    struct Sabotage has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_sabotage( sabotage: Sabotage, ctx: &mut TxContext) {
+
+
+        // Target opponent generates 2 less CP on their next turn. (Cost: 3 CP)
+        let Sabotage {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = sabotage; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_sabotage(ctx: &mut TxContext) : Sabotage {
+        let id = object::new(ctx);
+
+        Sabotage {
+            id: id,
+            name: utf8(b"sabotage"),
+            image_url: utf8(b"ipfs://sabotage_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_sabotage(sabotage: Sabotage) {
+        let Sabotage { id, name: _, image_url: _ } = sabotage;
+        object::delete(id);
+    }
 
 
 
 
     // WAR DRUMS *************************************
+    struct WarDrums has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_war_drums( war_drums: WarDrums, ctx: &mut TxContext) {
+
+
+        // Increase the CP generation by 1 for the next two turns. (Cost: 4 CP)
+        let WarDrums {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = war_drums; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_war_drums(ctx: &mut TxContext) : WarDrums {
+        let id = object::new(ctx);
+
+        WarDrums {
+            id: id,
+            name: utf8(b"war drums"),
+            image_url: utf8(b"ipfs://war_drums_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_war_drums(war_drums: WarDrums) {
+        let WarDrums { id, name: _, image_url: _ } = war_drums;
+        object::delete(id);
+    }
 
 
 
@@ -625,19 +742,136 @@ module capy_vs_gnome::more_cards {
     // ----------------------------------------------
 
     // ESPIONAGE **************************************
+    struct Espionage has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_espionage( espionage: Espionage, ctx: &mut TxContext) {
+
+
+        // Look at an opponent's hand, select one card they must discard. (Cost: 4 CP)
+        let Espionage {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = espionage; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_espionage(ctx: &mut TxContext) : Espionage {
+        let id = object::new(ctx);
+
+        Espionage {
+            id: id,
+            name: utf8(b"espionage"),
+            image_url: utf8(b"ipfs://espionage_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_espionage(espionage: Espionage) {
+        let Espionage { id, name: _, image_url: _ } = espionage;
+        object::delete(id);
+    }
 
 
 
 
     // REGROUP ***************************************
+    struct Regroup has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_regroup( regroup: Regroup, ctx: &mut TxContext) {
+
+
+        // Shuffle up to three cards from your discard pile back into your deck. (Cost: 3 CP)
+        let Regroup {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = regroup; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_regroup(ctx: &mut TxContext) : Regroup {
+        let id = object::new(ctx);
+
+        Regroup {
+            id: id,
+            name: utf8(b"regroup"),
+            image_url: utf8(b"ipfs://regroup_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_regroup(regroup: Regroup) {
+        let Regroup { id, name: _, image_url: _ } = regroup;
+        object::delete(id);
+    }
 
 
 
 
     // SCOUT *****************************************
+    struct Scout has key, store {
+        id: UID,
+        name: String, 
+        image_url: String,
+    }
 
+
+    // when card is played it is lost, and the effect is applied to the player's character
+    public fun use_scout( scout: Scout, ctx: &mut TxContext) {
+
+
+        // Shuffle up to three cards from your discard pile back into your deck. (Cost: 3 CP)
+        let Scout {
+            id,
+            name: _,
+            image_url: _,
+        
+        } = scout; 
+
+        object::delete(id);
+
+    }
+
+
+    fun mint_scout(ctx: &mut TxContext) : Scout {
+        let id = object::new(ctx);
+
+        Scout {
+            id: id,
+            name: utf8(b"scout"),
+            image_url: utf8(b"ipfs://scout_image_url"),
+        }
+    }
+
+
+    
+    public fun delete_scout(scout: Scout) {
+        let Scout { id, name: _, image_url: _ } = scout;
+        object::delete(id);
+    }
 
     
 
