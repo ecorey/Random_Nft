@@ -493,7 +493,7 @@ module capy_vs_gnome::card_deck {
 
         BattleCry {
             id: id,
-            name: utf8(b"massivebattle cry onslaught"),
+            name: utf8(b"battle cry"),
             image_url: utf8(b"QmW3GBdKzxeHmuvym4pPNg6VHJuHsTFDEscoB97LXxon5G"),
         }
     }
@@ -1951,13 +1951,16 @@ module capy_vs_gnome::card_deck {
     // MINT DECKS
     // GNOME DECK 
     // add costs
-    public fun mint_gnome_deck(ctx: &mut TxContext ) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout) {
+    public fun mint_gnome_deck(ctx: &mut TxContext ) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout,
+    DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout) {
         
 
         let gnome_general = mint_gnome_general(ctx);
         let gnome_monster = mint_gnome_monster(ctx);
         let gnome_rider = mint_gnome_rider(ctx);
         let gnome_soldier = mint_gnome_soldier(ctx);
+        
+        
         let divine_shield = mint_divine_shield(ctx);
         let last_stand = mint_last_stand(ctx);
         let massive_onslaught = mint_massive_onslaught(ctx);
@@ -1977,11 +1980,32 @@ module capy_vs_gnome::card_deck {
         let regroup = mint_regroup(ctx);
         let scout = mint_scout(ctx);
 
+        
+
+        let divine_shield_two = mint_divine_shield(ctx);
+        let last_stand_two = mint_last_stand(ctx);
+        let massive_onslaught_two = mint_massive_onslaught(ctx);
+        let battle_cry_two = mint_battle_cry(ctx);
+        let decisive_strike_two = mint_decisive_strike(ctx);
+        let shield_bash_two = mint_shield_bash(ctx);
+        let boost_attack_two = mint_boost_attack(ctx);
+        let fortify_defense_two = mint_fortify_defense(ctx);
+        let vitality_surge_two = mint_vitality_surge(ctx);
+        let ambush_two = mint_ambush(ctx);
+        let quick_retreat_two = mint_quick_retreat(ctx);
+        let reinforcements_two = mint_reinforcements(ctx);
+        let peace_treaty_two = mint_peace_treaty(ctx);
+        let sabotage_two = mint_sabotage(ctx);
+        let war_drums_two = mint_war_drums(ctx);
+        let espionage_two = mint_espionage(ctx);
+        let regroup_two = mint_regroup(ctx);
+        let scout_two = mint_scout(ctx);
 
 
 
 
-        (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout)
+        (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout,
+        divine_shield_two, last_stand_two, massive_onslaught_two, battle_cry_two, decisive_strike_two, shield_bash_two, boost_attack_two, fortify_defense_two, vitality_surge_two, ambush_two, quick_retreat_two, reinforcements_two, peace_treaty_two, sabotage_two, war_drums_two, espionage_two, regroup_two, scout_two)
     }
 
 
@@ -1992,6 +2016,7 @@ module capy_vs_gnome::card_deck {
         let gnome_monster = mint_gnome_monster(ctx);
         let gnome_rider = mint_gnome_rider(ctx);
         let gnome_soldier = mint_gnome_soldier(ctx);
+        
         let divine_shield = mint_divine_shield(ctx);
         let last_stand = mint_last_stand(ctx);
         let massive_onslaught = mint_massive_onslaught(ctx);
@@ -2010,6 +2035,25 @@ module capy_vs_gnome::card_deck {
         let espionage = mint_espionage(ctx);
         let regroup = mint_regroup(ctx);
         let scout = mint_scout(ctx);
+
+        let divine_shield_two = mint_divine_shield(ctx);
+        let last_stand_two = mint_last_stand(ctx);
+        let massive_onslaught_two = mint_massive_onslaught(ctx);
+        let battle_cry_two = mint_battle_cry(ctx);
+        let decisive_strike_two = mint_decisive_strike(ctx);
+        let shield_bash_two = mint_shield_bash(ctx);
+        let boost_attack_two = mint_boost_attack(ctx);
+        let fortify_defense_two = mint_fortify_defense(ctx);
+        let vitality_surge_two = mint_vitality_surge(ctx);
+        let ambush_two = mint_ambush(ctx);
+        let quick_retreat_two = mint_quick_retreat(ctx);
+        let reinforcements_two = mint_reinforcements(ctx);
+        let peace_treaty_two = mint_peace_treaty(ctx);
+        let sabotage_two = mint_sabotage(ctx);
+        let war_drums_two = mint_war_drums(ctx);
+        let espionage_two = mint_espionage(ctx);
+        let regroup_two = mint_regroup(ctx);
+        let scout_two = mint_scout(ctx);
 
 
         transfer::public_transfer(gnome_general, tx_context::sender(ctx));
@@ -2036,6 +2080,26 @@ module capy_vs_gnome::card_deck {
         transfer::public_transfer(scout, tx_context::sender(ctx));
 
 
+        transfer::public_transfer(divine_shield_two, tx_context::sender(ctx));
+        transfer::public_transfer(last_stand_two, tx_context::sender(ctx));
+        transfer::public_transfer(massive_onslaught_two, tx_context::sender(ctx));
+        transfer::public_transfer(battle_cry_two, tx_context::sender(ctx));
+        transfer::public_transfer(decisive_strike_two, tx_context::sender(ctx));
+        transfer::public_transfer(shield_bash_two, tx_context::sender(ctx));
+        transfer::public_transfer(boost_attack_two, tx_context::sender(ctx));
+        transfer::public_transfer(fortify_defense_two, tx_context::sender(ctx));
+        transfer::public_transfer(vitality_surge_two, tx_context::sender(ctx));
+        transfer::public_transfer(ambush_two, tx_context::sender(ctx));
+        transfer::public_transfer(quick_retreat_two, tx_context::sender(ctx));
+        transfer::public_transfer(reinforcements_two, tx_context::sender(ctx));
+        transfer::public_transfer(peace_treaty_two, tx_context::sender(ctx));
+        transfer::public_transfer(sabotage_two, tx_context::sender(ctx));
+        transfer::public_transfer(war_drums_two, tx_context::sender(ctx));
+        transfer::public_transfer(espionage_two, tx_context::sender(ctx));
+        transfer::public_transfer(regroup_two, tx_context::sender(ctx));
+        transfer::public_transfer(scout_two, tx_context::sender(ctx));
+
+
 
     }
 
@@ -2043,7 +2107,8 @@ module capy_vs_gnome::card_deck {
 
 
     // CAPY DECK
-    public fun mint_capy_deck(ctx: &mut TxContext)  : (CapyGeneral, CapyMonster, CapyRider, CapySoldier, DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout) {
+    public fun mint_capy_deck(ctx: &mut TxContext)  : (CapyGeneral, CapyMonster, CapyRider, CapySoldier, DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout, 
+    DivineShield, LastStand, MassiveOnslaught, BattleCry, DecisiveStrike, ShieldBash, BoostAttack, FortifyDefense, VitalitySurge, Ambush, QuickRetreat, Reinforcements, PeaceTreaty, Sabotage, WarDrums, Espionage, Regroup, Scout) {
         
 
         let capy_general = mint_capy_general(ctx);
@@ -2069,10 +2134,30 @@ module capy_vs_gnome::card_deck {
         let regroup = mint_regroup(ctx);
         let scout = mint_scout(ctx);
 
+        let divine_shield_two = mint_divine_shield(ctx);
+        let last_stand_two = mint_last_stand(ctx);
+        let massive_onslaught_two = mint_massive_onslaught(ctx);
+        let battle_cry_two = mint_battle_cry(ctx);
+        let decisive_strike_two = mint_decisive_strike(ctx);
+        let shield_bash_two = mint_shield_bash(ctx);
+        let boost_attack_two = mint_boost_attack(ctx);
+        let fortify_defense_two = mint_fortify_defense(ctx);
+        let vitality_surge_two = mint_vitality_surge(ctx);
+        let ambush_two = mint_ambush(ctx);
+        let quick_retreat_two = mint_quick_retreat(ctx);
+        let reinforcements_two = mint_reinforcements(ctx);
+        let peace_treaty_two = mint_peace_treaty(ctx);
+        let sabotage_two = mint_sabotage(ctx);
+        let war_drums_two = mint_war_drums(ctx);
+        let espionage_two = mint_espionage(ctx);
+        let regroup_two = mint_regroup(ctx);
+        let scout_two = mint_scout(ctx);
 
 
 
-        (capy_general, capy_monster, capy_rider, capy_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout)
+
+        (capy_general, capy_monster, capy_rider, capy_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout,
+        divine_shield_two, last_stand_two, massive_onslaught_two, battle_cry_two, decisive_strike_two, shield_bash_two, boost_attack_two, fortify_defense_two, vitality_surge_two, ambush_two, quick_retreat_two, reinforcements_two, peace_treaty_two, sabotage_two, war_drums_two, espionage_two, regroup_two, scout_two)
     }
 
 
@@ -2084,6 +2169,7 @@ module capy_vs_gnome::card_deck {
         let capy_monster = mint_capy_monster(ctx);
         let capy_rider = mint_capy_rider(ctx);
         let capy_soldier = mint_capy_soldier(ctx);
+        
         let divine_shield = mint_divine_shield(ctx);
         let last_stand = mint_last_stand(ctx);
         let massive_onslaught = mint_massive_onslaught(ctx);
@@ -2104,10 +2190,32 @@ module capy_vs_gnome::card_deck {
         let scout = mint_scout(ctx);
 
 
+        let divine_shield_two = mint_divine_shield(ctx);
+        let last_stand_two = mint_last_stand(ctx);
+        let massive_onslaught_two = mint_massive_onslaught(ctx);
+        let battle_cry_two = mint_battle_cry(ctx);
+        let decisive_strike_two = mint_decisive_strike(ctx);
+        let shield_bash_two = mint_shield_bash(ctx);
+        let boost_attack_two = mint_boost_attack(ctx);
+        let fortify_defense_two = mint_fortify_defense(ctx);
+        let vitality_surge_two = mint_vitality_surge(ctx);
+        let ambush_two = mint_ambush(ctx);
+        let quick_retreat_two = mint_quick_retreat(ctx);
+        let reinforcements_two = mint_reinforcements(ctx);
+        let peace_treaty_two = mint_peace_treaty(ctx);
+        let sabotage_two = mint_sabotage(ctx);
+        let war_drums_two = mint_war_drums(ctx);
+        let espionage_two = mint_espionage(ctx);
+        let regroup_two = mint_regroup(ctx);
+        let scout_two = mint_scout(ctx);
+
+
         transfer::public_transfer(capy_general, tx_context::sender(ctx));
         transfer::public_transfer(capy_monster, tx_context::sender(ctx));
         transfer::public_transfer(capy_rider, tx_context::sender(ctx));
         transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
+        
+        
         transfer::public_transfer(divine_shield, tx_context::sender(ctx));
         transfer::public_transfer(last_stand, tx_context::sender(ctx));
         transfer::public_transfer(massive_onslaught, tx_context::sender(ctx));
@@ -2126,6 +2234,26 @@ module capy_vs_gnome::card_deck {
         transfer::public_transfer(espionage, tx_context::sender(ctx));
         transfer::public_transfer(regroup, tx_context::sender(ctx));
         transfer::public_transfer(scout, tx_context::sender(ctx));
+
+        transfer::public_transfer(divine_shield_two, tx_context::sender(ctx));
+        transfer::public_transfer(last_stand_two, tx_context::sender(ctx));
+        transfer::public_transfer(massive_onslaught_two, tx_context::sender(ctx));
+        transfer::public_transfer(battle_cry_two, tx_context::sender(ctx));
+        transfer::public_transfer(decisive_strike_two, tx_context::sender(ctx));
+        transfer::public_transfer(shield_bash_two, tx_context::sender(ctx));
+        transfer::public_transfer(boost_attack_two, tx_context::sender(ctx));
+        transfer::public_transfer(fortify_defense_two, tx_context::sender(ctx));
+        transfer::public_transfer(vitality_surge_two, tx_context::sender(ctx));
+        transfer::public_transfer(ambush_two, tx_context::sender(ctx));
+        transfer::public_transfer(quick_retreat_two, tx_context::sender(ctx));
+        transfer::public_transfer(reinforcements_two, tx_context::sender(ctx));
+        transfer::public_transfer(peace_treaty_two, tx_context::sender(ctx));
+        transfer::public_transfer(sabotage_two, tx_context::sender(ctx));
+        transfer::public_transfer(war_drums_two, tx_context::sender(ctx));
+        transfer::public_transfer(espionage_two, tx_context::sender(ctx));
+        transfer::public_transfer(regroup_two, tx_context::sender(ctx));
+        transfer::public_transfer(scout_two, tx_context::sender(ctx));
+
 
 
 

@@ -52,7 +52,8 @@ module capy_vs_gnome::more_card_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
             
-            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout)
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout,
+            divine_shield2, last_stand2, massive_onslaught2, battle_cry2, decisive_strike2, shield_bash2, boost_attack2, fortify_defense2, vitality_surge2, ambush2, quick_retreat2, reinforcements2, peace_treaty2, sabotage2, war_drums2, espionage2, regroup2, scout2)
                 = mint_gnome_deck(test_scenario::ctx(scenario_val));
 
 
@@ -80,6 +81,26 @@ module capy_vs_gnome::more_card_tests {
             delete_regroup(regroup);
             delete_scout(scout);
 
+            delete_divine_shield(divine_shield2);
+            delete_last_stand(last_stand2);
+            delete_massive_onslaught(massive_onslaught2);
+            delete_battle_cry(battle_cry2);
+            delete_decisive_strike(decisive_strike2);
+            delete_shield_bash(shield_bash2);
+            delete_boost_attack(boost_attack2);
+            delete_fortify_defense(fortify_defense2);
+            delete_vitality_surge(vitality_surge2);
+            delete_ambush(ambush2);
+            delete_quick_retreat(quick_retreat2);
+            delete_reinforcements(reinforcements2);
+            delete_peace_treaty(peace_treaty2);
+            delete_sabotage(sabotage2);
+            delete_war_drums(war_drums2);
+            delete_espionage(espionage2);
+            delete_regroup(regroup2);
+            delete_scout(scout2);
+
+
 
             
 
@@ -91,7 +112,8 @@ module capy_vs_gnome::more_card_tests {
         // Test 2
         test_scenario::next_tx(scenario_val, admin);
         {
-            let (capy_general, capy_monster, capy_rider, capy_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout) 
+            let (capy_general, capy_monster, capy_rider, capy_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout,
+            divine_shield2, last_stand2, massive_onslaught2, battle_cry2, decisive_strike2, shield_bash2, boost_attack2, fortify_defense2, vitality_surge2, ambush2, quick_retreat2, reinforcements2, peace_treaty2, sabotage2, war_drums2, espionage2, regroup2, scout2) 
                 =  mint_capy_deck(test_scenario::ctx(scenario_val));
 
             delete_capy_general(capy_general);
@@ -116,6 +138,27 @@ module capy_vs_gnome::more_card_tests {
             delete_espionage(espionage);
             delete_regroup(regroup);
             delete_scout(scout);
+
+            delete_divine_shield(divine_shield2);
+            delete_last_stand(last_stand2);
+            delete_massive_onslaught(massive_onslaught2);
+            delete_battle_cry(battle_cry2);
+            delete_decisive_strike(decisive_strike2);
+            delete_shield_bash(shield_bash2);
+            delete_boost_attack(boost_attack2);
+            delete_fortify_defense(fortify_defense2);
+            delete_vitality_surge(vitality_surge2);
+            delete_ambush(ambush2);
+            delete_quick_retreat(quick_retreat2);
+            delete_reinforcements(reinforcements2);
+            delete_peace_treaty(peace_treaty2);
+            delete_sabotage(sabotage2);
+            delete_war_drums(war_drums2);
+            delete_espionage(espionage2);
+            delete_regroup(regroup2);
+            delete_scout(scout2);
+
+
         };
 
 
