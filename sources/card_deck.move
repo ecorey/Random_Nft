@@ -1071,7 +1071,7 @@ module capy_vs_gnome::card_deck {
         Espionage {
             id: id,
             name: utf8(b"espionage"),
-            image_url: utf8(b"QmUpTEBV4wX5MEcRnCv6BL6oYYrcRZ4WPK2aq6QCkntU43"),
+            image_url: utf8(b"QmUqrhZu3GFB3XSR9jVUNdnZb3rENKR1ZuEGXeUMUjD683"),
         }
     }
 
