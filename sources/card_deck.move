@@ -258,7 +258,7 @@ module capy_vs_gnome::card_deck {
         CapyRider {
             id: id,
             name: utf8(b"capy rider"),
-            image_url: utf8(b"QmXffHzoskFvMDntW5SLeTADYXHgnD2QeEqgMRVvA4B1LR"),
+            image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 4,
             defense: 3,
             health: 4,
@@ -1740,6 +1740,8 @@ module capy_vs_gnome::card_deck {
         display::update_version(&mut display_capy_soldier);
 
 
+
+
         // divine shield
         let display_divine_shield = display::new_with_fields<DivineShield>(
             &publisher, divine_shield_keys, divine_shield_values, ctx
@@ -2078,10 +2080,10 @@ module capy_vs_gnome::card_deck {
     public fun mint_and_transfer_capy_deck(ctx: &mut TxContext ) {
         
 
-        let capy_general = mint_gnome_general(ctx);
-        let capy_monster = mint_gnome_monster(ctx);
-        let capy_rider = mint_gnome_rider(ctx);
-        let capy_soldier = mint_gnome_soldier(ctx);
+        let capy_general = mint_capy_general(ctx);
+        let capy_monster = mint_capy_monster(ctx);
+        let capy_rider = mint_capy_rider(ctx);
+        let capy_soldier = mint_capy_soldier(ctx);
         let divine_shield = mint_divine_shield(ctx);
         let last_stand = mint_last_stand(ctx);
         let massive_onslaught = mint_massive_onslaught(ctx);
