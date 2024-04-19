@@ -39,7 +39,7 @@ module capy_vs_gnome::card_deck {
         GnomeGeneral {
             id: id,
             name: utf8(b"gnome general"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
+            image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
             attack: 3,
             defense: 4,
             health: 6,
@@ -76,7 +76,7 @@ module capy_vs_gnome::card_deck {
         GnomeMonster {
             id: id,
             name: utf8(b"gnome monster"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
+            image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
             attack: 6,
             defense: 2,
             health: 5,
@@ -111,7 +111,7 @@ module capy_vs_gnome::card_deck {
         GnomeRider {
             id: id,
             name: utf8(b"gnome rider"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
+            image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
             attack: 4,
             defense: 3,
             health: 4,
@@ -147,7 +147,7 @@ module capy_vs_gnome::card_deck {
         GnomeSoldier {
             id: id,
             name: utf8(b"gnome soldier"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
+            image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
             defense: 5,
             health: 5,
@@ -188,7 +188,7 @@ module capy_vs_gnome::card_deck {
         CapyGeneral {
             id: id,
             name: utf8(b"capy general"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
+            image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 3,
             defense: 4,
             health: 6,
@@ -224,7 +224,7 @@ module capy_vs_gnome::card_deck {
         CapyMonster {
             id: id,
             name: utf8(b"capy monster"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
+            image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 6,
             defense: 2,
             health: 5,
@@ -258,7 +258,7 @@ module capy_vs_gnome::card_deck {
         CapyRider {
             id: id,
             name: utf8(b"capy rider"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmXffHzoskFvMDntW5SLeTADYXHgnD2QeEqgMRVvA4B1LR"),
+            image_url: utf8(b"QmXffHzoskFvMDntW5SLeTADYXHgnD2QeEqgMRVvA4B1LR"),
             attack: 4,
             defense: 3,
             health: 4,
@@ -296,7 +296,7 @@ module capy_vs_gnome::card_deck {
         CapySoldier {
             id: id,
             name: utf8(b"capy soldier"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
+            image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
             defense: 5,
             health: 5,
@@ -351,7 +351,7 @@ module capy_vs_gnome::card_deck {
         DivineShield {
             id: id,
             name: utf8(b"divine shield"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmbyA8xjAxZNfwdgGMhMDb5f2hSdQYM68kZJgGhKd6nnMz"),
+            image_url: utf8(b"QmbyA8xjAxZNfwdgGMhMDb5f2hSdQYM68kZJgGhKd6nnMz"),
         }
     }
 
@@ -396,7 +396,7 @@ module capy_vs_gnome::card_deck {
         LastStand {
             id: id,
             name: utf8(b"last stand"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/Qmdq15cjatXJbuNt7rF2WM9gzb7JHbb3oexUhY1Gw4ncdy"),
+            image_url: utf8(b"Qmdq15cjatXJbuNt7rF2WM9gzb7JHbb3oexUhY1Gw4ncdy"),
         }
     }
 
@@ -441,7 +441,7 @@ module capy_vs_gnome::card_deck {
         MassiveOnslaught {
             id: id,
             name: utf8(b"massive onslaught"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/Qmf18nsatUr1Ei17aNLFAQ47uv9jW8ovCai9E9Luma1Wiv"),
+            image_url: utf8(b"Qmf18nsatUr1Ei17aNLFAQ47uv9jW8ovCai9E9Luma1Wiv"),
         }
     }
 
@@ -494,7 +494,7 @@ module capy_vs_gnome::card_deck {
         BattleCry {
             id: id,
             name: utf8(b"massivebattle cry onslaught"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmW3GBdKzxeHmuvym4pPNg6VHJuHsTFDEscoB97LXxon5G"),
+            image_url: utf8(b"QmW3GBdKzxeHmuvym4pPNg6VHJuHsTFDEscoB97LXxon5G"),
         }
     }
 
@@ -540,7 +540,7 @@ module capy_vs_gnome::card_deck {
         DecisiveStrike {
             id: id,
             name: utf8(b"decisive strike"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmZ9CiMeEEJRCo1K31CnQw1ELqq76Yh3r72eqHi7TkDKGw"),
+            image_url: utf8(b"QmZ9CiMeEEJRCo1K31CnQw1ELqq76Yh3r72eqHi7TkDKGw"),
         }
     }
 
@@ -585,7 +585,7 @@ module capy_vs_gnome::card_deck {
         ShieldBash {
             id: id,
             name: utf8(b"shield bash"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmWfHkQL2hkTDmWAhe7DGmbU88QnFRw2ChzFKm2n2hHxt5"),
+            image_url: utf8(b"QmWfHkQL2hkTDmWAhe7DGmbU88QnFRw2ChzFKm2n2hHxt5"),
         }
     }
 
@@ -639,7 +639,7 @@ module capy_vs_gnome::card_deck {
         BoostAttack {
             id: id,
             name: utf8(b"boost attack"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmZiYuc9GCj7qaPMqJRb5NzuXwAF7NRngqxBVTSJtLAQZb"),
+            image_url: utf8(b"QmZiYuc9GCj7qaPMqJRb5NzuXwAF7NRngqxBVTSJtLAQZb"),
         }
     }
 
@@ -684,7 +684,7 @@ module capy_vs_gnome::card_deck {
         FortifyDefense {
             id: id,
             name: utf8(b"fortify defense"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmdJpA2xaj5WEbAWitW56z76LQvWJvYAVFgj7ctS2E5Pwh"),
+            image_url: utf8(b"QmdJpA2xaj5WEbAWitW56z76LQvWJvYAVFgj7ctS2E5Pwh"),
         }
     }
 
@@ -729,7 +729,7 @@ module capy_vs_gnome::card_deck {
         VitalitySurge {
             id: id,
             name: utf8(b"vitality surge"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmSBKeHcxjkzNLAM1z8sohSwzrhN2ZjXwwMuUdhBKWmFP5"),
+            image_url: utf8(b"QmSBKeHcxjkzNLAM1z8sohSwzrhN2ZjXwwMuUdhBKWmFP5"),
         }
     }
 
@@ -785,7 +785,7 @@ module capy_vs_gnome::card_deck {
         Ambush {
             id: id,
             name: utf8(b"ambush"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmP15Ja7u7tE4VUrNCrmTnfvpq3SffoHTNK9SvRhSH6k2e"),
+            image_url: utf8(b"QmP15Ja7u7tE4VUrNCrmTnfvpq3SffoHTNK9SvRhSH6k2e"),
         }
     }
 
@@ -830,7 +830,7 @@ module capy_vs_gnome::card_deck {
         QuickRetreat {
             id: id,
             name: utf8(b"quick retreat"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmcDZEL2kv1CuiUs19i23yHoiaGFyXzoqJ8VBZaNa51qoG"),
+            image_url: utf8(b"QmcDZEL2kv1CuiUs19i23yHoiaGFyXzoqJ8VBZaNa51qoG"),
         }
     }
 
@@ -875,7 +875,7 @@ module capy_vs_gnome::card_deck {
         Reinforcements {
             id: id,
             name: utf8(b"reinforcements"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmQiyCzdZX2U134byPS8RWQVZTpQVHyzpB2Y9EpY3zp6gP"),
+            image_url: utf8(b"QmQiyCzdZX2U134byPS8RWQVZTpQVHyzpB2Y9EpY3zp6gP"),
         }
     }
 
@@ -927,7 +927,7 @@ module capy_vs_gnome::card_deck {
         PeaceTreaty {
             id: id,
             name: utf8(b"peace treaty"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmdmVfDUNuAutLCzEb2qML7fHCpJKvn58qcGTgNLcdU9FX"),
+            image_url: utf8(b"QmdmVfDUNuAutLCzEb2qML7fHCpJKvn58qcGTgNLcdU9FX"),
         }
     }
 
@@ -972,7 +972,7 @@ module capy_vs_gnome::card_deck {
         Sabotage {
             id: id,
             name: utf8(b"sabotage"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmUpTEBV4wX5MEcRnCv6BL6oYYrcRZ4WPK2aq6QCkntU43"),
+            image_url: utf8(b"QmUpTEBV4wX5MEcRnCv6BL6oYYrcRZ4WPK2aq6QCkntU43"),
         }
     }
 
@@ -1017,7 +1017,7 @@ module capy_vs_gnome::card_deck {
         WarDrums {
             id: id,
             name: utf8(b"war drums"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmYQvueWZj2iTB7TE2ainaEsjyijApNusJatZUnWtcHepX"),
+            image_url: utf8(b"QmYQvueWZj2iTB7TE2ainaEsjyijApNusJatZUnWtcHepX"),
         }
     }
 
@@ -1071,7 +1071,7 @@ module capy_vs_gnome::card_deck {
         Espionage {
             id: id,
             name: utf8(b"espionage"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmUpTEBV4wX5MEcRnCv6BL6oYYrcRZ4WPK2aq6QCkntU43"),
+            image_url: utf8(b"QmUpTEBV4wX5MEcRnCv6BL6oYYrcRZ4WPK2aq6QCkntU43"),
         }
     }
 
@@ -1116,7 +1116,7 @@ module capy_vs_gnome::card_deck {
         Regroup {
             id: id,
             name: utf8(b"regroup"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmS2NR8uVd3gHMPXj2F7Nj4sgQCPa4WnpBiqaugYVsYwdz"),
+            image_url: utf8(b"QmS2NR8uVd3gHMPXj2F7Nj4sgQCPa4WnpBiqaugYVsYwdz"),
         }
     }
 
@@ -1161,7 +1161,7 @@ module capy_vs_gnome::card_deck {
         Scout {
             id: id,
             name: utf8(b"scout"),
-            image_url: utf8(b"https://emerald-philosophical-gorilla-380.mypinata.cloud/ipfs/QmQX6vo2GviSJp3wXzLP56SLPL8vsMmqSN7sPDpJDTVYQT"),
+            image_url: utf8(b"QmQX6vo2GviSJp3wXzLP56SLPL8vsMmqSN7sPDpJDTVYQT"),
         }
     }
 
@@ -1983,6 +1983,61 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    public fun mint_and_transfer_gnome_deck(ctx: &mut TxContext ) {
+        
+
+        let gnome_general = mint_gnome_general(ctx);
+        let gnome_monster = mint_gnome_monster(ctx);
+        let gnome_rider = mint_gnome_rider(ctx);
+        let gnome_soldier = mint_gnome_soldier(ctx);
+        let divine_shield = mint_divine_shield(ctx);
+        let last_stand = mint_last_stand(ctx);
+        let massive_onslaught = mint_massive_onslaught(ctx);
+        let battle_cry = mint_battle_cry(ctx);
+        let decisive_strike = mint_decisive_strike(ctx);
+        let shield_bash = mint_shield_bash(ctx);
+        let boost_attack = mint_boost_attack(ctx);
+        let fortify_defense = mint_fortify_defense(ctx);
+        let vitality_surge = mint_vitality_surge(ctx);
+        let ambush = mint_ambush(ctx);
+        let quick_retreat = mint_quick_retreat(ctx);
+        let reinforcements = mint_reinforcements(ctx);
+        let peace_treaty = mint_peace_treaty(ctx);
+        let sabotage = mint_sabotage(ctx);
+        let war_drums = mint_war_drums(ctx);
+        let espionage = mint_espionage(ctx);
+        let regroup = mint_regroup(ctx);
+        let scout = mint_scout(ctx);
+
+
+        transfer::public_transfer(gnome_general, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+        transfer::public_transfer(divine_shield, tx_context::sender(ctx));
+        transfer::public_transfer(last_stand, tx_context::sender(ctx));
+        transfer::public_transfer(massive_onslaught, tx_context::sender(ctx));
+        transfer::public_transfer(battle_cry, tx_context::sender(ctx));
+        transfer::public_transfer(decisive_strike, tx_context::sender(ctx));
+        transfer::public_transfer(shield_bash, tx_context::sender(ctx));
+        transfer::public_transfer(boost_attack, tx_context::sender(ctx));
+        transfer::public_transfer(fortify_defense, tx_context::sender(ctx));
+        transfer::public_transfer(vitality_surge, tx_context::sender(ctx));
+        transfer::public_transfer(ambush, tx_context::sender(ctx));
+        transfer::public_transfer(quick_retreat, tx_context::sender(ctx));
+        transfer::public_transfer(reinforcements, tx_context::sender(ctx));
+        transfer::public_transfer(peace_treaty, tx_context::sender(ctx));
+        transfer::public_transfer(sabotage, tx_context::sender(ctx));
+        transfer::public_transfer(war_drums, tx_context::sender(ctx));
+        transfer::public_transfer(espionage, tx_context::sender(ctx));
+        transfer::public_transfer(regroup, tx_context::sender(ctx));
+        transfer::public_transfer(scout, tx_context::sender(ctx));
+
+
+
+    }
+
+
 
 
     // CAPY DECK
@@ -2018,6 +2073,61 @@ module capy_vs_gnome::card_deck {
         (capy_general, capy_monster, capy_rider, capy_soldier, divine_shield, last_stand, massive_onslaught, battle_cry, decisive_strike, shield_bash, boost_attack, fortify_defense, vitality_surge, ambush, quick_retreat, reinforcements, peace_treaty, sabotage, war_drums, espionage, regroup, scout)
     }
 
+
+
+    public fun mint_and_transfer_capy_deck(ctx: &mut TxContext ) {
+        
+
+        let capy_general = mint_gnome_general(ctx);
+        let capy_monster = mint_gnome_monster(ctx);
+        let capy_rider = mint_gnome_rider(ctx);
+        let capy_soldier = mint_gnome_soldier(ctx);
+        let divine_shield = mint_divine_shield(ctx);
+        let last_stand = mint_last_stand(ctx);
+        let massive_onslaught = mint_massive_onslaught(ctx);
+        let battle_cry = mint_battle_cry(ctx);
+        let decisive_strike = mint_decisive_strike(ctx);
+        let shield_bash = mint_shield_bash(ctx);
+        let boost_attack = mint_boost_attack(ctx);
+        let fortify_defense = mint_fortify_defense(ctx);
+        let vitality_surge = mint_vitality_surge(ctx);
+        let ambush = mint_ambush(ctx);
+        let quick_retreat = mint_quick_retreat(ctx);
+        let reinforcements = mint_reinforcements(ctx);
+        let peace_treaty = mint_peace_treaty(ctx);
+        let sabotage = mint_sabotage(ctx);
+        let war_drums = mint_war_drums(ctx);
+        let espionage = mint_espionage(ctx);
+        let regroup = mint_regroup(ctx);
+        let scout = mint_scout(ctx);
+
+
+        transfer::public_transfer(capy_general, tx_context::sender(ctx));
+        transfer::public_transfer(capy_monster, tx_context::sender(ctx));
+        transfer::public_transfer(capy_rider, tx_context::sender(ctx));
+        transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
+        transfer::public_transfer(divine_shield, tx_context::sender(ctx));
+        transfer::public_transfer(last_stand, tx_context::sender(ctx));
+        transfer::public_transfer(massive_onslaught, tx_context::sender(ctx));
+        transfer::public_transfer(battle_cry, tx_context::sender(ctx));
+        transfer::public_transfer(decisive_strike, tx_context::sender(ctx));
+        transfer::public_transfer(shield_bash, tx_context::sender(ctx));
+        transfer::public_transfer(boost_attack, tx_context::sender(ctx));
+        transfer::public_transfer(fortify_defense, tx_context::sender(ctx));
+        transfer::public_transfer(vitality_surge, tx_context::sender(ctx));
+        transfer::public_transfer(ambush, tx_context::sender(ctx));
+        transfer::public_transfer(quick_retreat, tx_context::sender(ctx));
+        transfer::public_transfer(reinforcements, tx_context::sender(ctx));
+        transfer::public_transfer(peace_treaty, tx_context::sender(ctx));
+        transfer::public_transfer(sabotage, tx_context::sender(ctx));
+        transfer::public_transfer(war_drums, tx_context::sender(ctx));
+        transfer::public_transfer(espionage, tx_context::sender(ctx));
+        transfer::public_transfer(regroup, tx_context::sender(ctx));
+        transfer::public_transfer(scout, tx_context::sender(ctx));
+
+
+
+    }
 
 
 
