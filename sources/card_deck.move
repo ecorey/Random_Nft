@@ -8,6 +8,7 @@ module capy_vs_gnome::card_deck {
     use sui::display::{Self, Display};
     use sui::event;
     use std::string::{utf8, String};
+    use std::option::{Option};
 
     #[test_only]
     friend capy_vs_gnome::more_card_tests;
@@ -2262,24 +2263,44 @@ module capy_vs_gnome::card_deck {
 
 
 
+    // -----------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
+
+
+
+
     // GAME SETUP
 
-    struct Game has key, store {
+    struct Player has key, store{
         id: UID,
+        // game_deck: Option<>,
+        // extra_cards: Option<>,
     }
 
 
-    public fun game_setup(ctx: &mut TxContext) : Game {
+    struct Game has key, store {
+        id: UID,
+        player_one: Player,
+        player_two: Player,
+    }
 
-        
+
+    public fun game_setup(player_one: Player, player_two: Player, ctx: &mut TxContext) : Game {
+
+        // assert!(player_one.game_deck == length(40));
+        // assert!(player_two.game_deck == length(40));
+
+        // assert that the player deck has each of the neeedd cards and appropriate number
+        // assert!(player_one.game_deck );
 
         let game = Game {
-            id: object::new(ctx)
+            id: object::new(ctx),
+            player_one,
+            player_two,
         };
 
-
         game
-
 
     }
 
@@ -2289,6 +2310,27 @@ module capy_vs_gnome::card_deck {
 
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2304,3 +2346,34 @@ module capy_vs_gnome::card_deck {
 
 
 }
+
+
+
+
+// CARDS
+// gnome_general
+// gnome_monster 
+// gnome_rider
+// gnome_soldier 
+// capy_general
+// capy_monster 
+// capy_rider
+// capy_soldier 
+// divine_shield 
+// last_stand 
+// massive_onslaught 
+// battle_cry
+// decisive_strike
+// shield_bash 
+// boost_attack
+// fortify_defense 
+// vitality_surge 
+// ambush
+// quick_retreat 
+// reinforcements 
+// peace_treaty
+// sabotage
+// war_drums
+// espionage
+// regroup
+// scout
