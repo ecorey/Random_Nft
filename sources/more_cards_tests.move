@@ -162,6 +162,59 @@ module capy_vs_gnome::more_card_tests {
         };
 
 
+
+
+
+        // Test 3
+        // Test player structure
+        test_scenario::next_tx(scenario_val, admin);
+        {
+            
+            
+
+        };
+
+
+
+
+
+        // Test 4
+        // Test game structure
+        test_scenario::next_tx(scenario_val, admin);
+        {
+            
+            
+
+        };
+
+
+
+
+
+        // template
+        test_scenario::next_tx(scenario_val, admin);
+        {
+            
+            
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         test_scenario::end(scenario);
 
 

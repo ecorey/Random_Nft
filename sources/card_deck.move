@@ -2261,8 +2261,34 @@ module capy_vs_gnome::card_deck {
 
 
 
-    
 
+    // GAME SETUP
+
+    struct Game has key, store {
+        id: UID,
+    }
+
+
+    public fun game_setup(ctx: &mut TxContext) : Game {
+
+        
+
+        let game = Game {
+            id: object::new(ctx)
+        };
+
+
+        game
+
+
+    }
+
+
+
+
+
+
+    
 
 
 
