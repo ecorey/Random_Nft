@@ -47,7 +47,7 @@ const client = new SuiClient({
 
         async function logCurrentTime() {
             await txb.moveCall({
-                target: `${Package}::dead_mans_switch::get_time`,
+                target: `${Package}::card_deck::get_time`,
                 arguments: [txb.object(CLOCK)],
             });
            
