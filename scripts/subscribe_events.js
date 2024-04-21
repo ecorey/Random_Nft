@@ -2,15 +2,15 @@ import { getFullnodeUrl, SuiClient, SuiHTTPTransport } from "@mysten/sui.js/clie
 import { Ed25519Keypair } from "@mysten/sui.js/keypairs/ed25519";
 import { WebSocket } from 'ws';
 import walletDev from './dev-wallet.json' assert { type: 'json' };
-
-import {  PACKAGE } from './config.js';
-
+import { TransactionBlock } from "@mysten/sui.js/transactions";
+import {  Package } from './config.js';
 
 
 
 // #############################################
 // ############SUBSCRIBE EVENTS#################
 // #############################################
+
 
 
 // Initialize keypair
@@ -22,10 +22,10 @@ const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 // contract events
 const eventsToSubscribe = [ 
-    
-    `${PACKAGE}::card_deck::GameOpen`,
-    
+    `${Package}::card_deck::TimeEvent`,
 ];
+
+
 
 
 
@@ -56,25 +56,27 @@ const client = new SuiClient({
 
         
 
-        // let unsubscribe = await client.subscribeEvent({
-        //     filter: { Package },
-        //     onMessage: (event) => {
-        //         console.log('subscribeEvent', JSON.stringify(event, null, 2));
-        //     },
-        // });
+        let unsubscribe = await client.subscribeEvent({
+            filter: { Package },
+            onMessage: (event) => {
+                console.log("subscribeEvent", JSON.stringify(event, null, 2))
+            }
+        });
+        
          
        
+        process.on('SIGINT', async () => {
+            console.log('Inturrpted...');
+            if (unsubscribe) {
+                await unsubscribe();
+                unsubscribe = undefined;
+            }
+            
+        });
 
-        // await unsubscribe();
 
+        
 
-
-
-
-
-
-
-      
 
         
         // finalize the transaction block
@@ -83,6 +85,8 @@ const client = new SuiClient({
             transactionBlock: txb,
         });
         
+
+
 
 
         // log the transaction result
@@ -97,7 +101,3 @@ const client = new SuiClient({
         console.error(`error: ${e}`);
     }
 })();
-
-
-
-

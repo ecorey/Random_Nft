@@ -5,12 +5,21 @@ import walletDev from './dev-wallet.json' assert { type: 'json' };
 
 import { WebSocket } from 'ws';
 
-import {  PACKAGE  } from './config.js';
+import {  Package, CLOCK  } from './config.js';
+
+
+// ###################################
+// ############GET CURRENT TIME#######
+// ###################################
+
+
+
 
 // generate a keypair
 const privateKeyArray = walletDev.privateKey.split(',').map(num => parseInt(num, 10));
 const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
+
 
 
 
@@ -21,6 +30,7 @@ const client = new SuiClient({
         WebSocketConstructor: WebSocket
     }),
 });
+
 
 
 
@@ -35,20 +45,20 @@ const client = new SuiClient({
         txb.setGasBudget(10000000);
 
 
+        async function logCurrentTime() {
+            await txb.moveCall({
+                target: `${Package}::dead_mans_switch::get_time`,
+                arguments: [txb.object(CLOCK)],
+            });
+           
+        }
+
+        await logCurrentTime();
+        
+        
 
 
-      
-
-        // txb.moveCall({
-        //    target: `${PACKAGE}::card_deck::xxx`,
-        //    arguments: [ txb.pure.u64(), txb.pure.u64() ],
-        // });
-
-
-        // console.log()
-
-
-
+        
         // finalize the transaction block
         let txid = await client.signAndExecuteTransactionBlock({
             signer: keypairdev,
@@ -57,7 +67,7 @@ const client = new SuiClient({
         
 
 
-        // log the transaction result
+        // // log the transaction result
         console.log(`Transaction result: ${JSON.stringify(txid, null, 2)}`);
         console.log(`success: https://suiexplorer.com/txblock/${txid.digest}?network=testnet`);
 

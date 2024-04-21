@@ -10,6 +10,8 @@ module capy_vs_gnome::card_deck {
     use std::string::{utf8, String};
     use std::option::{Option};
     use std::vector;
+    use sui::clock::{Self, Clock};
+
 
     #[test_only]
     friend capy_vs_gnome::more_card_tests;
@@ -2979,7 +2981,7 @@ module capy_vs_gnome::card_deck {
 
     // GAME SETUP
 
-    
+
 
     struct Player has key, store{
         id: UID,
@@ -2993,6 +2995,14 @@ module capy_vs_gnome::card_deck {
         player_one: Player,
         player_two: Player,
     }
+
+
+    // event to get time from a timestamp_ms
+    struct TimeEvent has copy, drop, store {
+        timestamp_ms: u64
+    }
+
+
 
 
     public fun game_setup(player_one: Player, player_two: Player, ctx: &mut TxContext) : Game {
@@ -3010,6 +3020,16 @@ module capy_vs_gnome::card_deck {
         };
 
         game
+
+    }
+
+
+
+
+    public fun get_time(clock: &Clock)  {
+        event::emit(TimeEvent {
+            timestamp_ms: clock::timestamp_ms(clock),
+        });
 
     }
 
