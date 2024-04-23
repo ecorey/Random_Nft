@@ -2022,93 +2022,117 @@ module capy_vs_gnome::card_deck {
 
     public fun mint_gnome_deck(ctx: &mut TxContext) : GnomeDeck {
 
-        let gnome_general = vector::empty();
+        
+
+        let gnome_general = vector::empty<GnomeGeneral>();
         vector::push_back(&mut gnome_general, mint_gnome_general(ctx));
 
-        let gnome_monster = vector::empty();
+         let gnome_monster = vector::empty<GnomeMonster>();
         vector::push_back(&mut gnome_monster, mint_gnome_monster(ctx));
 
-        let gnome_rider = vector::empty();
+        let gnome_rider = vector::empty<GnomeRider>();
         vector::push_back(&mut gnome_rider, mint_gnome_rider(ctx));
 
-        let gnome_soldier = vector::empty();
+        let gnome_soldier = vector::empty<GnomeSoldier>();
         vector::push_back(&mut gnome_soldier, mint_gnome_soldier(ctx));
 
 
-
-        let divine_shield = vector::empty();
+        let divine_shield = vector::empty<DivineShield>();
         vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
         vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
 
-        let last_stand = vector::empty();
+
+        let last_stand = vector::empty<LastStand>();
         vector::push_back(&mut last_stand, mint_last_stand(ctx));
         vector::push_back(&mut last_stand, mint_last_stand(ctx));
 
-        let massive_onslaught = vector::empty();
+
+        let massive_onslaught = vector::empty<MassiveOnslaught>();
         vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
         vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
 
-        let battle_cry = vector::empty();
+
+        let battle_cry = vector::empty<BattleCry>();
         vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
         vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
 
-        let decisive_strike = vector::empty();
+
+        let decisive_strike = vector::empty<DecisiveStrike>();
         vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
         vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
 
-        let shield_bash = vector::empty();
+
+
+        let shield_bash = vector::empty<ShieldBash>();
         vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
         vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
 
-        let boost_attack = vector::empty();
+
+        let boost_attack = vector::empty<BoostAttack>();
         vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
         vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
 
-        let fortify_defense = vector::empty();
+
+        let fortify_defense = vector::empty<FortifyDefense>();
         vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
         vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
 
-        let vitality_surge = vector::empty();
+
+
+        let vitality_surge = vector::empty<VitalitySurge>();
         vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
         vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
 
-        let ambush = vector::empty();
+
+
+        let ambush = vector::empty<Ambush>();
         vector::push_back(&mut ambush, mint_ambush(ctx));
         vector::push_back(&mut ambush, mint_ambush(ctx));
 
-        let quick_retreat = vector::empty();
+
+
+        let quick_retreat = vector::empty<QuickRetreat>();
         vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
         vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
 
-        let reinforcements = vector::empty();
+
+        let reinforcements = vector::empty<Reinforcements>();
         vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
         vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
 
-        let peace_treaty = vector::empty();
+
+        let peace_treaty = vector::empty<PeaceTreaty>();
         vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
         vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
 
-        let sabotage = vector::empty();
+
+        let sabotage = vector::empty<Sabotage>();
         vector::push_back(&mut sabotage, mint_sabotage(ctx));
         vector::push_back(&mut sabotage, mint_sabotage(ctx));
 
-        let war_drums = vector::empty();
+
+        let war_drums = vector::empty<WarDrums>();
         vector::push_back(&mut war_drums, mint_war_drums(ctx));
         vector::push_back(&mut war_drums, mint_war_drums(ctx));
 
-        let espionage = vector::empty();
+
+        let espionage = vector::empty<Espionage>();
         vector::push_back(&mut espionage, mint_espionage(ctx));
         vector::push_back(&mut espionage, mint_espionage(ctx));
 
-        let regroup = vector::empty();
+
+        let regroup = vector::empty<Regroup>();
         vector::push_back(&mut regroup, mint_regroup(ctx));
         vector::push_back(&mut regroup, mint_regroup(ctx));
 
-        let scout = vector::empty();
+
+        let scout = vector::empty<Scout>();
         vector::push_back(&mut scout, mint_scout(ctx));
         vector::push_back(&mut scout, mint_scout(ctx));
 
-        let deck = GnomeDeck {
+
+        
+        let gnome_deck = GnomeDeck {
             id: object::new(ctx),
             gnome_general,
             gnome_monster,
@@ -2131,133 +2155,22 @@ module capy_vs_gnome::card_deck {
             war_drums,
             espionage,
             regroup,
-            scout
+            scout,
+
         };
 
-        deck    
+        gnome_deck
+
+
         
     } 
     
 
-    public fun mint_and_transfer_gnome_deck(ctx: &mut TxContext)  {
+    // public fun mint_and_transfer_gnome_deck(ctx: &mut TxContext)  {
 
 
 
-        let gnome_general = vector::empty();
-        vector::push_back(&mut gnome_general, mint_gnome_general(ctx));
-
-        let gnome_monster = vector::empty();
-        vector::push_back(&mut gnome_monster, mint_gnome_monster(ctx));
-
-        let gnome_rider = vector::empty();
-        vector::push_back(&mut gnome_rider, mint_gnome_rider(ctx));
-
-        let gnome_soldier = vector::empty();
-        vector::push_back(&mut gnome_soldier, mint_gnome_soldier(ctx));
-
-
-
-        let divine_shield = vector::empty();
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-
-        let last_stand = vector::empty();
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-
-        let massive_onslaught = vector::empty();
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-
-        let battle_cry = vector::empty();
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-
-        let decisive_strike = vector::empty();
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-
-        let shield_bash = vector::empty();
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-
-        let boost_attack = vector::empty();
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-
-        let fortify_defense = vector::empty();
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-
-        let vitality_surge = vector::empty();
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-
-        let ambush = vector::empty();
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-
-        let quick_retreat = vector::empty();
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-
-        let reinforcements = vector::empty();
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-
-        let peace_treaty = vector::empty();
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-
-        let sabotage = vector::empty();
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-
-        let war_drums = vector::empty();
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-
-        let espionage = vector::empty();
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-
-        let regroup = vector::empty();
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-
-        let scout = vector::empty();
-        vector::push_back(&mut scout, mint_scout(ctx));
-        vector::push_back(&mut scout, mint_scout(ctx));
-
-        let deck = GnomeDeck {
-            id: object::new(ctx),
-            gnome_general,
-            gnome_monster,
-            gnome_rider,
-            gnome_soldier,
-            divine_shield,
-            last_stand,
-            massive_onslaught,
-            battle_cry,
-            decisive_strike,
-            shield_bash,
-            boost_attack,
-            fortify_defense,
-            vitality_surge,
-            ambush,
-            quick_retreat,
-            reinforcements,
-            peace_treaty,
-            sabotage,
-            war_drums,
-            espionage,
-            regroup,
-            scout
-        };
-
-        transfer::public_transfer(deck, tx_context::sender(ctx));
-
-    }
+    // }
 
 
 
@@ -2500,473 +2413,33 @@ module capy_vs_gnome::card_deck {
 
     // CAPY DECK
 
-     public fun mint_and_transfer_capy_deck(ctx: &mut TxContext)  {
+    //  public fun mint_and_transfer_capy_deck(ctx: &mut TxContext)  {
 
 
 
-        let capy_general = vector::empty();
-        vector::push_back(&mut capy_general, mint_capy_general(ctx));
 
-        let capy_monster = vector::empty();
-        vector::push_back(&mut capy_monster, mint_capy_monster(ctx));
-
-        let capy_rider = vector::empty();
-        vector::push_back(&mut capy_rider, mint_capy_rider(ctx));
-
-        let capy_soldier = vector::empty();
-        vector::push_back(&mut capy_soldier, mint_capy_soldier(ctx));
+    // }
 
 
 
-        let divine_shield = vector::empty();
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-
-        let last_stand = vector::empty();
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-
-        let massive_onslaught = vector::empty();
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-
-        let battle_cry = vector::empty();
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-
-        let decisive_strike = vector::empty();
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-
-        let shield_bash = vector::empty();
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-
-        let boost_attack = vector::empty();
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-
-        let fortify_defense = vector::empty();
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-
-        let vitality_surge = vector::empty();
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-
-        let ambush = vector::empty();
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-
-        let quick_retreat = vector::empty();
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-
-        let reinforcements = vector::empty();
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-
-        let peace_treaty = vector::empty();
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-
-        let sabotage = vector::empty();
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-
-        let war_drums = vector::empty();
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-
-        let espionage = vector::empty();
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-
-        let regroup = vector::empty();
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-
-        let scout = vector::empty();
-        vector::push_back(&mut scout, mint_scout(ctx));
-        vector::push_back(&mut scout, mint_scout(ctx));
-
-        let deck = CapyDeck {
-            id: object::new(ctx),
-            capy_general,
-            capy_monster,
-            capy_rider,
-            capy_soldier,
-            divine_shield,
-            last_stand,
-            massive_onslaught,
-            battle_cry,
-            decisive_strike,
-            shield_bash,
-            boost_attack,
-            fortify_defense,
-            vitality_surge,
-            ambush,
-            quick_retreat,
-            reinforcements,
-            peace_treaty,
-            sabotage,
-            war_drums,
-            espionage,
-            regroup,
-            scout
-        };
-
-        transfer::public_transfer(deck, tx_context::sender(ctx));
-
-    }
 
 
-    public fun mint_capy_deck(ctx: &mut TxContext) : CapyDeck {
+    // public fun mint_capy_deck(ctx: &mut TxContext) : CapyDeck {
 
-        let capy_general = vector::empty();
-        vector::push_back(&mut capy_general, mint_capy_general(ctx));
-
-        let capy_monster = vector::empty();
-        vector::push_back(&mut capy_monster, mint_capy_monster(ctx));
-
-        let capy_rider = vector::empty();
-        vector::push_back(&mut capy_rider, mint_capy_rider(ctx));
-
-        let capy_soldier = vector::empty();
-        vector::push_back(&mut capy_soldier, mint_capy_soldier(ctx));
-
-
-
-        let divine_shield = vector::empty();
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-        vector::push_back(&mut divine_shield, mint_divine_shield(ctx));
-
-        let last_stand = vector::empty();
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-        vector::push_back(&mut last_stand, mint_last_stand(ctx));
-
-        let massive_onslaught = vector::empty();
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-        vector::push_back(&mut massive_onslaught, mint_massive_onslaught(ctx));
-
-        let battle_cry = vector::empty();
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-        vector::push_back(&mut battle_cry, mint_battle_cry(ctx));
-
-        let decisive_strike = vector::empty();
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-        vector::push_back(&mut decisive_strike, mint_decisive_strike(ctx));
-
-        let shield_bash = vector::empty();
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-        vector::push_back(&mut shield_bash, mint_shield_bash(ctx));
-
-        let boost_attack = vector::empty();
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-        vector::push_back(&mut boost_attack, mint_boost_attack(ctx));
-
-        let fortify_defense = vector::empty();
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-        vector::push_back(&mut fortify_defense, mint_fortify_defense(ctx));
-
-        let vitality_surge = vector::empty();
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-        vector::push_back(&mut vitality_surge, mint_vitality_surge(ctx));
-
-        let ambush = vector::empty();
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-        vector::push_back(&mut ambush, mint_ambush(ctx));
-
-        let quick_retreat = vector::empty();
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-        vector::push_back(&mut quick_retreat, mint_quick_retreat(ctx));
-
-        let reinforcements = vector::empty();
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-        vector::push_back(&mut reinforcements, mint_reinforcements(ctx));
-
-        let peace_treaty = vector::empty();
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-        vector::push_back(&mut peace_treaty, mint_peace_treaty(ctx));
-
-        let sabotage = vector::empty();
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-        vector::push_back(&mut sabotage, mint_sabotage(ctx));
-
-        let war_drums = vector::empty();
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-        vector::push_back(&mut war_drums, mint_war_drums(ctx));
-
-        let espionage = vector::empty();
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-        vector::push_back(&mut espionage, mint_espionage(ctx));
-
-        let regroup = vector::empty();
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-        vector::push_back(&mut regroup, mint_regroup(ctx));
-
-        let scout = vector::empty();
-        vector::push_back(&mut scout, mint_scout(ctx));
-        vector::push_back(&mut scout, mint_scout(ctx));
-
-        let deck = CapyDeck {
-            id: object::new(ctx),
-            capy_general,
-            capy_monster,
-            capy_rider,
-            capy_soldier,
-            divine_shield,
-            last_stand,
-            massive_onslaught,
-            battle_cry,
-            decisive_strike,
-            shield_bash,
-            boost_attack,
-            fortify_defense,
-            vitality_surge,
-            ambush,
-            quick_retreat,
-            reinforcements,
-            peace_treaty,
-            sabotage,
-            war_drums,
-            espionage,
-            regroup,
-            scout
-        };
-
-        deck    
         
-    }
+        
+    // }
 
 
 
 
-    public fun delete_capy_deck(deck: CapyDeck) {
+    // public fun delete_capy_deck(deck: CapyDeck) {
 
 
         
-    
-        let CapyDeck {
-            capy_general,
-            capy_monster,
-            capy_rider,
-            capy_soldier,
-            divine_shield,
-            last_stand,
-            massive_onslaught,
-            battle_cry,
-            decisive_strike,
-            shield_bash,
-            boost_attack,
-            fortify_defense,
-            vitality_surge,
-            ambush,
-            quick_retreat,
-            reinforcements,
-            peace_treaty,
-            sabotage,
-            war_drums,
-            espionage,
-            regroup,
-            scout,
-            id,
-        } = deck;
-        
-        
-        // Delete individual cards
-       while (!vector::is_empty(&mut capy_general)) {
-            let card = vector::pop_back(&mut capy_general);
-            delete_capy_general(card);
-        };
 
-        vector::destroy_empty(capy_general);
 
-
-
-        while (!vector::is_empty(&mut capy_monster)) {
-            let card = vector::pop_back(&mut capy_monster);
-            delete_capy_monster(card);
-        };
-
-        vector::destroy_empty(capy_monster);
-
-
-        while (!vector::is_empty(&mut capy_rider)) {
-            let card = vector::pop_back(&mut capy_rider);
-            delete_capy_rider(card);
-        };
-
-        vector::destroy_empty(capy_rider);
-
-
-        while (!vector::is_empty(&mut capy_soldier)) {
-            let card = vector::pop_back(&mut capy_soldier);
-            delete_capy_soldier(card);
-        };
-
-        vector::destroy_empty(capy_soldier);
-
-
-
-        // Delete cards stored in vectors
-
-    
-        while (!vector::is_empty(&mut divine_shield)) {
-            let card = vector::pop_back(&mut divine_shield);
-            delete_divine_shield(card);
-        };
-
-        vector::destroy_empty(divine_shield);
-
-
-
-
-        while (!vector::is_empty(&mut last_stand)) {
-            let card = vector::pop_back(&mut last_stand);
-            delete_last_stand(card);
-        };
-
-        vector::destroy_empty(last_stand);
-
-
-
-        while (!vector::is_empty(&mut massive_onslaught)) {
-            let card = vector::pop_back(&mut massive_onslaught);
-            delete_massive_onslaught(card);
-        };
-
-        vector::destroy_empty(massive_onslaught);
-
-
-        while (!vector::is_empty(&mut battle_cry)) {
-            let card = vector::pop_back(&mut battle_cry);
-            delete_battle_cry(card);
-        };
-
-        vector::destroy_empty(battle_cry);
-
-
-
-        while (!vector::is_empty(&mut  decisive_strike)) {
-            let card = vector::pop_back(&mut decisive_strike);
-            delete_decisive_strike(card);
-        };
-
-        vector::destroy_empty(decisive_strike);
-
-
-        while (!vector::is_empty(&mut shield_bash)) {
-            let card = vector::pop_back(&mut shield_bash);
-            delete_shield_bash(card);
-        };
-
-        vector::destroy_empty(shield_bash);
-
-
-
-        while (!vector::is_empty(&mut boost_attack)) {
-            let card = vector::pop_back(&mut boost_attack);
-            delete_boost_attack(card);
-        };
-
-        vector::destroy_empty(boost_attack);
-
-
-        while (!vector::is_empty(&mut fortify_defense)) {
-            let card = vector::pop_back(&mut fortify_defense);
-            delete_fortify_defense(card);
-        };
-
-        vector::destroy_empty(fortify_defense);
-
-
-
-        while (!vector::is_empty(&mut vitality_surge)) {
-            let card = vector::pop_back(&mut vitality_surge);
-            delete_vitality_surge(card);
-        };
-
-        vector::destroy_empty(vitality_surge);
-
-
-
-        while (!vector::is_empty(&mut ambush)) {
-            let card = vector::pop_back(&mut ambush);
-            delete_ambush(card);
-        };
-
-        vector::destroy_empty(ambush);
-
-
-        while (!vector::is_empty(&mut quick_retreat)) {
-            let card = vector::pop_back(&mut quick_retreat);
-            delete_quick_retreat(card);
-        };
-
-        vector::destroy_empty(quick_retreat);
-
-
-        while (!vector::is_empty(&mut reinforcements)) {
-            let card = vector::pop_back(&mut reinforcements);
-            delete_reinforcements(card);
-        };
-
-        vector::destroy_empty(reinforcements);
-
-        while (!vector::is_empty(&mut peace_treaty)) {
-            let card = vector::pop_back(&mut peace_treaty);
-            delete_peace_treaty(card);
-        };
-
-        vector::destroy_empty(peace_treaty);
-
-
-        while (!vector::is_empty(&mut sabotage)) {
-            let card = vector::pop_back(&mut sabotage);
-            delete_sabotage(card);
-        };
-
-        vector::destroy_empty(sabotage);
-
-
-        while (!vector::is_empty(&mut war_drums)) {
-            let card = vector::pop_back(&mut war_drums);
-            delete_war_drums(card);
-        };
-
-        vector::destroy_empty(war_drums);
-
-
-        while (!vector::is_empty(&mut espionage)) {
-            let card = vector::pop_back(&mut espionage);
-            delete_espionage(card);
-        };
-
-        vector::destroy_empty(espionage);
-
-
-        while (!vector::is_empty(&mut regroup)) {
-            let card = vector::pop_back(&mut regroup);
-            delete_regroup(card);
-        };
-
-        vector::destroy_empty(regroup);
-
-
-        while (!vector::is_empty(&mut scout)) {
-            let card = vector::pop_back(&mut scout);
-            delete_scout(card);
-        };
-
-        vector::destroy_empty(scout);
-
-
-
-        object::delete(id);
-
-
-    }
+    // }
 
   
 

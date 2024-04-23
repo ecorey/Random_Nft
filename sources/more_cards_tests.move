@@ -8,7 +8,7 @@ module capy_vs_gnome::more_card_tests {
     use sui::tx_context::{Self, TxContext};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
     use capy_vs_gnome::card_deck::{mint_gnome_deck, delete_gnome_deck};
-    use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
+    // use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
 
 
 
@@ -66,8 +66,8 @@ module capy_vs_gnome::more_card_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
         
-            let deck = mint_capy_deck(test_scenario::ctx(scenario_val));
-            delete_capy_deck(deck);
+            // let deck = mint_capy_deck(test_scenario::ctx(scenario_val));
+            // delete_capy_deck(deck);
 
         };
 
