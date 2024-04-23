@@ -5,11 +5,19 @@ module capy_vs_gnome::more_card_tests {
     use sui::test_scenario;
     use sui::test_utils::{create_one_time_witness, assert_eq};
     use std::debug;
+    use std::vector;
     use sui::tx_context::{Self, TxContext};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
-    use capy_vs_gnome::card_deck::{mint_gnome_deck, delete_gnome_deck};
+    use capy_vs_gnome::card_deck::{mint_gnome_cards};
     // use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
 
+    use capy_vs_gnome::card_deck::{delete_gnome_general_vector, delete_gnome_monster_vector, delete_gnome_rider_vector, delete_gnome_soldier_vector};
+
+    use capy_vs_gnome::card_deck::GnomeGeneral;
+    use capy_vs_gnome::card_deck::GnomeMonster;
+    use capy_vs_gnome::card_deck::GnomeRider;
+    use capy_vs_gnome::card_deck::GnomeSoldier;
+    use capy_vs_gnome::card_deck::DivineShield;
 
 
     fun init_test_helper() : test_scenario::Scenario {
@@ -36,7 +44,7 @@ module capy_vs_gnome::more_card_tests {
 
 
     #[test]
-    public fun character_card_tests() {
+    public fun character_card_cards() {
 
 
         let admin = @0xABC;
@@ -54,8 +62,19 @@ module capy_vs_gnome::more_card_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
             
-            let deck = mint_gnome_deck(test_scenario::ctx(scenario_val));
-            delete_gnome_deck(deck);
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(test_scenario::ctx(scenario_val));
+
+
+            
+            delete_gnome_general_vector(gnome_general);
+            delete_gnome_monster_vector(gnome_monster);
+            delete_gnome_rider_vector(gnome_rider);
+            delete_gnome_soldier_vector(gnome_soldier);
+                
+           
+    
+
+            
 
         };
 
