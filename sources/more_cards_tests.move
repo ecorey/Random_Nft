@@ -8,11 +8,11 @@ module capy_vs_gnome::more_card_tests {
     use std::vector;
     use sui::tx_context::{Self, TxContext};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
-    use capy_vs_gnome::card_deck::{mint_complete_gnome_deck};
+    // use capy_vs_gnome::card_deck::{mint_complete_gnome_deck};
     // use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
+    // use capy_vs_gnome::card_deck::{delete_complete_gnome_deck};
 
-    use capy_vs_gnome::card_deck::{delete_complete_gnome_deck};
-    use capy_vs_gnome::card_deck::{};
+    use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
 
    
 
@@ -59,10 +59,11 @@ module capy_vs_gnome::more_card_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
             
-            let gnome_deck = mint_complete_gnome_deck(test_scenario::ctx(scenario_val));
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two)
+                = gnome_deck(test_scenario::ctx(scenario_val));
             
             
-            delete_complete_gnome_deck(gnome_deck); 
+            delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two, test_scenario::ctx(scenario_val)); 
 
 
 

@@ -2006,48 +2006,31 @@ module capy_vs_gnome::card_deck {
     // ----------------------------------------------
     
 
-    struct GnomeDeck has key, store {
-        id: UID,
-        gnome_general: Option<GnomeGeneral>,
-        gnome_monster: Option<GnomeMonster>,
-        gnome_rider: Option<GnomeRider>,
-        gnome_soldier: Option<GnomeSoldier>,
+    // struct GnomeDeck has key, store {
+    //     id: UID,
+    //     gnome_general: Option<GnomeGeneral>,
+    //     gnome_monster: Option<GnomeMonster>,
+    //     gnome_rider: Option<GnomeRider>,
+    //     gnome_soldier: Option<GnomeSoldier>,
 
-        // divne_shield: vector<DivineShield>,
-        // last_stand: vector<LastStand>,
-        // massive_onslaught: vector<MassiveOnslaught>,
-        // battle_cry: vector<BattleCry>,
-        // decisive_strike: vector<DecisiveStrike>,
-        // shield_bash: vector<ShieldBash>,
-        // boost_attack: vector<BoostAttack>,
-        // fortify_defense: vector<FortifyDefense>,
-        // vitality_surge: vector<VitalitySurge>,
-        // ambush: vector<Ambush>,
-        // quick_retreat: vector<QuickRetreat>,
-        // reinforcements: vector<Reinforcements>,
-        // peace_treaty: vector<PeaceTreaty>,
-        // sabotage: vector<Sabotage>,
-        // war_drums: vector<WarDrums>,
-        // espionage: vector<Espionage>,
-        // regroup: vector<Regroup>,
-        // scout: vector<Scout>,
-
-    }
-
-
-
-
-
-
-
-    struct CapyDeck has key, store {
-        id: UID,
-        capy_general: vector<CapyGeneral>,
-        capy_monster: vector<CapyMonster>,
-        capy_rider: vector<CapyRider>,
-        capy_soldier: vector<CapySoldier>,
         
-    }
+
+    // }
+
+
+
+
+
+
+
+    // struct CapyDeck has key, store {
+    //     id: UID,
+    //     capy_general: vector<CapyGeneral>,
+    //     capy_monster: vector<CapyMonster>,
+    //     capy_rider: vector<CapyRider>,
+    //     capy_soldier: vector<CapySoldier>,
+        
+    // }
 
 
 
@@ -2057,82 +2040,6 @@ module capy_vs_gnome::card_deck {
 
 
     // ----------------------------------------------
-
-
-
-
-    
-
-
-    // GNOME DECK
-
-    fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
-
-        
-        
-        let gnome_general = mint_gnome_general(ctx);
-        let gnome_monster = mint_gnome_monster(ctx);
-        let gnome_rider = mint_gnome_rider(ctx);
-        let gnome_soldier = mint_gnome_soldier(ctx);
-      
-
-
-        (gnome_general, gnome_monster, gnome_rider, gnome_soldier)      
-
-
-    } 
-    
-
-
-
-    // public fun mint_and_transfer_gnome_deck(ctx: &mut TxContext)  {
-
-
-        
-                  
-
-
-    // }
-
-
-
-
-
-
-
-
-    // CAPY DECK
-
-    //  public fun mint_and_transfer_capy_deck(ctx: &mut TxContext)  {
-
-
-
-
-    // }
-
-
-
-
-
-    // public fun mint_capy_deck(ctx: &mut TxContext) : CapyDeck {
-
-        
-        
-    // }
-
-
-
-
-    // public fun delete_capy_deck(deck: CapyDeck) {
-
-
-        
-
-
-    // }
-
-
-
 
 
 
@@ -2204,81 +2111,182 @@ module capy_vs_gnome::card_deck {
 
 
 
+     // GNOME DECK
 
-
-
-
-
-
-    public fun mint_complete_gnome_deck(ctx: &mut TxContext): GnomeDeck {
-        
-        
-        // Mint gnome cards
-        let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(ctx);
-
-
-        // Mint main deck cards
-        // let (divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, 
-        //      battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, 
-        //      boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, 
-        //      ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, 
-        //      peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, 
-        //      espionage_two, regroup, regroup_two, scout, scout_two) = mint_main_deck_cards(ctx);
+    fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
 
         
-
-        let gnome_deck = GnomeDeck {
-            id: object::new(ctx),
-            gnome_general: option::some<GnomeGeneral>(gnome_general),
-            gnome_monster: option::some<GnomeMonster>(gnome_monster),
-            gnome_rider: option::some<GnomeRider>(gnome_rider),
-            gnome_soldier: option::some<GnomeSoldier>(gnome_soldier),
-
-            
-        };
+        
+        let gnome_general = mint_gnome_general(ctx);
+        let gnome_monster = mint_gnome_monster(ctx);
+        let gnome_rider = mint_gnome_rider(ctx);
+        let gnome_soldier = mint_gnome_soldier(ctx);
+      
 
 
-        gnome_deck
+        (gnome_general, gnome_monster, gnome_rider, gnome_soldier)      
 
 
+    } 
     
+
+
+
+
+    public fun gnome_deck(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, DivineShield, DivineShield, LastStand, LastStand, MassiveOnslaught, MassiveOnslaught, BattleCry, BattleCry, DecisiveStrike, DecisiveStrike, ShieldBash, ShieldBash, BoostAttack, BoostAttack, FortifyDefense, FortifyDefense, VitalitySurge, VitalitySurge, Ambush, Ambush, QuickRetreat, QuickRetreat, Reinforcements, Reinforcements, PeaceTreaty, PeaceTreaty, Sabotage, Sabotage, WarDrums, WarDrums, Espionage, Espionage, Regroup, Regroup, Scout, Scout) {
+
+
+        let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(ctx);
+        let (divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two)
+        = mint_main_deck_cards(ctx);
+
+
+
+        
+        (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two)
+
+
     }
 
 
-    public fun delete_complete_gnome_deck(deck: GnomeDeck) {
 
-        let GnomeDeck {
+    public fun delete_all_gnome_cards(gnome_general: GnomeGeneral, gnome_monster: GnomeMonster, gnome_rider: GnomeRider, gnome_soldier: GnomeSoldier, divine_shield: DivineShield, divine_shield_two: DivineShield, last_stand: LastStand, last_stand_two: LastStand, massive_onslaught: MassiveOnslaught, massive_onslaught_two: MassiveOnslaught, battle_cry: BattleCry, battle_cry_two: BattleCry, decisive_strike: DecisiveStrike, decisive_strike_two: DecisiveStrike, shield_bash: ShieldBash, shield_bash_two: ShieldBash, boost_attack: BoostAttack, boost_attack_two: BoostAttack, fortify_defense: FortifyDefense, fortify_defense_two: FortifyDefense, vitality_surge: VitalitySurge, vitality_surge_two: VitalitySurge, ambush: Ambush, ambush_two: Ambush, quick_retreat: QuickRetreat, quick_retreat_two: QuickRetreat, reinforcements: Reinforcements, reinforcements_two: Reinforcements, peace_treaty: PeaceTreaty, peace_treaty_two: PeaceTreaty, sabotage: Sabotage, sabotage_two: Sabotage, war_drums: WarDrums, war_drums_two: WarDrums, espionage: Espionage, espionage_two: Espionage, regroup: Regroup, regroup_two: Regroup, scout: Scout, scout_two: Scout, ctx: &mut TxContext) {
+        
+        delete_gnome_general(gnome_general);
+        delete_gnome_monster(gnome_monster);
+        delete_gnome_rider(gnome_rider);
+        delete_gnome_soldier(gnome_soldier);
 
-            id, 
-            gnome_general,
-            gnome_monster,
-            gnome_rider,
-            gnome_soldier,
+        delete_divine_shield(divine_shield);
+        delete_divine_shield(divine_shield_two);
+        delete_last_stand(last_stand);
+        delete_last_stand(last_stand_two);
+        delete_massive_onslaught(massive_onslaught);
+        delete_massive_onslaught(massive_onslaught_two);
+        delete_battle_cry(battle_cry);
+        delete_battle_cry(battle_cry_two);
+        delete_decisive_strike(decisive_strike);
+        delete_decisive_strike(decisive_strike_two);
+        delete_shield_bash(shield_bash);
+        delete_shield_bash(shield_bash_two);
+        delete_boost_attack(boost_attack);
+        delete_boost_attack(boost_attack_two);
+        delete_fortify_defense(fortify_defense);
+        delete_fortify_defense(fortify_defense_two);
+        delete_vitality_surge(vitality_surge);
+        delete_vitality_surge(vitality_surge_two);
+        delete_ambush(ambush);
+        delete_ambush(ambush_two);
+        delete_quick_retreat(quick_retreat);
+        delete_quick_retreat(quick_retreat_two);
+        delete_reinforcements(reinforcements);
+        delete_reinforcements(reinforcements_two);
+        delete_peace_treaty(peace_treaty);
+        delete_peace_treaty(peace_treaty_two);
+        delete_sabotage(sabotage);
+        delete_sabotage(sabotage_two);
+        delete_war_drums(war_drums);
+        delete_war_drums(war_drums_two);
+        delete_espionage(espionage);
+        delete_espionage(espionage_two);
+        delete_regroup(regroup);
+        delete_regroup(regroup_two);
+        delete_scout(scout);
+        delete_scout(scout_two);
+
+    }
+
+
+
+
+
+    // public fun mint_complete_gnome_deck(ctx: &mut TxContext) {
+        
+        
+    //     // Mint gnome cards
+    //     let (gnome_general_minted, gnome_monster_minted, gnome_rider_minted, gnome_soldier) = mint_gnome_cards(ctx);
+
+
+    
+
+    //     let gnome_deck = GnomeDeck {
+    //         id: object::new(ctx),
+    //         gnome_general: option::none(),
+    //         gnome_monster: option::none(),
+    //         gnome_rider: option::none(),
+    //         gnome_soldier: option::none(),
+
+    //     };
+
+
+    //     option::fill<GnomeGeneral>(&mut gnome_deck.gnome_general, gnome_general_minted);
+    //     option::fill<GnomeMonster>(&mut gnome_deck.gnome_monster, gnome_monster_minted);
+    //     option::fill<GnomeRider>(&mut gnome_deck.gnome_rider, gnome_rider_minted);
+    //     option::fill<GnomeSoldier>(&mut gnome_deck.gnome_soldier, gnome_soldier);
+
+
+    //     transfer::public_transfer(gnome_deck, tx_context::sender(ctx));
+
+
+    
+    // }
+
+
+
+
+
+    // public fun delete_complete_gnome_deck(deck: GnomeDeck) {
+
+    //     let GnomeDeck {
+
+    //         id, 
+    //         gnome_general,
+    //         gnome_monster,
+    //         gnome_rider,
+    //         gnome_soldier,
 
            
 
-        } = deck;  
+    //     } = deck;  
 
 
 
        
-        delete_gnome_general_option(gnome_general);
-        delete_gnome_monster_option(gnome_monster);
-        delete_gnome_rider_option(gnome_rider);
-        delete_gnome_soldier_option(gnome_soldier);
+    //     delete_gnome_general_option(gnome_general);
+    //     delete_gnome_monster_option(gnome_monster);
+    //     delete_gnome_rider_option(gnome_rider);
+    //     delete_gnome_soldier_option(gnome_soldier);
 
-        object::delete(id);
+    //     object::delete(id);
 
 
        
 
-    }
+    // }
 
     
+
+
+
+
+
 
 
 
   
+    // CAPY DECK
+    // public fun mint_capy_cards(ctx: &mut TxContext) : CapyDeck {
+ 
+        
+    // }
+
+
+
+
+    // public fun delete_capy_deck(deck: CapyDeck) {
+
+
+    // }
 
 
 
