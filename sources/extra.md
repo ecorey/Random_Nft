@@ -171,3 +171,26 @@ public fun delete_gnome_general_vector(deck: vector<GnomeGeneral>) {
         vector::destroy_empty(deck);
 
     }
+
+
+
+
+
+ // divne_shield,
+            // last_stand,
+            // massive_onslaught,
+            // battle_cry,
+            // decisive_strike,
+            // shield_bash,
+            // boost_attack,
+            // fortify_defense,
+            // vitality_surge,
+            // ambush,
+            // quick_retreat,
+            // reinforcements,
+            // peace_treaty,
+            // sabotage,
+            // war_drums,
+            // espionage,
+            // regroup,
+            // scout,
