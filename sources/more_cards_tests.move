@@ -11,7 +11,7 @@ module capy_vs_gnome::more_card_tests {
     use capy_vs_gnome::card_deck::{mint_complete_gnome_deck};
     // use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
 
-    // use capy_vs_gnome::card_deck::{delete_complete_gnome_deck};
+    use capy_vs_gnome::card_deck::{delete_complete_gnome_deck};
     use capy_vs_gnome::card_deck::{};
 
    
@@ -59,10 +59,10 @@ module capy_vs_gnome::more_card_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
             
-            // let gnome_deck = mint_complete_gnome_deck(test_scenario::ctx(scenario_val));
+            let gnome_deck = mint_complete_gnome_deck(test_scenario::ctx(scenario_val));
             
             
-            // delete_complete_gnome_deck(gnome_deck); 
+            delete_complete_gnome_deck(gnome_deck); 
 
 
 
