@@ -5,12 +5,9 @@ import walletDev from './dev-wallet.json' assert { type: 'json' };
 
 import { WebSocket } from 'ws';
 
-import {  Package, CLOCK  } from './config.js';
+import {  Package  } from './config.js';
 
 
-// ###################################
-// ############GET CURRENT TIME#######
-// ###################################
 
 
 
@@ -47,7 +44,7 @@ const client = new SuiClient({
 
         async function mintGnomeDeck() {
             await txb.moveCall({
-                target: `${Package}::card_deck::gnome_deck`,
+                target: `${Package}::card_deck::mint_gnome_cards`,
                 arguments: [],
             });
            

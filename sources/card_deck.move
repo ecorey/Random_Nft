@@ -2046,7 +2046,7 @@ module capy_vs_gnome::card_deck {
 
 
     // MINT DECKS
-    fun mint_main_deck_cards(ctx: &mut TxContext) : (DivineShield, DivineShield, LastStand, LastStand, MassiveOnslaught, MassiveOnslaught, BattleCry, BattleCry, DecisiveStrike, DecisiveStrike, ShieldBash, ShieldBash, BoostAttack, BoostAttack, FortifyDefense, FortifyDefense, VitalitySurge, VitalitySurge, Ambush, Ambush, QuickRetreat, QuickRetreat, Reinforcements, Reinforcements, PeaceTreaty, PeaceTreaty, Sabotage, Sabotage, WarDrums, WarDrums, Espionage, Espionage, Regroup, Regroup, Scout, Scout) {  
+    public fun mint_main_deck_cards(ctx: &mut TxContext) : (DivineShield, DivineShield, LastStand, LastStand, MassiveOnslaught, MassiveOnslaught, BattleCry, BattleCry, DecisiveStrike, DecisiveStrike, ShieldBash, ShieldBash, BoostAttack, BoostAttack, FortifyDefense, FortifyDefense, VitalitySurge, VitalitySurge, Ambush, Ambush, QuickRetreat, QuickRetreat, Reinforcements, Reinforcements, PeaceTreaty, PeaceTreaty, Sabotage, Sabotage, WarDrums, WarDrums, Espionage, Espionage, Regroup, Regroup, Scout, Scout) {  
 
         let divine_shield = mint_divine_shield(ctx);
         let divine_shield_two = mint_divine_shield(ctx);
@@ -2113,7 +2113,7 @@ module capy_vs_gnome::card_deck {
 
      // GNOME DECK
 
-    fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
+    public fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
 
         
         
@@ -2137,13 +2137,48 @@ module capy_vs_gnome::card_deck {
 
 
         let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(ctx);
-        let (divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two)
+        let (divine_shield, divine_shield_two, 
+        last_stand, last_stand_two, 
+        massive_onslaught, massive_onslaught_two, 
+        battle_cry, battle_cry_two, 
+        decisive_strike, decisive_strike_two, 
+        shield_bash, shield_bash_two, 
+        boost_attack, boost_attack_two, 
+        fortify_defense, fortify_defense_two, 
+        vitality_surge, vitality_surge_two, 
+        ambush, ambush_two, 
+        quick_retreat, quick_retreat_two, 
+        reinforcements, reinforcements_two, 
+        peace_treaty, peace_treaty_two, 
+        sabotage, sabotage_two, 
+        war_drums, war_drums_two, 
+        espionage, espionage_two, 
+        regroup, regroup_two, 
+        scout, scout_two)
         = mint_main_deck_cards(ctx);
 
 
 
         
-        (gnome_general, gnome_monster, gnome_rider, gnome_soldier, divine_shield, divine_shield_two, last_stand, last_stand_two, massive_onslaught, massive_onslaught_two, battle_cry, battle_cry_two, decisive_strike, decisive_strike_two, shield_bash, shield_bash_two, boost_attack, boost_attack_two, fortify_defense, fortify_defense_two, vitality_surge, vitality_surge_two, ambush, ambush_two, quick_retreat, quick_retreat_two, reinforcements, reinforcements_two, peace_treaty, peace_treaty_two, sabotage, sabotage_two, war_drums, war_drums_two, espionage, espionage_two, regroup, regroup_two, scout, scout_two)
+        (gnome_general, gnome_monster, gnome_rider, gnome_soldier,
+         divine_shield, divine_shield_two, 
+         last_stand, last_stand_two, 
+         massive_onslaught, massive_onslaught_two, 
+         battle_cry, battle_cry_two, 
+         decisive_strike, decisive_strike_two, 
+         shield_bash, shield_bash_two, 
+         boost_attack, boost_attack_two, 
+         fortify_defense, fortify_defense_two, 
+         vitality_surge, vitality_surge_two, 
+         ambush, ambush_two, 
+         quick_retreat, quick_retreat_two, 
+         reinforcements, reinforcements_two, 
+         peace_treaty, peace_treaty_two, 
+         sabotage, sabotage_two, 
+         war_drums, war_drums_two, 
+         espionage, espionage_two, 
+         regroup, regroup_two, 
+         scout, scout_two)
 
 
     }
