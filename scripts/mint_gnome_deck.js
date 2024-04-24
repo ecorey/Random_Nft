@@ -47,7 +47,7 @@ const client = new SuiClient({
 
         async function mintGnomeDeck() {
             await txb.moveCall({
-                target: `${Package}::card_deck::mint_complete_gnome_deck`,
+                target: `${Package}::card_deck::gnome_deck`,
                 arguments: [],
             });
            
