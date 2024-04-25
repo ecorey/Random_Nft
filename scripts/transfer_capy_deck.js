@@ -42,15 +42,15 @@ const client = new SuiClient({
         txb.setGasBudget(10000000);
 
 
-        async function mintGnomeDeck() {
+        async function transferCapyDeck() {
             await txb.moveCall({
-                target: `${Package}::card_deck::mint_gnome_cards`,
+                target: `${Package}::card_deck::transfer_capy_cards`,
                 arguments: [],
             });
            
         }
 
-        await mintGnomeDeck();
+        await transferCapyDeck();
         
         
 
