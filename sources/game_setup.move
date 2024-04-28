@@ -24,20 +24,9 @@ module capy_vs_gnome::game_setup {
 
 
 
-    
-
-
-
-    struct Player has key, store{
-        id: UID,
-       
-    }
-
-
     struct Game has key, store {
         id: UID,
-        player_one: Player,
-        player_two: Player,
+       
     }
 
 
@@ -51,14 +40,13 @@ module capy_vs_gnome::game_setup {
 
 
 
-    public fun start_game(player_one: Player, player_one_deck: &ConfirmedGnomeDeck, player_two: Player, player_two_deck: &ConfirmedCapyDeck, ctx: &mut TxContext) : Game {
+    public fun start_game(player_one_deck: &ConfirmedGnomeDeck, player_two_deck: &ConfirmedCapyDeck, ctx: &mut TxContext) : Game {
 
        
 
         let game = Game {
             id: object::new(ctx),
-            player_one,
-            player_two,
+           
         };
 
         game
