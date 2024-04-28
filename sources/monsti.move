@@ -69,8 +69,16 @@ module capy_vs_gnome::monsti {
 
 
 
-    // mint to the user at the start of the game
-    
+    // mint 25 MONSTI to the user at the start of a turn
+    public fun turn_mint(
+        cap: &mut TreasuryCap<MONSTI>,
+        ctx: &mut TxContext,
+    ) {
+        let token = token::mint(cap, 25, ctx);
+        let req = token::transfer(token, tx_context::sender(ctx), ctx);
+
+        token::confirm_with_treasury_cap(cap, req, ctx);
+    }
 
 
 
