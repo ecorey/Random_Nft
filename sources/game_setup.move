@@ -8,8 +8,8 @@ module capy_vs_gnome::game_setup {
 
     use sui::coin::{Self, TreasuryCap};
     use capy_vs_gnome::monsti::{MONSTI, turn_mint};
-    use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier};
-
+    use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, confirm_gnome_cards, confirm_capy_cards};
+    use capy_vs_gnome::card_deck::{ConfirmedGnomeDeck, ConfirmedCapyDeck};
      
 
 
@@ -50,18 +50,10 @@ module capy_vs_gnome::game_setup {
     
 
 
-    
-    
 
+    public fun start_game(player_one: Player, player_one_deck: &ConfirmedGnomeDeck, player_two: Player, player_two_deck: &ConfirmedCapyDeck, ctx: &mut TxContext) : Game {
 
-
-    public fun start_game(player_one: Player, player_two: Player, ctx: &mut TxContext) : Game {
-
-        // assert!(player_one.game_deck == length(40));
-        // assert!(player_two.game_deck == length(40));
-
-        // assert that the player deck has each of the neeedd cards and appropriate number
-        // assert!(player_one.game_deck );
+       
 
         let game = Game {
             id: object::new(ctx),

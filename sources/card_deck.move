@@ -2533,7 +2533,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    struct ConfimredGnomeDeck has key, store {
+    struct ConfirmedGnomeDeck has key, store {
         id: UID,
         
         gnome_general_id: ID,
@@ -2545,7 +2545,7 @@ module capy_vs_gnome::card_deck {
     }
 
 
-    struct ConfimredCapyDeck has key, store {
+    struct ConfirmedCapyDeck has key, store {
         id: UID,
         
         capy_general_id: ID,
@@ -2564,7 +2564,7 @@ module capy_vs_gnome::card_deck {
 
         // intasntiate first to avoid error then check
         // create as shared object with object ids to later use to check and verify 
-        let confirmed_gnome_deck = ConfimredGnomeDeck {
+        let confirmed_gnome_deck = ConfirmedGnomeDeck {
             id: object::new(ctx),
             gnome_general_id: object::id(&gnome_general),
             gnome_monster_id: object::id(&gnome_monster),
@@ -2683,7 +2683,7 @@ module capy_vs_gnome::card_deck {
     
         // intasntiate first to avoid error then check
         // create as shared object with object ids to later use to check and verify 
-        let confirmed_capy_deck = ConfimredCapyDeck {
+        let confirmed_capy_deck = ConfirmedCapyDeck {
             id: object::new(ctx),
             capy_general_id: object::id(&capy_general),
             capy_monster_id: object::id(&capy_monster),
