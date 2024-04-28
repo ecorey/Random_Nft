@@ -12,6 +12,8 @@ module capy_vs_gnome::card_deck {
     use std::vector;
     use sui::clock::{Self, Clock};
 
+    use capy_vs_gnome::monsti::{turn_mint};
+
 
     #[test_only]
     friend capy_vs_gnome::more_card_tests;
@@ -2551,6 +2553,15 @@ module capy_vs_gnome::card_deck {
     // event to get time from a timestamp_ms
     struct TimeEvent has copy, drop, store {
         timestamp_ms: u64
+    }
+
+
+    
+
+    public fun start_turn(ctx: &mut TxContext) {
+
+        // turn_mint(ctx);
+
     }
 
 
