@@ -8,6 +8,7 @@ module capy_vs_gnome::game_setup {
 
     use sui::coin::{Self, TreasuryCap};
     use capy_vs_gnome::monsti::{MONSTI, turn_mint};
+    use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier};
 
      
 
@@ -23,10 +24,13 @@ module capy_vs_gnome::game_setup {
 
 
 
+    
+
+
+
     struct Player has key, store{
         id: UID,
-        // game_deck: Option<>,
-        // extra_cards: Option<>,
+       
     }
 
 
@@ -45,17 +49,13 @@ module capy_vs_gnome::game_setup {
 
     
 
-    public fun start_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
-        turn_mint(cap, ctx);
-
-
-    }
+    
+    
 
 
 
-
-    public fun game_setup(player_one: Player, player_two: Player, ctx: &mut TxContext) : Game {
+    public fun start_game(player_one: Player, player_two: Player, ctx: &mut TxContext) : Game {
 
         // assert!(player_one.game_deck == length(40));
         // assert!(player_two.game_deck == length(40));
@@ -72,6 +72,20 @@ module capy_vs_gnome::game_setup {
         game
 
     }
+
+
+
+
+    public fun start_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
+
+        turn_mint(cap, ctx);
+
+
+    }
+
+
+
+    
 
 
 

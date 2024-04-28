@@ -3,7 +3,7 @@ module capy_vs_gnome::card_deck {
 
     use sui::tx_context::{Self, TxContext};
     use sui::package::{Self, Publisher};
-    use sui::object::{Self, UID};
+    use sui::object::{Self, UID, ID};
     use sui::transfer;
     use sui::display::{Self, Display};
     use sui::event;
@@ -29,6 +29,7 @@ module capy_vs_gnome::card_deck {
 
     struct GnomeGeneral has key, store {
         id: UID,
+        // gnome_general_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
@@ -40,10 +41,11 @@ module capy_vs_gnome::card_deck {
     }
 
     fun mint_gnome_general(ctx: &mut TxContext) : GnomeGeneral {
-        let id = object::new(ctx);
+        
 
         GnomeGeneral {
-            id: id,
+            id: object::new(ctx),
+            // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
             attack: 3,
@@ -61,6 +63,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_general = GnomeGeneral {
             id: id,
+            // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
             attack: 3,
@@ -99,6 +102,7 @@ module capy_vs_gnome::card_deck {
 
     struct GnomeMonster has key, store {
         id: UID,
+        // gnome_monster_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
@@ -114,6 +118,7 @@ module capy_vs_gnome::card_deck {
 
         GnomeMonster {
             id: id,
+            // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
             attack: 6,
@@ -131,6 +136,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_monster = GnomeMonster {
             id: id,
+            // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
             attack: 6,
@@ -168,6 +174,7 @@ module capy_vs_gnome::card_deck {
 
     struct GnomeRider has key, store {
         id: UID,
+        // gnome_rider_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
@@ -182,6 +189,7 @@ module capy_vs_gnome::card_deck {
 
         GnomeRider {
             id: id,
+            // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
             attack: 4,
@@ -198,6 +206,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_rider = GnomeRider {
             id: id,
+            // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
             attack: 4,
@@ -234,6 +243,7 @@ module capy_vs_gnome::card_deck {
 
     struct GnomeSoldier has key, store {
         id: UID,
+        // gnome_soldier_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
@@ -248,6 +258,7 @@ module capy_vs_gnome::card_deck {
 
         GnomeSoldier {
             id: id,
+            // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
@@ -264,6 +275,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_soldier = GnomeSoldier {
             id: id,
+            // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
@@ -2514,6 +2526,163 @@ module capy_vs_gnome::card_deck {
 
 
     // }
+
+
+
+
+
+
+
+
+
+
+    struct ConfimredGnomeDeck has key, store {
+        id: UID,
+        
+        gnome_general_id: ID,
+        gnome_monster_id: ID,
+        gnome_rider_id: ID,
+        gnome_soldier_id: ID,
+
+        
+    }
+
+
+
+    // to confirm the playesrs are using an accurate deck and correct cards during gameplay
+    public fun confirm_gnome_cards( gnome_general: GnomeGeneral, gnome_monster: GnomeMonster, gnome_rider: GnomeRider, gnome_soldier: GnomeSoldier, ctx: &mut TxContext) {
+
+
+        // intasntiate first to avoid error then check
+        // create as shared object with object ids to later use to check and verify 
+        let confirmed_gnome_deck = ConfimredGnomeDeck {
+            id: object::new(ctx),
+            gnome_general_id: object::id(&gnome_general),
+            gnome_monster_id: object::id(&gnome_monster),
+            gnome_rider_id: object::id(&gnome_rider),
+            gnome_soldier_id: object::id(&gnome_soldier),
+        };
+
+
+
+        // assert that the gnome cards attack is correct
+        if(gnome_general.attack == 3){
+            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        } else {
+
+        };
+        
+        if(gnome_monster.attack == 6){
+            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        } else {
+        };
+        if(gnome_rider.attack == 4){
+            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        } else {
+        };
+        if(gnome_soldier.attack == 4){
+            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        } else {
+        };
+
+        // assert that the gnome cards defense is correct
+        if(gnome_general.defense == 4){
+            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        }else {
+
+        };
+        if(gnome_monster.defense  == 2){
+            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        } else {
+        };
+        if(gnome_rider.defense  == 3){
+            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        } else {
+        };
+        if(gnome_soldier.defense  == 5){
+            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        } else {
+        };
+
+        // assert that the gnome cards health is correct
+        if(gnome_general.health == 6){
+            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        } else {
+        };
+        if(gnome_monster.health == 5){
+            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        } else {
+        };
+        if(gnome_rider.health == 4){
+            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        } else {
+        };
+        if(gnome_soldier.health == 5){
+            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        } else {
+        };
+
+
+        // assert that the gnome cards monsti cost is correct
+        if(gnome_general.cost == 4){
+            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        } else {
+
+        };
+        if(gnome_monster.cost == 5){
+            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        } else {
+        };
+        if(gnome_rider.cost == 3){
+            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        } else {
+        };
+        if(gnome_soldier.cost == 3){
+            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        } else {
+        };
+
+
+
+
+
+        
+
+
+
+        transfer::public_share_object(confirmed_gnome_deck);
+        transfer::public_transfer(gnome_general, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
+        transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -82,6 +82,12 @@ module capy_vs_gnome::monsti {
 
 
 
+    // reset the token balance to 0
+    public fun reset_balance() {
+
+    }
+
+
 
 
 
