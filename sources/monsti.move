@@ -6,9 +6,10 @@ module capy_vs_gnome::monsti {
     use sui::object::{Self, UID};
     use sui::event;
     use std::string::{utf8, String};
-
+    use std::option::{Self, Option};
     use sui::token::{Self, Token, ActionRequest};
     use sui::coin::{Self, TreasuryCap};
+    use sui::transfer;
 
 
     #[test_only]
@@ -23,17 +24,53 @@ module capy_vs_gnome::monsti {
     struct MONSTI has drop {}
 
 
+    // for rule 
+    struct CardUse has drop {}
+
+
 
 
     fun init(otw: MONSTI, ctx: &mut TxContext) {
 
-        
+
+
+        let (treasury_cap, coin_metadata) = coin::create_currency(
+            otw,
+            0,
+            b"MONSTI",
+            b"Monsti",
+            b"Command Points for Capy Vs. Gnome",
+            option::none(),
+            ctx,
+        );
+
+
+        let (policy, policy_cap) = token::new_policy(&treasury_cap, ctx);
+
+
+        // constrained spend example
+        token::add_rule_for_action<MONSTI, CardUse>(
+            &mut policy,
+            &policy_cap,
+            token::spend_action(),
+            ctx,
+        );
+
+
+        token::share_policy(policy);
+
+        transfer::public_freeze_object(coin_metadata);
+        transfer::public_transfer(policy_cap, tx_context::sender(ctx));
+        transfer::public_transfer(treasury_cap, tx_context::sender(ctx));
 
 
     }
 
 
 
+
+    // mint to the user at the start of the game
+    
 
 
 
