@@ -2545,6 +2545,18 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct ConfimredCapyDeck has key, store {
+        id: UID,
+        
+        capy_general_id: ID,
+        capy_monster_id: ID,
+        capy_rider_id: ID,
+        capy_soldier_id: ID,
+
+        
+    }
+
+
 
     // to confirm the playesrs are using an accurate deck and correct cards during gameplay
     public fun confirm_gnome_cards( gnome_general: GnomeGeneral, gnome_monster: GnomeMonster, gnome_rider: GnomeRider, gnome_soldier: GnomeSoldier, ctx: &mut TxContext) {
@@ -2662,6 +2674,132 @@ module capy_vs_gnome::card_deck {
 
 
 
+    }
+
+
+
+    public fun confirm_capy_cards( capy_general: CapyGeneral, capy_monster: CapyMonster, capy_rider: CapyRider, capy_soldier: CapySoldier, ctx: &mut TxContext) {
+    
+    
+        // intasntiate first to avoid error then check
+        // create as shared object with object ids to later use to check and verify 
+        let confirmed_capy_deck = ConfimredCapyDeck {
+            id: object::new(ctx),
+            capy_general_id: object::id(&capy_general),
+            capy_monster_id: object::id(&capy_monster),
+            capy_rider_id: object::id(&capy_rider),
+            capy_soldier_id: object::id(&capy_soldier),
+        };
+
+
+        // assert that the capy cards attack is correct
+        if(capy_general.attack == 3){
+            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
+        } else {
+            abort(1)
+        };
+
+        if(capy_monster.attack == 6){
+            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
+        } else {
+            abort(1)
+        };
+
+        if(capy_rider.attack == 4){
+            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
+        } else {
+            abort(1)
+        };
+
+        if(capy_soldier.attack == 4){
+            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
+        } else {
+            abort(1)
+        };
+
+        // assert that the capy cards defense is correct
+        if(capy_general.defense == 4){
+            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
+        } else {
+            abort(1)
+        };
+
+        if(capy_monster.defense  == 2){
+            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
+        } else {
+            abort(1)
+        };
+
+        if(capy_rider.defense  == 3){
+            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
+        } else {
+            abort(1)
+        };
+
+        if(capy_soldier.defense  == 5){
+            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
+        } else {
+            abort(1)
+        };
+
+        // assert that the capy cards health is correct
+        if(capy_general.health == 6){
+            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
+        } else {
+            abort(1)
+        };
+
+        if(capy_monster.health == 5){
+            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
+        } else {
+            abort(1)
+        };
+
+        if(capy_rider.health == 4){
+            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
+        } else {
+            abort(1)
+        };
+
+        if(capy_soldier.health == 5){
+            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
+        } else {
+            abort(1)
+        };
+
+        // assert that the capy cards monsti cost is correct
+        if(capy_general.cost == 4){
+            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
+        } else {
+            abort(1)
+        };
+
+        if(capy_monster.cost == 5){
+            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
+        } else {
+            abort(1)
+        };
+
+        if(capy_rider.cost == 3){
+            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
+        } else {
+            abort(1)
+        };
+
+        if(capy_soldier.cost == 3){
+            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
+        } else {
+            abort(1)
+        };
+
+        transfer::public_share_object(confirmed_capy_deck);
+        transfer::public_transfer(capy_general, tx_context::sender(ctx));
+        transfer::public_transfer(capy_monster, tx_context::sender(ctx));
+        transfer::public_transfer(capy_rider, tx_context::sender(ctx));
+        transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
+
+    
+    
     }
 
 
