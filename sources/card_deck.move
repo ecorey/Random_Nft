@@ -2533,9 +2533,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-
-
     struct ConfimredGnomeDeck has key, store {
         id: UID,
         
@@ -2569,57 +2566,67 @@ module capy_vs_gnome::card_deck {
         if(gnome_general.attack == 3){
             confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
         } else {
-
+            abort(1)
         };
         
         if(gnome_monster.attack == 6){
             confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
         } else {
+            abort(1)
         };
         if(gnome_rider.attack == 4){
             confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
         } else {
+            abort(1)
         };
         if(gnome_soldier.attack == 4){
             confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
         } else {
+            abort(1)
         };
 
         // assert that the gnome cards defense is correct
         if(gnome_general.defense == 4){
             confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
         }else {
-
+            abort(1)
         };
         if(gnome_monster.defense  == 2){
             confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
         } else {
+            abort(1)
         };
         if(gnome_rider.defense  == 3){
             confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
         } else {
+            abort(1)
         };
         if(gnome_soldier.defense  == 5){
             confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
         } else {
+            abort(1)
         };
 
         // assert that the gnome cards health is correct
         if(gnome_general.health == 6){
             confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
         } else {
+            abort(1)
         };
         if(gnome_monster.health == 5){
             confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
         } else {
+            abort(1)
         };
         if(gnome_rider.health == 4){
             confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
         } else {
+            abort(1)
         };
         if(gnome_soldier.health == 5){
             confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
         } else {
+            abort(1)
         };
 
 
@@ -2627,26 +2634,23 @@ module capy_vs_gnome::card_deck {
         if(gnome_general.cost == 4){
             confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
         } else {
-
+            abort(1)
         };
         if(gnome_monster.cost == 5){
             confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
         } else {
+            abort(1)
         };
         if(gnome_rider.cost == 3){
             confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
         } else {
+            abort(1)
         };
         if(gnome_soldier.cost == 3){
             confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
         } else {
+            abort(1)
         };
-
-
-
-
-
-        
 
 
 
