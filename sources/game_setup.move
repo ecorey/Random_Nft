@@ -6,8 +6,8 @@ module capy_vs_gnome::game_setup {
     use sui::clock::{Self, Clock};
     use sui::tx_context::{Self, TxContext};
 
-     use sui::coin::{Self, TreasuryCap};
-     use capy_vs_gnome::monsti::{MONSTI, turn_mint};
+    use sui::coin::{Self, TreasuryCap};
+    use capy_vs_gnome::monsti::{MONSTI, turn_mint};
 
      
 
@@ -48,7 +48,7 @@ module capy_vs_gnome::game_setup {
     public fun start_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
         turn_mint(cap, ctx);
-        
+
 
     }
 
