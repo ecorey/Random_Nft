@@ -14,7 +14,7 @@ module capy_vs_gnome::random_funcs {
     friend capy_vs_gnome::random_funcs_tests;
 
 
-    use sui::random::{Self, Random};
+    use sui::random::{Self, Random, new_generator};
     
 
 
@@ -32,7 +32,40 @@ module capy_vs_gnome::random_funcs {
 
 
 
+    entry fun ten_percent_probability(r: &Random, ctx: &mut TxContext ) : (bool, u8) {
 
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+        // probability of 10%
+        let ten__percent = arithmetic_is_less_than(v, 11, 100); 
+
+
+        if(ten__percent == 1) {
+            result = true;
+        };
+
+
+        (result, ten__percent)
+
+    }
+
+
+
+
+
+    // Returns 1 if true, 0 false.
+    // Safe in case w and v_max are independent of the randomenss (e.g., fixed).
+    // Does not check if v <= v_max.
+    fun arithmetic_is_less_than(v: u8, w: u8, v_max: u8): u8 {
+        assert!(v_max >= w && w > 0, 1);
+        let v_max_over_w = v_max / w;
+        let v_over_w = v / w; // 0 if v < w, [1, v_max_over_w] if above
+        (v_max_over_w - v_over_w) / v_max_over_w
+    }
 
 
 
