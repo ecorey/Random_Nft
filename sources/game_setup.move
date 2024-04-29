@@ -23,6 +23,9 @@ module capy_vs_gnome::game_setup {
     // GAME SETUP
 
 
+    struct GAME_SETUP has drop {}
+
+
 
     struct Game has key, store {
         id: UID,
@@ -37,7 +40,10 @@ module capy_vs_gnome::game_setup {
 
 
     
+    fun init(otw: GAME_SETUP, ctx: &mut TxContext) {
 
+
+    }
 
 
     public fun start_game(player_one_deck: &ConfirmedGnomeDeck, player_two_deck: &ConfirmedCapyDeck, ctx: &mut TxContext) : Game {
@@ -84,6 +90,23 @@ module capy_vs_gnome::game_setup {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #[test_only]
+    public fun init_for_testing(otw: GAME_SETUP, ctx: &mut TxContext) {
+        init(otw, ctx);
+    }
 
 
 
