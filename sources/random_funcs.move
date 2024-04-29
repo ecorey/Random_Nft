@@ -30,14 +30,29 @@ module capy_vs_gnome::random_funcs {
     }
 
 
+    struct RandNumEvent has copy, drop {
+        value: u8
+    }
 
 
-    entry fun ten_percent_probability(r: &Random, ctx: &mut TxContext ) : (bool, u8) {
+
+    struct RandNum has key, store {
+        id: UID,
+        value: u8,
+        bool_value: bool,
+    }
+
+
+
+    entry fun ten_percent_probability(r: &Random, ctx: &mut TxContext )  {
 
         let result: bool = false;
 
         let generator = new_generator(r, ctx);
         let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+        event::emit(RandNumEvent { value: v });
 
 
         // probability of 10%
@@ -46,10 +61,22 @@ module capy_vs_gnome::random_funcs {
 
         if(ten__percent == 1) {
             result = true;
+        } else {
+            result = false;
         };
 
 
-        (result, ten__percent)
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+
+        
+
+
+        transfer::public_transfer(result, tx_context::sender(ctx));
 
     }
 

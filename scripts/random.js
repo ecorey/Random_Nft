@@ -14,6 +14,8 @@ import {  Package, RANDOM  } from './config.js';
 // UNDER CONSTRUCTION ########################################
 // ###########################################################
 
+// NEED TO BE ON DEVNET
+
 
 
 
@@ -23,6 +25,7 @@ const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 
+// const DEVNET_URL = "https://fullnode.devnet.sui.io:443"; 
 
 
 // client
@@ -42,24 +45,23 @@ const client = new SuiClient({
 (async () => {
     try {
 
+
+
+
         // create Transaction Block
         const txb = new TransactionBlock();
         txb.setGasBudget(10000000);
 
 
-       let result = txb.moveCall({
+
+
+        txb.moveCall({
             target: `${Package}::random_funcs::ten_percent_probability`,
             arguments: [txb.object(RANDOM)],
         });
         
        
-        let result_one = result[1];
-
-        console.log(`Result: ${result_one}`);
-
-
-
-
+        
 
 
         // Finalize the transaction block
