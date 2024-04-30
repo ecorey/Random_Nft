@@ -25,13 +25,14 @@ const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 
-// const DEVNET_URL = "https://fullnode.devnet.sui.io:443"; 
+const DEVNET_URL = "https://fullnode.devnet.sui.io:443"; 
 
 
 // client
 const client = new SuiClient({
     transport: new SuiHTTPTransport({
-        url: getFullnodeUrl('testnet'),
+        // url: getFullnodeUrl('testnet'),
+        url: DEVNET_URL,
         WebSocketConstructor: WebSocket
     }),
 });
