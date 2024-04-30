@@ -21,28 +21,28 @@ The winner is determined by last man standing as each players permanents add up 
 # PERMENANTS
 
 General :
-Attack – 10
-Defense – 2
-Health – 3
-Cost – 6
+- Attack – 10
+- Defense – 2
+- Health – 3
+- Cost – 6
 
 Monster:
-Attack – 8
-Defense – 8 
-Health – 6
-Cost – 5
+- Attack – 8
+- Defense – 8 
+- Health – 6
+- Cost – 5
 
 Rider:
-Attack – 6
-Defense – 6 
-Health – 4
-Cost – 4
+- Attack – 6
+- Defense – 6 
+- Health – 4
+- Cost – 4
 
 Soldier:
-Attack – 4 
-Defense – 4 
-Health – 7
-Cost – 2
+- Attack – 4 
+- Defense – 4 
+- Health – 7
+- Cost – 2
 
 ---
 ---
