@@ -48,7 +48,7 @@ Cost – 2
 ---
 ---
 
-DEFENSE POSITIONS
+# DEFENSE POSITIONS
 
 Frontline:  ( CP: FREE )
 -  Soldier :  25%
@@ -67,33 +67,34 @@ Backline:  ( CP: 1 )
 ---
 
 
-PROBABILITY OF ATTACK SUCCESS 
+# PROBABILITY OF ATTACK SUCCESS 
 
-Soldier    ->   Soldier : 50%
-Soldier    ->  Rider : 40%
-Soldier    ->    Monster : 33%
-Soldier    ->   General : 66%
+- Soldier    ->   Soldier : 50%
+- Soldier    ->  Rider : 40%
+- Soldier    ->    Monster : 33%
+- Soldier    ->   General : 66%
 
-Rider ->   Soldier  : 60%
-Rider ->  Rider : 50%
-Rider ->    Monster : 40%
-Rider ->   General : 75%
+- Rider ->   Soldier  : 60%
+- Rider ->  Rider : 50%
+- Rider ->    Monster : 40%
+- Rider ->   General : 75%
 
-Monster  ->   Soldier  : 60%
-Monster  ->  Rider : 55%
-Monster  ->    Monster : 50%
-Monster  ->   General : 80%
+- Monster  ->   Soldier  : 60%
+- Monster  ->  Rider : 55%
+- Monster  ->    Monster : 50%
+- Monster  ->   General : 80%
 
-General    ->   Soldier  : 70%
-General    ->  Rider : 60%
-General    ->    Monster : 55%
-General     ->   General : 80%
+- General    ->   Soldier  : 70%
+- General    ->  Rider : 60%
+- General    ->    Monster : 55%
+- General     ->   General : 80%
+
 ---
 ---
 ---
 
 
-OTHER CARDS
+# OTHER CARDS
 
 18 other cards will be added that have special abilities and can be used during gameplay. CP will be adjusted as needed.
 
@@ -136,11 +137,18 @@ Scout
 + 2 Opponent Cost
 + 3 Opponent Cost
 Skip Opponent Turn
+
 ---
 ---
 ---
 
 
-KIOSK
+# KIOSK
+
 Kiosk will be added for an optional extra card that are collectible and tradable on kiosk. An example could be a new permanent with very similar stats to the old but a little advantage in something or an extra other card that is burnable. These cards can be bought from the kiosk with the in game toke achieved by winning a round or by purchasing with SUI.  ( 2 in-game tokens? CP + kiosk )
+
+---
+---
+---
+
 				
