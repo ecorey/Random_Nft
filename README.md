@@ -13,6 +13,7 @@ The defender at the beginning of the turn is given the option of which defense t
 The outcome of the battle is then decided and the points are updated.
 
 The winner is determined by last man standing as each players permanents add up to 20 LP.
+
 ---
 ---
 --- 
