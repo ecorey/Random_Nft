@@ -12,6 +12,8 @@ module capy_vs_gnome::random_funcs {
 
     #[test_only]
     friend capy_vs_gnome::random_funcs_tests;
+    friend capy_vs_gnome::game_setup;
+
 
 
     use sui::random::{Self, Random, new_generator};
@@ -84,10 +86,63 @@ module capy_vs_gnome::random_funcs {
 
 
 
+
+
+    entry fun fifty_percent_probability(r: &Random, ctx: &mut TxContext )  {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+        event::emit(RandNumEvent { value: v });
+
+
+        // probability of 50%
+        let fifty__percent = arithmetic_is_less_than(v, 51, 100); 
+
+
+        if(fifty__percent == 1) {
+            result = true;
+        } else {
+            result = false;
+        };
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+
+        
+
+
+        transfer::public_transfer(result, tx_context::sender(ctx));
+
+    }
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
     // Returns 1 if true, 0 false.
     // Safe in case w and v_max are independent of the randomenss (e.g., fixed).
     // Does not check if v <= v_max.
-    fun arithmetic_is_less_than(v: u8, w: u8, v_max: u8): u8 {
+    public fun arithmetic_is_less_than(v: u8, w: u8, v_max: u8): u8 {
         assert!(v_max >= w && w > 0, 1);
         let v_max_over_w = v_max / w;
         let v_over_w = v / w; // 0 if v < w, [1, v_max_over_w] if above

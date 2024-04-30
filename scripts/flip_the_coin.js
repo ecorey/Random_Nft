@@ -53,7 +53,7 @@ const client = new SuiClient({
 
 
         txb.moveCall({
-            target: `${Package}::random_funcs::ten_percent_probability`,
+            target: `${Package}::game_setup::flip_the_coin`,
             arguments: [txb.object(RANDOM)],
         });
         
