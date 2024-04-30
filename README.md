@@ -18,7 +18,7 @@ The winner is determined by last man standing as each players permanents add up 
 ---
 --- 
 
-PERMENANTS
+# PERMENANTS
 
 General :
 Attack – 10
@@ -43,6 +43,7 @@ Attack – 4
 Defense – 4 
 Health – 7
 Cost – 2
+
 ---
 ---
 ---
@@ -50,16 +51,17 @@ Cost – 2
 DEFENSE POSITIONS
 
 Frontline:  ( CP: FREE )
-->  Soldier :  25%
-->  Rider :  25%
-->  Monster :  25%
-->  General :  25%
+-  Soldier :  25%
+-  Rider :  25%
+-  Monster :  25%
+-  General :  25%
 
 Backline:  ( CP: 1 )
-->  Soldier :  75%
--> Rider :  15%
-->  Monster :  5%
-->  General :  5%
+-  Soldier :  75%
+- Rider :  15%
+-  Monster :  5%
+-  General :  5%
+
 ---
 ---
 ---
