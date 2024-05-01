@@ -7,6 +7,8 @@ module capy_vs_gnome::game_setup {
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     use sui::coin::{Self, TreasuryCap};
+    use std::string::{Self, String};
+
     use capy_vs_gnome::monsti::{MONSTI, first_turns_mint};
     use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, confirm_gnome_cards, confirm_capy_cards};
     use capy_vs_gnome::card_deck::{ConfirmedGnomeDeck, ConfirmedCapyDeck};
@@ -77,7 +79,7 @@ module capy_vs_gnome::game_setup {
 
 
 
-
+    // 50% probability coin toss
     public fun coin_toss(r: &Random, ctx: &mut TxContext) : u8 {
 
         let result = fifty_percent_probability(r, ctx);
@@ -91,6 +93,66 @@ module capy_vs_gnome::game_setup {
 
 
 
+    // frontline defense stance
+    public fun frontline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
+
+        
+        let general = 0;
+        let monster = 0;
+        let rider = 0;
+        let soldier = 0;
+
+
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        if (v <= 25) {
+            general = 1;
+        }; 
+
+        if (v <= 50) {
+            monster = 1;
+        }; 
+
+        if (v <= 75) {
+            rider = 1;
+        }; 
+
+        if (v <= 100) {
+            soldier = 1;
+        };
+
+
+        
+        let result = 0;
+
+        if(general == 1){
+            result = 1;
+        }; 
+
+        if(monster == 1) {
+            result = 2;
+        }; 
+
+        if(rider == 1) {
+            result = 3;
+        };  
+
+        if(soldier == 1) {
+            result = 4;
+        };
+        
+
+        result
+
+    }
+
+
+
+
 
 
     struct RandNum has key, store {
@@ -99,6 +161,37 @@ module capy_vs_gnome::game_setup {
         bool_value: bool,
     }
 
+
+
+
+
+    // 25% probability
+    entry fun twenty_five_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 25%
+        let twenty_five_percent = arithmetic_is_less_than(v, 76, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        twenty_five_percent
+
+
+    }
 
 
     
