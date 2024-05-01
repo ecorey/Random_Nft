@@ -78,9 +78,9 @@ module capy_vs_gnome::game_setup {
 
 
 
-    public fun flip_the_coin(r: &Random, ctx: &mut TxContext) : u8 {
+    public fun coin_toss(r: &Random, ctx: &mut TxContext) : u8 {
 
-        let result = coin_toss(r, ctx);
+        let result = fifty_percent_probability(r, ctx);
 
         result
 
@@ -101,33 +101,7 @@ module capy_vs_gnome::game_setup {
 
 
 
-    // 50% probability
-    entry fun coin_toss(r: &Random, ctx: &mut TxContext ) : u8 {
-
-        let result: bool = false;
-
-        let generator = new_generator(r, ctx);
-        let v = random::generate_u8_in_range(&mut generator, 1, 100);
-
-
-
-        // probability of 50%
-        let fifty__percent = arithmetic_is_less_than(v, 51, 100); 
-
-
-        let result = RandNum {
-            id: object::new(ctx),
-            value: v,
-            bool_value: result,
-        };
-
-        transfer::public_share_object(result);
-
-
-        fifty__percent
-
-
-    }
+    
 
 
     // 33% probability
@@ -141,7 +115,7 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 33%
-        let thirty_three__percent = arithmetic_is_less_than(v, 67, 100); 
+        let thirty_three_percent = arithmetic_is_less_than(v, 67, 100); 
 
 
         let result = RandNum {
@@ -153,7 +127,7 @@ module capy_vs_gnome::game_setup {
         transfer::public_share_object(result);
 
 
-        thirty_three__percent
+        thirty_three_percent
 
 
     }
@@ -191,8 +165,8 @@ module capy_vs_gnome::game_setup {
 
 
 
-    // 55% probability
-    entry fun fifty_five_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+    // 50% probability
+    entry fun fifty_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
 
         let result: bool = false;
 
@@ -201,8 +175,8 @@ module capy_vs_gnome::game_setup {
 
 
 
-        // probability of 55%
-        let fifty_five__percent = arithmetic_is_less_than(v, 56, 100); 
+        // probability of 50%
+        let fifty_percent = arithmetic_is_less_than(v, 51, 100); 
 
 
         let result = RandNum {
@@ -214,7 +188,187 @@ module capy_vs_gnome::game_setup {
         transfer::public_share_object(result);
 
 
-        fifty_five__percent
+        fifty_percent
+
+
+    }
+
+
+
+
+    // 55% probability
+    entry fun fifty_five_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 55%
+        let fifty_five_percent = arithmetic_is_less_than(v, 56, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        fifty_five_percent
+
+
+    }
+
+
+
+
+    // 60% probability
+    entry fun sixty_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 60%
+        let sixty_percent = arithmetic_is_less_than(v, 41, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        sixty_percent
+
+
+    }
+
+
+
+    // 66% probability
+    entry fun sixty_six_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 66%
+        let sixty_six_percent = arithmetic_is_less_than(v, 35, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        sixty_six_percent
+
+
+    }
+
+
+
+    // 70% probability
+    entry fun seventy_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 70%
+        let seventy_percent = arithmetic_is_less_than(v, 31, 100); 
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        seventy_percent
+
+
+    }
+
+
+
+    // 75% probability
+    entry fun seventy_five_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 75%
+        let seventy_five_percent = arithmetic_is_less_than(v, 26, 100); 
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        seventy_five_percent
+
+
+    }
+
+
+
+
+    // 80% probability
+    entry fun eighty_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 80%
+        let eighty_percent = arithmetic_is_less_than(v, 21, 100); 
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        eighty_percent
 
 
     }
