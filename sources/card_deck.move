@@ -12,7 +12,7 @@ module capy_vs_gnome::card_deck {
     use std::vector;
     use sui::clock::{Self, Clock};
 
-    use capy_vs_gnome::monsti::{turn_mint};
+    use capy_vs_gnome::monsti::{first_turns_mint};
 
 
     #[test_only]

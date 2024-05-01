@@ -7,7 +7,7 @@ module capy_vs_gnome::game_setup {
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     use sui::coin::{Self, TreasuryCap};
-    use capy_vs_gnome::monsti::{MONSTI, turn_mint};
+    use capy_vs_gnome::monsti::{MONSTI, first_turns_mint};
     use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, confirm_gnome_cards, confirm_capy_cards};
     use capy_vs_gnome::card_deck::{ConfirmedGnomeDeck, ConfirmedCapyDeck};
 
@@ -70,7 +70,7 @@ module capy_vs_gnome::game_setup {
 
     public fun start_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
-        turn_mint(cap, ctx);
+        first_turns_mint(cap, ctx);
 
 
     }
@@ -101,7 +101,7 @@ module capy_vs_gnome::game_setup {
 
 
 
-
+    // 50% probability
     entry fun coin_toss(r: &Random, ctx: &mut TxContext ) : u8 {
 
         let result: bool = false;
@@ -128,6 +128,100 @@ module capy_vs_gnome::game_setup {
 
 
     }
+
+
+    // 33% probability
+    entry fun thirty_three_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 33%
+        let thirty_three__percent = arithmetic_is_less_than(v, 67, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        thirty_three__percent
+
+
+    }
+
+
+
+    // 40% probability
+    entry fun forty_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 40%
+        let forty_percent = arithmetic_is_less_than(v, 61, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        forty_percent
+
+
+    }
+
+
+
+
+    // 55% probability
+    entry fun fifty_five_percent_probability(r: &Random, ctx: &mut TxContext ) : u8 {
+
+        let result: bool = false;
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        // probability of 55%
+        let fifty_five__percent = arithmetic_is_less_than(v, 56, 100); 
+
+
+        let result = RandNum {
+            id: object::new(ctx),
+            value: v,
+            bool_value: result,
+        };
+
+        transfer::public_share_object(result);
+
+
+        fifty_five__percent
+
+
+    }
+
+
+
+
 
 
 
