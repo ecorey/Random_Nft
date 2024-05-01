@@ -94,6 +94,10 @@ module capy_vs_gnome::game_setup {
 
 
     // frontline defense stance
+    // free CP
+    // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
+    // will indicate which permenant is being attacked
+    // 25% probability for each permenant
     public fun frontline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
 
         
@@ -113,20 +117,84 @@ module capy_vs_gnome::game_setup {
             general = 1;
         }; 
 
-        if (v <= 50) {
+        if (v > 25 && v <= 50 ) {
             monster = 1;
         }; 
 
-        if (v <= 75) {
+        if (v > 50 && v <= 75) {
             rider = 1;
         }; 
 
-        if (v <= 100) {
+        if (v > 75 && v <= 100) {
             soldier = 1;
         };
 
 
+
+        let result = 0;
+
+        if(general == 1){
+            result = 1;
+        }; 
+
+        if(monster == 1) {
+            result = 2;
+        }; 
+
+        if(rider == 1) {
+            result = 3;
+        };  
+
+        if(soldier == 1) {
+            result = 4;
+        };
         
+
+        result
+
+    }
+
+
+
+
+    // backline defense stance
+    // add 1 CP cost
+    // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
+    // will indicate which permenant is being attacked
+    // 5% probability for general, 5% for monster, 15% for rider, 75% for soldier
+    public fun backline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
+
+        
+        let general = 0;
+        let monster = 0;
+        let rider = 0;
+        let soldier = 0;
+
+
+
+        let generator = new_generator(r, ctx);
+        let v = random::generate_u8_in_range(&mut generator, 1, 100);
+
+
+
+        if (v > 95 && v <= 100 ) {
+            general = 1;
+        }; 
+
+        if (v > 90 && v <= 95 ) {
+            monster = 1;
+        }; 
+
+        if (v > 75 && v <= 90) {
+            rider = 1;
+        }; 
+
+        if (v <= 75) {
+            soldier = 1;
+        };
+
+
+
         let result = 0;
 
         if(general == 1){
