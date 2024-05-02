@@ -20,7 +20,7 @@ module capy_vs_gnome::card_deck {
 
 
     #[test_only]
-    friend capy_vs_gnome::more_card_tests;
+    friend capy_vs_gnome::card_deck_tests;
 
     // ----------------------------------------------
     // PERMENANTS CARDS 
@@ -2353,144 +2353,133 @@ module capy_vs_gnome::card_deck {
     // -----------------------------
 
 
-    struct ConfirmedGnomeDeck has key, store {
+    struct ConfirmedDeck has key, store {
         id: UID,
         
-        gnome_general_id: ID,
-        gnome_monster_id: ID,
-        gnome_rider_id: ID,
-        gnome_soldier_id: ID,
+        general_id: ID,
+        monster_id: ID,
+        rider_id: ID,
+        soldier_id: ID,
 
         
     }
 
-
-    struct ConfirmedCapyDeck has key, store {
-        id: UID,
-        
-        capy_general_id: ID,
-        capy_monster_id: ID,
-        capy_rider_id: ID,
-        capy_soldier_id: ID,
-
-        
-    }
 
 
 
     // to confirm the playesrs are using an accurate deck and correct cards during gameplay
-    public fun confirm_gnome_cards( gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
+    public fun confirm_deck( general: Card, monster: Card, rider: Card, soldier: Card, ctx: &mut TxContext) {
 
 
         // instantiate first to avoid error then check
         // create as shared object with object ids to later use to check and verify 
-        let confirmed_gnome_deck = ConfirmedGnomeDeck {
+        let confirmed_deck = ConfirmedDeck {
             id: object::new(ctx),
-            gnome_general_id: object::id(&gnome_general),
-            gnome_monster_id: object::id(&gnome_monster),
-            gnome_rider_id: object::id(&gnome_rider),
-            gnome_soldier_id: object::id(&gnome_soldier),
+            general_id: object::id(&general),
+            monster_id: object::id(&monster),
+            rider_id: object::id(&rider),
+            soldier_id: object::id(&soldier),
         };
 
 
 
         // assert that the gnome cards attack is correct
-        if(gnome_general.attack == 3){
-            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        if(general.attack == 3){
+            confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
         };
         
-        if(gnome_monster.attack == 6){
-            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        if(monster.attack == 6){
+            confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(gnome_rider.attack == 4){
-            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        if(rider.attack == 4){
+            confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(gnome_soldier.attack == 4){
-            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        if(soldier.attack == 4){
+            confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
         };
 
         // assert that the gnome cards defense is correct
-        if(gnome_general.defense == 4){
-            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        if(general.defense == 4){
+            confirmed_deck.general_id = object::id(&general)
         }else {
             abort(1)
         };
-        if(gnome_monster.defense  == 2){
-            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        if(monster.defense  == 2){
+            confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(gnome_rider.defense  == 3){
-            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        if(rider.defense  == 3){
+            confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(gnome_soldier.defense  == 5){
-            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        if(soldier.defense  == 5){
+            confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
         };
 
         // assert that the gnome cards health is correct
-        if(gnome_general.health == 6){
-            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        if(general.health == 6){
+            confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
         };
-        if(gnome_monster.health == 5){
-            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        if(monster.health == 5){
+            confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(gnome_rider.health == 4){
-            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        if(rider.health == 4){
+            confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(gnome_soldier.health == 5){
-            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        if(soldier.health == 5){
+            confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
         };
 
 
         // assert that the gnome cards monsti cost is correct
-        if(gnome_general.cost == 4){
-            confirmed_gnome_deck.gnome_general_id = object::id(&gnome_general)
+        if(general.cost == 4){
+            confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
         };
-        if(gnome_monster.cost == 5){
-            confirmed_gnome_deck.gnome_monster_id = object::id(&gnome_monster)
+        if(monster.cost == 5){
+            confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(gnome_rider.cost == 3){
-            confirmed_gnome_deck.gnome_rider_id = object::id(&gnome_rider)
+        if(rider.cost == 3){
+            confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(gnome_soldier.cost == 3){
-            confirmed_gnome_deck.gnome_soldier_id = object::id(&gnome_soldier)
+        if(soldier.cost == 3){
+            confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
         };
 
 
 
-        transfer::public_share_object(confirmed_gnome_deck);
-        transfer::public_transfer(gnome_general, tx_context::sender(ctx));
-        transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
-        transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
-        transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+        transfer::public_share_object(confirmed_deck);
+        transfer::public_transfer(general, tx_context::sender(ctx));
+        transfer::public_transfer(monster, tx_context::sender(ctx));
+        transfer::public_transfer(rider, tx_context::sender(ctx));
+        transfer::public_transfer(soldier, tx_context::sender(ctx));
 
 
 
@@ -2498,130 +2487,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun confirm_capy_cards( capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
     
-    
-        // instantiate first to avoid error then check
-        // create as shared object with object ids to later use to check and verify 
-        let confirmed_capy_deck = ConfirmedCapyDeck {
-            id: object::new(ctx),
-            capy_general_id: object::id(&capy_general),
-            capy_monster_id: object::id(&capy_monster),
-            capy_rider_id: object::id(&capy_rider),
-            capy_soldier_id: object::id(&capy_soldier),
-        };
-
-
-        // assert that the capy cards attack is correct
-        if(capy_general.attack == 3){
-            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
-        } else {
-            abort(1)
-        };
-
-        if(capy_monster.attack == 6){
-            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
-        } else {
-            abort(1)
-        };
-
-        if(capy_rider.attack == 4){
-            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
-        } else {
-            abort(1)
-        };
-
-        if(capy_soldier.attack == 4){
-            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
-        } else {
-            abort(1)
-        };
-
-        // assert that the capy cards defense is correct
-        if(capy_general.defense == 4){
-            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
-        } else {
-            abort(1)
-        };
-
-        if(capy_monster.defense  == 2){
-            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
-        } else {
-            abort(1)
-        };
-
-        if(capy_rider.defense  == 3){
-            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
-        } else {
-            abort(1)
-        };
-
-        if(capy_soldier.defense  == 5){
-            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
-        } else {
-            abort(1)
-        };
-
-        // assert that the capy cards health is correct
-        if(capy_general.health == 6){
-            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
-        } else {
-            abort(1)
-        };
-
-        if(capy_monster.health == 5){
-            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
-        } else {
-            abort(1)
-        };
-
-        if(capy_rider.health == 4){
-            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
-        } else {
-            abort(1)
-        };
-
-        if(capy_soldier.health == 5){
-            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
-        } else {
-            abort(1)
-        };
-
-        // assert that the capy cards monsti cost is correct
-        if(capy_general.cost == 4){
-            confirmed_capy_deck.capy_general_id = object::id(&capy_general)
-        } else {
-            abort(1)
-        };
-
-        if(capy_monster.cost == 5){
-            confirmed_capy_deck.capy_monster_id = object::id(&capy_monster)
-        } else {
-            abort(1)
-        };
-
-        if(capy_rider.cost == 3){
-            confirmed_capy_deck.capy_rider_id = object::id(&capy_rider)
-        } else {
-            abort(1)
-        };
-
-        if(capy_soldier.cost == 3){
-            confirmed_capy_deck.capy_soldier_id = object::id(&capy_soldier)
-        } else {
-            abort(1)
-        };
-
-        transfer::public_share_object(confirmed_capy_deck);
-        transfer::public_transfer(capy_general, tx_context::sender(ctx));
-        transfer::public_transfer(capy_monster, tx_context::sender(ctx));
-        transfer::public_transfer(capy_rider, tx_context::sender(ctx));
-        transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
-
-    
-    
-    }
-
 
 
 
@@ -2683,7 +2549,7 @@ module capy_vs_gnome::card_deck {
 
    
 
-    public fun start_game(player_one_deck: &ConfirmedGnomeDeck, player_two_deck: &ConfirmedCapyDeck, ctx: &mut TxContext) : Game {
+    public fun start_game(player_one_deck: &ConfirmedDeck, player_two_deck: &ConfirmedDeck, ctx: &mut TxContext) : Game {
 
        
 
