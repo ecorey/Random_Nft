@@ -87,10 +87,10 @@ module capy_vs_gnome::card_deck {
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
-            attack: 3,
-            defense: 4,
-            health: 6,
-            cost: 4,
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
             // ability_one: utf8(b"Rally"),
             
         }
@@ -108,10 +108,10 @@ module capy_vs_gnome::card_deck {
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
-            attack: 3,
-            defense: 4,
-            health: 6,
-            cost: 4,
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
             // ability_one: utf8(b"Rally"),
            
         };
@@ -132,9 +132,9 @@ module capy_vs_gnome::card_deck {
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
-            attack: 6,
-            defense: 2,
-            health: 5,
+            attack: 8,
+            defense: 8,
+            health: 6,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         }
@@ -153,9 +153,9 @@ module capy_vs_gnome::card_deck {
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
-            attack: 6,
-            defense: 2,
-            health: 5,
+            attack: 8,
+            defense: 8,
+            health: 6,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -178,10 +178,10 @@ module capy_vs_gnome::card_deck {
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
-            attack: 4,
-            defense: 3,
+            attack: 6,
+            defense: 6,
             health: 4,
-            cost: 3,
+            cost: 4,
             // ability: utf8(b"Lightning Strike"),
         }
     }
@@ -198,10 +198,10 @@ module capy_vs_gnome::card_deck {
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
-            attack: 4,
-            defense: 3,
+            attack: 6,
+            defense: 6,
             health: 4,
-            cost: 3,
+            cost: 4,
             // ability: utf8(b"Lightning Strike"),
         };
 
@@ -224,9 +224,9 @@ module capy_vs_gnome::card_deck {
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
-            defense: 5,
-            health: 5,
-            cost: 3,
+            defense: 4,
+            health: 7,
+            cost: 2,
             // ability: utf8(b"Shield Wall"),
         }
     }
@@ -244,9 +244,9 @@ module capy_vs_gnome::card_deck {
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
-            defense: 5,
-            health: 5,
-            cost: 3,
+            defense: 4,
+            health: 7,
+            cost: 2,
             // ability: utf8(b"Shield Wall"),
         };
 
@@ -277,10 +277,10 @@ module capy_vs_gnome::card_deck {
             type_id: 1,
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
-            attack: 3,
-            defense: 4,
-            health: 6,
-            cost: 4,
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
             // ability_one: utf8(b"Rally"),
             // ability_two: utf8(b"Defensive Orders"),
         }
@@ -297,10 +297,10 @@ module capy_vs_gnome::card_deck {
             type_id: 1,
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
-            attack: 3,
-            defense: 4,
-            health: 6,
-            cost: 4,
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
             // ability_one: utf8(b"Rally"),
         };
 
@@ -322,9 +322,9 @@ module capy_vs_gnome::card_deck {
             type_id: 2,
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
-            attack: 6,
-            defense: 2,
-            health: 5,
+            attack: 8,
+            defense: 8,
+            health: 6,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         }
@@ -341,9 +341,9 @@ module capy_vs_gnome::card_deck {
             type_id: 2,
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
-            attack: 6,
-            defense: 2,
-            health: 5,
+            attack: 8,
+            defense: 8,
+            health: 6,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -366,10 +366,10 @@ module capy_vs_gnome::card_deck {
             type_id: 3,
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
-            attack: 4,
-            defense: 3,
+            attack: 6,
+            defense: 6,
             health: 4,
-            cost: 3,
+            cost: 4,
             // ability: utf8(b"Lightning Strike"),
         }
     }
@@ -386,10 +386,10 @@ module capy_vs_gnome::card_deck {
             type_id: 3,
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
-            attack: 4,
-            defense: 3,
+            attack: 6,
+            defense: 6,
             health: 4,
-            cost: 3,
+            cost: 4,
             // ability: utf8(b"Lightning Strike"),
         };
 
@@ -411,9 +411,9 @@ module capy_vs_gnome::card_deck {
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
-            defense: 5,
-            health: 5,
-            cost: 3,
+            defense: 4,
+            health: 7,
+            cost: 2,
             // ability: utf8(b"Shield Wall"),
         }
     }
@@ -430,9 +430,9 @@ module capy_vs_gnome::card_deck {
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
-            defense: 5,
-            health: 5,
-            cost: 3,
+            defense: 4,
+            health: 7,
+            cost: 2,
             // ability: utf8(b"Shield Wall"),
         };
 
@@ -2384,18 +2384,18 @@ module capy_vs_gnome::card_deck {
 
 
         // assert that the gnome cards attack is correct
-        if(general.attack == 3){
+        if(general.attack == 10){
             confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
         };
         
-        if(monster.attack == 6){
+        if(monster.attack == 8){
             confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(rider.attack == 4){
+        if(rider.attack == 6){
             confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
@@ -2407,34 +2407,34 @@ module capy_vs_gnome::card_deck {
         };
 
         // assert that the gnome cards defense is correct
-        if(general.defense == 4){
+        if(general.defense == 2){
             confirmed_deck.general_id = object::id(&general)
         }else {
             abort(1)
         };
-        if(monster.defense  == 2){
+        if(monster.defense  == 8){
             confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
         };
-        if(rider.defense  == 3){
+        if(rider.defense  == 6){
             confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(soldier.defense  == 5){
+        if(soldier.defense  == 4){
             confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
         };
 
         // assert that the gnome cards health is correct
-        if(general.health == 6){
+        if(general.health == 3){
             confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
         };
-        if(monster.health == 5){
+        if(monster.health == 6){
             confirmed_deck.monster_id = object::id(&monster)
         } else {
             abort(1)
@@ -2444,7 +2444,7 @@ module capy_vs_gnome::card_deck {
         } else {
             abort(1)
         };
-        if(soldier.health == 5){
+        if(soldier.health == 7){
             confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)
@@ -2452,7 +2452,7 @@ module capy_vs_gnome::card_deck {
 
 
         // assert that the gnome cards monsti cost is correct
-        if(general.cost == 4){
+        if(general.cost == 6){
             confirmed_deck.general_id = object::id(&general)
         } else {
             abort(1)
@@ -2462,12 +2462,12 @@ module capy_vs_gnome::card_deck {
         } else {
             abort(1)
         };
-        if(rider.cost == 3){
+        if(rider.cost == 4){
             confirmed_deck.rider_id = object::id(&rider)
         } else {
             abort(1)
         };
-        if(soldier.cost == 3){
+        if(soldier.cost == 2){
             confirmed_deck.soldier_id = object::id(&soldier)
         } else {
             abort(1)

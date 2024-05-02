@@ -17,9 +17,6 @@ module capy_vs_gnome::random_funcs {
 
 
 
-    
-    
-
 
 
     struct RANDOM_FUNCS has drop {}
@@ -34,9 +31,6 @@ module capy_vs_gnome::random_funcs {
 
 
 
-  
-
-
     
     // Returns 1 if true, 0 false.
     // Safe in case w and v_max are independent of the randomenss (e.g., fixed).
@@ -47,10 +41,6 @@ module capy_vs_gnome::random_funcs {
         let v_over_w = v / w; // 0 if v < w, [1, v_max_over_w] if above
         (v_max_over_w - v_over_w) / v_max_over_w
     }
-
-
-
-
 
 
 

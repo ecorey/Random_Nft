@@ -69,12 +69,12 @@ module capy_vs_gnome::monsti {
 
 
 
-    // mint 3 MONSTI to the user at the start of first rounds of a turn
+    // mint 4 MONSTI to the user at the start of first rounds of a turn
     public fun first_turns_mint(
         cap: &mut TreasuryCap<MONSTI>,
         ctx: &mut TxContext,
     ) {
-        let token = token::mint(cap, 3, ctx);
+        let token = token::mint(cap, 4, ctx);
         let req = token::transfer(token, tx_context::sender(ctx), ctx);
 
         token::confirm_with_treasury_cap(cap, req, ctx);
@@ -83,12 +83,12 @@ module capy_vs_gnome::monsti {
 
 
 
-    // mint 5 MONSTI to the user at the start of second rounds of a turn
-    public fun second_turns_mint(
+    // mint 1 MONSTI to the user at the start of sebsequent turns
+    public fun turn_mint(
         cap: &mut TreasuryCap<MONSTI>,
         ctx: &mut TxContext,
     ) {
-        let token = token::mint(cap, 5, ctx);
+        let token = token::mint(cap, 1, ctx);
         let req = token::transfer(token, tx_context::sender(ctx), ctx);
 
         token::confirm_with_treasury_cap(cap, req, ctx);
