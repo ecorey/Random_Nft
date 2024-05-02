@@ -79,6 +79,13 @@ module capy_vs_gnome::game_setup {
 
 
 
+
+    // ----------------------------------
+    // COIN TOSS FUNCTIONS
+    // ----------------------------------
+
+
+
     // 50% probability coin toss
     public fun coin_toss(r: &Random, ctx: &mut TxContext) : u8 {
 
@@ -89,6 +96,14 @@ module capy_vs_gnome::game_setup {
     }
 
 
+
+
+
+
+
+    // ----------------------------------
+    // DEFENSE FUNCTIONS
+    // ----------------------------------
 
     struct FrontLineDefense has copy, drop, store {
         value: u8,
@@ -256,6 +271,17 @@ module capy_vs_gnome::game_setup {
         bool_value: bool,
     }
 
+
+
+
+
+
+
+
+
+    // ----------------------------------
+    // PROBABILITY FUNCTIONS
+    // ----------------------------------
 
 
 
