@@ -2753,6 +2753,21 @@ module capy_vs_gnome::card_deck {
     //--------------------------------------------------------------------------------
 
 
+    struct AttackSuccess has copy, drop, store {
+        attack_success: bool,
+    }
+
+
+    struct AttackFail has copy, drop, store {
+        attack_success: bool,
+    }
+
+
+    struct Death has copy, drop, store {
+        death: bool,
+    }
+
+
 
     
     // ADD CP COSTS
@@ -2799,6 +2814,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             soldier_defense.health = soldier_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -2806,6 +2828,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(soldier_defense.health == 0) {
             delete_card(soldier_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -2872,6 +2897,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             rider_defense.health = rider_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -2879,6 +2911,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(rider_defense.health == 0) {
             delete_card(rider_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -2944,6 +2979,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             monster_defense.health = monster_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -2951,6 +2993,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(monster_defense.health == 0) {
             delete_card(monster_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3018,6 +3063,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             general_defense.health = general_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3025,6 +3077,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(general_defense.health == 0) {
             delete_card(general_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3103,6 +3158,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             soldier_defense.health = soldier_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3110,6 +3172,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(soldier_defense.health == 0) {
             delete_card(soldier_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3176,6 +3241,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             rider_defense.health = rider_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3183,6 +3255,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(rider_defense.health == 0) {
             delete_card(rider_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3248,6 +3323,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             monster_defense.health = monster_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3255,6 +3337,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(monster_defense.health == 0) {
             delete_card(monster_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3322,6 +3407,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             general_defense.health = general_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3329,6 +3421,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(general_defense.health == 0) {
             delete_card(general_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3410,6 +3505,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             soldier_defense.health = soldier_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3417,6 +3519,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(soldier_defense.health == 0) {
             delete_card(soldier_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3483,6 +3588,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             rider_defense.health = rider_defense.health - 1;
+        event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3490,6 +3602,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(rider_defense.health == 0) {
             delete_card(rider_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3555,6 +3670,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             monster_defense.health = monster_defense.health - 1;
+        event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3562,6 +3684,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(monster_defense.health == 0) {
             delete_card(monster_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3629,6 +3754,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             general_defense.health = general_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3636,6 +3768,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(general_defense.health == 0) {
             delete_card(general_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3714,6 +3849,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             soldier_defense.health = soldier_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3721,6 +3863,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(soldier_defense.health == 0) {
             delete_card(soldier_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3787,6 +3932,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             rider_defense.health = rider_defense.health - 1;
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3794,6 +3946,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(rider_defense.health == 0) {
             delete_card(rider_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3859,6 +4014,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             monster_defense.health = monster_defense.health - 1;
+        event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3866,6 +4028,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(monster_defense.health == 0) {
             delete_card(monster_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
@@ -3933,6 +4098,13 @@ module capy_vs_gnome::card_deck {
         // if successful, decrease health of defense card by 1
         if(successful == true) {
             general_defense.health = general_defense.health - 1;
+        event::emit(AttackSuccess {
+                attack_success: true,
+            });
+        } else {
+            event::emit(AttackFail {
+                attack_success: false,
+            });
         };
 
 
@@ -3940,6 +4112,9 @@ module capy_vs_gnome::card_deck {
         // if defense card health is 0, delete card
         if(general_defense.health == 0) {
             delete_card(general_defense);
+            event::emit(Death {
+                death: true,
+            });
         }  else {
 
             // public transfer defense card back to player
