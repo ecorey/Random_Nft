@@ -32,8 +32,26 @@ module capy_vs_gnome::card_deck {
 
     // CONTENTS:
     // PERMENANTS CARDS 
+    //   - Card
+    //   - delete_card
     // GNOME CARDS
+    //   - mint_gnome_general
+    //   - transfer_gnome_general
+    //   - mint_gnome_monster
+    //   - transfer_gnome_monster
+    //   - mint_gnome_rider
+    //   - transfer_gnome_rider
+    //   - mint_gnome_soldier
+    //   - transfer_gnome_soldier
     // CAPYBARA CARDS
+    //   - mint_capy_general
+    //   - transfer_capy_general
+    //   - mint_capy_monster
+    //   - transfer_capy_monster
+    //   - mint_capy_rider
+    //   - transfer_capy_rider
+    //   - mint_capy_soldier
+    //   - transfer_capy_soldier
     // INIT
     // MINT DECKS
     // CONFIRM DECKS
@@ -63,6 +81,16 @@ module capy_vs_gnome::card_deck {
     //   - frontline_defense_stance
     //   - backline_defense_stance
     // PROBABILITY FUNCTIONS
+    //   - twenty_five_percent_probability
+    //   - thirty_three_percent_probability
+    //   - forty_percent_probability
+    //   - fifty_percent_probability
+    //   - fifty_five_percent_probability
+    //   - sixty_percent_probability
+    //   - sixty_six_percent_probability
+    //   - seventy_percent_probability
+    //   - seventy_five_percent_probability
+    //   - eighty_percent_probability
     // TIME FUNCTIONS
     // TEST INIT
 
