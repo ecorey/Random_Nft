@@ -2703,18 +2703,38 @@ module capy_vs_gnome::card_deck {
 
     // CHECK CARDS ARE CONFIRMED
     // ADD COSTS
-    entry fun soldier_vs_soldier(r: &Random, soldier_attack: Card, soldier_defense: Card, ctx: &mut TxContext) {
+    entry fun soldier_vs_soldier(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+        
+        
+        // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
 
+        // checks cards are confirmed for gameplay
+        if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+            attack_card_confirmed = true;
+        };
 
-        let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
 
+        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+            defense_card_confirmed = true;
+        };
+
+
+        assert!(attack_card_confirmed == true, 99);
+        assert!(defense_card_confirmed == true, 99);
+
+
+        
 
         // 50% probability of attack success
         if( fifty_percent_probability(r, ctx) == 1) {
