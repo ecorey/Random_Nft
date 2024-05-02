@@ -10,7 +10,7 @@ module capy_vs_gnome::game_setup {
     use std::string::{Self, String};
 
     use capy_vs_gnome::monsti::{MONSTI, first_turns_mint};
-    use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier, confirm_gnome_cards, confirm_capy_cards};
+    use capy_vs_gnome::card_deck::{Card, confirm_gnome_cards, confirm_capy_cards};
     use capy_vs_gnome::card_deck::{ConfirmedGnomeDeck, ConfirmedCapyDeck};
 
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
@@ -94,6 +94,26 @@ module capy_vs_gnome::game_setup {
         result
 
     }
+
+
+
+
+
+    // ----------------------------------
+    // ATTACK FUNCTIONS
+    // ----------------------------------
+
+
+    // entry fun soldier_vs_soldier(r: &Random, soldier_attack: Card, soldier_defense: Card, ctx: &mut TxContext) {
+
+
+
+
+
+    // }
+
+
+
 
 
 

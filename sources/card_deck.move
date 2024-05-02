@@ -19,32 +19,62 @@ module capy_vs_gnome::card_deck {
     friend capy_vs_gnome::more_card_tests;
 
     // ----------------------------------------------
-    // CHARACTER CARDS 
-    // ----------------------------------------------
-    
-    // ----------------------------------------------
-    // GNOMES
+    // PERMENANTS CARDS 
     // ----------------------------------------------
 
 
-    struct GnomeGeneral has key, store {
+
+    struct Card has key, store {
         id: UID,
-        // gnome_general_id: ID,
+        type: String,
+        // card_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
         defense: u64,
         health: u64,
         cost: u64,
-        ability_one: String,
-        ability_two: String,
+        // ability_one: String,
     }
 
-    fun mint_gnome_general(ctx: &mut TxContext) : GnomeGeneral {
+
+
+    public fun delete_card(card: Card) {
+
+        let Card { id, type: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
+        object::delete(id);
+
+    }
+
+
+    public fun delete_card_option(card: Option<Card>) {
+
+       
+        if (option::is_some(&card)) {
+            let card_temp = option::extract(&mut card);
+            delete_card(card_temp);
+        };
+
+        option::destroy_none(card);
+
+    }   
+
+
+
+
+    
+    // ----------------------------------------------
+    // GNOMES
+    // ----------------------------------------------
+
+
+
+    fun mint_gnome_general(ctx: &mut TxContext) : Card {
         
 
-        GnomeGeneral {
+        Card {
             id: object::new(ctx),
+            type: utf8(b"gnome general"),
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
@@ -52,8 +82,8 @@ module capy_vs_gnome::card_deck {
             defense: 4,
             health: 6,
             cost: 4,
-            ability_one: utf8(b"Rally"),
-            ability_two: utf8(b"Defensive Orders"),
+            // ability_one: utf8(b"Rally"),
+            
         }
     }
 
@@ -61,8 +91,9 @@ module capy_vs_gnome::card_deck {
     fun transfer_gnome_general(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let gnome_general = GnomeGeneral {
+        let gnome_general = Card {
             id: id,
+            type: utf8(b"gnome general"),
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
@@ -70,54 +101,21 @@ module capy_vs_gnome::card_deck {
             defense: 4,
             health: 6,
             cost: 4,
-            ability_one: utf8(b"Rally"),
-            ability_two: utf8(b"Defensive Orders"),
+            // ability_one: utf8(b"Rally"),
+           
         };
 
         transfer::public_transfer(gnome_general, tx_context::sender(ctx));
     }
 
 
-    public fun delete_gnome_general(gnome_general: GnomeGeneral) {
-        let GnomeGeneral { id, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _, ability_one: _, ability_two: _} = gnome_general;
-        object::delete(id);
-    }
 
-
-    public fun delete_gnome_general_option(gnome_general: Option<GnomeGeneral>) {
-
-         if (option::is_some(&gnome_general)) {
-            let gnome_gen = option::extract(&mut gnome_general);
-            delete_gnome_general(gnome_gen);
-        };
-
-        option::destroy_none(gnome_general);
-
-    }   
-
-
-
-
-
-
-    struct GnomeMonster has key, store {
-        id: UID,
-        // gnome_monster_id: ID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-
-    fun mint_gnome_monster(ctx: &mut TxContext) : GnomeMonster {
+    fun mint_gnome_monster(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        GnomeMonster {
+        Card {
             id: id,
+            type: utf8(b"gnome monster"),
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
@@ -125,7 +123,7 @@ module capy_vs_gnome::card_deck {
             defense: 2,
             health: 5,
             cost: 5,
-            ability: utf8(b"Fury Assault"),
+            // ability: utf8(b"Fury Assault"),
         }
     }
 
@@ -134,8 +132,9 @@ module capy_vs_gnome::card_deck {
     fun transfer_gnome_monster(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let gnome_monster = GnomeMonster {
+        let gnome_monster = Card {
             id: id,
+            type: utf8(b"gnome monster"),
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
@@ -143,52 +142,22 @@ module capy_vs_gnome::card_deck {
             defense: 2,
             health: 5,
             cost: 5,
-            ability: utf8(b"Fury Assault"),
+            // ability: utf8(b"Fury Assault"),
         };
 
         transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
     }
 
 
-    public fun delete_gnome_monster(gnome_monster: GnomeMonster) {
-        let GnomeMonster { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _ } = gnome_monster;
-        object::delete(id);
-    }
+    
 
 
-
-    public fun delete_gnome_monster_option(gnome_monster: Option<GnomeMonster>) {
-
-         if (option::is_some(&gnome_monster)) {
-            let gnome_mon = option::extract(&mut gnome_monster);
-            delete_gnome_monster(gnome_mon);
-        };
-
-        option::destroy_none(gnome_monster);
-
-    }
-
-
-
-
-
-    struct GnomeRider has key, store {
-        id: UID,
-        // gnome_rider_id: ID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-    fun mint_gnome_rider(ctx: &mut TxContext) : GnomeRider {
+    fun mint_gnome_rider(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        GnomeRider {
+        Card {
             id: id,
+            type: utf8(b"gnome rider"),
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
@@ -196,7 +165,7 @@ module capy_vs_gnome::card_deck {
             defense: 3,
             health: 4,
             cost: 3,
-            ability: utf8(b"Lightning Strike"),
+            // ability: utf8(b"Lightning Strike"),
         }
     }
 
@@ -204,8 +173,9 @@ module capy_vs_gnome::card_deck {
     fun transfer_gnome_rider(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let gnome_rider = GnomeRider {
+        let gnome_rider = Card {
             id: id,
+            type: utf8(b"gnome rider"),
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
@@ -213,59 +183,30 @@ module capy_vs_gnome::card_deck {
             defense: 3,
             health: 4,
             cost: 3,
-            ability: utf8(b"Lightning Strike"),
+            // ability: utf8(b"Lightning Strike"),
         };
 
         transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
     }
 
 
-    public fun delete_gnome_rider(gnome_rider: GnomeRider) {
-            let GnomeRider { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = gnome_rider;
-            object::delete(id);
-    }
+    
 
 
-    public fun delete_gnome_rider_option(gnome_rider: Option<GnomeRider>) {
-
-         if (option::is_some(&gnome_rider)) {
-            let gnome_rid = option::extract(&mut gnome_rider);
-            delete_gnome_rider(gnome_rid);
-        };
-
-        option::destroy_none(gnome_rider);
-
-    }
-
-
-
-
-
-    struct GnomeSoldier has key, store {
-        id: UID,
-        // gnome_soldier_id: ID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-    fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldier {
+    fun mint_gnome_soldier(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        GnomeSoldier {
+        Card {
             id: id,
             // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
+            type: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
             defense: 5,
             health: 5,
             cost: 3,
-            ability: utf8(b"Shield Wall"),
+            // ability: utf8(b"Shield Wall"),
         }
     }
 
@@ -273,8 +214,9 @@ module capy_vs_gnome::card_deck {
     fun transfer_gnome_soldier(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let gnome_soldier = GnomeSoldier {
+        let gnome_soldier = Card {
             id: id,
+            type: utf8(b"gnome soldier"),
             // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
@@ -282,30 +224,14 @@ module capy_vs_gnome::card_deck {
             defense: 5,
             health: 5,
             cost: 3,
-            ability: utf8(b"Shield Wall"),
+            // ability: utf8(b"Shield Wall"),
         };
 
         transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
     }
 
 
-    public fun delete_gnome_soldier(gnome_soldier: GnomeSoldier) {
-        let GnomeSoldier { id, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _, ability: _ } = gnome_soldier;
-        object::delete(id);
-    }
-
-
-    public fun delete_gnome_soldier_option(gnome_soldier: Option<GnomeSoldier>) {
-
-         if (option::is_some(&gnome_soldier)) {
-            let gnome_sol = option::extract(&mut gnome_soldier);
-            delete_gnome_soldier(gnome_sol);
-        };
-
-        option::destroy_none(gnome_soldier);
-
-    }
-
+    
 
 
 
@@ -315,31 +241,23 @@ module capy_vs_gnome::card_deck {
     // ----------------------------------------------
 
 
-    struct CapyGeneral has key, store {
-        id: UID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability_one: String,
-        ability_two: String,
-    }
+   
 
-    fun mint_capy_general(ctx: &mut TxContext) : CapyGeneral {
+
+    fun mint_capy_general(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        CapyGeneral {
+        Card {
             id: id,
+            type: utf8(b"capy general"),
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 3,
             defense: 4,
             health: 6,
             cost: 4,
-            ability_one: utf8(b"Rally"),
-            ability_two: utf8(b"Defensive Orders"),
+            // ability_one: utf8(b"Rally"),
+            // ability_two: utf8(b"Defensive Orders"),
         }
     }
 
@@ -347,56 +265,39 @@ module capy_vs_gnome::card_deck {
     fun transfer_capy_general(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let capy_general = CapyGeneral {
+        let capy_general = Card {
             id: id,
+            type: utf8(b"capy general"),
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 3,
             defense: 4,
             health: 6,
             cost: 4,
-            ability_one: utf8(b"Rally"),
-            ability_two: utf8(b"Defensive Orders"),
+            // ability_one: utf8(b"Rally"),
         };
 
         transfer::public_transfer(capy_general, tx_context::sender(ctx));
     }
 
 
-    // delete functions for capy warriors
-    public fun delete_capy_general(capy_general: CapyGeneral) {
-        let CapyGeneral { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability_one: _, ability_two: _ } = capy_general;
-        object::delete(id);
-    }
+    
 
 
 
-
-
-
-    struct CapyMonster has key, store {
-        id: UID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-    fun mint_capy_monster(ctx: &mut TxContext) : CapyMonster {
+    fun mint_capy_monster(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        CapyMonster {
+        Card {
             id: id,
+            type: utf8(b"capy monster"),
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 6,
             defense: 2,
             health: 5,
             cost: 5,
-            ability: utf8(b"Fury Assault"),
+            // ability: utf8(b"Fury Assault"),
         }
     }
 
@@ -404,15 +305,16 @@ module capy_vs_gnome::card_deck {
     fun transfer_capy_monster(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let capy_monster = CapyMonster {
+        let capy_monster = Card {
             id: id,
+            type: utf8(b"capy monster"),
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 6,
             defense: 2,
             health: 5,
             cost: 5,
-            ability: utf8(b"Fury Assault"),
+            // ability: utf8(b"Fury Assault"),
         };
 
         transfer::public_transfer(capy_monster, tx_context::sender(ctx));
@@ -420,37 +322,22 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun delete_capy_monster(capy_monster: CapyMonster) {
-        let CapyMonster { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_monster;
-        object::delete(id);
-    }
 
 
 
-
-    struct CapyRider has key, store {
-        id: UID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-    fun mint_capy_rider(ctx: &mut TxContext) : CapyRider {
+    fun mint_capy_rider(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        CapyRider {
+        Card {
             id: id,
+            type: utf8(b"capy rider"),
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 4,
             defense: 3,
             health: 4,
             cost: 3,
-            ability: utf8(b"Lightning Strike"),
+            // ability: utf8(b"Lightning Strike"),
         }
     }
 
@@ -459,56 +346,38 @@ module capy_vs_gnome::card_deck {
     fun transfer_capy_rider(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let capy_rider = CapyRider {
+        let capy_rider = Card {
             id: id,
+            type: utf8(b"capy rider"),
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 4,
             defense: 3,
             health: 4,
             cost: 3,
-            ability: utf8(b"Lightning Strike"),
+            // ability: utf8(b"Lightning Strike"),
         };
 
         transfer::public_transfer(capy_rider, tx_context::sender(ctx));
     }
 
 
-    public fun delete_capy_rider(capy_rider: CapyRider) {
-        let CapyRider { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_rider;
-        object::delete(id);
-    }
+   
 
 
-    
-
-
-
-
-    struct CapySoldier has key, store {
-        id: UID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        ability: String,
-    }
-
-
-    fun mint_capy_soldier(ctx: &mut TxContext) : CapySoldier {
+    fun mint_capy_soldier(ctx: &mut TxContext) : Card {
         let id = object::new(ctx);
 
-        CapySoldier {
+        Card {
             id: id,
+            type: utf8(b"capy soldier"),
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
             defense: 5,
             health: 5,
             cost: 3,
-            ability: utf8(b"Shield Wall"),
+            // ability: utf8(b"Shield Wall"),
         }
     }
 
@@ -516,25 +385,21 @@ module capy_vs_gnome::card_deck {
     fun transfer_capy_soldier(ctx: &mut TxContext) {
         let id = object::new(ctx);
 
-        let capy_soldier = CapySoldier {
+        let capy_soldier = Card {
             id: id,
+            type: utf8(b"capy soldier"),
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
             defense: 5,
             health: 5,
             cost: 3,
-            ability: utf8(b"Shield Wall"),
+            // ability: utf8(b"Shield Wall"),
         };
 
         transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
     }
 
-
-    public fun delete_capy_soldier(capy_soldier: CapySoldier) {
-        let CapySoldier { id, name: _, image_url: _, attack: _, defense: _, health: _, cost: _, ability: _  } = capy_soldier;
-        object::delete(id);
-    }
 
 
 
@@ -1902,7 +1767,7 @@ module capy_vs_gnome::card_deck {
 
         // add gnomes to display
         // add gnome general
-        let display_gnome_general = display::new_with_fields<GnomeGeneral>(
+        let display_gnome_general = display::new_with_fields<Card>(
             &publisher, gnome_general_keys, gnome_general_values, ctx
         );
 
@@ -1910,7 +1775,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome monster
-        let display_gnome_monster = display::new_with_fields<GnomeMonster>(
+        let display_gnome_monster = display::new_with_fields<Card>(
             &publisher, gnome_monster_keys, gnome_monster_values, ctx
         );
 
@@ -1918,7 +1783,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome rider
-        let display_gnome_rider = display::new_with_fields<GnomeRider>(
+        let display_gnome_rider = display::new_with_fields<Card>(
             &publisher, gnome_rider_keys, gnome_rider_values, ctx
         );
 
@@ -1926,7 +1791,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome soldier
-        let display_gnome_soldier = display::new_with_fields<GnomeSoldier>(
+        let display_gnome_soldier = display::new_with_fields<Card>(
             &publisher, gnome_soldier_keys, gnome_soldier_values, ctx
         );
 
@@ -1937,7 +1802,7 @@ module capy_vs_gnome::card_deck {
 
         // add capybaras to display
         // add capy general
-        let display_capy_general = display::new_with_fields<CapyGeneral>(
+        let display_capy_general = display::new_with_fields<Card>(
             &publisher, capy_general_keys, capy_general_values, ctx
         );
 
@@ -1945,7 +1810,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy monster
-        let display_capy_monster = display::new_with_fields<CapyMonster>(
+        let display_capy_monster = display::new_with_fields<Card>(
             &publisher, capy_monster_keys, capy_monster_values, ctx
         );
 
@@ -1953,7 +1818,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy rider
-        let display_capy_rider = display::new_with_fields<CapyRider>(
+        let display_capy_rider = display::new_with_fields<Card>(
             &publisher, capy_rider_keys, capy_rider_values, ctx
         );
 
@@ -1961,7 +1826,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy soldier
-        let display_capy_soldier = display::new_with_fields<CapySoldier>(
+        let display_capy_soldier = display::new_with_fields<Card>(
             &publisher, capy_soldier_keys, capy_soldier_values, ctx
         );
 
@@ -2178,37 +2043,7 @@ module capy_vs_gnome::card_deck {
     // ----------------------------------------------
     
 
-    // struct GnomeDeck has key, store {
-    //     id: UID,
-    //     gnome_general: Option<GnomeGeneral>,
-    //     gnome_monster: Option<GnomeMonster>,
-    //     gnome_rider: Option<GnomeRider>,
-    //     gnome_soldier: Option<GnomeSoldier>,
-
-        
-
-    // }
-
-
-
-
-
-
-
-    // struct CapyDeck has key, store {
-    //     id: UID,
-    //     capy_general: vector<CapyGeneral>,
-    //     capy_monster: vector<CapyMonster>,
-    //     capy_rider: vector<CapyRider>,
-    //     capy_soldier: vector<CapySoldier>,
-        
-    // }
-
-
-
-
-
-
+    
 
 
     // ----------------------------------------------
@@ -2285,7 +2120,7 @@ module capy_vs_gnome::card_deck {
 
      // GNOME DECK
 
-    public fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
+    public fun mint_gnome_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
         
         
@@ -2324,7 +2159,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun gnome_deck(ctx: &mut TxContext) : (GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier) {
+    public fun gnome_deck(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
 
         let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(ctx);
@@ -2376,12 +2211,12 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun delete_all_gnome_cards(gnome_general: GnomeGeneral, gnome_monster: GnomeMonster, gnome_rider: GnomeRider, gnome_soldier: GnomeSoldier, ctx: &mut TxContext) {
+    public fun delete_all_gnome_cards(gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
         
-        delete_gnome_general(gnome_general);
-        delete_gnome_monster(gnome_monster);
-        delete_gnome_rider(gnome_rider);
-        delete_gnome_soldier(gnome_soldier);
+        delete_card(gnome_general);
+        delete_card(gnome_monster);
+        delete_card(gnome_rider);
+        delete_card(gnome_soldier);
 
         // delete_divine_shield(divine_shield);
         // delete_divine_shield(divine_shield_two);
@@ -2423,76 +2258,6 @@ module capy_vs_gnome::card_deck {
     }
 
 
-    // mint with Option
-    // public fun mint_complete_gnome_deck(ctx: &mut TxContext) {
-        
-        
-    //     // Mint gnome cards
-    //     let (gnome_general_minted, gnome_monster_minted, gnome_rider_minted, gnome_soldier) = mint_gnome_cards(ctx);
-
-
-    
-
-    //     let gnome_deck = GnomeDeck {
-    //         id: object::new(ctx),
-    //         gnome_general: option::none(),
-    //         gnome_monster: option::none(),
-    //         gnome_rider: option::none(),
-    //         gnome_soldier: option::none(),
-
-    //     };
-
-
-    //     option::fill<GnomeGeneral>(&mut gnome_deck.gnome_general, gnome_general_minted);
-    //     option::fill<GnomeMonster>(&mut gnome_deck.gnome_monster, gnome_monster_minted);
-    //     option::fill<GnomeRider>(&mut gnome_deck.gnome_rider, gnome_rider_minted);
-    //     option::fill<GnomeSoldier>(&mut gnome_deck.gnome_soldier, gnome_soldier);
-
-
-    //     transfer::public_transfer(gnome_deck, tx_context::sender(ctx));
-
-
-    
-    // }
-
-
-
-
-
-    // public fun delete_complete_gnome_deck(deck: GnomeDeck) {
-
-    //     let GnomeDeck {
-
-    //         id, 
-    //         gnome_general,
-    //         gnome_monster,
-    //         gnome_rider,
-    //         gnome_soldier,
-
-           
-
-    //     } = deck;  
-
-
-
-       
-    //     delete_gnome_general_option(gnome_general);
-    //     delete_gnome_monster_option(gnome_monster);
-    //     delete_gnome_rider_option(gnome_rider);
-    //     delete_gnome_soldier_option(gnome_soldier);
-
-    //     object::delete(id);
-
-
-       
-
-    // }
-
-    
-
-
-
-
 
 
 
@@ -2530,7 +2295,9 @@ module capy_vs_gnome::card_deck {
 
 
 
-
+    // -----------------------------
+    // CONFIRM DECKS
+    // -----------------------------
 
 
     struct ConfirmedGnomeDeck has key, store {
@@ -2559,10 +2326,10 @@ module capy_vs_gnome::card_deck {
 
 
     // to confirm the playesrs are using an accurate deck and correct cards during gameplay
-    public fun confirm_gnome_cards( gnome_general: GnomeGeneral, gnome_monster: GnomeMonster, gnome_rider: GnomeRider, gnome_soldier: GnomeSoldier, ctx: &mut TxContext) {
+    public fun confirm_gnome_cards( gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
 
 
-        // intasntiate first to avoid error then check
+        // instantiate first to avoid error then check
         // create as shared object with object ids to later use to check and verify 
         let confirmed_gnome_deck = ConfirmedGnomeDeck {
             id: object::new(ctx),
@@ -2678,10 +2445,10 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun confirm_capy_cards( capy_general: CapyGeneral, capy_monster: CapyMonster, capy_rider: CapyRider, capy_soldier: CapySoldier, ctx: &mut TxContext) {
+    public fun confirm_capy_cards( capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
     
     
-        // intasntiate first to avoid error then check
+        // instantiate first to avoid error then check
         // create as shared object with object ids to later use to check and verify 
         let confirmed_capy_deck = ConfirmedCapyDeck {
             id: object::new(ctx),
