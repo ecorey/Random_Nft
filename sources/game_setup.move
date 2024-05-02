@@ -91,6 +91,7 @@ module capy_vs_gnome::game_setup {
 
 
     struct FrontLineDefense has copy, drop, store {
+        value: u8,
         result: u8,
     }
 
@@ -154,6 +155,7 @@ module capy_vs_gnome::game_setup {
 
 
         event::emit(FrontLineDefense {
+            value: v,
             result: result,
         });
 
@@ -168,6 +170,7 @@ module capy_vs_gnome::game_setup {
 
 
     struct BackLineDefense has copy, drop, store {
+        value: u8,
         result: u8,
     }
 
@@ -233,6 +236,7 @@ module capy_vs_gnome::game_setup {
 
 
         event::emit(BackLineDefense {
+            value: v,
             result: result,
         });
         
