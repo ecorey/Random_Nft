@@ -2317,6 +2317,20 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // -----------------------------
     // CONFIRM DECKS
     // -----------------------------
@@ -2706,20 +2720,41 @@ module capy_vs_gnome::card_deck {
 
 
         assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
 
 
         let successful = false; 
 
-        
+        // 50% probability of attack success
         if( fifty_percent_probability(r, ctx) == 1) {
             successful = true;
         };
 
 
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            soldier_defense.health = soldier_defense.health - 1;
+        };
 
 
+
+        // if defense card health is 0, delete card
+        if(soldier_defense.health == 0) {
+            delete_card(soldier_defense);
+        }  else {
+
+            // public transfer defense card back to player
+            delete_card(soldier_defense);
+            
+        };
+        
+
+
+
+        // public transfer attack card back to player
         delete_card(soldier_attack);
-        delete_card(soldier_defense);
+        
 
         
 
