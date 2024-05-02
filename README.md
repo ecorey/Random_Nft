@@ -2,7 +2,7 @@
 
 ---
 
-'Capy vs. Gnome', a 'Magic' style game that leverages Sui randomness for gameplay and an in game token that is earned and used to play cards during a turn. 
+'Capy vs. Gnome', a 'MTG' style game that leverages Sui randomness for gameplay and an in game token that is earned and used to play cards during a turn. 
 
 ---
 
