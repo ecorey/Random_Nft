@@ -7,16 +7,17 @@ module capy_vs_gnome::random_funcs {
     use sui::transfer;
     use sui::event;
     use std::string::{utf8, String};
+    use sui::random::{Self, Random, new_generator};
 
 
 
     #[test_only]
     friend capy_vs_gnome::random_funcs_tests;
-    friend capy_vs_gnome::game_setup;
+    friend capy_vs_gnome::card_deck;
 
 
 
-    use sui::random::{Self, Random, new_generator};
+    
     
 
 
@@ -32,113 +33,11 @@ module capy_vs_gnome::random_funcs {
     }
 
 
-    struct RandNumEvent has copy, drop {
-        value: u8
-    }
 
-
-
-    struct RandNum has key, store {
-        id: UID,
-        value: u8,
-        bool_value: bool,
-    }
-
-
-
-    entry fun ten_percent_probability(r: &Random, ctx: &mut TxContext )  {
-
-        let result: bool = false;
-
-        let generator = new_generator(r, ctx);
-        let v = random::generate_u8_in_range(&mut generator, 1, 100);
-
-
-        event::emit(RandNumEvent { value: v });
-
-
-        // probability of 10%
-        let ten__percent = arithmetic_is_less_than(v, 11, 100); 
-
-
-        if(ten__percent == 1) {
-            result = true;
-        } else {
-            result = false;
-        };
-
-
-        let result = RandNum {
-            id: object::new(ctx),
-            value: v,
-            bool_value: result,
-        };
-
-
-        
-
-
-        transfer::public_transfer(result, tx_context::sender(ctx));
-
-    }
-
-
-
-
-
-
-
-    entry fun fifty_percent_probability(r: &Random, ctx: &mut TxContext )  {
-
-        let result: bool = false;
-
-        let generator = new_generator(r, ctx);
-        let v = random::generate_u8_in_range(&mut generator, 1, 100);
-
-
-        event::emit(RandNumEvent { value: v });
-
-
-        // probability of 50%
-        let fifty__percent = arithmetic_is_less_than(v, 51, 100); 
-
-
-        if(fifty__percent == 1) {
-            result = true;
-        } else {
-            result = false;
-        };
-
-
-        let result = RandNum {
-            id: object::new(ctx),
-            value: v,
-            bool_value: result,
-        };
-
-
-        
-
-
-        transfer::public_transfer(result, tx_context::sender(ctx));
-
-    }
-
-
+  
 
 
     
-
-
-
-
-
-
-
-
-
-
-
     // Returns 1 if true, 0 false.
     // Safe in case w and v_max are independent of the randomenss (e.g., fixed).
     // Does not check if v <= v_max.
