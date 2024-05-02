@@ -3316,6 +3316,320 @@ module capy_vs_gnome::card_deck {
 
 
 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // MONSTER ATTACK FUNCTIONS
+    // -------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------
+
+
+
+    
+    // ADD CP COSTS
+    // monster vs soldier
+    entry fun monster_vs_soldier(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = monster_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+        
+        
+        // checks cards are correct type
+        assert!(monster_attack.type_id == 2, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
+
+        // checks cards are confirmed for gameplay
+        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+            attack_card_confirmed = true;
+        };
+
+
+        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+            defense_card_confirmed = true;
+        };
+
+
+        assert!(attack_card_confirmed == true, 99);
+        assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 60% probability of attack success
+        if( sixty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            soldier_defense.health = soldier_defense.health - 1;
+        };
+
+
+
+        // if defense card health is 0, delete card
+        if(soldier_defense.health == 0) {
+            delete_card(soldier_defense);
+        }  else {
+
+            // public transfer defense card back to player
+            transfer::public_transfer(soldier_defense, address_defender);
+
+        };
+        
+
+
+
+        // public transfer attack card back to player
+        transfer::public_transfer(monster_attack, address_attacker);
+        
+
+        
+
+    }
+
+
+
+    
+
+    // ADD CP COSTS
+    // monster vs rider
+    entry fun monster_vs_rider(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = monster_attack.owner_address;
+        let address_defender = rider_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+        
+        
+        // checks cards are correct type
+        assert!(monster_attack.type_id == 2, 99);
+        assert!(rider_defense.type_id == 3, 99);
+
+
+        // checks cards are confirmed for gameplay
+        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+            attack_card_confirmed = true;
+        };
+
+
+        if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
+            defense_card_confirmed = true;
+        };
+
+
+        assert!(attack_card_confirmed == true, 99);
+        assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 55% probability of attack success
+        if( fifty_five_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            rider_defense.health = rider_defense.health - 1;
+        };
+
+
+
+        // if defense card health is 0, delete card
+        if(rider_defense.health == 0) {
+            delete_card(rider_defense);
+        }  else {
+
+            // public transfer defense card back to player
+            transfer::public_transfer(rider_defense, address_defender);
+
+        };
+        
+
+
+
+        // public transfer attack card back to player
+        transfer::public_transfer(monster_attack, address_attacker);
+        
+
+        
+
+    }
+
+
+
+
+    // ADD CP COSTS
+    // monster vs monster
+    entry fun monster_vs_monster(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = monster_attack.owner_address;
+        let address_defender = monster_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+        
+        
+        // checks cards are correct type
+        assert!(monster_attack.type_id == 2, 99);
+        assert!(monster_defense.type_id == 2, 99);
+
+
+        // checks cards are confirmed for gameplay
+        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+            attack_card_confirmed = true;
+        };
+
+
+        if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
+            defense_card_confirmed = true;
+        };
+
+
+        assert!(attack_card_confirmed == true, 99);
+        assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 50% probability of attack success
+        if( fifty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            monster_defense.health = monster_defense.health - 1;
+        };
+
+
+
+        // if defense card health is 0, delete card
+        if(monster_defense.health == 0) {
+            delete_card(monster_defense);
+        }  else {
+
+            // public transfer defense card back to player
+            transfer::public_transfer(monster_defense, address_defender);
+
+        };
+        
+
+
+
+        // public transfer attack card back to player
+        transfer::public_transfer(monster_attack, address_attacker);
+        
+
+        
+
+    }
+
+
+
+
+
+
+    // ADD CP COSTS
+    // monster vs general
+    entry fun monster_vs_general(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = monster_attack.owner_address;
+        let address_defender = general_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+        
+        
+        // checks cards are correct type
+        assert!(monster_attack.type_id == 2, 99);
+        assert!(general_defense.type_id == 1, 99);
+
+
+        // checks cards are confirmed for gameplay
+        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+            attack_card_confirmed = true;
+        };
+
+
+        if(general_defense_confirmed.general_id == object::id(&general_defense)){
+            defense_card_confirmed = true;
+        };
+
+
+        assert!(attack_card_confirmed == true, 99);
+        assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 80% probability of attack success
+        if( eighty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            general_defense.health = general_defense.health - 1;
+        };
+
+
+
+        // if defense card health is 0, delete card
+        if(general_defense.health == 0) {
+            delete_card(general_defense);
+        }  else {
+
+            // public transfer defense card back to player
+            transfer::public_transfer(general_defense, address_defender);
+
+        };
+        
+
+
+
+        // public transfer attack card back to player
+        transfer::public_transfer(monster_attack, address_attacker);
+        
+
+        
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
