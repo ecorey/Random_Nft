@@ -31,6 +31,7 @@ module capy_vs_gnome::card_deck {
 
     struct Card has key, store {
         id: UID,
+        owner_address: address,
         type: String,
         type_id: u64,
         // card_id: ID,
@@ -47,7 +48,7 @@ module capy_vs_gnome::card_deck {
 
     public fun delete_card(card: Card) {
 
-        let Card { id, type: _, type_id: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
+        let Card { id, owner_address: _, type: _, type_id: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
         object::delete(id);
 
     }
@@ -80,6 +81,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: object::new(ctx),
+            owner_address: tx_context::sender(ctx), 
             type: utf8(b"gnome general"),
             type_id: 1,
             // gnome_general_id: object::uid_to_inner(&id),
@@ -100,6 +102,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_general = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome general"),
             type_id: 1,
             // gnome_general_id: object::uid_to_inner(&id),
@@ -123,6 +126,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
             type_id: 2,
             // gnome_monster_id: object::uid_to_inner(&id),
@@ -143,6 +147,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_monster = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
             type_id: 2,
             // gnome_monster_id: object::uid_to_inner(&id),
@@ -167,6 +172,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
             type_id: 3,
             // gnome_rider_id: object::uid_to_inner(&id),
@@ -186,6 +192,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_rider = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
             type_id: 3,
             // gnome_rider_id: object::uid_to_inner(&id),
@@ -210,6 +217,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             // gnome_soldier_id: object::uid_to_inner(&id),
             type: utf8(b"gnome soldier"),
             type_id: 4,
@@ -229,6 +237,7 @@ module capy_vs_gnome::card_deck {
 
         let gnome_soldier = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome soldier"),
             type_id: 4,
             // gnome_soldier_id: object::uid_to_inner(&id),
@@ -263,6 +272,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
             type_id: 1,
             name: utf8(b"capy general"),
@@ -282,6 +292,7 @@ module capy_vs_gnome::card_deck {
 
         let capy_general = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
             type_id: 1,
             name: utf8(b"capy general"),
@@ -306,6 +317,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy monster"),
             type_id: 2,
             name: utf8(b"capy monster"),
@@ -324,6 +336,7 @@ module capy_vs_gnome::card_deck {
 
         let capy_monster = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy monster"),
             type_id: 2,
             name: utf8(b"capy monster"),
@@ -348,6 +361,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
             type_id: 3,
             name: utf8(b"capy rider"),
@@ -367,6 +381,7 @@ module capy_vs_gnome::card_deck {
 
         let capy_rider = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
             type_id: 3,
             name: utf8(b"capy rider"),
@@ -390,6 +405,7 @@ module capy_vs_gnome::card_deck {
 
         Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy soldier"),
             type_id: 4,
             name: utf8(b"capy soldier"),
@@ -408,6 +424,7 @@ module capy_vs_gnome::card_deck {
 
         let capy_soldier = Card {
             id: id,
+            owner_address: tx_context::sender(ctx),
             type: utf8(b"capy soldier"),
             type_id: 4,
             name: utf8(b"capy soldier"),
@@ -2716,6 +2733,8 @@ module capy_vs_gnome::card_deck {
     // ----------------------------------
 
 
+    // CHECK CARDS ARE CONFIRMED
+    // ADD COSTS
     entry fun soldier_vs_soldier(r: &Random, soldier_attack: Card, soldier_defense: Card, ctx: &mut TxContext) {
 
 
@@ -2725,6 +2744,9 @@ module capy_vs_gnome::card_deck {
 
 
         let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
 
         // 50% probability of attack success
         if( fifty_percent_probability(r, ctx) == 1) {
@@ -2745,15 +2767,15 @@ module capy_vs_gnome::card_deck {
         }  else {
 
             // public transfer defense card back to player
-            delete_card(soldier_defense);
-            
+            transfer::public_transfer(soldier_defense, address_defender);
+
         };
         
 
 
 
         // public transfer attack card back to player
-        delete_card(soldier_attack);
+        transfer::public_transfer(soldier_attack, address_attacker);
         
 
         
