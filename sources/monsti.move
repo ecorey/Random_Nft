@@ -16,7 +16,32 @@ module capy_vs_gnome::monsti {
     friend capy_vs_gnome::monsti_tests;
 
 
-    // Closed Loop Token used for CP to use cards and make moves
+
+
+
+
+
+
+    // CONTENTS:
+    //    - init - create_currency, new_policy, share_policy, public_freeze_object, public_transfer
+    //    - first_turns_mint
+    //    - turn_mint
+    //    - reset_balance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

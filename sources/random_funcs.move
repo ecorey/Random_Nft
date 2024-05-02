@@ -19,6 +19,17 @@ module capy_vs_gnome::random_funcs {
 
 
 
+    // CONTENTS:
+    //    - arithmetic_is_less_than
+
+
+
+
+
+
+
+
+
     struct RANDOM_FUNCS has drop {}
 
 
