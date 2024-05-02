@@ -90,6 +90,9 @@ module capy_vs_gnome::game_setup {
 
 
 
+    struct FrontLineDefense has copy, drop, store {
+        result: u8,
+    }
 
 
 
@@ -98,7 +101,7 @@ module capy_vs_gnome::game_setup {
     // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
     // will indicate which permenant is being attacked
     // 25% probability for each permenant
-    public fun frontline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
+    entry fun frontline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
 
         
         let general = 0;
@@ -148,6 +151,14 @@ module capy_vs_gnome::game_setup {
         if(soldier == 1) {
             result = 4;
         };
+
+
+        event::emit(FrontLineDefense {
+            result: result,
+        });
+
+
+        
         
 
         result
@@ -156,13 +167,18 @@ module capy_vs_gnome::game_setup {
 
 
 
+    struct BackLineDefense has copy, drop, store {
+        result: u8,
+    }
+
+
 
     // backline defense stance
     // add 1 CP cost
     // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
     // will indicate which permenant is being attacked
     // 5% probability for general, 5% for monster, 15% for rider, 75% for soldier
-    public fun backline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
+    entry fun backline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
 
         
         let general = 0;
@@ -212,6 +228,13 @@ module capy_vs_gnome::game_setup {
         if(soldier == 1) {
             result = 4;
         };
+
+
+
+
+        event::emit(BackLineDefense {
+            result: result,
+        });
         
 
         result
@@ -244,7 +267,11 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 25%
-        let twenty_five_percent = arithmetic_is_less_than(v, 76, 100); 
+        let twenty_five_percent = arithmetic_is_less_than(v, 26, 100); 
+
+        if(twenty_five_percent == 1) {
+            result = true;
+        };
 
 
         let result = RandNum {
@@ -276,7 +303,13 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 33%
-        let thirty_three_percent = arithmetic_is_less_than(v, 67, 100); 
+        let thirty_three_percent = arithmetic_is_less_than(v, 34, 100); 
+
+
+        if(thirty_three_percent == 1) {
+            result = true;
+        };
+
 
 
         let result = RandNum {
@@ -306,7 +339,12 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 40%
-        let forty_percent = arithmetic_is_less_than(v, 61, 100); 
+        let forty_percent = arithmetic_is_less_than(v, 41, 100); 
+
+
+        if(forty_percent == 1) {
+            result = true;
+        };
 
 
         let result = RandNum {
@@ -340,6 +378,12 @@ module capy_vs_gnome::game_setup {
         let fifty_percent = arithmetic_is_less_than(v, 51, 100); 
 
 
+
+        if(fifty_percent == 1) {
+            result = true;
+        };
+
+
         let result = RandNum {
             id: object::new(ctx),
             value: v,
@@ -368,7 +412,13 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 55%
-        let fifty_five_percent = arithmetic_is_less_than(v, 56, 100); 
+        let fifty_five_percent = arithmetic_is_less_than(v, 56, 100);
+
+
+
+        if(fifty_five_percent == 1) {
+            result = true;
+        }; 
 
 
         let result = RandNum {
@@ -399,7 +449,12 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 60%
-        let sixty_percent = arithmetic_is_less_than(v, 41, 100); 
+        let sixty_percent = arithmetic_is_less_than(v, 61, 100); 
+
+
+        if(sixty_percent == 1) {
+            result = true;
+        }; 
 
 
         let result = RandNum {
@@ -429,7 +484,13 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 66%
-        let sixty_six_percent = arithmetic_is_less_than(v, 35, 100); 
+        let sixty_six_percent = arithmetic_is_less_than(v, 67, 100); 
+
+
+        if(sixty_six_percent == 1) {
+            result = true;
+        }; 
+
 
 
         let result = RandNum {
@@ -459,7 +520,14 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 70%
-        let seventy_percent = arithmetic_is_less_than(v, 31, 100); 
+        let seventy_percent = arithmetic_is_less_than(v, 71, 100); 
+
+
+        if(seventy_percent == 1) {
+            result = true;
+        }; 
+
+
 
         let result = RandNum {
             id: object::new(ctx),
@@ -488,7 +556,15 @@ module capy_vs_gnome::game_setup {
 
 
         // probability of 75%
-        let seventy_five_percent = arithmetic_is_less_than(v, 26, 100); 
+        let seventy_five_percent = arithmetic_is_less_than(v, 76, 100); 
+
+
+
+        if(seventy_five_percent == 1) {
+            result = true;
+        }; 
+
+
 
         let result = RandNum {
             id: object::new(ctx),
@@ -516,9 +592,14 @@ module capy_vs_gnome::game_setup {
         let v = random::generate_u8_in_range(&mut generator, 1, 100);
 
 
-
         // probability of 80%
-        let eighty_percent = arithmetic_is_less_than(v, 21, 100); 
+        let eighty_percent = arithmetic_is_less_than(v, 81, 100); 
+
+
+        if(eighty_percent == 1) {
+            result = true;
+        };
+
 
         let result = RandNum {
             id: object::new(ctx),
