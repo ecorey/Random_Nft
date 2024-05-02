@@ -1,5 +1,11 @@
 # GAME
 
+---
+
+'Capy vs. Gnome', a 'Magic' style game that leverages Sui randomness for gameplay and an in game token that is earned and used to play cards during a turn. 
+
+---
+
 Coin Toss: The player to go first is determined by a 50/50 coin toss.
 
 First Turn: For the first turn each player starts with 3 /6/9 CP and will earn 1 CP at the start of each turn after that. 

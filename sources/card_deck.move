@@ -53,10 +53,20 @@ module capy_vs_gnome::card_deck {
     //   - mint_capy_soldier
     //   - transfer_capy_soldier
     // INIT
+    //   - init
     // MINT DECKS
+    //   - mint_gnome_cards
+    //   - transfer_gnome_cards
+    //   - gnome_deck
+    //   - delete_all_gnome_cards
+    //   - transfer_capy_cards
     // CONFIRM DECKS
+    //   - confirm_deck
     // GAME SETUP
+    //   - start_game
+    //   - start_turn
     // COIN TOSS FUNCTIONS
+    //   - coin_toss
     // ATTACK FUNCTIONS
     //   - soldier_vs_soldier 
     //   - soldier_vs_rider
@@ -92,7 +102,10 @@ module capy_vs_gnome::card_deck {
     //   - seventy_five_percent_probability
     //   - eighty_percent_probability
     // TIME FUNCTIONS
+    //   - get_time
     // TEST INIT
+    //   - init_for_testing
+
 
 
 
