@@ -1,5 +1,5 @@
 #[test_only]
-module capy_vs_gnome::more_card_tests {
+module capy_vs_gnome::card_deck_tests {
 
 
     use sui::test_scenario;
