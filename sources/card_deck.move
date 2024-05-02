@@ -23,10 +23,12 @@ module capy_vs_gnome::card_deck {
     // ----------------------------------------------
 
 
+    // type_id: 1 = gnome general, 2 = gnome monster, 3 = gnome rider, 4 = gnome soldier
 
     struct Card has key, store {
         id: UID,
         type: String,
+        type_id: u64,
         // card_id: ID,
         name: String, 
         image_url: String,
@@ -41,7 +43,7 @@ module capy_vs_gnome::card_deck {
 
     public fun delete_card(card: Card) {
 
-        let Card { id, type: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
+        let Card { id, type: _, type_id: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
         object::delete(id);
 
     }
@@ -75,6 +77,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: object::new(ctx),
             type: utf8(b"gnome general"),
+            type_id: 1,
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
@@ -94,6 +97,7 @@ module capy_vs_gnome::card_deck {
         let gnome_general = Card {
             id: id,
             type: utf8(b"gnome general"),
+            type_id: 1,
             // gnome_general_id: object::uid_to_inner(&id),
             name: utf8(b"gnome general"),
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
@@ -116,6 +120,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"gnome monster"),
+            type_id: 2,
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
@@ -135,6 +140,7 @@ module capy_vs_gnome::card_deck {
         let gnome_monster = Card {
             id: id,
             type: utf8(b"gnome monster"),
+            type_id: 2,
             // gnome_monster_id: object::uid_to_inner(&id),
             name: utf8(b"gnome monster"),
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
@@ -158,6 +164,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"gnome rider"),
+            type_id: 3,
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
@@ -176,6 +183,7 @@ module capy_vs_gnome::card_deck {
         let gnome_rider = Card {
             id: id,
             type: utf8(b"gnome rider"),
+            type_id: 3,
             // gnome_rider_id: object::uid_to_inner(&id),
             name: utf8(b"gnome rider"),
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
@@ -199,8 +207,9 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             // gnome_soldier_id: object::uid_to_inner(&id),
-            name: utf8(b"gnome soldier"),
             type: utf8(b"gnome soldier"),
+            type_id: 4,
+            name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
             defense: 5,
@@ -217,6 +226,7 @@ module capy_vs_gnome::card_deck {
         let gnome_soldier = Card {
             id: id,
             type: utf8(b"gnome soldier"),
+            type_id: 4,
             // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
@@ -250,6 +260,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"capy general"),
+            type_id: 1,
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 3,
@@ -268,6 +279,7 @@ module capy_vs_gnome::card_deck {
         let capy_general = Card {
             id: id,
             type: utf8(b"capy general"),
+            type_id: 1,
             name: utf8(b"capy general"),
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 3,
@@ -291,6 +303,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"capy monster"),
+            type_id: 2,
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 6,
@@ -308,6 +321,7 @@ module capy_vs_gnome::card_deck {
         let capy_monster = Card {
             id: id,
             type: utf8(b"capy monster"),
+            type_id: 2,
             name: utf8(b"capy monster"),
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 6,
@@ -331,6 +345,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"capy rider"),
+            type_id: 3,
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 4,
@@ -349,6 +364,7 @@ module capy_vs_gnome::card_deck {
         let capy_rider = Card {
             id: id,
             type: utf8(b"capy rider"),
+            type_id: 3,
             name: utf8(b"capy rider"),
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 4,
@@ -371,6 +387,7 @@ module capy_vs_gnome::card_deck {
         Card {
             id: id,
             type: utf8(b"capy soldier"),
+            type_id: 4,
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
@@ -388,6 +405,7 @@ module capy_vs_gnome::card_deck {
         let capy_soldier = Card {
             id: id,
             type: utf8(b"capy soldier"),
+            type_id: 4,
             name: utf8(b"capy soldier"),
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,

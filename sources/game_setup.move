@@ -10,7 +10,7 @@ module capy_vs_gnome::game_setup {
     use std::string::{Self, String};
 
     use capy_vs_gnome::monsti::{MONSTI, first_turns_mint};
-    use capy_vs_gnome::card_deck::{Card, confirm_gnome_cards, confirm_capy_cards};
+    use capy_vs_gnome::card_deck::{Card, confirm_gnome_cards, confirm_capy_cards, delete_card};
     use capy_vs_gnome::card_deck::{ConfirmedGnomeDeck, ConfirmedCapyDeck};
 
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
@@ -108,7 +108,26 @@ module capy_vs_gnome::game_setup {
 
 
 
+    //     let successful = false; 
 
+
+
+    //     if(soldier_attack.type == "soldier" && soldier_defense.type == "soldier") {
+
+        
+    //         if( fifty_percent_probability(r, ctx) == 1) {
+    //             successful = true;
+    //         };
+
+
+
+    //         delete_card(soldier_attack, ctx);
+    //         delete_card(soldier_defense, ctx);
+
+            
+    //     }
+
+        
 
     // }
 
