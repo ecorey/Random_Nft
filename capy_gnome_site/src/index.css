@@ -74,6 +74,9 @@ font-size: 9  5%;
 
 .butons{
   padding-top:2%;
+  display: flex;
+  justify-content: center; /* Ensures buttons stay centered */
+  flex-direction: row; /* Ensures buttons are laid out in a row */
 }
 
 button{
@@ -86,9 +89,6 @@ button{
 }
 
 
-.btn-2{
-  margin:8px 2px;
-}
 
 
 
@@ -132,9 +132,16 @@ button{
   color: white;
 }
 
+.btn-1{
+  margin:8px 2px;
+  order: 2; /* This puts it on the right */
+}
+
+
 
 .btn-2{
   margin:8px 2px;
+  order: 1;
 }
 
 
