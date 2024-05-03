@@ -11,9 +11,9 @@ function Box() {
     { image: capy_general },
     { text: "VS" }, 
     { image: gnome_general },
-    { text: "MINT A DECK" },
-    { text: "CONFIRM A DECK" },
-    { text: "Ready to start a game? Check the chain to ensure your deck is ready to go!" }
+    // { text: "MINT A DECK" },
+    // { text: "CONFIRM A DECK" },
+    { text: "Ready to start a game? Mint a Deck, Confirm it, Battle!" }
   ];
 
   const handleReadMore = () => {
