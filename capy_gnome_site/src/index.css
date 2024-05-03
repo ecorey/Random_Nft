@@ -159,14 +159,42 @@ button{
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.50);
   background-attachment: fixed;
 }
+
+
 h1{
   padding-bottom: 8%;
   font-size: 100%;
 }
 
+
+
 p{
   font-size: 70%;
 }
+
+
+
+
+.game-image {
+  width: 50%; 
+  height: auto; 
+  max-width: 100px; 
+  border-radius: 10px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
