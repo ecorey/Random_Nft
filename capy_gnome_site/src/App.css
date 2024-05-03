@@ -3,6 +3,14 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --wkit-on-accent-rgb: 20, 30, 76;
+  --wkit-font-family: 'Pixelify Sans', sans-serif;
+  --wkit-button-width: 200px;
+  --wkit-border-radius: 32px;
+
+
+
 }
 
 .logo {

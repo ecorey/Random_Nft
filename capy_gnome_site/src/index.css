@@ -29,9 +29,13 @@ h1{
   
 }
 
+
+
 p{
 font-size : 110%;
 }
+
+
 
 button{
   border: 3px solid white;
@@ -62,17 +66,6 @@ background-color:   #1fb1e2;
 }
 
 
-
-h1{
-  padding-bottom: 8%;
-  font-size: 200%;
-}
-
-
-
-p{
-  font-size:  70%;
-}
 
 
 
@@ -134,7 +127,7 @@ button{
 
 .btn-1{
   margin:8px 2px;
-  order: 2; /* This puts it on the right */
+  order: 2;
 }
 
 
@@ -163,16 +156,22 @@ button{
 
 
 
-
-
-
-
 .game-image {
   width: 50%; 
   height: auto; 
   max-width: 100px; 
   border-radius: 10px; 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
