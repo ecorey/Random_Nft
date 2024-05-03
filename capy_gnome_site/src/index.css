@@ -1,68 +1,161 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+    background-color: #232323;
+    font-family: 'Press Start 2P';
+    background-attachment: fixed;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.content{
+  color: white;
+  font: 1em finger paint;
+  width:23%;
+  margin: 2% 40%;
+  background-color: #8d90b1;
+  text-align: center;
+  padding:2% 2%;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.50);
+    background-attachment: fixed;
+
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+
+h1{
+  padding-bottom: 8%;
+  font-size: 170%;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+p{
+font-size : 110%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button{
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: #EF8700;
+  font-family: 'Press Start 2P';
+  padding: 5% 5%; 
+  color: white;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:active{
+background-color:   #cb5901;
 }
+
+@media only screen and (max-width: 1300px){
+
+.content{
+  color: white;
+  width:30% ;
+  margin: 1% 35%;
+  background-color: #8a6f90;
+  text-align: center;
+  padding:2% 2%;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.50);
+
+
+}
+
+
+
+h1{
+  padding-bottom: 8%;
+  font-size: 140%;
+}
+
+p{
+font-size: 9  5%;
+}
+
+.butons{
+  padding-top:2%;
+}
+
+button{
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: #EF8700;
+  font-family: 'Press Start 2P';
+  padding: 5% 5%; 
+  color: white;
+}
+
+
+.btn-2{
+  margin:8px 2px;
+}
+
+
+
+}
+
+@media only screen and (max-width: 540px){
+
+.content{
+  color: white;
+  width:60% ;
+  margin: 1% 20%;
+  background-color: #8a6f90;
+  text-align: center;
+  padding:2% 2%;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.50);
+
+
+}
+
+
+
+h1{
+  padding-bottom: 8%;
+  font-size: 140%;
+}
+
+p{
+font-size:  95%;
+}
+
+.butons{
+  padding-top:2%;
+}
+
+button{
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: #EF8700;
+  font-family: 'Press Start 2P';
+  padding: 5% 5%; 
+  color: white;
+}
+
+
+.btn-2{
+  margin:8px 2px;
+}
+
+
+
+}
+
+@media only screen and (max-width: 320px){
+  .content{
+  color: white;
+  width: 80%;
+  margin: 2% 10%;
+  background-color: #8a6f90;
+  text-align: center;
+  padding:2% 2%;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.50);
+  background-attachment: fixed;
+}
+h1{
+  padding-bottom: 8%;
+  font-size: 100%;
+}
+
+p{
+  font-size: 70%;
+}
+}
+
+
