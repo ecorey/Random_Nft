@@ -31,7 +31,7 @@ function App() {
           {!showMore && <button className="btn-1" onClick={handleReadMore}>Read More</button>}
           {showMore && <button className="btn-2" onClick={handleReadLess}>Read Less</button>}
         </div>
-
+        
       </div>
     </>
   );

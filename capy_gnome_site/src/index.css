@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 
 
 body{
@@ -9,7 +11,7 @@ body{
 
 .content{
   color: white;
-  font: 1em finger paint;
+  font: 1em pixelify sans;
   width:23%;
   margin: 2% 40%;
   background-color: #8d90b1;
@@ -23,7 +25,8 @@ body{
 
 h1{
   padding-bottom: 8%;
-  font-size: 170%;
+  font-size: 250%;
+  
 }
 
 p{
@@ -33,14 +36,15 @@ font-size : 110%;
 button{
   border: 3px solid white;
   border-radius: 10px;
-  background-color: #EF8700;
+  background-color: #3466c3;
   font-family: 'Press Start 2P';
   padding: 5% 5%; 
   color: white;
+  font: 1em pixelify sans;
 }
 
 button:active{
-background-color:   #cb5901;
+background-color:   #1fb1e2;
 }
 
 @media only screen and (max-width: 1300px){
