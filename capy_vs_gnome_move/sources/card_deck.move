@@ -7,7 +7,7 @@ module capy_vs_gnome::card_deck {
     use sui::transfer;
     use sui::display::{Self, Display};
     use sui::event;
-    use std::string::{utf8, String};
+    use std::string::{Self, utf8, String};
     use std::option::{Self, Option};
     use std::vector;
     use sui::clock::{Self, Clock};
@@ -52,6 +52,16 @@ module capy_vs_gnome::card_deck {
     //   - transfer_capy_rider
     //   - mint_capy_soldier
     //   - transfer_capy_soldier
+    // PERMENANTS GETTERS 
+    //   - owner_address
+    //   - type
+    //   - type_id
+    //   - name
+    //   - image_url
+    //   - attack
+    //   - defense
+    //   - health
+    //   - cost
     // INIT
     //   - init
     // MINT DECKS
@@ -573,12 +583,88 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun owwner_address(card: &Card) : address {
+    public fun owner_address(card: &Card) : address {
 
         let address = card.owner_address;
 
         address
     }
+
+
+
+    public fun type(card: &Card) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+
+    public fun type_id(card: &Card) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+
+    public fun name(card: &Card) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+
+    public fun image_url(card: &Card) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+
+
+    public fun attack(card: &Card) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+
+    public fun defense(card: &Card) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+
+    public fun health(card: &Card) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+
+    public fun cost(card: &Card) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+
+
+
 
 
 

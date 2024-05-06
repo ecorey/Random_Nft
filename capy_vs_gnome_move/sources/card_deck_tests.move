@@ -7,14 +7,15 @@ module capy_vs_gnome::card_deck_tests {
     use std::debug;
     use std::vector;
     use sui::tx_context::{Self, TxContext};
+    use std::string::{Self, String};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
-    
-      
+
+
     use capy_vs_gnome::card_deck::{Card};
     use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
-    use capy_vs_gnome::card_deck::{owwner_address};
+    use capy_vs_gnome::card_deck::{owner_address, type,  type_id, name,  image_url, attack, defense, health, cost};
    
 
 
@@ -97,9 +98,40 @@ module capy_vs_gnome::card_deck_tests {
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
             let (capy_general, capy_monster, capy_rider, capy_soldier) = confirm_deck_for_testing(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
 
-            let address_general = owwner_address(&gnome_general);
 
+
+            // Check getters
+            let address_general = owner_address(&gnome_general);
             debug::print<address>(&address_general);
+
+            let type_general = type(&gnome_general);
+            debug::print<String>(&type_general);
+
+            let type_id_general = type_id(&gnome_general);
+            debug::print<u64>(&type_id_general);
+
+            let name_general = name(&gnome_general);
+            debug::print<String>(&name_general);
+
+            let image_url_general = image_url(&gnome_general);
+            debug::print<String>(&image_url_general);
+
+            let attack_general = attack(&gnome_general);
+            debug::print<u64>(&attack_general);
+
+            let defense_general = defense(&gnome_general);
+            debug::print<u64>(&defense_general);
+
+            let health_general = health(&gnome_general);
+            debug::print<u64>(&health_general);
+
+            let cost_general = cost(&gnome_general);
+            debug::print<u64>(&cost_general);
+
+
+            
+
+
 
 
             delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val)); 
