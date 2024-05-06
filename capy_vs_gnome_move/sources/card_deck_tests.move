@@ -87,20 +87,21 @@ module capy_vs_gnome::card_deck_tests {
 
 
 
-        // next test
+        // create decks, confirm and test getters
         test_scenario::next_tx(scenario_val, admin);
         {
             
+            // create gnome deck and confirm it
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = gnome_deck(test_scenario::ctx(scenario_val));
             let (capy_general, capy_monster, capy_rider, capy_soldier) = capy_deck(test_scenario::ctx(scenario_val));
 
-
+            // create capy deck and confirm it
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
             let (capy_general, capy_monster, capy_rider, capy_soldier) = confirm_deck_for_testing(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
 
 
 
-            // Check getters
+            // check getters
             let address_general = owner_address(&gnome_general);
             debug::print<address>(&address_general);
 
@@ -130,10 +131,7 @@ module capy_vs_gnome::card_deck_tests {
 
 
             
-
-
-
-
+            // delete the decks
             delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val)); 
             delete_all_capy_cards(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val)); 
 
