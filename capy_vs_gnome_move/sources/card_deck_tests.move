@@ -8,11 +8,13 @@ module capy_vs_gnome::card_deck_tests {
     use std::vector;
     use sui::tx_context::{Self, TxContext};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
-  
-
+    
+      
+    use capy_vs_gnome::card_deck::{Card};
     use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
+    use capy_vs_gnome::card_deck::{owwner_address};
    
 
 
@@ -95,7 +97,9 @@ module capy_vs_gnome::card_deck_tests {
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
             let (capy_general, capy_monster, capy_rider, capy_soldier) = confirm_deck_for_testing(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
 
-            
+            let address_general = owwner_address(&gnome_general);
+
+            debug::print<address>(&address_general);
 
 
             delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val)); 
