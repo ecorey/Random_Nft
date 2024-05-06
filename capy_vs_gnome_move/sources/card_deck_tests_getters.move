@@ -1,5 +1,5 @@
 #[test_only]
-module capy_vs_gnome::card_deck_tests {
+module capy_vs_gnome::card_deck_tests_getters {
 
 
     use sui::test_scenario;
@@ -16,7 +16,11 @@ module capy_vs_gnome::card_deck_tests {
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
     use capy_vs_gnome::card_deck::{owner_address, type,  type_id, name,  image_url, attack, defense, health, cost};
-   
+    
+
+
+    use capy_vs_gnome::card_deck::{soldier_vs_soldier};
+
 
 
     fun init_test_helper() : test_scenario::Scenario {
@@ -101,7 +105,7 @@ module capy_vs_gnome::card_deck_tests {
 
 
 
-            // check getters
+            // check getters (gnome general)
             let address_general = owner_address(&gnome_general);
             debug::print<address>(&address_general);
 
@@ -142,11 +146,11 @@ module capy_vs_gnome::card_deck_tests {
 
 
 
-        // next test
+        // 
         test_scenario::next_tx(scenario_val, admin);
         {
             
-       
+      
 
         };
 

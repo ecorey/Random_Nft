@@ -20,7 +20,10 @@ module capy_vs_gnome::card_deck {
 
 
     #[test_only]
-    friend capy_vs_gnome::card_deck_tests;
+    friend capy_vs_gnome::card_deck_tests_attacks;
+    #[test_only]
+    friend capy_vs_gnome::card_deck_tests_getters;
+
 
 
 
