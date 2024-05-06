@@ -147,10 +147,9 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
         // 
-        test_scenario::next_tx(scenario_val, admin);
+        test_scenario::next_tx(scenario_val, admin, );
         {
-            
-      
+
 
         };
 
