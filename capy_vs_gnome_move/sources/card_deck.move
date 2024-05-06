@@ -2459,13 +2459,55 @@ module capy_vs_gnome::card_deck {
 
 
 
+     public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+
+        
+        
+        let capy_general = mint_capy_general(ctx);
+        let capy_monster = mint_capy_monster(ctx);
+        let capy_rider = mint_capy_rider(ctx);
+        let capy_soldier = mint_capy_soldier(ctx);
+      
+
+
+        (capy_general, capy_monster, capy_rider, capy_soldier)      
+
+
+    } 
 
 
 
-    // public fun delete_capy_deck(deck: CapyDeck) {
 
 
-    // }
+
+
+    public fun capy_deck(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+
+
+        let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_cards(ctx);
+        
+
+
+
+        
+        (capy_general, capy_monster, capy_rider, capy_soldier)
+        
+
+
+    }
+
+
+
+    public fun delete_all_capy_cards(capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
+        
+        delete_card(capy_general);
+        delete_card(capy_monster);
+        delete_card(capy_rider);
+        delete_card(capy_soldier);
+
+        
+
+    }
 
 
 

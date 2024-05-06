@@ -8,11 +8,10 @@ module capy_vs_gnome::card_deck_tests {
     use std::vector;
     use sui::tx_context::{Self, TxContext};
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
-    // use capy_vs_gnome::card_deck::{mint_complete_gnome_deck};
-    // use capy_vs_gnome::card_deck::{mint_capy_deck, delete_capy_deck};
-    // use capy_vs_gnome::card_deck::{delete_complete_gnome_deck};
+  
 
     use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
+    use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
 
    
 
@@ -75,8 +74,10 @@ module capy_vs_gnome::card_deck_tests {
         test_scenario::next_tx(scenario_val, admin);
         {
         
-            // let deck = mint_capy_deck(test_scenario::ctx(scenario_val));
-            // delete_capy_deck(deck);
+            let (capy_general, capy_monster, capy_rider, capy_soldier) = capy_deck(test_scenario::ctx(scenario_val));
+            
+            
+            delete_all_capy_cards(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val)); 
 
         };
 
