@@ -16,7 +16,17 @@ const Rules = () => {
             <h1>Rules</h1>
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>Overview</p>
-            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '14px'}}>Some stuff about the game and how the game is played.</p>
+            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '16px'}}>
+            - Coin Toss: The player to go first is determined by a 50/50 coin toss.<br />
+            <br />
+            - First Turn: For the first turn each player starts with 3 /6/9 CP and will earn 1 CP at the start of each turn after that.<br />
+            <br />
+            - The game depends on being able to build up CP by using cheaper defenses and less costly plays and needing to bluff the other player.<br />
+            <br />
+            - When a player has a turn they will chose to attack or pass. If they attack they will be limited by their CP. The defender at the beginning of the turn is given the option of which defense to play. The outcome of the battle is then decided and the points are updated.<br />
+            <br />
+            - The winner is determined by last man standing as each players permanents add up to 10 LP. <br />
+            </p>
 
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Permanents</p>
@@ -74,6 +84,23 @@ const Rules = () => {
                 General Vs. Monster: 55%<br />
                 General Vs. General: 80%<br />
             </p>
+
+
+            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Defensive Positions</p>
+            <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '16px' }}>
+                <strong>Frontline: (CP: FREE)</strong><br />
+                - Soldier: 25%<br />
+                - Rider: 25%<br />
+                - Monster: 25%<br />
+                - General: 25%<br />
+                <br />
+                <strong>Backline: (CP: 1)</strong><br />
+                - Soldier: 75%<br />
+                - Rider: 15%<br />
+                - Monster: 5%<br />
+                - General: 5%<br />
+            </p>
+
 
 
 
