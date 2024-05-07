@@ -8,10 +8,18 @@ import gnome_monster from '../assets/gnome_monster.jpg';
 import gnome_rider from '../assets/gnome_rider.jpg';
 import gnome_soldier from '../assets/gnome_soldier.jpg';
 
+import { useNavigate } from 'react-router-dom';
 
 
 const Lore = () => {
+
+
+    const navigate = useNavigate();
+
+
     return (
+
+        
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
             <h1>Lore Page</h1>
 
@@ -68,7 +76,11 @@ const Lore = () => {
                     <p style={captionStyle}>Gnome Soldier</p>
                 </div>
 
+
             </div>
+
+            <button onClick={() => navigate('/')} style={buttonBackStyle}>Home</button>
+
         </div>
     );
 };
@@ -102,6 +114,18 @@ const captionStyle = {
     marginTop: '5px',
     textAlign: 'center',
     fontFamily: 'pixelify sans'
+};
+
+
+const buttonBackStyle = {
+    width: '10%',
+    padding: '10px',
+    marginTop: '75px',
+    backgroundColor: 'blue',
+    color: 'black',
+    fontSize: '16px',
+    border: 'none',
+    cursor: 'pointer'
 };
 
 
