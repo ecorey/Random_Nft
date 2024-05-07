@@ -24,10 +24,13 @@ body{
 
 
 h1{
+  color: white;
+  font: 1em pixelify sans;
   padding-bottom: 8%;
   font-size: 250%;
   
 }
+
 
 
 
