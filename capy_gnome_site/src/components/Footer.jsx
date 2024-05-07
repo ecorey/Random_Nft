@@ -4,7 +4,7 @@ const Footer = () => {
       display: 'flex',
       justifyContent: 'center',
       padding: '10px',
-      paddingTop: '250px',
+      paddingTop: '150px',
       backgroundColor: '#232323',
       width: '100%',
       fontFamily: 'pixelify sans'  
