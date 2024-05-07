@@ -8,6 +8,8 @@ import gnome_monster from '../assets/gnome_monster.jpg';
 import gnome_rider from '../assets/gnome_rider.jpg';
 import gnome_soldier from '../assets/gnome_soldier.jpg';
 
+import bg1 from '../assets/bg1.jpg';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -80,6 +82,24 @@ const Lore = () => {
 
             </div>
 
+
+            <p style={captionStyleTwo}>
+                There hasn't always been war between the Capys and Gnomes...
+            </p>
+
+
+
+            <div style={gridStyleTwo}>
+
+                <div style={imageContainerStyleTwo}>
+                    <img src={bg1} alt="Bg1" style={imageStyleTwo} />
+                    <p style={captionStyle}></p>
+                </div>
+
+            </div>
+
+
+
             <button onClick={() => navigate('/')} style={buttonBackStyle}>Home</button>
 
         </div>
@@ -127,6 +147,42 @@ const buttonBackStyle = {
     fontSize: '16px',
     border: 'none',
     cursor: 'pointer'
+};
+
+
+
+
+
+
+const gridStyleTwo = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(1, 1fr)', 
+    gap: '10px', 
+    marginTop: '250px' 
+};
+
+
+const imageContainerStyleTwo = {
+    padding: '10px', 
+    border: '2px solid white', 
+    boxSizing: 'border-box'
+};
+
+
+const imageStyleTwo = {
+    width: '100%', 
+    display: 'block', 
+};
+
+
+
+const captionStyleTwo = {
+    color: 'white', 
+    fontSize: '22px', 
+    marginTop: '5px',
+    textAlign: 'center',
+    fontFamily: 'pixelify sans',
+    marginTop: '50px'
 };
 
 
