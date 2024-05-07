@@ -23,7 +23,7 @@ const Lore = () => {
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
             <h1>Lore Page</h1>
 
-            <p style={{fontFamily: 'pixelify sans', color: 'white'}}>This is the lore page. More content will be added here later.</p>
+            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>The Capys</p>
             
             <div style={gridStyle}>
                 {/* Capy Images */}
@@ -53,6 +53,7 @@ const Lore = () => {
             <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto' }}></div>
             
 
+            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>The Gnomes</p>
 
             <div style={gridStyle}>
                 {/* Gnome Images */}
