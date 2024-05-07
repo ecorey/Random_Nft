@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ConfirmDeck from './components/ConfirmDeck';
 import StartGame from './components/StartGame';
 import Lore from './components/Lore';  
+import Rules from './components/Rules';  
 
 function App() {
   return (
@@ -19,13 +20,14 @@ function App() {
           <Route path="/" element={
             <>
               <Box />
-              <Strip />
               <StripTwo />
+              <Strip />
             </>
           } />
           <Route path="/confirm" element={<ConfirmDeck />} />
           <Route path="/lore" element={<Lore />} />
           <Route path="/start" element={<StartGame />} />
+          <Route path="/rules" element={<Rules />} />
         </Routes>
         <Footer />
       </div>

@@ -19,13 +19,29 @@ const StripTwo = () => {
         navigate('/lore');  
     };
 
+
+    const handleRules = () => {
+        navigate('/rules');  
+    };
+
    
 
 
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#232323',
+            width: '60%',
+            padding: '40px 21vw',  
+            paddingTop: '75px',
+            fontFamily: 'pixelify sans'
+        }}>
         
         <button style={buttonStyle} onClick={handleLore}>LORE</button>
+
+        <button style={buttonStyle} onClick={handleRules}>RULES</button>
 
             
         </div>
@@ -38,8 +54,8 @@ const buttonStyle = {
     background: 'none',
     color: 'white',
     border: 'none',
-    padding: '10px',
-    fontSize: '20px',
+    padding: '25px',
+    fontSize: '30px',
     cursor: 'pointer',
     outline: 'none'
 };
