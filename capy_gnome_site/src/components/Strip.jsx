@@ -3,11 +3,23 @@ import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package } from '../../../scripts/config';
 
+import { useNavigate } from 'react-router-dom';
+
+
 const Strip = () => {
-    const { signAndExecuteTransactionBlock } = useWallet();  
+    const { signAndExecuteTransactionBlock } = useWallet();
+    
+    const navigate = useNavigate(); // Initialize navigate function
+
 
     const handleTransferCapyDeck = () => transferCapyDeck(signAndExecuteTransactionBlock);
     const handleTransferGnomeDeck = () => transferGnomeDeck(signAndExecuteTransactionBlock);
+
+    const handleConfirmDeck = () => {
+        navigate('/confirm');  
+    };
+
+
 
     return (
         <div style={{
@@ -28,7 +40,7 @@ const Strip = () => {
                 <button style={buttonStyle} onClick={handleTransferGnomeDeck}>MINT GNOME DECK</button>
             </div>
             <div style={{ flexGrow: 1 }}></div> 
-            <button style={buttonStyle}>CONFIRM DECK</button>
+            <button style={buttonStyle} onClick={handleConfirmDeck}>CONFIRM DECK</button>
         </div>
     );
 };
