@@ -8,40 +8,49 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ConfirmDeck = () => {
-const [generalId, setgeneralId] = useState('');
-const [monsterId, setmonsterId] = useState('');
-const [riderId, setriderId] = useState('');
-const [soldierId, setsoldierId] = useState('');
-
-
-const navigate = useNavigate();
-
-const handleHomePage = () => {
-  navigate('/');  
-};
-
-
-const handleConfirm = () => {
-   
-
+  
   const { signAndExecuteTransactionBlock } = useWallet();
 
 
+  const [generalId, setgeneralId] = useState('');
+  const [monsterId, setmonsterId] = useState('');
+  const [riderId, setriderId] = useState('');
+  const [soldierId, setsoldierId] = useState('');
+
+
+  const navigate = useNavigate();
+
+
+  const handleHomePage = () => {
+    navigate('/');  
+  };
+
+
+
+
+
+
+const handleConfirm = () => {
 
   const txb = new TransactionBlock();
-
-
   txb.setGasBudget(1000000000);
-
 
   txb.moveCall({
       target: `${Package}::card_deck::confirm_deck`,
       arguments: [txb.object(generalId), txb.object(monsterId), txb.object(riderId), txb.object(soldierId)],
   });
-
     
-  console.log({ generalId, monsterId, riderId, soldierId });
-  alert('Deck Commit Subitted. Check the Chain');
+
+
+  try {
+        const confirmData = signAndExecuteTransactionBlock({
+            transactionBlock: txb
+        });
+        console.log('Deck Confirmed!', confirmData);
+        alert(`Congrats! Deck Confirmed! \n Digest: ${confirmData.digest}`);
+    } catch (e) {
+        console.error('Sorry, Deck Was Not Confirmed', e);
+    }
 
 };
 
