@@ -8,7 +8,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import ConfirmDeck from './components/ConfirmDeck';
 import StartGame from './components/StartGame';
-import Lore from './components/Lore';  // Make sure this is correctly imported
+import Lore from './components/Lore';  
 
 function App() {
   return (
