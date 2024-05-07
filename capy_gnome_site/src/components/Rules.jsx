@@ -20,7 +20,32 @@ const Rules = () => {
 
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Permanents</p>
-            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '14px'}}>Some stuff about the game and how the Permanents operate.</p>
+            <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '14px' }}>
+                <strong>General</strong><br />
+                Attack: 10<br />
+                Defense: 2<br />
+                Health: 3<br />
+                Cost: 6<br />
+                <br />
+                <strong>Monster</strong><br />
+                Attack: 8<br />
+                Defense: 8<br />
+                Health: 6<br />
+                Cost: 5<br />
+                <br />
+                <strong>Rider</strong><br />
+                Attack: 6<br />
+                Defense: 6<br />
+                Health: 4<br />
+                Cost: 4<br />
+                <br />
+                <strong>Soldier</strong><br />
+                Attack: 4<br />
+                Defense: 4<br />
+                Health: 7<br />
+                Cost: 2<br />
+            </p>
+
 
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>More</p>
