@@ -4,10 +4,8 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package } from '../../../scripts/config';
 
 const Strip = () => {
-
     const { signAndExecuteTransactionBlock } = useWallet();  
 
-    
     const handleTransferCapyDeck = () => transferCapyDeck(signAndExecuteTransactionBlock);
     const handleTransferGnomeDeck = () => transferGnomeDeck(signAndExecuteTransactionBlock);
 
@@ -17,21 +15,20 @@ const Strip = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             backgroundColor: '#232323',
-            width: '100%',
-            padding: '40px 16vw',  
+            width: '60%',
+            padding: '40px 19vw',  
+            paddingTop: '75px',
             fontFamily: 'pixelify sans'
         }}>
             <div style={{
                 display: 'flex',
-                gap: '15px',
-                flexWrap: 'wrap',
-                paddingLeft: '50px'  
+                gap: '55px',
             }}>  
                 <button style={buttonStyle} onClick={handleTransferCapyDeck}>MINT CAPY DECK</button>
-                <button style={buttonStyle}>CONFIRM CAPY DECK</button>
                 <button style={buttonStyle} onClick={handleTransferGnomeDeck}>MINT GNOME DECK</button>
-                <button style={buttonStyle}>CONFIRM GNOME DECK</button>
             </div>
+            <div style={{ flexGrow: 1 }}></div> 
+            <button style={buttonStyle}>CONFIRM DECK</button>
         </div>
     );
 };
@@ -47,7 +44,6 @@ const buttonStyle = {
 };
 
 export default Strip;
-
 
 async function transferCapyDeck(signAndExecuteTransactionBlock) {
     const txb = new TransactionBlock();
