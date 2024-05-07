@@ -19,6 +19,10 @@ const Strip = () => {
         navigate('/confirm');  
     };
 
+    const handleStartGame = () => {
+        navigate('/start');  
+    };
+
 
 
     return (
@@ -38,9 +42,12 @@ const Strip = () => {
             }}>  
                 <button style={buttonStyle} onClick={handleTransferCapyDeck}>MINT CAPY DECK</button>
                 <button style={buttonStyle} onClick={handleTransferGnomeDeck}>MINT GNOME DECK</button>
-            </div>
-            <div style={{ flexGrow: 1 }}></div> 
+            
+                <div style={{ flexGrow: 1 }}></div> 
             <button style={buttonStyle} onClick={handleConfirmDeck}>CONFIRM DECK</button>
+            <button style={buttonStyle} onClick={handleStartGame}>START GAME</button>
+            </div>
+            
         </div>
     );
 };
