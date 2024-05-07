@@ -1,61 +1,76 @@
 import React, { useState } from 'react';
 
 const ConfirmDeck = () => {
-  const [ownerCapId, setOwnerCapId] = useState('');
-  const [kioskId, setKioskId] = useState('');
-  const [predictionId, setPredictionId] = useState('');
-  const [listPrice, setListPrice] = useState('');
+  const [generalId, setgeneralId] = useState('');
+  const [monsterId, setmonsterId] = useState('');
+  const [riderId, setriderId] = useState('');
+  const [soldierId, setsoldierId] = useState('');
+
+
+
 
   const handleConfirm = () => {
-    // Handle the confirmation logic
-    console.log({ ownerCapId, kioskId, predictionId, listPrice });
-    alert('Form Submitted! Check console for details.');
+   
+    
+    console.log({ generalId, monsterId, riderId, soldierId });
+    alert('Deck Commit Subitted. Check the Chain');
+
   };
+
+
+
 
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto' }}>
+
       <h1 style={{ textAlign: 'center' }}>Confirm Deck</h1>
+
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="ownerCapId" style={{ display: 'block' }}>Owner Cap ID:</label>
+        <label htmlFor="generalId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>General ID</label>
         <input
           type="text"
-          id="ownerCapId"
-          value={ownerCapId}
-          onChange={e => setOwnerCapId(e.target.value)}
+          id="generalId"
+          value={generalId}
+          onChange={e => setgeneralId(e.target.value)}
           style={inputStyle}
         />
       </div>
+
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="kioskId" style={{ display: 'block' }}>Kiosk ID:</label>
+        <label htmlFor="monsterId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Monster ID</label>
         <input
           type="text"
-          id="kioskId"
-          value={kioskId}
-          onChange={e => setKioskId(e.target.value)}
+          id="monsterId"
+          value={monsterId}
+          onChange={e => setmonsterId(e.target.value)}
           style={inputStyle}
         />
       </div>
+
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="predictionId" style={{ display: 'block' }}>Prediction ID:</label>
+        <label htmlFor="riderId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Rider ID</label>
         <input
           type="text"
-          id="predictionId"
-          value={predictionId}
+          id="riderId"
+          value={riderId}
           onChange={e => setPredictionId(e.target.value)}
           style={inputStyle}
         />
       </div>
+
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="listPrice" style={{ display: 'block' }}>List Price:</label>
+        <label htmlFor="riderId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Soldier ID</label>
         <input
           type="text"
-          id="listPrice"
-          value={listPrice}
-          onChange={e => setListPrice(e.target.value)}
+          id="riderId"
+          value={soldierId}
+          onChange={e => setriderId(e.target.value)}
           style={inputStyle}
         />
       </div>
+
       <button onClick={handleConfirm} style={buttonStyle}>Confirm</button>
+
     </div>
   );
 };
