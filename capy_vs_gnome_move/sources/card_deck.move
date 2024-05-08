@@ -2962,30 +2962,103 @@ module capy_vs_gnome::card_deck {
 
 
     struct Game has key, store {
+
         id: UID,
+        player_one_address: address,
+        player_two_address: address,
+        coin_flip_guess: u8,
+        coin_flip_count: u8,
+        coin_flip_result: u8,
+        turn_count: u8,
+        confirm_deck_player_one: ID,
+        confirm_deck_player_two: ID,
+        player_one_general_status: u8,
+        player_one_monster_status: u8,
+        player_one_rider_status: u8,
+        player_one_soldier_status: u8,
+        player_two_general_status: u8,
+        player_two_monster_status: u8,
+        player_two_rider_status: u8,
+        player_two_soldier_status: u8,
+
+
+
        
     }
 
+
+    struct TurnKey has key, store {
+        id: UID,
+    }
 
    
 
-    public fun start_game(player_one_deck: &ConfirmedDeck, player_two_deck: &ConfirmedDeck, ctx: &mut TxContext) : Game {
+    public fun start_game(coin_flip_guess: u8, r: &Random, player_one_address: address, player_two_address: address,  confirm_deck_player_one: &ConfirmedDeck, confirm_deck_player_two: &ConfirmedDeck, ctx: &mut TxContext)  {
+
+       let coin_flip_result = coin_toss(r, ctx);
 
        
 
+
+
+
         let game = Game {
             id: object::new(ctx),
+
+            player_one_address,
+            player_two_address,
+
+            coin_flip_guess,
+            coin_flip_count: 1,
+            coin_flip_result,
+            turn_count: 0,
+
+            
+            confirm_deck_player_one: object::id(confirm_deck_player_one),
+            confirm_deck_player_two: object::id(confirm_deck_player_two),
+
+            // 1 alive, 0 noot alive
+            player_one_general_status: 1,
+            player_one_monster_status: 1,
+            player_one_rider_status: 1,
+            player_one_soldier_status: 1,
+            player_two_general_status: 1,
+            player_two_monster_status: 1,
+            player_two_rider_status: 1,
+            player_two_soldier_status: 1,
            
         };
 
-        game
+
+        if(game.coin_flip_result == game.coin_flip_guess){
+            let turn_key = TurnKey {
+                id: object::new(ctx),
+            };
+
+            transfer::transfer(turn_key, player_one_address);
+        } else {
+
+            let turn_key = TurnKey {
+                id: object::new(ctx),
+            };
+
+            transfer::transfer(turn_key, player_two_address);
+
+        };
+
+
+
+        transfer::public_share_object(game);
+
+
 
     }
 
 
 
 
-    public fun start_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
+
+    public fun first_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
         first_turns_mint(cap, ctx);
 
@@ -2998,7 +3071,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
+    public entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
 
         vector::push_back<u8>(&mut salt, choice);
         
@@ -3022,7 +3095,7 @@ module capy_vs_gnome::card_deck {
 
 
     // 50% probability coin toss
-    public fun coin_toss(r: &Random, ctx: &mut TxContext) : u8 {
+    entry fun coin_toss(r: &Random, ctx: &mut TxContext) : u8 {
 
         let result = fifty_percent_probability(r, ctx);
 
