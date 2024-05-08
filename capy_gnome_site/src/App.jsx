@@ -10,6 +10,8 @@ import ConfirmDeck from './components/ConfirmDeck';
 import StartGame from './components/StartGame';
 import Lore from './components/Lore';  
 import Rules from './components/Rules';  
+import Turn from './components/Turn';  
+
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path="/lore" element={<Lore />} />
           <Route path="/start" element={<StartGame />} />
           <Route path="/rules" element={<Rules />} />
+          <Route path="/turn" element={<Turn />} />
         </Routes>
         <Footer />
       </div>

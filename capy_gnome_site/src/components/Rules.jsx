@@ -17,6 +17,8 @@ const Rules = () => {
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>Overview</p>
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '16px'}}>
+            - TRUST THE CHAIN<br />
+            <br />
             - Coin Toss: The player to go first is determined by a 50/50 coin toss.<br />
             <br />
             - First Turn: For the first turn each player starts with 3 /6/9 CP and will earn 1 CP at the start of each turn after that.<br />
