@@ -2987,12 +2987,16 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    // player with key has ability to make turn
     struct TurnKey has key, store {
         id: UID,
     }
 
    
-
+    // starts game by:
+    // taking a coin flip guess and is correct sending it to the player one address
+    // if guess is not correct the turn key goes to player two
+    // the game object makes all permanents alive
     public fun start_game(coin_flip_guess: u8, r: &Random, player_one_address: address, player_two_address: address,  confirm_deck_player_one: &ConfirmedDeck, confirm_deck_player_two: &ConfirmedDeck, ctx: &mut TxContext)  {
 
        let coin_flip_result = coin_toss(r, ctx);
@@ -3058,6 +3062,8 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+
     public fun first_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
         first_turns_mint(cap, ctx);
@@ -3070,7 +3076,10 @@ module capy_vs_gnome::card_deck {
 
 
 
-
+    // takes a value and adds a salt then hashes it
+    // this allows a player to make a guess and show the hash
+    // then after all decisions are made the correct guesses are shown with the salt as proof
+    // each time this is called a new salt is need to create then prove the hash
     public entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
 
         vector::push_back<u8>(&mut salt, choice);
