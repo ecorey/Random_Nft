@@ -3073,6 +3073,17 @@ module capy_vs_gnome::card_deck {
 
 
 
+    struct HashedSelectionMade has copy, drop {
+        hash: vector<u8>,
+    }
+
+
+
+    struct HashedSelectionProved has copy, drop {
+        hash_proved: bool,
+    }
+
+
 
 
 
@@ -3083,10 +3094,19 @@ module capy_vs_gnome::card_deck {
     public entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
 
         vector::push_back<u8>(&mut salt, choice);
+        let hash = hash::sha2_256(salt);
+
+        event::emit(
+            HashedSelectionMade {
+                hash
+            }
+        );
         
 
-        hash::sha2_256(salt)
+        hash
     }
+
+
 
 
 
@@ -3098,11 +3118,31 @@ module capy_vs_gnome::card_deck {
         vector::push_back<u8>(&mut salt_used, choice_selected);
         let checked_hash = hash::sha2_256(salt_used);
 
+
+
+
         if( hashed_selection == checked_hash) {
+
             proved = true;
+
+            event::emit(
+                HashedSelectionProved {
+                    hash_proved: true,
+                }
+            );
+
             proved
+
         } else {
+
             proved = false;
+
+            event::emit(
+                HashedSelectionProved {
+                    hash_proved: false,
+                }
+            );
+
             proved
         }
 
