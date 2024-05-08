@@ -10,6 +10,7 @@ module capy_vs_gnome::card_deck {
     use std::string::{Self, utf8, String};
     use std::option::{Self, Option};
     use std::vector;
+    use std::hash;
     use sui::clock::{Self, Clock};
     use sui::coin::{Self, TreasuryCap};
     use sui::random::{Self, Random, new_generator};
@@ -2997,7 +2998,13 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
 
+        vector::push_back<u8>(&mut salt, choice);
+        
+
+        hash::sha2_256(salt)
+    }
 
 
 
