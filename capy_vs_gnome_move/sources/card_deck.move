@@ -3111,12 +3111,21 @@ module capy_vs_gnome::card_deck {
 
 
     // proves the salt and has of a previous hashed selection
+    // UNDER CONSTRUCTION***
     public entry fun prove_hashed_selection( hashed_selection: vector<u8>, choice_selected: u8, salt_used: vector<u8> ) : bool {
 
         let proved: bool = false;
 
         vector::push_back<u8>(&mut salt_used, choice_selected);
         let checked_hash = hash::sha2_256(salt_used);
+
+        // let as_num = (checked_hash as u256);
+
+        event::emit(
+            HashedSelectionMade {
+                hash: checked_hash,
+            }
+        );
 
 
 
