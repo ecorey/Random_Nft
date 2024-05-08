@@ -6,9 +6,9 @@ const Turn = () => {
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
     const cardFullText = "What card would you like to attack with?";
-    const [actionValue, setActionValue] = useState(null);  // State to hold the numerical value for attack or pass
-    const [cardType, setCardType] = useState('');  // State to hold the selected card type
-    const [isFinal, setIsFinal] = useState(false);  // State to make choice final
+    const [actionValue, setActionValue] = useState(null); 
+    const [cardType, setCardType] = useState('');  
+    const [isFinal, setIsFinal] = useState(false);  
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Turn = () => {
     }, [cardMessage, cardFullText, actionValue]);
 
     const handleChange = (e) => {
-        if (!isFinal) {  // Only allow change if final choice isn't made
+        if (!isFinal) {  
             console.log(`Answer selected: ${e.target.value}`);
             if (e.target.value === 'yes') {
                 setActionValue(55);  // ATTACK
@@ -63,19 +63,19 @@ const Turn = () => {
             )}
             {actionValue === 55 && cardMessage && (
                 <div style={{ marginTop: '20px' }}>
-                    <p style={{ ...scrollTextStyle, fontSize: '16px' }}>{cardMessage}</p>
+                    <p style={scrollTextStyle}>{cardMessage}</p> {/* Use the same scrollTextStyle */}
                     {!isFinal && (
                         <select style={selectStyle} onChange={handleCardTypeChange}>
                             <option value="">Select Card</option>
                             <option value="general">General</option>
                             <option value="monster">Monster</option>
                             <option value="rider">Rider</option>
-                            <option value="capy">Capy</option>
+                            <option value="soldier">Soldier</option>
                         </select>
                     )}
                 </div>
             )}
-            {isFinal && <p>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}</p>}
+            {isFinal && <p style={scrollTextStyle}>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}</p>}
         </div>
     );
 };
@@ -88,6 +88,7 @@ const scrollTextStyle = {
     fontSize: '22px',
     overflow: 'hidden',
     minHeight: '50px',
+    margin: '10px 0'  // Ensure spacing is consistent
 };
 
 const selectStyle = {
