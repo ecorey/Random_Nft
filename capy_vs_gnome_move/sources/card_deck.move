@@ -3434,6 +3434,23 @@ module capy_vs_gnome::card_deck {
         };
 
 
+        if( card_selected_type == 1 ){
+            card_selected = utf8(b"general");
+        } else if ( card_selected_type == 2 ) {
+            card_selected = utf8(b"monster");
+        } else if ( card_selected_type == 3 ) {
+            card_selected = utf8(b"rider");
+        } else if ( card_selected_type == 1 ) {
+            card_selected = utf8(b"soldier");
+        };
+
+
+        event::emit( DefenseCardAttacked{
+            type_id: card_selected_type,
+            name: card_selected,
+        });
+
+
         card_selected_type
         
         
@@ -3445,6 +3462,7 @@ module capy_vs_gnome::card_deck {
     // modify to iinclude what to do in case of losing a card
     // create a 'dead' card to pass after losing a player that has no value
     // UNDER CONSTRUCTION
+
     // entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, possible_defense_one: Card, possible_defense_two: Card, possible_defense_three: Card, possible_defense_four: Card, ctx: &mut TxContext) {
 
 
