@@ -11,6 +11,7 @@ module capy_vs_gnome::card_deck {
     use std::option::{Self, Option};
     use std::vector;
     use std::hash;
+    // use sui::hash;
     use sui::clock::{Self, Clock};
     use sui::coin::{Self, TreasuryCap};
     use sui::random::{Self, Random, new_generator};
@@ -3073,13 +3074,30 @@ module capy_vs_gnome::card_deck {
 
 
 
+    struct HashedSelection has key, store {
+        id: UID,
+        hashed_selection: vector<u8>,
+    }
+
+
+
+    struct HashedSelectionProved has key, store {
+        id: UID,
+        proved: bool,
+    }
+
+
+
+
+
+
     struct HashedSelectionMade has copy, drop {
         hash: vector<u8>,
     }
 
 
 
-    struct HashedSelectionProved has copy, drop {
+    struct HashedSelectionProvedMade has copy, drop {
         hash_proved: bool,
     }
 
@@ -3091,19 +3109,26 @@ module capy_vs_gnome::card_deck {
     // this allows a player to make a guess and show the hash
     // then after all decisions are made the correct guesses are shown with the salt as proof
     // each time this is called a new salt is need to create then prove the hash
-    public entry fun hashed_selection(choice: u8, salt: vector<u8>): vector<u8> {
+    public entry fun hashed_selection(choice: u8, salt: vector<u8>, ctx: &mut TxContext) {
 
         vector::push_back<u8>(&mut salt, choice);
-        let hash = hash::sha2_256(salt);
+        let hash = std::hash::sha2_256(salt);
 
         event::emit(
             HashedSelectionMade {
                 hash
             }
         );
+
+
+        let hash_selection = HashedSelection {
+            id: object::new(ctx),
+            hashed_selection: hash,
+        };
         
 
-        hash
+        transfer::public_transfer(hash_selection, tx_context::sender(ctx))
+
     }
 
 
@@ -3112,14 +3137,13 @@ module capy_vs_gnome::card_deck {
 
     // proves the salt and has of a previous hashed selection
     // UNDER CONSTRUCTION***
-    public entry fun prove_hashed_selection( hashed_selection: vector<u8>, choice_selected: u8, salt_used: vector<u8> ) : bool {
+    public entry fun prove_hashed_selection( hashed_selection: &HashedSelection, choice_selected: u8, salt_used: vector<u8>, ctx: &mut TxContext )  {
 
         let proved: bool = false;
 
         vector::push_back<u8>(&mut salt_used, choice_selected);
         let checked_hash = hash::sha2_256(salt_used);
 
-        // let as_num = (checked_hash as u256);
 
         event::emit(
             HashedSelectionMade {
@@ -3130,29 +3154,42 @@ module capy_vs_gnome::card_deck {
 
 
 
-        if( hashed_selection == checked_hash) {
+        if( hashed_selection.hashed_selection == checked_hash) {
 
             proved = true;
 
             event::emit(
-                HashedSelectionProved {
+                HashedSelectionProvedMade {
                     hash_proved: true,
                 }
             );
 
-            proved
+            let hash_proved = HashedSelectionProved {
+                id: object::new(ctx),
+                proved: proved,
+            };
+
+            transfer::public_transfer(hash_proved, tx_context::sender(ctx))
 
         } else {
 
             proved = false;
 
             event::emit(
-                HashedSelectionProved {
+                HashedSelectionProvedMade {
                     hash_proved: false,
                 }
             );
 
-            proved
+
+            let hash_proved = HashedSelectionProved {
+                id: object::new(ctx),
+                proved: proved,
+            };
+
+
+            transfer::public_transfer(hash_proved, tx_context::sender(ctx))
+
         }
 
         
