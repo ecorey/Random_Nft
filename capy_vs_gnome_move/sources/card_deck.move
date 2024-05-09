@@ -3192,6 +3192,8 @@ module capy_vs_gnome::card_deck {
             object::delete(id);
 
 
+            // increment turn count
+            game.turn_count = game.turn_count + 1;
 
 
 
