@@ -3136,7 +3136,7 @@ module capy_vs_gnome::card_deck {
 
 
     // proves the salt and has of a previous hashed selection
-    // UNDER CONSTRUCTION***
+    // gives sender a HashedSelectionProved object with the bool set to true.
     public entry fun prove_hashed_selection( hashed_selection: &HashedSelection, choice_selected: u8, salt_used: vector<u8>, ctx: &mut TxContext )  {
 
         let proved: bool = false;
