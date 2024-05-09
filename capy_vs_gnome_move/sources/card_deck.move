@@ -3357,6 +3357,11 @@ module capy_vs_gnome::card_deck {
 
 
 
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // ATTACK AND DEFEND FOR TURN STRUCTURE
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
 
 
 
@@ -3405,9 +3410,14 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    entry fun defensive_posture(r: &Random, ctx: &mut TxContext ) {
 
+        // return 1 general, 2 monster, 3 riser, 4 soldier
+        let backline_chosen: u8 = backline_defense_stance(r, ctx);
+        let frontline_chosen: u8 = frontline_defense_stance(r, ctx);
 
-
+    }
+    
 
 
 
