@@ -3485,7 +3485,6 @@ module capy_vs_gnome::card_deck {
             attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
 
 
-
             transfer::public_transfer(possible_defense_monster, defender_address);
             transfer::public_transfer(possible_defense_rider, defender_address);
             transfer::public_transfer(possible_defense_soldier, defender_address);
@@ -3495,13 +3494,9 @@ module capy_vs_gnome::card_deck {
             attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_monster, defender_deck_confirmed, ctx);
 
 
-
-
             transfer::public_transfer(possible_defense_general, defender_address);
             transfer::public_transfer(possible_defense_rider, defender_address);
             transfer::public_transfer(possible_defense_soldier, defender_address);
-
-
 
            
         } else if ( defense_card == 3 ) {
@@ -3509,14 +3504,9 @@ module capy_vs_gnome::card_deck {
             attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_rider, defender_deck_confirmed, ctx);
 
 
-
-
-
             transfer::public_transfer(possible_defense_general, defender_address);
             transfer::public_transfer(possible_defense_monster, defender_address);
             transfer::public_transfer(possible_defense_soldier, defender_address);
-
-
 
            
         } else if ( defense_card == 4 ) {
@@ -3527,8 +3517,6 @@ module capy_vs_gnome::card_deck {
             transfer::public_transfer(possible_defense_general, defender_address);
             transfer::public_transfer(possible_defense_monster, defender_address);
             transfer::public_transfer(possible_defense_rider, defender_address);
-
-
 
 
         } else {
@@ -3544,13 +3532,8 @@ module capy_vs_gnome::card_deck {
 
         };
 
-    
-
-
-
 
     }
-
 
 
 
