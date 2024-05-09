@@ -3360,6 +3360,55 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+        // ONES (General)
+        if(attacker.type_id == 1 && defender.type_id == 1) {
+            general_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 1 && defender.type_id == 2) {
+            general_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 1 && defender.type_id == 3) {
+            general_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 1 && defender.type_id == 4) {
+            general_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 2 && defender.type_id == 1) {
+            monster_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 2 && defender.type_id == 2) {
+            monster_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 2 && defender.type_id == 3) {
+            monster_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 2 && defender.type_id == 4) {
+            monster_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 3 && defender.type_id == 1) {
+            rider_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 3 && defender.type_id == 2) {
+            rider_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 3 && defender.type_id == 3) {
+            rider_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 3 && defender.type_id == 4) {
+            rider_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 4 && defender.type_id == 1) {
+            soldier_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 4 && defender.type_id == 2) {
+            soldier_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 4 && defender.type_id == 3) {
+            soldier_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else if(attacker.type_id == 4 && defender.type_id == 4) {
+            soldier_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+        } else {
+            transfer::public_transfer(attacker, tx_context::sender(ctx));
+            transfer::public_transfer(defender, tx_context::sender(ctx));
+        };   
+
+        
+
+    }
+
+
+
+
+
+
 
 
 
