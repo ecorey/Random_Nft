@@ -3028,6 +3028,7 @@ module capy_vs_gnome::card_deck {
     // player with key has ability to make turn
     struct TurnKey has key, store {
         id: UID,
+        game_id: ID,
     }
 
 
@@ -3087,6 +3088,7 @@ module capy_vs_gnome::card_deck {
 
             let turn_key = TurnKey {
                 id: object::new(ctx),
+                game_id: object::id(&game),
             };
 
             transfer::transfer(turn_key, player_one_address);
@@ -3094,6 +3096,7 @@ module capy_vs_gnome::card_deck {
 
             let turn_key = TurnKey {
                 id: object::new(ctx),
+                game_id: object::id(&game),
             };
 
             transfer::transfer(turn_key, player_two_address);
