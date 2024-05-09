@@ -3198,6 +3198,20 @@ module capy_vs_gnome::card_deck {
 
 
 
+    // turn actions and deletes the HashedSelectionProved object
+    // UNDER CONSTURCTION
+    entry fun turn_trial(proven: HashedSelectionProved, ctx: &mut TxContext){
+
+        let HashedSelectionProved {id, proved: _} = proven;
+
+        object::delete(id);
+
+        // do turn actions .. 
+
+    }
+
+
+
 
 
 
