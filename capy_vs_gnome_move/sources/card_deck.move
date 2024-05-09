@@ -79,8 +79,36 @@ module capy_vs_gnome::card_deck {
     // CONFIRM DECKS
     //   - confirm_deck
     // GAME SETUP
-    //   - start_game
-    //   - start_turn
+    //    - Game
+    //    - TurnKey
+    //    - start_game
+    //    - turn_trial
+    //    - first_turn
+    //    - HashedSelection
+    //    - HashedSelectionProved
+    //    - HashedSelectionMade
+    //    - HashedSelectionProvedMade
+    //    - hashed_selection
+    //    - prove_hashed_selection
+    // GAME GETTERS
+    //    - player_one_address
+    //    - player_two_address
+    //   -  coin_flip_guess
+    //    - coin_flip_count
+    //    - coin_flip_result
+    //    - even_turns
+    //    - odd_turns
+    //    - turn_count
+    //    - confirm_deck_player_one
+    //    - confirm_deck_player_two
+    //    - player_one_general_status
+    //    - player_one_monster_status
+    //    - player_one_rider_status
+    //    - player_one_soldier_status
+    //    - player_two_general_status
+    //    - player_two_monster_status
+    //    - player_two_rider_status
+    //    - player_two_soldier_status
     // COIN TOSS FUNCTIONS
     //   - coin_toss
     // ATTACK FUNCTIONS
@@ -2934,16 +2962,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-
-
-
-
-
-
-
-
-
     // -----------------------------------------------------------------------------------------------
     // -----------------------------------------------------------------------------------------------
     // -----------------------------------------------------------------------------------------------
@@ -2956,6 +2974,19 @@ module capy_vs_gnome::card_deck {
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
 
+
+    // GAME_SETUP
+    // Game
+    // TurnKey
+    // start_game
+    // turn_trial
+    // first_turn
+    // HashedSelection
+    // HashedSelectionProved
+    // HashedSelectionMade
+    // HashedSelectionProvedMade
+    // hashed_selection
+    // prove_hashed_selection
 
 
 
@@ -2998,214 +3029,6 @@ module capy_vs_gnome::card_deck {
     struct TurnKey has key, store {
         id: UID,
     }
-
-
-
-
-
-    //--------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
-    // GAME GETTERS 
-    //--------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
-    
-    // player_one_address: address
-    // player_two_address: address
-    // coin_flip_guess: u8
-    // coin_flip_count: u8
-    // coin_flip_result: u8
-    // even_turns: address
-    // odd_turns: address
-    // turn_count: u8
-    // confirm_deck_player_one: ID
-    // confirm_deck_player_two: ID
-    // player_one_general_status: u8
-    // player_one_monster_status: u8
-    // player_one_rider_status: u8
-    // player_one_soldier_status: u8
-    // player_two_general_status: u8
-    // player_two_monster_status: u8
-    // player_two_rider_status: u8
-    // player_two_soldier_status: u8
-
-
-
-    // player one address
-    public fun player_one_address(game: &Game) : address {
-
-        let player_one_address = game.player_one_address;
-
-        player_one_address
-    }
-
-
-
-
-    // player two address
-    public fun player_two_address(game: &Game) : address {
-
-        let player_two_address = game.player_two_address;
-
-        player_two_address
-    }
-
-
-
-    // coin flip guess
-    public fun coin_flip_guess(game: &Game) : u8 {
-
-        let coin_flip_guess = game.coin_flip_guess;
-
-        coin_flip_guess
-    }
-
-
-    // coin flip count
-    public fun coin_flip_count(game: &Game) : u8 {
-
-        let coin_flip_count = game.coin_flip_count;
-
-        coin_flip_count
-    }
-
-
-
-    // coin flip result
-    public fun coin_flip_result(game: &Game) : u8 {
-
-        let coin_flip_result = game.coin_flip_result;
-
-        coin_flip_result
-    }
-
-
-
-    // even turns
-    public fun even_turns(game: &Game) : address {
-
-        let even_turns = game.even_turns;
-
-        even_turns
-    }
-
-
-    // odd turns
-    public fun odd_turns(game: &Game) : address {
-
-        let odd_turns = game.odd_turns;
-
-        odd_turns
-    }
-
-
-    // turn count
-    public fun turn_count(game: &Game) : u8 {
-
-        let turn_count = game.turn_count;
-
-        turn_count
-    }
-
-
-
-    // confirm deck player one
-    public fun confirm_deck_player_one(game: &Game) : ID {
-
-        let confirm_deck_player_one = game.confirm_deck_player_one;
-
-        confirm_deck_player_one
-    }
-
-
-    // confirm deck player two
-    public fun confirm_deck_player_two(game: &Game) : ID {
-
-        let confirm_deck_player_two = game.confirm_deck_player_two;
-
-        confirm_deck_player_two
-    }
-
-
-
-    // player one general status
-    public fun player_one_general_status(game: &Game) : u8 {
-
-        let player_one_general_status = game.player_one_general_status;
-
-        player_one_general_status
-    }
-
-
-    // player one monster status
-    public fun player_one_monster_status(game: &Game) : u8 {
-
-        let player_one_monster_status = game.player_one_monster_status;
-
-        player_one_monster_status
-    }
-
-    // player one rider status
-    public fun player_one_rider_status(game: &Game) : u8 {
-
-        let player_one_rider_status = game.player_one_rider_status;
-
-        player_one_rider_status
-    }
-
-    // player one soldier status
-    public fun player_one_soldier_status(game: &Game) : u8 {
-
-        let player_one_soldier_status = game.player_one_soldier_status;
-
-        player_one_soldier_status
-    }
-
-    // player two general status
-    public fun player_two_general_status(game: &Game) : u8 {
-
-        let player_two_general_status = game.player_two_general_status;
-
-        player_two_general_status
-    }
-
-    // player two monster status
-    public fun player_two_monster_status(game: &Game) : u8 {
-
-        let player_two_monster_status = game.player_two_monster_status;
-
-        player_two_monster_status
-    }
-
-    // player two rider status
-    public fun player_two_rider_status(game: &Game) : u8 {
-
-        let player_two_rider_status = game.player_two_rider_status;
-
-        player_two_rider_status
-    }
-
-    // player two soldier status
-    public fun player_two_soldier_status(game: &Game) : u8 {
-
-        let player_two_soldier_status = game.player_two_soldier_status;
-
-        player_two_soldier_status
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3463,8 +3286,205 @@ module capy_vs_gnome::card_deck {
 
 
 
-    
 
+
+
+
+
+
+    
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // GAME GETTERS 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    
+    // player_one_address
+    // player_two_address
+    // coin_flip_guess
+    // coin_flip_count
+    // coin_flip_result
+    // even_turns
+    // odd_turns
+    // turn_count
+    // confirm_deck_player_one
+    // confirm_deck_player_two
+    // player_one_general_status
+    // player_one_monster_status
+    // player_one_rider_status
+    // player_one_soldier_status
+    // player_two_general_status
+    // player_two_monster_status
+    // player_two_rider_status
+    // player_two_soldier_status
+
+
+
+    // player one address
+    public fun player_one_address(game: &Game) : address {
+
+        let player_one_address = game.player_one_address;
+
+        player_one_address
+    }
+
+
+
+
+    // player two address
+    public fun player_two_address(game: &Game) : address {
+
+        let player_two_address = game.player_two_address;
+
+        player_two_address
+    }
+
+
+
+    // coin flip guess
+    public fun coin_flip_guess(game: &Game) : u8 {
+
+        let coin_flip_guess = game.coin_flip_guess;
+
+        coin_flip_guess
+    }
+
+
+    // coin flip count
+    public fun coin_flip_count(game: &Game) : u8 {
+
+        let coin_flip_count = game.coin_flip_count;
+
+        coin_flip_count
+    }
+
+
+
+    // coin flip result
+    public fun coin_flip_result(game: &Game) : u8 {
+
+        let coin_flip_result = game.coin_flip_result;
+
+        coin_flip_result
+    }
+
+
+
+    // even turns
+    public fun even_turns(game: &Game) : address {
+
+        let even_turns = game.even_turns;
+
+        even_turns
+    }
+
+
+    // odd turns
+    public fun odd_turns(game: &Game) : address {
+
+        let odd_turns = game.odd_turns;
+
+        odd_turns
+    }
+
+
+    // turn count
+    public fun turn_count(game: &Game) : u8 {
+
+        let turn_count = game.turn_count;
+
+        turn_count
+    }
+
+
+
+    // confirm deck player one
+    public fun confirm_deck_player_one(game: &Game) : ID {
+
+        let confirm_deck_player_one = game.confirm_deck_player_one;
+
+        confirm_deck_player_one
+    }
+
+
+    // confirm deck player two
+    public fun confirm_deck_player_two(game: &Game) : ID {
+
+        let confirm_deck_player_two = game.confirm_deck_player_two;
+
+        confirm_deck_player_two
+    }
+
+
+
+    // player one general status
+    public fun player_one_general_status(game: &Game) : u8 {
+
+        let player_one_general_status = game.player_one_general_status;
+
+        player_one_general_status
+    }
+
+
+    // player one monster status
+    public fun player_one_monster_status(game: &Game) : u8 {
+
+        let player_one_monster_status = game.player_one_monster_status;
+
+        player_one_monster_status
+    }
+
+    // player one rider status
+    public fun player_one_rider_status(game: &Game) : u8 {
+
+        let player_one_rider_status = game.player_one_rider_status;
+
+        player_one_rider_status
+    }
+
+    // player one soldier status
+    public fun player_one_soldier_status(game: &Game) : u8 {
+
+        let player_one_soldier_status = game.player_one_soldier_status;
+
+        player_one_soldier_status
+    }
+
+    // player two general status
+    public fun player_two_general_status(game: &Game) : u8 {
+
+        let player_two_general_status = game.player_two_general_status;
+
+        player_two_general_status
+    }
+
+    // player two monster status
+    public fun player_two_monster_status(game: &Game) : u8 {
+
+        let player_two_monster_status = game.player_two_monster_status;
+
+        player_two_monster_status
+    }
+
+    // player two rider status
+    public fun player_two_rider_status(game: &Game) : u8 {
+
+        let player_two_rider_status = game.player_two_rider_status;
+
+        player_two_rider_status
+    }
+
+    // player two soldier status
+    public fun player_two_soldier_status(game: &Game) : u8 {
+
+        let player_two_soldier_status = game.player_two_soldier_status;
+
+        player_two_soldier_status
+    }
+
+
+
+    
 
 
 
