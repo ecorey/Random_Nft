@@ -2480,7 +2480,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun transfer_gnome_cards(ctx: &mut TxContext) {
+    public entry fun transfer_gnome_cards(ctx: &mut TxContext) {
             
             let gnome_general = mint_gnome_general(ctx);
             let gnome_monster = mint_gnome_monster(ctx);
@@ -2552,7 +2552,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun delete_all_gnome_cards(gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
+    public entry fun delete_all_gnome_cards(gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
         
         delete_card(gnome_general);
         delete_card(gnome_monster);
@@ -2611,7 +2611,7 @@ module capy_vs_gnome::card_deck {
     // }
 
 
-    public fun transfer_capy_cards(ctx: &mut TxContext) {
+    public entry fun transfer_capy_cards(ctx: &mut TxContext) {
 
         let capy_general = mint_capy_general(ctx);
         let capy_monster = mint_capy_monster(ctx);
@@ -2628,7 +2628,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-     public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+    public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
         
         
@@ -2667,7 +2667,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun delete_all_capy_cards(capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
+    public entry fun delete_all_capy_cards(capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
         
         delete_card(capy_general);
         delete_card(capy_monster);
@@ -2717,7 +2717,7 @@ module capy_vs_gnome::card_deck {
 
 
     // to confirm the playesrs are using an accurate deck and correct cards during gameplay
-    public fun confirm_deck( general: Card, monster: Card, rider: Card, soldier: Card, ctx: &mut TxContext) {
+    public entry fun confirm_deck( general: Card, monster: Card, rider: Card, soldier: Card, ctx: &mut TxContext) {
 
 
         // instantiate first to avoid error then check
@@ -3048,7 +3048,7 @@ module capy_vs_gnome::card_deck {
     // taking a coin flip guess and is correct sending it to the player one address
     // if guess is not correct the turn key goes to player two
     // the game object makes all permanents alive
-    public fun start_game(coin_flip_guess: u8, r: &Random, player_one_address: address, player_two_address: address,  confirm_deck_player_one: &ConfirmedDeck, confirm_deck_player_two: &ConfirmedDeck, ctx: &mut TxContext)  {
+    public entry fun start_game(coin_flip_guess: u8, r: &Random, player_one_address: address, player_two_address: address,  confirm_deck_player_one: &ConfirmedDeck, confirm_deck_player_two: &ConfirmedDeck, ctx: &mut TxContext)  {
 
        let coin_flip_result = coin_toss(r, ctx);
 
@@ -3145,11 +3145,11 @@ module capy_vs_gnome::card_deck {
 
 
         // pass the turn key
-        // check the player and pass to teh opposite
+        // check the player and pass to the opposite player
         if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_one_address);
-        } else {
             transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
         };
 
        
