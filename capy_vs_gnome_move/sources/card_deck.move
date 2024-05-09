@@ -109,6 +109,9 @@ module capy_vs_gnome::card_deck {
     //    - player_two_monster_status
     //    - player_two_rider_status
     //    - player_two_soldier_status
+    // END OF GAME CHECKS
+    //    - Winner
+    //    - game_over
     // COIN TOSS FUNCTIONS
     //   - coin_toss
     // ATTACK FUNCTIONS
@@ -3552,6 +3555,42 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // END OF GAME CHECKS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
+    struct Winner has copy, drop {
+        player_one_winner: bool,
+        player_two_winner: bool,
+    }
+
+
+
+    public entry fun game_over(game: &mut Game) {
+
+        let player_one_wins: bool = false;
+        let player_two_wins: bool = false;
+
+
+        if(player_one_general_status == 0 && player_one_monster_status == 0 && player_one_rider_status == 0 && player_one_soldier_status == 0) {
+            player_two_wins = true;
+        };
+
+
+        if(player_two_general_status == 0 && player_two_monster_status == 0 && player_two_rider_status == 0 && player_two_soldier_status == 0) {
+            player_one_wins = true;
+        };
+
+
+
+
+
+    }
     
 
 
