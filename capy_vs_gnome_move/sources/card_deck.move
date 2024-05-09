@@ -3036,6 +3036,11 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct Checked has copy, drop {
+        value: bool,
+    }
+
+
 
    
 
@@ -3125,6 +3130,7 @@ module capy_vs_gnome::card_deck {
     // UNDER CONSTRUCTION
     entry fun turn_trial(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
 
+
         // sets which player is using turn
         let player_on_deck: u8 = 0;
 
@@ -3175,11 +3181,11 @@ module capy_vs_gnome::card_deck {
 
             // do turn actions .. 
 
+            event::emit( Checked {
+                value: true,
+            });
 
 
-
-
-            
             
             
         } else {
@@ -3194,6 +3200,12 @@ module capy_vs_gnome::card_deck {
 
             // increment turn count
             game.turn_count = game.turn_count + 1;
+
+
+
+            event::emit( Checked {
+                value: false,
+            })
 
 
 
