@@ -149,6 +149,10 @@ module capy_vs_gnome::card_deck {
     //   - get_time
     // TEST INIT
     //   - init_for_testing
+    //
+    //
+    // UNDER CONSTRUCTION
+    //   - marks current work location
 
 
 
@@ -3118,12 +3122,43 @@ module capy_vs_gnome::card_deck {
 
 
     // turn actions and deletes the HashedSelectionProved object
-    // UNDER CONSTURCTION
-    entry fun turn_trial(game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
+    // UNDER CONSTRUCTION
+    entry fun turn_trial(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+        // pass the turn key
+        // check the player and pass to teh opposite
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_one_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_two_address);
+        };
 
        
 
 
+
+        // checks the turn is correct by odd or even
+        // if(game.even_turns == ctx && game.turn_count % 2 == 0) {
+        //     // correct check
+        // };
+
+
+        
+
+        // checks the hash is correct and proceeds or not
         if(proven.proved == true) {
 
             
@@ -3132,8 +3167,20 @@ module capy_vs_gnome::card_deck {
 
             object::delete(id);
 
-            // do turn actions .. 
+
+            // increment turn count
             game.turn_count = game.turn_count + 1;
+
+
+
+            // do turn actions .. 
+
+
+
+
+
+            
+            
             
         } else {
             
@@ -3144,7 +3191,11 @@ module capy_vs_gnome::card_deck {
 
             object::delete(id);
 
-            // end turn and pass turn object to other player
+
+
+
+
+            
         }
         
 
