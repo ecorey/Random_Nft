@@ -3410,14 +3410,46 @@ module capy_vs_gnome::card_deck {
     }
 
 
-    entry fun defensive_posture(r: &Random, ctx: &mut TxContext ) {
+    struct DefenseCardAttacked has copy, drop {
+        type_id: u8,
+        name: String,
+    }
 
-        // return 1 general, 2 monster, 3 riser, 4 soldier
-        let backline_chosen: u8 = backline_defense_stance(r, ctx);
-        let frontline_chosen: u8 = frontline_defense_stance(r, ctx);
 
+    // choice 1 for backline and 2 for frontline stance
+    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
+
+        let card_selected: String = utf8(b"blank");
+        let card_selected_type: u8 = 0;
+
+        // defense return 1 general, 2 monster, 3 riser, 4 soldier
+        if( choice == 1){
+
+            let card_selected_type = backline_defense_stance(r, ctx);
+
+        } else  {
+
+            let card_selected_type = frontline_defense_stance(r, ctx);
+
+        };
+
+
+        card_selected_type
+        
+        
     }
     
+
+
+    // attacker needs to commit one card, defender all cards
+    // modify to iinclude what to do in case of losing a card
+    // create a 'dead' card to pass after losing a player that has no value
+    // UNDER CONSTRUCTION
+    // entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, possible_defense_one: Card, possible_defense_two: Card, possible_defense_three: Card, possible_defense_four: Card, ctx: &mut TxContext) {
+
+
+
+    // }
 
 
 
