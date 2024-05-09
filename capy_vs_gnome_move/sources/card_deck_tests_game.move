@@ -11,15 +11,26 @@ module capy_vs_gnome::card_deck_tests_game {
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
 
 
-    use capy_vs_gnome::card_deck::{Card};
+    // GAME IMPORTS
+    use capy_vs_gnome::card_deck::{Card, Game, TurnKey};
     use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
-    use capy_vs_gnome::card_deck::{owner_address, type,  type_id, name,  image_url, attack, defense, health, cost};
+    use capy_vs_gnome::card_deck::{start_game, turn_trial, first_turn};
+    use capy_vs_gnome::card_deck::{HashedSelection, HashedSelectionProved, HashedSelectionMade, HashedSelectionProvedMade};
+    use capy_vs_gnome::card_deck::{ hashed_selection, prove_hashed_selection };
+
+
+    // GAME GETTERS
+    use capy_vs_gnome::card_deck::{ player_one_address, player_two_address, coin_flip_guess, coin_flip_count, coin_flip_result};
+    use capy_vs_gnome::card_deck::{ even_turns, odd_turns, turn_count, confirm_deck_player_one, confirm_deck_player_two};
+    use capy_vs_gnome::card_deck::{ player_one_general_status, player_one_monster_status, player_one_rider_status, player_one_soldier_status};
+    use capy_vs_gnome::card_deck::{ player_two_general_status, player_two_monster_status, player_two_rider_status, player_two_soldier_status};
+
     
-
-
-    use capy_vs_gnome::card_deck::{soldier_vs_soldier};
+   
+   
+    
 
 
 
