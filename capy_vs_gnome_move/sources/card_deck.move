@@ -90,6 +90,11 @@ module capy_vs_gnome::card_deck {
     //    - HashedSelectionProvedMade
     //    - hashed_selection
     //    - prove_hashed_selection
+    // ATTACK AND DEFEND FOR TURN STRUCTURE
+    //    - attack_generic
+    //    - DefenseCardAttacked
+    //    - defensive_posture
+    //    - attack_defend
     // GAME GETTERS
     //    - player_one_address
     //    - player_two_address
@@ -119,17 +124,14 @@ module capy_vs_gnome::card_deck {
     //   - soldier_vs_rider
     //   - soldier_vs_monster
     //   - soldier_vs_general
-    //
     //   - rider_vs_soldier 
     //   - rider_vs_rider
     //   - rider_vs_monster
     //   - rider_vs_general
-    //
     //   - monster_vs_soldier 
     //   - monster_vs_rider
     //   - monster_vs_monster
     //   - monster_vs_general
-    //
     //   - general_vs_soldier 
     //   - general_vs_rider
     //   - general_vs_monster
