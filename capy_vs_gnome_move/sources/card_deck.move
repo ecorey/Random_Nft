@@ -3577,13 +3577,25 @@ module capy_vs_gnome::card_deck {
         let player_two_wins: bool = false;
 
 
-        if(player_one_general_status == 0 && player_one_monster_status == 0 && player_one_rider_status == 0 && player_one_soldier_status == 0) {
+        if(game.player_one_general_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_soldier_status == 0) {
             player_two_wins = true;
+
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
         };
 
 
-        if(player_two_general_status == 0 && player_two_monster_status == 0 && player_two_rider_status == 0 && player_two_soldier_status == 0) {
+        if(game.player_two_general_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_soldier_status == 0) {
             player_one_wins = true;
+
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
         };
 
 
