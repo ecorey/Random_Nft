@@ -12,6 +12,7 @@ module capy_vs_gnome::card_deck {
     use std::vector;
     use std::hash;
     // use sui::hash;
+    use std::debug;
     use sui::clock::{Self, Clock};
     use sui::coin::{Self, TreasuryCap};
     use sui::random::{Self, Random, new_generator};
@@ -2970,6 +2971,8 @@ module capy_vs_gnome::card_deck {
         coin_flip_guess: u8,
         coin_flip_count: u8,
         coin_flip_result: u8,
+        even_turns: address,
+        odd_turns: address,
         turn_count: u8,
         confirm_deck_player_one: ID,
         confirm_deck_player_two: ID,
@@ -2984,8 +2987,11 @@ module capy_vs_gnome::card_deck {
 
 
 
+
        
     }
+
+
 
 
     // player with key has ability to make turn
@@ -2993,7 +2999,218 @@ module capy_vs_gnome::card_deck {
         id: UID,
     }
 
+
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // GAME GETTERS 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    
+    // player_one_address: address
+    // player_two_address: address
+    // coin_flip_guess: u8
+    // coin_flip_count: u8
+    // coin_flip_result: u8
+    // even_turns: address
+    // odd_turns: address
+    // turn_count: u8
+    // confirm_deck_player_one: ID
+    // confirm_deck_player_two: ID
+    // player_one_general_status: u8
+    // player_one_monster_status: u8
+    // player_one_rider_status: u8
+    // player_one_soldier_status: u8
+    // player_two_general_status: u8
+    // player_two_monster_status: u8
+    // player_two_rider_status: u8
+    // player_two_soldier_status: u8
+
+
+
+    // player one address
+    public fun player_one_address(game: &Game) : address {
+
+        let player_one_address = game.player_one_address;
+
+        player_one_address
+    }
+
+
+
+
+    // player two address
+    public fun player_two_address(game: &Game) : address {
+
+        let player_two_address = game.player_two_address;
+
+        player_two_address
+    }
+
+
+
+    // coin flip guess
+    public fun coin_flip_guess(game: &Game) : u8 {
+
+        let coin_flip_guess = game.coin_flip_guess;
+
+        coin_flip_guess
+    }
+
+
+    // coin flip count
+    public fun coin_flip_count(game: &Game) : u8 {
+
+        let coin_flip_count = game.coin_flip_count;
+
+        coin_flip_count
+    }
+
+
+
+    // coin flip result
+    public fun coin_flip_result(game: &Game) : u8 {
+
+        let coin_flip_result = game.coin_flip_result;
+
+        coin_flip_result
+    }
+
+
+
+    // even turns
+    public fun even_turns(game: &Game) : address {
+
+        let even_turns = game.even_turns;
+
+        even_turns
+    }
+
+
+    // odd turns
+    public fun odd_turns(game: &Game) : address {
+
+        let odd_turns = game.odd_turns;
+
+        odd_turns
+    }
+
+
+    // turn count
+    public fun turn_count(game: &Game) : u8 {
+
+        let turn_count = game.turn_count;
+
+        turn_count
+    }
+
+
+
+    // confirm deck player one
+    public fun confirm_deck_player_one(game: &Game) : ID {
+
+        let confirm_deck_player_one = game.confirm_deck_player_one;
+
+        confirm_deck_player_one
+    }
+
+
+    // confirm deck player two
+    public fun confirm_deck_player_two(game: &Game) : ID {
+
+        let confirm_deck_player_two = game.confirm_deck_player_two;
+
+        confirm_deck_player_two
+    }
+
+
+
+    // player one general status
+    public fun player_one_general_status(game: &Game) : u8 {
+
+        let player_one_general_status = game.player_one_general_status;
+
+        player_one_general_status
+    }
+
+
+    // player one monster status
+    public fun player_one_monster_status(game: &Game) : u8 {
+
+        let player_one_monster_status = game.player_one_monster_status;
+
+        player_one_monster_status
+    }
+
+    // player one rider status
+    public fun player_one_rider_status(game: &Game) : u8 {
+
+        let player_one_rider_status = game.player_one_rider_status;
+
+        player_one_rider_status
+    }
+
+    // player one soldier status
+    public fun player_one_soldier_status(game: &Game) : u8 {
+
+        let player_one_soldier_status = game.player_one_soldier_status;
+
+        player_one_soldier_status
+    }
+
+    // player two general status
+    public fun player_two_general_status(game: &Game) : u8 {
+
+        let player_two_general_status = game.player_two_general_status;
+
+        player_two_general_status
+    }
+
+    // player two monster status
+    public fun player_two_monster_status(game: &Game) : u8 {
+
+        let player_two_monster_status = game.player_two_monster_status;
+
+        player_two_monster_status
+    }
+
+    // player two rider status
+    public fun player_two_rider_status(game: &Game) : u8 {
+
+        let player_two_rider_status = game.player_two_rider_status;
+
+        player_two_rider_status
+    }
+
+    // player two soldier status
+    public fun player_two_soldier_status(game: &Game) : u8 {
+
+        let player_two_soldier_status = game.player_two_soldier_status;
+
+        player_two_soldier_status
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
+
     // starts game by:
     // taking a coin flip guess and is correct sending it to the player one address
     // if guess is not correct the turn key goes to player two
@@ -3004,7 +3221,7 @@ module capy_vs_gnome::card_deck {
 
        
 
-
+        let start_address = @0x0;
 
 
         let game = Game {
@@ -3016,6 +3233,10 @@ module capy_vs_gnome::card_deck {
             coin_flip_guess,
             coin_flip_count: 1,
             coin_flip_result,
+
+            // set the player addresses based on the result of the coin flip guess
+            even_turns: start_address,
+            odd_turns: start_address,
             turn_count: 0,
 
             
@@ -3036,6 +3257,11 @@ module capy_vs_gnome::card_deck {
 
 
         if(game.coin_flip_result == game.coin_flip_guess){
+
+            game.even_turns = player_one_address;
+            game.odd_turns = player_two_address;
+
+
             let turn_key = TurnKey {
                 id: object::new(ctx),
             };
@@ -3048,6 +3274,9 @@ module capy_vs_gnome::card_deck {
             };
 
             transfer::transfer(turn_key, player_two_address);
+
+            game.even_turns = player_two_address;
+            game.odd_turns = player_one_address;
 
         };
 
@@ -3062,12 +3291,48 @@ module capy_vs_gnome::card_deck {
 
 
 
+    // turn actions and deletes the HashedSelectionProved object
+    // UNDER CONSTURCTION
+    entry fun turn_trial(game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
+
+       
+
+
+        if(proven.proved == true) {
+
+            
+
+            let HashedSelectionProved {id, proved: _} = proven;
+
+            object::delete(id);
+
+            // do turn actions .. 
+            game.turn_count = game.turn_count + 1;
+            
+        } else {
+            
+            
+            debug::print<bool>(&proven.proved);
+            
+            let HashedSelectionProved {id, proved: _} = proven;
+
+            object::delete(id);
+
+            // end turn and pass turn object to other player
+        }
+        
+
+    }
 
 
 
-    public fun first_turn( cap: &mut TreasuryCap<MONSTI>, ctx: &mut TxContext) {
 
-        first_turns_mint(cap, ctx);
+
+
+    // mints first turn token amount
+    public fun first_turn( cap: &mut TreasuryCap<MONSTI>, recipient: address, ctx: &mut TxContext) {
+
+        first_turns_mint(cap, recipient, ctx);
 
 
     }
@@ -3198,17 +3463,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // turn actions and deletes the HashedSelectionProved object
-    // UNDER CONSTURCTION
-    entry fun turn_trial(proven: HashedSelectionProved, ctx: &mut TxContext){
-
-        let HashedSelectionProved {id, proved: _} = proven;
-
-        object::delete(id);
-
-        // do turn actions .. 
-
-    }
+    
 
 
 

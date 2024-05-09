@@ -97,10 +97,11 @@ module capy_vs_gnome::monsti {
     // mint 4 MONSTI to the user at the start of first rounds of a turn
     public fun first_turns_mint(
         cap: &mut TreasuryCap<MONSTI>,
+        recipient: address,
         ctx: &mut TxContext,
     ) {
         let token = token::mint(cap, 4, ctx);
-        let req = token::transfer(token, tx_context::sender(ctx), ctx);
+        let req = token::transfer(token, recipient, ctx);
 
         token::confirm_with_treasury_cap(cap, req, ctx);
     }
