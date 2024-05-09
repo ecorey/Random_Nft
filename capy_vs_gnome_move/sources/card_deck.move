@@ -3416,6 +3416,7 @@ module capy_vs_gnome::card_deck {
     }
 
 
+
     // choice 1 for backline and 2 for frontline stance
     entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
 
@@ -3423,10 +3424,12 @@ module capy_vs_gnome::card_deck {
         let card_selected_type: u8 = 0;
 
         // defense return 1 general, 2 monster, 3 riser, 4 soldier
+        // THIS CHOICE WILL COSET CP
         if( choice == 1){
 
             let card_selected_type = backline_defense_stance(r, ctx);
 
+        // FREE OPTION
         } else  {
 
             let card_selected_type = frontline_defense_stance(r, ctx);
@@ -3463,11 +3466,88 @@ module capy_vs_gnome::card_deck {
     // create a 'dead' card to pass after losing a player that has no value
     // UNDER CONSTRUCTION
 
-    // entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, possible_defense_one: Card, possible_defense_two: Card, possible_defense_three: Card, possible_defense_four: Card, ctx: &mut TxContext) {
+    entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender_deck_confirmed: &ConfirmedDeck, defense_choice: u8, possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext) {
+
+
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+        let defender: Card;
+
+        let attacker_address: address = attacker.owner_address;
+
+        let defender_address: address = possible_defense_general.owner_address;
+
+
+        if (defense_card == 1 ) {
+
+            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
 
 
 
-    // }
+            transfer::public_transfer(possible_defense_monster, defender_address);
+            transfer::public_transfer(possible_defense_rider, defender_address);
+            transfer::public_transfer(possible_defense_soldier, defender_address);
+
+        } else if ( defense_card == 2 ) {
+
+            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_monster, defender_deck_confirmed, ctx);
+
+
+
+
+            transfer::public_transfer(possible_defense_general, defender_address);
+            transfer::public_transfer(possible_defense_rider, defender_address);
+            transfer::public_transfer(possible_defense_soldier, defender_address);
+
+
+
+           
+        } else if ( defense_card == 3 ) {
+            
+            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_rider, defender_deck_confirmed, ctx);
+
+
+
+
+
+            transfer::public_transfer(possible_defense_general, defender_address);
+            transfer::public_transfer(possible_defense_monster, defender_address);
+            transfer::public_transfer(possible_defense_soldier, defender_address);
+
+
+
+           
+        } else if ( defense_card == 4 ) {
+
+            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_soldier, defender_deck_confirmed, ctx);
+
+
+            transfer::public_transfer(possible_defense_general, defender_address);
+            transfer::public_transfer(possible_defense_monster, defender_address);
+            transfer::public_transfer(possible_defense_rider, defender_address);
+
+
+
+
+        } else {
+
+            transfer::public_transfer(attacker, attacker_address);
+
+
+            transfer::public_transfer(possible_defense_general, defender_address);
+            transfer::public_transfer(possible_defense_monster, defender_address);
+            transfer::public_transfer(possible_defense_rider, defender_address);
+            transfer::public_transfer(possible_defense_soldier, defender_address);
+
+
+        };
+
+    
+
+
+
+
+    }
 
 
 
@@ -4107,6 +4187,12 @@ module capy_vs_gnome::card_deck {
         
 
     }
+
+
+
+
+
+    
 
 
 
