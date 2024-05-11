@@ -3366,7 +3366,8 @@ module capy_vs_gnome::card_deck {
     // --------------------------------------------------------------------------
 
 
-
+    // takes random, game, attack card, attacker confirmed deck, all defenders cards, defender confirmed
+    // uses the type_id to match and call the correct attack function
     entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
         // ONES (General)
@@ -3464,9 +3465,13 @@ module capy_vs_gnome::card_deck {
 
 
     // attacker needs to commit one card, defender all cards
-    // modify to iinclude what to do in case of losing a card
-    // create a 'dead' card to pass after losing a player that has no value
+    // modify to iinclude what to do in case of losing a card to take as parameter
+    // create a 'DEAD' card to pass after losing a player that has no value
     // UNDER CONSTRUCTION
+
+    // takes random, game, attack card, attacker confirmed deck, all defenders cards, defender confirmed AND
+    // takes defense posture choice and all of the defenders cards
+
 
     entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender_deck_confirmed: &ConfirmedDeck, defense_choice: u8, possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext) {
 
