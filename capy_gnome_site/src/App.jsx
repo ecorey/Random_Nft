@@ -11,6 +11,7 @@ import StartGame from './components/StartGame';
 import Lore from './components/Lore';  
 import Rules from './components/Rules';  
 import Turn from './components/Turn';  
+import EnterDefenseCards from './components/EnterDefenseCards';  
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/start" element={<StartGame />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/turn" element={<Turn />} />
+          <Route path="/enterdefensecards" element={<EnterDefenseCards />} />
         </Routes>
         <Footer />
       </div>
