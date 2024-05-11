@@ -3480,6 +3480,7 @@ module capy_vs_gnome::card_deck {
         let defender_address: address = possible_defense_general.owner_address;
 
 
+        // determines the attack functions used
         if (defense_card == 1 ) {
 
             attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
