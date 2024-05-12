@@ -1,4 +1,3 @@
-// src/components/EnterDefenseCards.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCardContext } from './CardContext'; // Import the context hook
@@ -8,12 +7,12 @@ const EnterDefenseCards = () => {
     const { player, setPlayer, data, handleChange } = useCardContext();
 
     return (
-        <div style={{ padding: '40px', fontFamily: 'pixelify sans', maxWidth: '800px', margin: '40px auto', fontFamily: 'Arial, sans-serif', background: '#f0f0f0', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
-            <h2>Configure Defense Cards</h2>
+        <div style={{ padding: '40px', fontFamily: 'pixelify sans', maxWidth: '800px', margin: '40px auto', fontFamily: 'Pixelify sans, sans-serif', background: '#f0f0f0', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+            <h2>Configure Cards</h2>
             <select
                 value={player}
                 onChange={e => setPlayer(e.target.value)}
-                style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px' }}
+                style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'pixelify sans' }}
             >
                 <option value="Player 1">Player 1</option>
                 <option value="Player 2">Player 2</option>

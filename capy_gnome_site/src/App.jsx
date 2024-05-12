@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CardProvider } from './components/CardContext'; // Import the provider
+import { CardProvider } from './components/CardContext'; 
 import EnterDefenseCards from './components/EnterDefenseCards';
 import Box from './components/Box';
 import Strip from './components/Strip';
@@ -17,7 +17,7 @@ import Turn from './components/Turn';
 
 function App() {
   return (
-    <CardProvider> {/* This will provide the context to all routes */}
+    <CardProvider> 
       <Router>
         <div>
           <NavBar />

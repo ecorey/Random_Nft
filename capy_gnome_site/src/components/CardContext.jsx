@@ -1,4 +1,3 @@
-// src/components/CardContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 export const CardContext = createContext();
@@ -6,22 +5,20 @@ export const CardContext = createContext();
 export const useCardContext = () => useContext(CardContext);
 
 export const CardProvider = ({ children }) => {
+
     const [player, setPlayer] = useState('Player 1');
+    
     const [player1, setPlayer1] = useState({
-        attackerId: '',
-        defenseGeneralId: '',
-        defenseMonsterId: '',
-        defenseRiderId: '',
-        defenseSoldierId: '',
-        defenseChoice: ''
+        generalId: '',
+        monsterId: '',
+        riderId: '',
+        soldierId: ''
     });
     const [player2, setPlayer2] = useState({
-        attackerId: '',
-        defenseGeneralId: '',
-        defenseMonsterId: '',
-        defenseRiderId: '',
-        defenseSoldierId: '',
-        defenseChoice: ''
+        generalId: '',
+        monsterId: '',
+        riderId: '',
+        soldierId: ''
     });
 
     const handleChange = (e, key) => {
