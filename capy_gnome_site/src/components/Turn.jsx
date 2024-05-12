@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCardContext } from './CardContext';  // Import the context hook
 
 const Turn = () => {
     const [message, setMessage] = useState('');
@@ -9,6 +10,9 @@ const Turn = () => {
     const [actionValue, setActionValue] = useState(null); 
     const [cardType, setCardType] = useState('');  
     const [isFinal, setIsFinal] = useState(false);  
+    const [currentPlayer, setCurrentPlayer] = useState('player1'); //  to select player
+    const { player1, player2 } = useCardContext();  //  context to get player data
+    const playerData = currentPlayer === 'player1' ? player1 : player2;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,21 +40,28 @@ const Turn = () => {
                 setActionValue(55);  // ATTACK
             } else if (e.target.value === 'no') {
                 setActionValue(77);  // PASS
-                setIsFinal(true);  // Make choice final if PASS is selected
+                setIsFinal(true);  // make choice final if PASS is selected
             }
         }
     };
 
     const handleCardTypeChange = (e) => {
-        if (!isFinal) {  // Only allow change if final choice isn't made
+        if (!isFinal) { 
             setCardType(e.target.value);
-            setIsFinal(true);  // Make choice final after a card is selected
+            setIsFinal(true);  
             console.log(`Card selected: ${e.target.value}`);
         }
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'pixelify sans', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
+        <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
+            <select
+                onChange={(e) => setCurrentPlayer(e.target.value)}
+                style={{ padding: '10px', marginBottom: '20px', fontFamily: 'Pixelify sans', fontSize: '16px' }}
+            >
+                <option value="player1">Player 1</option>
+                <option value="player2">Player 2</option>
+            </select>
             <div style={scrollTextStyle}>
                 {message}
             </div>
@@ -63,7 +74,7 @@ const Turn = () => {
             )}
             {actionValue === 55 && cardMessage && (
                 <div style={{ marginTop: '20px' }}>
-                    <p style={scrollTextStyle}>{cardMessage}</p> {/* Use the same scrollTextStyle */}
+                    <p style={scrollTextStyle}>{cardMessage}</p> 
                     {!isFinal && (
                         <select style={selectStyle} onChange={handleCardTypeChange}>
                             <option value="">Select Card</option>
@@ -83,18 +94,18 @@ const Turn = () => {
 const scrollTextStyle = {
     backgroundColor: '#232323',
     color: 'white',
-    fontFamily: 'pixelify sans',
+    fontFamily: 'Pixelify sans',
     padding: '10px',
     fontSize: '22px',
     overflow: 'hidden',
     minHeight: '50px',
-    margin: '10px 0'  // Ensure spacing is consistent
+    margin: '10px 0' 
 };
 
 const selectStyle = {
     marginTop: '10px',
     padding: '10px',
-    fontFamily: 'pixelify sans',
+    fontFamily: 'Pixelify sans',
     fontSize: '16px',
 };
 

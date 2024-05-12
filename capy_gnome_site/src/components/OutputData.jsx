@@ -4,7 +4,7 @@ import { useCardContext } from './CardContext';
 
 const OutputData = () => {
     const navigate = useNavigate();
-    const { player1, player2 } = useCardContext(); // Accessing players directly
+    const { player1, player2 } = useCardContext(); 
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
