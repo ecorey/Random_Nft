@@ -31,7 +31,8 @@ export const CardProvider = ({ children }) => {
     const value = {
         player, 
         setPlayer,
-        data: player === 'Player 1' ? player1 : player2,
+        player1, 
+        player2,
         handleChange
     };
 

@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -13,7 +12,12 @@ import ConfirmDeck from './components/ConfirmDeck';
 import StartGame from './components/StartGame';
 import Lore from './components/Lore';  
 import Rules from './components/Rules';  
-import Turn from './components/Turn';  
+import Turn from './components/Turn'; 
+import OutputData from './components/OutputData'; 
+
+
+
+
 
 function App() {
   return (
@@ -29,6 +33,8 @@ function App() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/turn" element={<Turn />} />
             <Route path="/enterdefensecards" element={<EnterDefenseCards />} />
+            <Route path="/outputdata" element={<OutputData />} />
+
           </Routes>
           <Footer />
         </div>
