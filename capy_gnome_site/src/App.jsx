@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CardProvider } from './components/CardContext'; 
-import EnterDefenseCards from './components/EnterDefenseCards';
+import ConfigureCards from './components/ConfigureCards';
 import Box from './components/Box';
 import Strip from './components/Strip';
 import StripTwo from './components/StripTwo';
@@ -32,7 +32,7 @@ function App() {
             <Route path="/start" element={<StartGame />} />
             <Route path="/rules" element={<Rules />} />
             <Route path="/turn" element={<Turn />} />
-            <Route path="/enterdefensecards" element={<EnterDefenseCards />} />
+            <Route path="/configurecards" element={<ConfigureCards />} />
             <Route path="/outputdata" element={<OutputData />} />
 
           </Routes>

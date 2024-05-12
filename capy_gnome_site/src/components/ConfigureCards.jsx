@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCardContext } from './CardContext';
 
-const EnterDefenseCards = () => {
+const ConfigureCards = () => {
     const navigate = useNavigate();
     const { player, setPlayer, player1, player2, handleChange } = useCardContext();
     const data = player === 'Player 1' ? player1 : player2;
@@ -34,8 +34,12 @@ const EnterDefenseCards = () => {
                 Save Configuration
             </button>
             {saved && <p style={{ color: 'green' }}>Data saved! Redirecting...</p>}
+
+
+            <button onClick={() => navigate('/')} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Home</button>
+
         </div>
     );
 };
 
-export default EnterDefenseCards;
+export default ConfigureCards;

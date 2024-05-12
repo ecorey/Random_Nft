@@ -4,10 +4,20 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package } from '../../../scripts/config';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
+
 const StartGame = () => {
+
+
+
     const { signAndExecuteTransactionBlock } = useWallet();
     const [gameId, setGameId] = useState('');
     const navigate = useNavigate();
+
+
+
 
     const handleStartGame = async () => {
         const txb = new TransactionBlock();
@@ -28,8 +38,23 @@ const StartGame = () => {
         }
     };
 
+
+
+    const handleConfigureDeck = () => {
+        navigate('/configurecards');  
+    };
+
+
+    
+
+    const handleoutputdata = () => {
+        navigate('/outputdata');  
+    };
+
+
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto' }}>
+            
             <input
                 type="text"
                 placeholder="Enter Game ID"
@@ -37,10 +62,25 @@ const StartGame = () => {
                 onChange={(e) => setGameId(e.target.value)}
                 style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
             />
+
             <button onClick={handleStartGame} style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
                 Start Game
             </button>
+
+
+            <button onClick={handleConfigureDeck} style={{ width: '100%', marginTop: '15px' , padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
+                Configure Player Decks
+            </button>
+
+
+            <button onClick={handleoutputdata} style={{ width: '100%', marginTop: '35px' , padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
+                Card Configuration
+            </button>
+
+
             <button onClick={() => navigate('/')} style={buttonBackStyle}>Home</button>
+
+
         </div>
     );
 };
