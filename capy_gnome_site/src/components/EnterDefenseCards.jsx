@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCardContext } from './CardContext'; // Import the context hook
+import { useCardContext } from './CardContext';
 
 const EnterDefenseCards = () => {
     const navigate = useNavigate();
@@ -20,28 +20,28 @@ const EnterDefenseCards = () => {
             <input
                 type="text"
                 placeholder="General ID"
-                value={data.defenseGeneralId}
+                value={data.generalId}
                 onChange={e => handleChange(e, 'generalId')}
                 style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'pixelify sans' }}
             />
             <input
                 type="text"
                 placeholder="Monster ID"
-                value={data.defenseMonsterId}
+                value={data.monsterId}
                 onChange={e => handleChange(e, 'monsterId')}
                 style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'pixelify sans' }}
             />
             <input
                 type="text"
                 placeholder="Rider ID"
-                value={data.defenseRiderId}
+                value={data.riderId}
                 onChange={e => handleChange(e, 'riderId')}
                 style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'pixelify sans' }}
             />
             <input
                 type="text"
                 placeholder="Soldier ID"
-                value={data.defenseSoldierId}
+                value={data.soldierId}
                 onChange={e => handleChange(e, 'soldierId')}
                 style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'pixelify sans' }}
             />

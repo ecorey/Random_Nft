@@ -5,9 +5,7 @@ export const CardContext = createContext();
 export const useCardContext = () => useContext(CardContext);
 
 export const CardProvider = ({ children }) => {
-
     const [player, setPlayer] = useState('Player 1');
-    
     const [player1, setPlayer1] = useState({
         generalId: '',
         monsterId: '',
@@ -31,7 +29,8 @@ export const CardProvider = ({ children }) => {
     };
 
     const value = {
-        player, setPlayer,
+        player, 
+        setPlayer,
         data: player === 'Player 1' ? player1 : player2,
         handleChange
     };
