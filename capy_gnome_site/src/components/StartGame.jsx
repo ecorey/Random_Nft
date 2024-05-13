@@ -47,7 +47,7 @@ const StartGame = () => {
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto' }}>
+        <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', marginTop: '100px' }}>
             <input
                 type="text"
                 placeholder="Enter Coin Flip Guess"
@@ -86,7 +86,7 @@ const StartGame = () => {
             <button onClick={handleStartGame} style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
                 Start Game
             </button>
-            <button onClick={handleConfigureDeck} style={{ width: '100%', marginTop: '15px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
+            <button onClick={handleConfigureDeck} style={{ width: '100%', marginTop: '200px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
                 Configure Player Decks
             </button>
             <button onClick={handleoutputdata} style={{ width: '100%', marginTop: '35px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
@@ -100,7 +100,7 @@ const StartGame = () => {
 const buttonBackStyle = {
     width: '100%',
     padding: '10px',
-    marginTop: '75px',
+    marginTop: '275px',
     backgroundColor: 'blue',
     color: 'black',
     fontSize: '16px',
