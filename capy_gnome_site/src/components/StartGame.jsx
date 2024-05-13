@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
 import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
-import { Package } from '../../../scripts/config';
+import { Package, RANDOM } from '../../../scripts/config';
 import { useNavigate } from 'react-router-dom';
 
 const StartGame = () => {
+    
     const { signAndExecuteTransactionBlock } = useWallet();
+
     const [guess, setGuess] = useState('');
     const [playerOneAddress, setPlayerOneAddress] = useState('');
     const [playerTwoAddress, setPlayerTwoAddress] = useState('');
     const [confirmDeckPlayerOne, setConfirmDeckPlayerOne] = useState('');
     const [confirmDeckPlayerTwo, setConfirmDeckPlayerTwo] = useState('');
 
+   
+
     const navigate = useNavigate();
 
     const handleStartGame = async () => {
+
+
         const txb = new TransactionBlock();
+
         txb.setGasBudget(1000000000);
+
         txb.moveCall({
             target: `${Package}::card_deck::start_game`,
             arguments: [
-                txb.pure(Number(guess)),
-                txb.object('0x8'),  
-                txb.object(playerOneAddress),
-                txb.object(playerTwoAddress),
+                txb.pure.u8(guess),
+                txb.object(RANDOM),  
+                txb.pure.address(playerOneAddress),
+                txb.pure.address(playerTwoAddress),
                 txb.object(confirmDeckPlayerOne),
                 txb.object(confirmDeckPlayerTwo),
             ],
