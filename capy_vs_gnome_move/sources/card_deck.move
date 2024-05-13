@@ -3131,9 +3131,53 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+    // turn trial no hash
+    entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+
+        // attack andd defend
+        attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
+
+     
+
+    
+
+    }
+
+
+
+
+
     // turn actions and deletes the HashedSelectionProved object
     // UNDER CONSTRUCTION
-    entry fun turn_trial(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
+    entry fun turn_trial_with_hash(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
 
 
         // sets which player is using turn
@@ -3372,7 +3416,7 @@ module capy_vs_gnome::card_deck {
     // --------------------------------------------------------------------------
 
 
-    // takes random, game, attack card, attacker confirmed deck, all defenders cards, defender confirmed
+    // takes random, game, attack card, attacker confirmed deck, defender confirmed
     // uses the type_id to match and call the correct attack function
     entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
