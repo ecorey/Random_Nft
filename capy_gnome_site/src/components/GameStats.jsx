@@ -5,10 +5,13 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package } from '../../../scripts/config';
 
 const GameStats = () => {
+    
     const navigate = useNavigate();
     const { player1, player2 } = useCardContext(); 
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
-    const GAME = gameSetup.game; // Get the game configuration
+    const GAME = gameSetup.game; 
+    const TurnKey = gameSetup.turnkey;
+
 
     const handleGameStats = async () => {
         const txb = new TransactionBlock();
@@ -151,7 +154,12 @@ const GameStats = () => {
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
+
             <h1>Game Stats</h1>
+            <p>game: {GAME || "Not set"}</p>
+            <p>turn key: {TurnKey || "Not set"}</p>
+
+
             <h1>Player addresses</h1>
             <p>player_one_address: {player_one_address || "Not set"}</p>
             <p>player_two_address: {player_two_address || "Not set"}</p>
