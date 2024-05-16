@@ -80,6 +80,8 @@ module capy_vs_gnome::card_deck {
     //   - confirm_deck
     // GAME SETUP
     //    - Game
+    //    - GameStatsEvent
+    //    - emit_game_stats_event
     //    - TurnKey
     //    - start_game
     //    - turn_trial
@@ -3025,11 +3027,62 @@ module capy_vs_gnome::card_deck {
         player_two_rider_status: u8,
         player_two_soldier_status: u8,
 
-
-
-
        
     }
+
+
+
+
+    struct GameStatsEvent has copy, drop, store {
+        
+        
+        player_one_address: address,
+        player_two_address: address,
+        coin_flip_guess: u8,
+        coin_flip_count: u8,
+        coin_flip_result: u8,
+        even_turns: address,
+        odd_turns: address,
+        turn_count: u8,
+        confirm_deck_player_one: ID,
+        confirm_deck_player_two: ID,
+        player_one_general_status: u8,
+        player_one_monster_status: u8,
+        player_one_rider_status: u8,
+        player_one_soldier_status: u8,
+        player_two_general_status: u8,
+        player_two_monster_status: u8,
+        player_two_rider_status: u8,
+        player_two_soldier_status: u8,
+    }
+
+
+
+    public fun emit_game_stats_event(game: &Game) {
+      
+        event::emit( GameStatsEvent {
+            player_one_address: game.player_one_address,
+            player_two_address: game.player_two_address,
+            coin_flip_guess: game.coin_flip_guess,
+            coin_flip_count: game.coin_flip_count,
+            coin_flip_result: game.coin_flip_result,
+            even_turns: game.even_turns,
+            odd_turns: game.odd_turns,
+            turn_count: game.turn_count,
+            confirm_deck_player_one: game.confirm_deck_player_one,
+            confirm_deck_player_two: game.confirm_deck_player_two,
+            player_one_general_status: game.player_one_general_status,
+            player_one_monster_status: game.player_one_monster_status,
+            player_one_rider_status: game.player_one_rider_status,
+            player_one_soldier_status: game.player_one_soldier_status,
+            player_two_general_status: game.player_two_general_status,
+            player_two_monster_status: game.player_two_monster_status,
+            player_two_rider_status: game.player_two_rider_status,
+            player_two_soldier_status: game.player_two_soldier_status,
+        });
+
+    }
+
 
 
 
