@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCardContext } from './CardContext';  // Import the context hook
+import { useCardContext } from './CardContext'; 
+import { useWallet } from '@suiet/wallet-kit';  
+import { Package, RANDOM } from '../../../scripts/config';
+
+
+
+// UNDER CONSTRUCTION
+
 
 const Turn = () => {
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
     const cardFullText = "What card would you like to attack with?";
-    const [actionValue, setActionValue] = useState(null); 
-    const [cardType, setCardType] = useState('');  
-    const [isFinal, setIsFinal] = useState(false);  
-    const [currentPlayer, setCurrentPlayer] = useState('player1'); //  to select player
-    const { player1, player2 } = useCardContext();  //  context to get player data
-    const playerData = currentPlayer === 'player1' ? player1 : player2;
+    const [actionValue, setActionValue] = useState(null);
+    const [cardType, setCardType] = useState('');
+    const [defenseChoice, setDefenseChoice] = useState('');
+    const [isFinal, setIsFinal] = useState(false);
+    const [currentPlayer, setCurrentPlayer] = useState('player1'); // to select player
+    const { player1, player2 } = useCardContext();  // context to get player data
     const navigate = useNavigate();
+    const { signAndExecuteTransactionBlock } = useWallet(); // Use wallet interaction hook
 
     useEffect(() => {
         if (message.length < fullText.length) {
@@ -34,24 +42,77 @@ const Turn = () => {
     }, [cardMessage, cardFullText, actionValue]);
 
     const handleChange = (e) => {
-        if (!isFinal) {  
-            console.log(`Answer selected: ${e.target.value}`);
-            if (e.target.value === 'yes') {
-                setActionValue(55);  // ATTACK
-            } else if (e.target.value === 'no') {
-                setActionValue(77);  // PASS
-                setIsFinal(true);  // make choice final if PASS is selected
-            }
+        if (!isFinal) {
+            setActionValue(Number(e.target.value));
         }
     };
 
     const handleCardTypeChange = (e) => {
-        if (!isFinal) { 
+        if (!isFinal) {
             setCardType(e.target.value);
-            setIsFinal(true);  
-            console.log(`Card selected: ${e.target.value}`);
         }
     };
+
+    const handleDefenseChoiceChange = (e) => {
+        setDefenseChoice(Number(e.target.value));
+    };
+
+
+
+    const handleTurn= async () => {
+
+
+        const txb = new TransactionBlock();
+
+        txb.setGasBudget(1000000000);
+
+
+        // r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
+
+        txb.moveCall({
+            target: `${Package}::card_deck::turn_trial`,
+            arguments: [
+                txb.pure.u8(guess),
+                txb.object(RANDOM),  
+                txb.pure.address(playerOneAddress),
+                txb.pure.address(playerTwoAddress),
+                txb.object(confirmDeckPlayerOne),
+                txb.object(confirmDeckPlayerTwo),
+            ],
+        });
+
+        try {
+            const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+            console.log('Game Started!', gameData);
+            alert(`Congrats! Game Started! \n Digest: ${gameData.digest}`);
+        } catch (e) {
+            console.error('Sorry, Game NOT Started', e);
+        }
+    };
+
+
+
+    
+    
+    const executeTurn = async () => {
+        setIsFinal(true);
+        // Simulation of the call to your blockchain or backend
+        try {
+            const txb = {}; // Placeholder for your transaction block setup
+            // Simulate sending transaction
+            const result = await signAndExecuteTransactionBlock(txb);
+            console.log('Transaction result:', result);
+        } catch (error) {
+            console.error('Error executing turn:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        if (isFinal) {
+            executeTurn();
+        }
+    }, [isFinal]);
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
@@ -66,27 +127,30 @@ const Turn = () => {
                 {message}
             </div>
             {message.length === fullText.length && !isFinal && (
-                <select style={selectStyle} onChange={handleChange} value={actionValue === 55 ? 'yes' : actionValue === 77 ? 'no' : ''}>
+                <select style={selectStyle} onChange={handleChange}>
                     <option value="">Select Action</option>
-                    <option value="yes">ATTACK</option>
-                    <option value="no">PASS</option>
+                    <option value="55">ATTACK</option>
+                    <option value="77">PASS</option>
                 </select>
             )}
-            {actionValue === 55 && cardMessage && (
+            {actionValue === 55 && cardMessage && !isFinal && (
                 <div style={{ marginTop: '20px' }}>
-                    <p style={scrollTextStyle}>{cardMessage}</p> 
-                    {!isFinal && (
-                        <select style={selectStyle} onChange={handleCardTypeChange}>
-                            <option value="">Select Card</option>
-                            <option value="general">General</option>
-                            <option value="monster">Monster</option>
-                            <option value="rider">Rider</option>
-                            <option value="soldier">Soldier</option>
-                        </select>
-                    )}
+                    <p style={scrollTextStyle}>{cardMessage}</p>
+                    <select style={selectStyle} onChange={handleCardTypeChange}>
+                        <option value="">Select Card</option>
+                        <option value="general">General</option>
+                        <option value="monster">Monster</option>
+                        <option value="rider">Rider</option>
+                        <option value="soldier">Soldier</option>
+                    </select>
+                    <select style={selectStyle} onChange={handleDefenseChoiceChange}>
+                        <option value="">Select Defense</option>
+                        <option value="1">Defense 1</option>
+                        <option value="2">Defense 2</option>
+                    </select>
                 </div>
             )}
-            {isFinal && <p style={scrollTextStyle}>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}</p>}
+            {isFinal && <p style={scrollTextStyle}>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}, Defense: {defenseChoice}</p>}
         </div>
     );
 };
@@ -99,7 +163,7 @@ const scrollTextStyle = {
     fontSize: '22px',
     overflow: 'hidden',
     minHeight: '50px',
-    margin: '10px 0' 
+    margin: '10px 0'
 };
 
 const selectStyle = {
