@@ -6,7 +6,7 @@ import { Package } from '../../../scripts/config';
 import { useNavigate } from 'react-router-dom';
 
 
-const StripTwo = () => {
+const StripThree = () => {
 
     
     const navigate = useNavigate(); 
@@ -14,14 +14,10 @@ const StripTwo = () => {
 
  
 
-    const handleLore = () => {
-        navigate('/lore');  
+    const handleTurn = () => {
+        navigate('/turn');  
     };
 
-
-    const handleRules = () => {
-        navigate('/rules');  
-    };
 
    
 
@@ -38,9 +34,8 @@ const StripTwo = () => {
             fontFamily: 'pixelify sans'
         }}>
         
-        <button style={buttonStyle} onClick={handleLore}>LORE</button>
+        <button style={buttonStyle} onClick={handleTurn}>BATTLE</button>
 
-        <button style={buttonStyle} onClick={handleRules}>RULES</button>
 
             
         </div>
@@ -61,6 +56,6 @@ const buttonStyle = {
 
 
 
-export default StripTwo;
+export default StripThree;
 
 

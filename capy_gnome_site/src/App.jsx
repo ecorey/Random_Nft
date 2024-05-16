@@ -6,6 +6,7 @@ import ConfigureCards from './components/ConfigureCards';
 import Box from './components/Box';
 import Strip from './components/Strip';
 import StripTwo from './components/StripTwo';
+import StripThree from './components/StripThree';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import ConfirmDeck from './components/ConfirmDeck';
@@ -28,7 +29,7 @@ function App() {
         <div>
           <NavBar />
           <Routes>
-            <Route path="/" element={<><Box /><StripTwo /><Strip /></>} />
+            <Route path="/" element={<><Box /><StripTwo /><Strip /><StripThree /></>} />
             <Route path="/confirm" element={<ConfirmDeck />} />
             <Route path="/lore" element={<Lore />} />
             <Route path="/start" element={<StartGame />} />
