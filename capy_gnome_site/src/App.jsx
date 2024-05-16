@@ -14,6 +14,8 @@ import Lore from './components/Lore';
 import Rules from './components/Rules';  
 import Turn from './components/Turn'; 
 import OutputData from './components/OutputData'; 
+import GameConfiguration from './components/GameConfiguration'; 
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
             <Route path="/turn" element={<Turn />} />
             <Route path="/configurecards" element={<ConfigureCards />} />
             <Route path="/outputdata" element={<OutputData />} />
+            <Route path="/gameconfiguration" element={<GameConfiguration />} />
 
           </Routes>
           <Footer />

@@ -5,6 +5,7 @@ import { useCardContext } from './CardContext';
 const OutputData = () => {
     const navigate = useNavigate();
     const { player1, player2 } = useCardContext(); 
+    const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
@@ -19,6 +20,10 @@ const OutputData = () => {
             <p>Monster ID: {player2.monsterId || "Not set"}</p>
             <p>Rider ID: {player2.riderId || "Not set"}</p>
             <p>Soldier ID: {player2.soldierId || "Not set"}</p>
+
+            <h1>Game Setup Data</h1>
+            <p>Game: {gameSetup.game}</p>
+            <p>Turnkey: {gameSetup.turnkey}</p>
 
             <button onClick={() => navigate('/')} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Home</button>
         </div>

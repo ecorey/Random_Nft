@@ -5,26 +5,17 @@ import { Package, RANDOM } from '../../../scripts/config';
 import { useNavigate } from 'react-router-dom';
 
 const StartGame = () => {
-    
     const { signAndExecuteTransactionBlock } = useWallet();
-
     const [guess, setGuess] = useState('');
     const [playerOneAddress, setPlayerOneAddress] = useState('');
     const [playerTwoAddress, setPlayerTwoAddress] = useState('');
     const [confirmDeckPlayerOne, setConfirmDeckPlayerOne] = useState('');
     const [confirmDeckPlayerTwo, setConfirmDeckPlayerTwo] = useState('');
-
-   
-
     const navigate = useNavigate();
 
     const handleStartGame = async () => {
-
-
         const txb = new TransactionBlock();
-
         txb.setGasBudget(1000000000);
-
         txb.moveCall({
             target: `${Package}::card_deck::start_game`,
             arguments: [
@@ -46,13 +37,7 @@ const StartGame = () => {
         }
     };
 
-    const handleConfigureDeck = () => {
-        navigate('/configurecards');  
-    };
-
-    const handleoutputdata = () => {
-        navigate('/outputdata');  
-    };
+    
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', marginTop: '100px' }}>
@@ -94,12 +79,7 @@ const StartGame = () => {
             <button onClick={handleStartGame} style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
                 Start Game
             </button>
-            <button onClick={handleConfigureDeck} style={{ width: '100%', marginTop: '200px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
-                Configure Player Decks
-            </button>
-            <button onClick={handleoutputdata} style={{ width: '100%', marginTop: '35px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
-                Card Configuration
-            </button>
+            
             <button onClick={() => navigate('/')} style={buttonBackStyle}>Home</button>
         </div>
     );
@@ -108,7 +88,7 @@ const StartGame = () => {
 const buttonBackStyle = {
     width: '100%',
     padding: '10px',
-    marginTop: '275px',
+    marginTop: '175px',
     backgroundColor: 'blue',
     color: 'black',
     fontSize: '16px',

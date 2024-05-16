@@ -24,6 +24,11 @@ const Strip = () => {
     };
 
 
+    const handleGameConfig = () => {
+        navigate('/gameconfiguration');  
+    };
+
+
 
     return (
         <div style={{
@@ -46,6 +51,7 @@ const Strip = () => {
                 <div style={{ flexGrow: 1 }}></div> 
             <button style={buttonStyle} onClick={handleConfirmDeck}>CONFIRM DECK</button>
             <button style={buttonStyle} onClick={handleStartGame}>START GAME</button>
+            <button style={buttonStyle} onClick={handleGameConfig}>GAME CONFIG</button>
             </div>
             
         </div>
