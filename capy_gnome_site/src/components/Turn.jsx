@@ -96,10 +96,8 @@ const Turn = () => {
     
     const executeTurn = async () => {
         setIsFinal(true);
-        // Simulation of the call to your blockchain or backend
         try {
-            const txb = {}; // Placeholder for your transaction block setup
-            // Simulate sending transaction
+            const txb = {}; 
             const result = await signAndExecuteTransactionBlock(txb);
             console.log('Transaction result:', result);
         } catch (error) {
