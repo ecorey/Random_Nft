@@ -65,28 +65,28 @@ const StartGame = () => {
             />
             <input
                 type="text"
-                placeholder="Player One Address"
+                placeholder="First Player Address"
                 value={playerOneAddress}
                 onChange={(e) => setPlayerOneAddress(e.target.value)}
                 style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
             />
             <input
                 type="text"
-                placeholder="Player Two Address"
+                placeholder="Second Player Address"
                 value={playerTwoAddress}
                 onChange={(e) => setPlayerTwoAddress(e.target.value)}
                 style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
             />
             <input
                 type="text"
-                placeholder="Player One Deck Confirmation ID"
+                placeholder="First Player Deck Confirmation ID"
                 value={confirmDeckPlayerOne}
                 onChange={(e) => setConfirmDeckPlayerOne(e.target.value)}
                 style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
             />
             <input
                 type="text"
-                placeholder="Player Two Deck Confirmation ID"
+                placeholder="Second Player Deck Confirmation ID"
                 value={confirmDeckPlayerTwo}
                 onChange={(e) => setConfirmDeckPlayerTwo(e.target.value)}
                 style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
