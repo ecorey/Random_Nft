@@ -3058,7 +3058,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun emit_game_stats_event(game: &Game) {
+    public entry fun emit_game_stats_event(game: &Game) {
       
         event::emit( GameStatsEvent {
             player_one_address: game.player_one_address,
