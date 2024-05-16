@@ -16,6 +16,7 @@ import Rules from './components/Rules';
 import Turn from './components/Turn'; 
 import OutputData from './components/OutputData'; 
 import GameConfiguration from './components/GameConfiguration'; 
+import GameStats from './components/GameStats'; 
 
 
 
@@ -38,6 +39,8 @@ function App() {
             <Route path="/configurecards" element={<ConfigureCards />} />
             <Route path="/outputdata" element={<OutputData />} />
             <Route path="/gameconfiguration" element={<GameConfiguration />} />
+            <Route path="/gamestats" element={<GameStats />} />
+
 
           </Routes>
           <Footer />
