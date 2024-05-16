@@ -2,6 +2,8 @@
 // QUERY AND DISPLAY THE GAME DATA
 // (or through move calls?) 
 
+// emit event then query the event**
+
 
 
 //////////////////////////////////////////////////////////////////
