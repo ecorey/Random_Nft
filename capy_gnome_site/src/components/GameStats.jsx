@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+// UNDER CONSTRUCTION
+// QUERY AND DISPLAY THE GAME DATA
+// (or through move calls?) 
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCardContext } from './CardContext'; 
-import { TransactionBlock } from "@mysten/sui.js/transactions";
-import { Package } from '../../../scripts/config';
+import { useCardContext } from './CardContext';
+import fetchGameStats from './suiRpcClient';
 
 const GameStats = () => {
     const navigate = useNavigate();
-    const { player1, player2 } = useCardContext(); 
+    const { player1, player2 } = useCardContext();
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
-    const GAME = gameSetup.game; 
+    const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
 
     const [stats, setStats] = useState({
@@ -32,43 +35,39 @@ const GameStats = () => {
         player_two_soldier_status: "Not set",
     });
 
-    const handleGameStats = async () => {
+    useEffect(() => {
+        const getGameStats = async () => {
+            try {
+                const gameStats = await fetchGameStats(GAME);
+                setStats({
+                    player_one_address: gameStats.player_one_address || "Not set",
+                    player_two_address: gameStats.player_two_address || "Not set",
+                    coin_flip_guess: gameStats.coin_flip_guess || "Not set",
+                    coin_flip_count: gameStats.coin_flip_count || "Not set",
+                    coin_flip_result: gameStats.coin_flip_result || "Not set",
+                    even_turns: gameStats.even_turns || "Not set",
+                    odd_turns: gameStats.odd_turns || "Not set",
+                    turn_count: gameStats.turn_count || "Not set",
+                    confirm_deck_player_one: gameStats.confirm_deck_player_one || "Not set",
+                    confirm_deck_player_two: gameStats.confirm_deck_player_two || "Not set",
+                    player_one_general_status: gameStats.player_one_general_status || "Not set",
+                    player_one_monster_status: gameStats.player_one_monster_status || "Not set",
+                    player_one_rider_status: gameStats.player_one_rider_status || "Not set",
+                    player_one_soldier_status: gameStats.player_one_soldier_status || "Not set",
+                    player_two_general_status: gameStats.player_two_general_status || "Not set",
+                    player_two_monster_status: gameStats.player_two_monster_status || "Not set",
+                    player_two_rider_status: gameStats.player_two_rider_status || "Not set",
+                    player_two_soldier_status: gameStats.player_two_soldier_status || "Not set",
+                });
+            } catch (error) {
+                console.error('Error fetching game stats:', error);
+            }
+        };
 
-        const txb = new TransactionBlock();
-        
-        txb.setGasBudget(1000000000);
-
-        const calls = [
-            { target: `${Package}::card_deck::player_one_address`, stateKey: 'player_one_address' },
-            { target: `${Package}::card_deck::player_two_address`, stateKey: 'player_two_address' },
-            { target: `${Package}::card_deck::coin_flip_guess`, stateKey: 'coin_flip_guess' },
-            { target: `${Package}::card_deck::coin_flip_count`, stateKey: 'coin_flip_count' },
-            { target: `${Package}::card_deck::coin_flip_result`, stateKey: 'coin_flip_result' },
-            { target: `${Package}::card_deck::even_turns`, stateKey: 'even_turns' },
-            { target: `${Package}::card_deck::odd_turns`, stateKey: 'odd_turns' },
-            { target: `${Package}::card_deck::turn_count`, stateKey: 'turn_count' },
-            { target: `${Package}::card_deck::confirm_deck_player_one`, stateKey: 'confirm_deck_player_one' },
-            { target: `${Package}::card_deck::confirm_deck_player_two`, stateKey: 'confirm_deck_player_two' },
-            { target: `${Package}::card_deck::player_one_general_status`, stateKey: 'player_one_general_status' },
-            { target: `${Package}::card_deck::player_one_monster_status`, stateKey: 'player_one_monster_status' },
-            { target: `${Package}::card_deck::player_one_rider_status`, stateKey: 'player_one_rider_status' },
-            { target: `${Package}::card_deck::player_one_soldier_status`, stateKey: 'player_one_soldier_status' },
-            { target: `${Package}::card_deck::player_two_general_status`, stateKey: 'player_two_general_status' },
-            { target: `${Package}::card_deck::player_two_monster_status`, stateKey: 'player_two_monster_status' },
-            { target: `${Package}::card_deck::player_two_rider_status`, stateKey: 'player_two_rider_status' },
-            { target: `${Package}::card_deck::player_two_soldier_status`, stateKey: 'player_two_soldier_status' },
-        ];
-
-        try {
-            const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
-            console.log('Game Stats!', gameData);
-            alert(`Congrats! Game Stats! \n Digest: ${gameData.digest}`);
-        } catch (e) {
-            console.error('Sorry, Game Stats NOT returned', e);
+        if (GAME !== "Not set") {
+            getGameStats();
         }
-    };
-
-
+    }, [GAME]);
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
@@ -106,9 +105,6 @@ const GameStats = () => {
             <p>player_two_rider_status: {stats.player_two_rider_status}</p>
             <p>player_two_soldier_status: {stats.player_two_soldier_status}</p>
 
-            <button onClick={handleGameStats} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>
-                Fetch Game Stats
-            </button>
             <button onClick={() => navigate('/')} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Home</button>
         </div>
     );

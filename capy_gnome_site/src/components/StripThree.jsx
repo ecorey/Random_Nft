@@ -18,6 +18,10 @@ const StripThree = () => {
         navigate('/turn');  
     };
 
+    const handleGameStats = () => {
+        navigate('/gamestats');  
+    };
+
 
    
 
@@ -35,6 +39,8 @@ const StripThree = () => {
         }}>
         
         <button style={buttonStyle} onClick={handleTurn}>BATTLE</button>
+        <button style={buttonStyle} onClick={handleGameStats}>GAME STATS</button>
+
 
 
             
