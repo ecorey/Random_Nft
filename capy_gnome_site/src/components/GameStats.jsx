@@ -4,6 +4,8 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { useWallet } from '@suiet/wallet-kit';
 import { Package } from '../../../scripts/config';
 
+
+
 const GameStats = () => {
     const navigate = useNavigate();
     const { signAndExecuteTransactionBlock } = useWallet();
@@ -11,6 +13,7 @@ const GameStats = () => {
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
+
 
     const [stats, setStats] = useState({
         coin_flip_guess: "Not set",
@@ -81,7 +84,7 @@ const GameStats = () => {
             <p>game: {GAME || "Not set"}</p>
             <p>turn key: {TurnKey || "Not set"}</p>
 
-            <h1>Coin Data</h1>
+            {/* <h1>Coin Data</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : error ? (
@@ -92,7 +95,7 @@ const GameStats = () => {
                     <p>coin_flip_guess: {stats.coin_flip_guess}</p>
                     <p>coin_flip_count: {stats.coin_flip_count}</p>
                 </>
-            )}
+            )} */}
 
             <button onClick={gameStats} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>GET STATS</button>
             <button onClick={() => navigate('/')} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Home</button>
