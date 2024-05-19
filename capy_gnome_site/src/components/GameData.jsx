@@ -1,7 +1,7 @@
 import { useSuiClientQuery } from '@mysten/dapp-kit';
 import { Package } from '../../../scripts/config';
 
-export function useFetchCoinFlipData(gameId) {
+export function useFetchGameData(gameId) {
     const { data, isLoading, isError, error, refetch } = useSuiClientQuery(
         'getObject',
         {
@@ -11,7 +11,7 @@ export function useFetchCoinFlipData(gameId) {
                 showContent: true,
             },
         },
-        { queryKey: ['CoinFlipData', gameId] },
+        { queryKey: ['GameData', gameId] },
     );
 
     return {
