@@ -19,64 +19,62 @@ const GameStats = () => {
     const PACKAGE_ID = '0x41391e2d4c014356eaffda8fc909760eae8f0569bd468acaa518ab5e53de4c86'; 
     const MODULE_ID = 'card_deck'; 
 
+
     const [stats, setStats] = useState({
-        coin_flip_guess: "Not set",
-        coin_flip_count: "Not set",
-        coin_flip_result: "Not set",
+        coin_flip_guess: 99,
+        coin_flip_count: 99,
+        coin_flip_result: 99,
     });
 
-    // const gameStats = async () => {
-    //     const txb = new TransactionBlock();
-
-    //     txb.setGasBudget(1000000000);
-
-    //     const coin_flip_guess_result = await txb.moveCall({
-    //         target: `${Package}::card_deck::coin_flip_guess`,
-    //         arguments: [txb.object(GAME)],
-    //     });
-
-    //     const coin_flip_count_result = await txb.moveCall({
-    //         target: `${Package}::card_deck::coin_flip_count`,
-    //         arguments: [txb.object(GAME)],
-    //     });
-
-    //     const coin_flip_result_result = await txb.moveCall({
-    //         target: `${Package}::card_deck::coin_flip_result`,
-    //         arguments: [txb.object(GAME)],
-    //     });
-
-    //     setStats({
-    //         coin_flip_guess: coin_flip_guess_result || "Not set",
-    //         coin_flip_count: coin_flip_count_result || "Not set",
-    //         coin_flip_result: coin_flip_result_result || "Not set",
-    //     });
-
-    //     try {
-    //         const result = await signAndExecuteTransactionBlock({ transactionBlock: txb });
-    //         console.log('Event emitted!', result);
-    //         return result;
-    //     } catch (error) {
-    //         console.error('Error emitting event:', error);
-    //         throw error;
-    //     }
-    // };
 
 
+    const gameStats = async () => {
 
-    // useEffect(() => {
-    //     const getGameStats = async () => {
-    //         try {
-    //             await gameStats();
-    //         } catch (error) {
-    //             console.error('Error during getGameStats:', error);
-    //         }
-    //     };
+        const txb = new TransactionBlock();
 
-    //     if (GAME !== "Not set") {
-    //         getGameStats();
-    //     }
-    // }, [GAME]);
+        txb.setGasBudget(1000000000);
 
+        const coin_flip_guess_result = await txb.moveCall({
+            target: `${Package}::card_deck::coin_flip_guess`,
+            arguments: [txb.object(GAME)],
+        });
+
+        const coin_flip_count_result = await txb.moveCall({
+            target: `${Package}::card_deck::coin_flip_count`,
+            arguments: [txb.object(GAME)],
+        });
+
+        const coin_flip_result_result = await txb.moveCall({
+            target: `${Package}::card_deck::coin_flip_result`,
+            arguments: [txb.object(GAME)],
+        });
+
+        setStats({
+            coin_flip_guess: coin_flip_guess_result,
+            coin_flip_count: coin_flip_count_result,
+            coin_flip_result: coin_flip_result_result,
+        });
+
+
+        txb.moveCall({
+            target: `${Package}::card_deck::emit_game_stats_event`,
+            arguments: [txb.object(GAME)],
+        });
+
+
+        try {
+            const result = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+            console.log('Event emitted!', result);
+            return result;
+        } catch (error) {
+            console.error('Error emitting event:', error);
+            throw error;
+        }
+    };
+
+
+
+    
 
 
 
@@ -86,12 +84,15 @@ const GameStats = () => {
             <p>game: {GAME || "Not set"}</p>
             <p>turn key: {TurnKey || "Not set"}</p>
 
+ 
             {/* <h1>Coin Data</h1>
-            <p>coin_flip_result: {stats.coin_flip_result}</p>
-            <p>coin_flip_guess: {stats.coin_flip_guess}</p>
-            <p>coin_flip_count: {stats.coin_flip_count}</p> */}
+
+            <p>coin_flip_result: {stats.coin_flip_result || "Not set"}</p>
+            <p>coin_flip_guess: {stats.coin_flip_guess || "Not set"}</p>
+            <p>coin_flip_count: {stats.coin_flip_count || "Not set"}</p> */}
+
             
-            {/* <button onClick={() => gameStats()} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>GET STATS</button> */}
+            <button onClick={() => gameStats()} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>GET STATS</button>
 
             <button onClick={() => navigate('/')} style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Home</button>
         </div>
