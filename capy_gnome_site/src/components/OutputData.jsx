@@ -12,6 +12,7 @@ const OutputData = () => {
             <h1>Player 1 Data</h1>
             <p>Address: {player1.address || "Not set"}</p>
             <p>Confirmed Deck: {player1.confirmDeck || "Not set"}</p>
+            <br />
             <p>General ID: {player1.generalId || "Not set"}</p>
             <p>Monster ID: {player1.monsterId || "Not set"}</p>
             <p>Rider ID: {player1.riderId || "Not set"}</p>
@@ -21,6 +22,7 @@ const OutputData = () => {
             <h1>Player 2 Data</h1>
             <p>Address: {player2.address || "Not set"}</p>
             <p>Confirmed Deck: {player2.confirmDeck || "Not set"}</p>
+            <br />
             <p>General ID: {player2.generalId || "Not set"}</p>
             <p>Monster ID: {player2.monsterId || "Not set"}</p>
             <p>Rider ID: {player2.riderId || "Not set"}</p>
