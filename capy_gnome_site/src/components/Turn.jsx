@@ -102,9 +102,21 @@ const Turn = () => {
     };
 
     const handleTurn = async () => {
+        
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
-
+    
+        let attackerConfirmDeck;
+        let defenderConfirmDeck;
+    
+        if (currentPlayer === 'Player 1') {
+            attackerConfirmDeck = confirmDeckPlayerOne;
+            defenderConfirmDeck = confirmDeckPlayerTwo;
+        } else {
+            attackerConfirmDeck = confirmDeckPlayerTwo;
+            defenderConfirmDeck = confirmDeckPlayerOne;
+        }
+    
         txb.moveCall({
             target: `${Package}::card_deck::turn_trial`,
             arguments: [
@@ -112,9 +124,9 @@ const Turn = () => {
                 txb.object(TurnKey),  
                 txb.object(GAME),
                 txb.object(AttackCard),
-                txb.object(currentPlayer === 'Player 1' ? confirmDeckPlayerOne : confirmDeckPlayerTwo),
+                txb.object(attackerConfirmDeck),
                 txb.pure(defenseChoice),
-                txb.object(currentPlayer === 'Player 1' ? confirmDeckPlayerTwo : confirmDeckPlayerOne),
+                txb.object(defenderConfirmDeck),
                 txb.pure(playerOneAddress),
                 txb.pure(playerTwoAddress),
                 txb.object(possible_defense_general),
@@ -123,7 +135,7 @@ const Turn = () => {
                 txb.object(possible_defense_soldier),
             ],
         });
-
+    
         try {
             const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
             console.log('Game Started!', gameData);
@@ -132,6 +144,7 @@ const Turn = () => {
             console.error('Sorry, Game NOT Started', e);
         }
     };
+    
 
     useEffect(() => {
         if (isFinal) {
