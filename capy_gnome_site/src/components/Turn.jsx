@@ -4,10 +4,7 @@ import { useCardContext } from './CardContext';
 import { useWallet } from '@suiet/wallet-kit';  
 import { Package, RANDOM } from '../../../scripts/config';
 
-
-
 // UNDER CONSTRUCTION
-
 
 const Turn = () => {
 
@@ -19,27 +16,30 @@ const Turn = () => {
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
-    const { player, setPlayer, player1, player2, handleChange } = useCardContext();  
+    const [currentPlayer, setCurrentPlayer] = useState('Player 1'); 
+    const { player1, player2 } = useCardContext();  
     const navigate = useNavigate();
     const { signAndExecuteTransactionBlock } = useWallet(); 
 
-
+    // Read game and turn key from local storage
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
 
-    
+    // Define player addresses
+    const playerOneAddress = player1.address;
+    const playerTwoAddress = player2.address;
 
-    const data = player === 'Player 1' ? player1 : player === 'Player 2' ? player2 : gameData;
+    // Get player cards based on currentPlayer
+    const playerCards = currentPlayer === 'Player 1' ? player1 : player2;
+    const opponentCards = currentPlayer === 'Player 1' ? player2 : player1;
 
-
-
-    const AttackCard = "";
-
-
+    const possible_defense_general = opponentCards.generalId;
+    const possible_defense_monster = opponentCards.monsterId;
+    const possible_defense_rider = opponentCards.riderId;
+    const possible_defense_soldier = opponentCards.soldierId;
 
     useEffect(() => {
-
         if (message.length < fullText.length) {
             const timer = setTimeout(() => {
                 setMessage(currentMessage => currentMessage + fullText.charAt(message.length));
@@ -73,37 +73,30 @@ const Turn = () => {
         setDefenseChoice(Number(e.target.value));
     };
 
-
-
-    const handleTurn= async () => {
-
-
+    const handleTurn = async () => {
         const txb = new TransactionBlock();
-
         txb.setGasBudget(1000000000);
 
-
-        // r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
+        // Assuming `cardType` holds the selected attack card type (e.g., 'general', 'monster', etc.)
+        const AttackCard = playerCards[`${cardType}Id`];
 
         txb.moveCall({
             target: `${Package}::card_deck::turn_trial`,
             arguments: [
-                txb.pure.u8(guess),
+                txb.pure.u8(actionValue),
                 txb.object(RANDOM),
                 txb.object(TurnKey),  
                 txb.object(GAME),
                 txb.object(AttackCard),
-                txb.object(confirmDeckPlayerOne),
+                txb.object(currentPlayer === 'Player 1' ? player1.confirmDeck : player2.confirmDeck),
                 txb.pure.u8(defenseChoice),
-                txb.object(confirmDeckPlayerTwo),
+                txb.object(currentPlayer === 'Player 1' ? player2.confirmDeck : player1.confirmDeck),
                 txb.pure.address(playerOneAddress),
                 txb.pure.address(playerTwoAddress),
                 txb.object(possible_defense_general),
                 txb.object(possible_defense_monster),
                 txb.object(possible_defense_rider),
                 txb.object(possible_defense_soldier),
-                
-                
             ],
         });
 
@@ -116,25 +109,9 @@ const Turn = () => {
         }
     };
 
-
-
-    
-    
-    const executeTurn = async () => {
-        setIsFinal(true);
-        try {
-            const txb = {}; 
-            const result = await signAndExecuteTransactionBlock(txb);
-            console.log('Transaction result:', result);
-        } catch (error) {
-            console.error('Error executing turn:', error);
-        }
-    };
-
-
     useEffect(() => {
         if (isFinal) {
-            executeTurn();
+            handleTurn();
         }
     }, [isFinal]);
 
@@ -144,8 +121,8 @@ const Turn = () => {
                 onChange={(e) => setCurrentPlayer(e.target.value)}
                 style={{ padding: '10px', marginBottom: '20px', fontFamily: 'Pixelify sans', fontSize: '16px' }}
             >
-                <option value="player1">Player 1</option>
-                <option value="player2">Player 2</option>
+                <option value="Player 1">Player 1</option>
+                <option value="Player 2">Player 2</option>
             </select>
             <div style={scrollTextStyle}>
                 {message}
