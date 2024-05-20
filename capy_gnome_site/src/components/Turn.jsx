@@ -26,15 +26,21 @@ const Turn = () => {
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
 
-    // Define player addresses
-    const playerOneAddress = player1.address;
-    const playerTwoAddress = player2.address;
+    // Read player data from local storage
+    const storedPlayer1 = JSON.parse(localStorage.getItem('player1')) || {};
+    const storedPlayer2 = JSON.parse(localStorage.getItem('player2')) || {};
+
+    // Define player addresses and confirm decks
+    const playerOneAddress = storedPlayer1.address;
+    const playerTwoAddress = storedPlayer2.address;
+    const confirmDeckPlayerOne = storedPlayer1.confirmDeck;
+    const confirmDeckPlayerTwo = storedPlayer2.confirmDeck;
 
     // Get player cards based on currentPlayer
-    const playerCards = currentPlayer === 'Player 1' ? player1 : player2;
-    const opponentCards = currentPlayer === 'Player 1' ? player2 : player1;
+    const playerCards = currentPlayer === 'Player 1' ? storedPlayer1 : storedPlayer2;
+    const opponentCards = currentPlayer === 'Player 1' ? storedPlayer2 : storedPlayer1;
 
-    // gets card ids for attacker
+    // gets card id for attacker
     const possible_attack_general = playerCards.generalId;
     const possible_attack_monster = playerCards.monsterId;
     const possible_attack_rider = playerCards.riderId;
@@ -46,7 +52,7 @@ const Turn = () => {
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
 
-    // State variable for the chosen attack card
+    // gets set to the chosen attack card
     const [AttackCard, setAttackCard] = useState('');
 
     useEffect(() => {
@@ -58,6 +64,7 @@ const Turn = () => {
         }
     }, [message, fullText]);
 
+    // dropdown to attack or pass
     useEffect(() => {
         if (actionValue === 55 && cardMessage.length < cardFullText.length) {
             const timer = setTimeout(() => {
@@ -75,7 +82,18 @@ const Turn = () => {
 
     const handleCardTypeChange = (e) => {
         if (!isFinal) {
-            setCardType(e.target.value);
+            const selectedCardType = e.target.value;
+            setCardType(selectedCardType);
+
+            if (selectedCardType === 'general') {
+                setAttackCard(playerCards.generalId);
+            } else if (selectedCardType === 'monster') {
+                setAttackCard(playerCards.monsterId);
+            } else if (selectedCardType === 'rider') {
+                setAttackCard(playerCards.riderId);
+            } else if (selectedCardType === 'soldier') {
+                setAttackCard(playerCards.soldierId);
+            }
         }
     };
 
@@ -84,11 +102,6 @@ const Turn = () => {
     };
 
     const handleTurn = async () => {
-        if (!AttackCard) {
-            console.error('AttackCard is not set');
-            return;
-        }
-
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
 
@@ -99,9 +112,9 @@ const Turn = () => {
                 txb.object(TurnKey),  
                 txb.object(GAME),
                 txb.object(AttackCard),
-                txb.object(currentPlayer === 'Player 1' ? player1.confirmDeck : player2.confirmDeck),
+                txb.object(currentPlayer === 'Player 1' ? confirmDeckPlayerOne : confirmDeckPlayerTwo),
                 txb.pure(defenseChoice),
-                txb.object(currentPlayer === 'Player 1' ? player2.confirmDeck : player1.confirmDeck),
+                txb.object(currentPlayer === 'Player 1' ? confirmDeckPlayerTwo : confirmDeckPlayerOne),
                 txb.pure(playerOneAddress),
                 txb.pure(playerTwoAddress),
                 txb.object(possible_defense_general),
@@ -120,26 +133,15 @@ const Turn = () => {
         }
     };
 
-    const handleButtonClick = () => {
-        // Set the correct attack card based on card type
-        if (cardType === "general") {
-            setAttackCard(possible_attack_general);
-        } else if (cardType === "monster") {
-            setAttackCard(possible_attack_monster);
-        } else if (cardType === "rider") {
-            setAttackCard(possible_attack_rider);
-        } else if (cardType === "soldier") {
-            setAttackCard(possible_attack_soldier);
-        }
-
-        setIsFinal(true);
-    };
-
     useEffect(() => {
         if (isFinal) {
             handleTurn();
         }
-    }, [isFinal, AttackCard]); // Added AttackCard to the dependency array
+    }, [isFinal]);
+
+    const handleButtonClick = () => {
+        setIsFinal(true);
+    };
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
