@@ -19,8 +19,7 @@ const Turn = () => {
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
-    const [currentPlayer, setCurrentPlayer] = useState('player1'); 
-    const { player1, player2 } = useCardContext();  
+    const { player, setPlayer, player1, player2, handleChange } = useCardContext();  
     const navigate = useNavigate();
     const { signAndExecuteTransactionBlock } = useWallet(); 
 
@@ -28,6 +27,10 @@ const Turn = () => {
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
+
+    
+
+    const data = player === 'Player 1' ? player1 : player === 'Player 2' ? player2 : gameData;
 
 
 
@@ -54,7 +57,7 @@ const Turn = () => {
         }
     }, [cardMessage, cardFullText, actionValue]);
 
-    const handleChange = (e) => {
+    const handleNewChange = (e) => {
         if (!isFinal) {
             setActionValue(Number(e.target.value));
         }
@@ -148,7 +151,7 @@ const Turn = () => {
                 {message}
             </div>
             {message.length === fullText.length && !isFinal && (
-                <select style={selectStyle} onChange={handleChange}>
+                <select style={selectStyle} onChange={handleNewChange}>
                     <option value="">Select Action</option>
                     <option value="55">ATTACK</option>
                     <option value="77">PASS</option>
