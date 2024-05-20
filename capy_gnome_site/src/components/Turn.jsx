@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCardContext } from './CardContext'; 
 import { useWallet } from '@suiet/wallet-kit';  
+import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package, RANDOM } from '../../../scripts/config';
 
 // UNDER CONSTRUCTION
@@ -74,10 +75,10 @@ const Turn = () => {
     };
 
     const handleTurn = async () => {
+
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
 
-        // Assuming `cardType` holds the selected attack card type (e.g., 'general', 'monster', etc.)
         const AttackCard = playerCards[`${cardType}Id`];
 
         txb.moveCall({
@@ -115,6 +116,10 @@ const Turn = () => {
         }
     }, [isFinal]);
 
+    const handleButtonClick = () => {
+        setIsFinal(true);
+    };
+
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
             <select
@@ -146,10 +151,18 @@ const Turn = () => {
                     </select>
                     <select style={selectStyle} onChange={handleDefenseChoiceChange}>
                         <option value="">Select Defense</option>
-                        <option value="1">Defense 1</option>
-                        <option value="2">Defense 2</option>
+                        <option value="1">Backline Defense Stance</option>
+                        <option value="2">Frontline Defense Stance</option>
                     </select>
                 </div>
+            )}
+            {actionValue === 55 && cardType && defenseChoice && !isFinal && (
+                <button 
+                    onClick={handleButtonClick}
+                    style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}
+                >
+                    Perform Battle Action
+                </button>
             )}
             {isFinal && <p style={scrollTextStyle}>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}, Defense: {defenseChoice}</p>}
         </div>
