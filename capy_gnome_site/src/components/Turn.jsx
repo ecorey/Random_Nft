@@ -35,10 +35,24 @@ const Turn = () => {
     const playerCards = currentPlayer === 'Player 1' ? player1 : player2;
     const opponentCards = currentPlayer === 'Player 1' ? player2 : player1;
 
+
+    // gets card id for attacker
+    const possible_attack_general = playerCards.generalId;
+    const possible_attack_monster = playerCards.monsterId;
+    const possible_attack_rider = playerCards.riderId;
+    const possible_attack_soldier = playerCards.soldierId;
+
+    // gets card ids for defender
     const possible_defense_general = opponentCards.generalId;
     const possible_defense_monster = opponentCards.monsterId;
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
+
+
+    // gets set to the chosen attack card
+    const AttackCard = "";
+
+
 
     useEffect(() => {
         if (message.length < fullText.length) {
@@ -49,6 +63,9 @@ const Turn = () => {
         }
     }, [message, fullText]);
 
+
+
+    // dropdown to attack or pass
     useEffect(() => {
         if (actionValue === 55 && cardMessage.length < cardFullText.length) {
             const timer = setTimeout(() => {
@@ -57,6 +74,8 @@ const Turn = () => {
             return () => clearTimeout(timer);
         }
     }, [cardMessage, cardFullText, actionValue]);
+
+
 
     const handleNewChange = (e) => {
         if (!isFinal) {
@@ -79,21 +98,22 @@ const Turn = () => {
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
 
-        const AttackCard = playerCards[`${cardType}Id`];
+
+
+        // r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
 
         txb.moveCall({
             target: `${Package}::card_deck::turn_trial`,
             arguments: [
-                txb.pure.u8(actionValue),
                 txb.object(RANDOM),
                 txb.object(TurnKey),  
                 txb.object(GAME),
                 txb.object(AttackCard),
                 txb.object(currentPlayer === 'Player 1' ? player1.confirmDeck : player2.confirmDeck),
-                txb.pure.u8(defenseChoice),
+                txb.pure(defenseChoice),
                 txb.object(currentPlayer === 'Player 1' ? player2.confirmDeck : player1.confirmDeck),
-                txb.pure.address(playerOneAddress),
-                txb.pure.address(playerTwoAddress),
+                txb.pure(playerOneAddress),
+                txb.pure(playerTwoAddress),
                 txb.object(possible_defense_general),
                 txb.object(possible_defense_monster),
                 txb.object(possible_defense_rider),
@@ -164,7 +184,20 @@ const Turn = () => {
                     Perform Battle Action
                 </button>
             )}
-            {isFinal && <p style={scrollTextStyle}>Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}{cardType && ` with ${cardType}`}, Defense: {defenseChoice}</p>}
+            {isFinal && (
+                <>
+                    <p style={scrollTextStyle}>
+                        Selected Action: {actionValue === 55 ? 'ATTACK' : 'PASS'}
+                        {cardType && ` with ${cardType}`}, Defense: {defenseChoice}
+                    </p>
+                    <button 
+                        onClick={() => navigate('/')}
+                        style={{ width: '100%', padding: '10px', marginTop: '20px', backgroundColor: 'blue', color: 'white', fontSize: '16px', cursor: 'pointer' }}
+                    >
+                        Home
+                    </button>
+                </>
+            )}
         </div>
     );
 };
