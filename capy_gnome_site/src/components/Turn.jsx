@@ -10,6 +10,7 @@ import { Package, RANDOM } from '../../../scripts/config';
 
 
 const Turn = () => {
+
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
@@ -18,12 +19,24 @@ const Turn = () => {
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
-    const [currentPlayer, setCurrentPlayer] = useState('player1'); // to select player
-    const { player1, player2 } = useCardContext();  // context to get player data
+    const [currentPlayer, setCurrentPlayer] = useState('player1'); 
+    const { player1, player2 } = useCardContext();  
     const navigate = useNavigate();
-    const { signAndExecuteTransactionBlock } = useWallet(); // Use wallet interaction hook
+    const { signAndExecuteTransactionBlock } = useWallet(); 
+
+
+    const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
+    const GAME = gameSetup.game;
+    const TurnKey = gameSetup.turnkey;
+
+
+
+    const AttackCard = "";
+
+
 
     useEffect(() => {
+
         if (message.length < fullText.length) {
             const timer = setTimeout(() => {
                 setMessage(currentMessage => currentMessage + fullText.charAt(message.length));
@@ -73,11 +86,21 @@ const Turn = () => {
             target: `${Package}::card_deck::turn_trial`,
             arguments: [
                 txb.pure.u8(guess),
-                txb.object(RANDOM),  
+                txb.object(RANDOM),
+                txb.object(TurnKey),  
+                txb.object(GAME),
+                txb.object(AttackCard),
+                txb.object(confirmDeckPlayerOne),
+                txb.pure.u8(defenseChoice),
+                txb.object(confirmDeckPlayerTwo),
                 txb.pure.address(playerOneAddress),
                 txb.pure.address(playerTwoAddress),
-                txb.object(confirmDeckPlayerOne),
-                txb.object(confirmDeckPlayerTwo),
+                txb.object(possible_defense_general),
+                txb.object(possible_defense_monster),
+                txb.object(possible_defense_rider),
+                txb.object(possible_defense_soldier),
+                
+                
             ],
         });
 
