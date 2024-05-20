@@ -8,7 +8,6 @@ import { Package, RANDOM } from '../../../scripts/config';
 // UNDER CONSTRUCTION
 
 const Turn = () => {
-
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
@@ -35,8 +34,7 @@ const Turn = () => {
     const playerCards = currentPlayer === 'Player 1' ? player1 : player2;
     const opponentCards = currentPlayer === 'Player 1' ? player2 : player1;
 
-
-    // gets card id for attacker
+    // gets card ids for attacker
     const possible_attack_general = playerCards.generalId;
     const possible_attack_monster = playerCards.monsterId;
     const possible_attack_rider = playerCards.riderId;
@@ -48,11 +46,8 @@ const Turn = () => {
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
 
-
-    // gets set to the chosen attack card
-    const AttackCard = "";
-
-
+    // State variable for the chosen attack card
+    const [AttackCard, setAttackCard] = useState('');
 
     useEffect(() => {
         if (message.length < fullText.length) {
@@ -63,9 +58,6 @@ const Turn = () => {
         }
     }, [message, fullText]);
 
-
-
-    // dropdown to attack or pass
     useEffect(() => {
         if (actionValue === 55 && cardMessage.length < cardFullText.length) {
             const timer = setTimeout(() => {
@@ -74,8 +66,6 @@ const Turn = () => {
             return () => clearTimeout(timer);
         }
     }, [cardMessage, cardFullText, actionValue]);
-
-
 
     const handleNewChange = (e) => {
         if (!isFinal) {
@@ -94,13 +84,13 @@ const Turn = () => {
     };
 
     const handleTurn = async () => {
+        if (!AttackCard) {
+            console.error('AttackCard is not set');
+            return;
+        }
 
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
-
-
-
-        // r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
 
         txb.moveCall({
             target: `${Package}::card_deck::turn_trial`,
@@ -130,15 +120,26 @@ const Turn = () => {
         }
     };
 
+    const handleButtonClick = () => {
+        // Set the correct attack card based on card type
+        if (cardType === "general") {
+            setAttackCard(possible_attack_general);
+        } else if (cardType === "monster") {
+            setAttackCard(possible_attack_monster);
+        } else if (cardType === "rider") {
+            setAttackCard(possible_attack_rider);
+        } else if (cardType === "soldier") {
+            setAttackCard(possible_attack_soldier);
+        }
+
+        setIsFinal(true);
+    };
+
     useEffect(() => {
         if (isFinal) {
             handleTurn();
         }
-    }, [isFinal]);
-
-    const handleButtonClick = () => {
-        setIsFinal(true);
-    };
+    }, [isFinal, AttackCard]); // Added AttackCard to the dependency array
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>

@@ -6,17 +6,18 @@ const ConfigureCards = () => {
     const navigate = useNavigate();
     const { player, setPlayer, player1, player2, handleChange } = useCardContext();
     const [gameData, setGameData] = useState({ game: '', turnkey: '' });
-    const data = player === 'Player 1' ? player1 : player === 'Player 2' ? player2 : gameData;
     const [saved, setSaved] = useState(false);
+
+    const data = player === 'Player 1' ? player1 : player === 'Player 2' ? player2 : gameData;
 
     const handleSave = () => {
         if (player === 'Game Setup') {
             localStorage.setItem('gameSetup', JSON.stringify(gameData));
         }
-        setSaved(true); 
+        setSaved(true);
         setTimeout(() => {
-            navigate('/outputdata');  
-        }, 1500);  
+            navigate('/outputdata');
+        }, 1500);
     };
 
     const handleGameChange = (e, field) => {
@@ -38,15 +39,65 @@ const ConfigureCards = () => {
 
             {player === 'Game Setup' ? (
                 <>
-                    <input type="text" placeholder="Game" value={gameData.game} onChange={e => handleGameChange(e, 'game')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
-                    <input type="text" placeholder="Turnkey" value={gameData.turnkey} onChange={e => handleGameChange(e, 'turnkey')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
+                    <input
+                        type="text"
+                        placeholder="Game"
+                        value={gameData.game}
+                        onChange={e => handleGameChange(e, 'game')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Turnkey"
+                        value={gameData.turnkey}
+                        onChange={e => handleGameChange(e, 'turnkey')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
                 </>
             ) : (
                 <>
-                    <input type="text" placeholder="General ID" value={data.generalId} onChange={e => handleChange(e, 'generalId')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
-                    <input type="text" placeholder="Monster ID" value={data.monsterId} onChange={e => handleChange(e, 'monsterId')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
-                    <input type="text" placeholder="Rider ID" value={data.riderId} onChange={e => handleChange(e, 'riderId')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
-                    <input type="text" placeholder="Soldier ID" value={data.soldierId} onChange={e => handleChange(e, 'soldierId')} style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }} />
+                    <input
+                        type="text"
+                        placeholder="General ID"
+                        value={data.generalId}
+                        onChange={e => handleChange(e, 'generalId')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Monster ID"
+                        value={data.monsterId}
+                        onChange={e => handleChange(e, 'monsterId')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Rider ID"
+                        value={data.riderId}
+                        onChange={e => handleChange(e, 'riderId')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Soldier ID"
+                        value={data.soldierId}
+                        onChange={e => handleChange(e, 'soldierId')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        value={data.address}
+                        onChange={e => handleChange(e, 'address')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Confirmed Deck"
+                        value={data.confirmDeck}
+                        onChange={e => handleChange(e, 'confirmDeck')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
                 </>
             )}
 

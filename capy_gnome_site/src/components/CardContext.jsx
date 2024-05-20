@@ -1,5 +1,3 @@
-// saves the data for the general id, monster id, rider id, and soldier id to local storage for both player 1 and player 2
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const CardContext = createContext();
@@ -20,13 +18,17 @@ export const CardProvider = ({ children }) => {
         generalId: '',
         monsterId: '',
         riderId: '',
-        soldierId: ''
+        soldierId: '',
+        address: '',
+        confirmDeck: ''
     }));
     const [player2, setPlayer2] = useState(getInitialState('player2', {
         generalId: '',
         monsterId: '',
         riderId: '',
-        soldierId: ''
+        soldierId: '',
+        address: '',
+        confirmDeck: ''
     }));
 
     // Effect to update localStorage when player1 or player2 data changes
