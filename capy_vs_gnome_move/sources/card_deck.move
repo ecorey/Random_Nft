@@ -485,7 +485,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-         let gnome_soldier_cap = GnomeSoldierOwnerCap {
+        let gnome_soldier_cap = GnomeSoldierOwnerCap {
             id: object::new(ctx),
             gnome_soldier_id: object::id(&gnome_soldier),
         };
@@ -543,13 +543,18 @@ module capy_vs_gnome::card_deck {
 
 
    
+    // Capy General Owner Cap
+    struct CapyGeneralOwnerCap has key, store {
+        id: UID,
+        capy_general_id: ID,
+    }
 
 
-    fun mint_capy_general(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
+    fun mint_capy_general(ctx: &mut TxContext) : CapyGeneralOwnerCap {
 
-        Card {
-            id: id,
+        let capy_general = Card {
+
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
             type_id: 1,
@@ -561,15 +566,30 @@ module capy_vs_gnome::card_deck {
             cost: 6,
             // ability_one: utf8(b"Rally"),
             // ability_two: utf8(b"Defensive Orders"),
-        }
+        };
+
+
+        let capy_general_cap = CapyGeneralOwnerCap {
+            id: object::new(ctx),
+            capy_general_id: object::id(&capy_general),
+        };
+
+
+        transfer::public_share_object(capy_general);
+
+        capy_general_cap
+
+
+
+
     }
 
 
     fun transfer_capy_general(ctx: &mut TxContext) {
-        let id = object::new(ctx);
 
         let capy_general = Card {
-            id: id,
+            
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
             type_id: 1,
@@ -580,40 +600,36 @@ module capy_vs_gnome::card_deck {
             health: 3,
             cost: 6,
             // ability_one: utf8(b"Rally"),
+            // ability_two: utf8(b"Defensive Orders"),
         };
 
-        transfer::public_transfer(capy_general, tx_context::sender(ctx));
+
+        let capy_general_cap = CapyGeneralOwnerCap {
+            id: object::new(ctx),
+            capy_general_id: object::id(&capy_general),
+        };
+
+
+        transfer::public_share_object(capy_general);
+
+        
+        transfer::public_transfer(capy_general_cap, tx_context::sender(ctx));
+
     }
 
 
     
 
-
-
-    fun mint_capy_monster(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
-
-        Card {
-            id: id,
-            owner_address: tx_context::sender(ctx),
-            type: utf8(b"capy monster"),
-            type_id: 2,
-            name: utf8(b"capy monster"),
-            image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
-            attack: 8,
-            defense: 8,
-            health: 6,
-            cost: 5,
-            // ability: utf8(b"Fury Assault"),
-        }
+    // Capy Monster Owner Cap
+    struct CapyMonsterOwnerCap has key, store {
+        id: UID,
+        capy_monster_id: ID,
     }
 
-
-    fun transfer_capy_monster(ctx: &mut TxContext) {
-        let id = object::new(ctx);
+    fun mint_capy_monster(ctx: &mut TxContext) : CapyMonsterOwnerCap {
 
         let capy_monster = Card {
-            id: id,
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy monster"),
             type_id: 2,
@@ -626,19 +642,65 @@ module capy_vs_gnome::card_deck {
             // ability: utf8(b"Fury Assault"),
         };
 
-        transfer::public_transfer(capy_monster, tx_context::sender(ctx));
+
+
+        let capy_monster_cap = CapyMonsterOwnerCap {
+            id: object::new(ctx),
+            capy_monster_id: object::id(&capy_monster),
+        };
+
+
+        transfer::public_share_object(capy_monster);
+
+        capy_monster_cap
+
+
+    }
+
+
+    fun transfer_capy_monster(ctx: &mut TxContext) {
+        let capy_monster = Card {
+            id: object::new(ctx),
+            owner_address: tx_context::sender(ctx),
+            type: utf8(b"capy monster"),
+            type_id: 2,
+            name: utf8(b"capy monster"),
+            image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
+            attack: 8,
+            defense: 8,
+            health: 6,
+            cost: 5,
+            // ability: utf8(b"Fury Assault"),
+        };
+
+
+
+        let capy_monster_cap = CapyMonsterOwnerCap {
+            id: object::new(ctx),
+            capy_monster_id: object::id(&capy_monster),
+        };
+
+
+        transfer::public_share_object(capy_monster);
+
+    
+        transfer::public_transfer(capy_monster_cap, tx_context::sender(ctx));
     }
 
 
 
 
+    // Capy Rider Owner Cap
+    struct CapyRiderOwnerCap has key, store {
+        id: UID,
+        capy_rider_id: ID,
+    }
 
+    fun mint_capy_rider(ctx: &mut TxContext) : CapyRiderOwnerCap {
+        
 
-    fun mint_capy_rider(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
-
-        Card {
-            id: id,
+        let capy_rider = Card {
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
             type_id: 3,
@@ -649,16 +711,24 @@ module capy_vs_gnome::card_deck {
             health: 4,
             cost: 4,
             // ability: utf8(b"Lightning Strike"),
-        }
+        };
+
+        let capy_rider_cap = CapyRiderOwnerCap {
+            id: object::new(ctx),
+            capy_rider_id: object::id(&capy_rider),
+        };
+
+
+        transfer::public_share_object(capy_rider);
+
+        capy_rider_cap
     }
 
 
 
     fun transfer_capy_rider(ctx: &mut TxContext) {
-        let id = object::new(ctx);
-
         let capy_rider = Card {
-            id: id,
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
             type_id: 3,
@@ -671,50 +741,93 @@ module capy_vs_gnome::card_deck {
             // ability: utf8(b"Lightning Strike"),
         };
 
-        transfer::public_transfer(capy_rider, tx_context::sender(ctx));
+        let capy_rider_cap = CapyRiderOwnerCap {
+            id: object::new(ctx),
+            capy_rider_id: object::id(&capy_rider),
+        };
+
+
+        transfer::public_share_object(capy_rider);
+
+        
+        transfer::public_transfer(capy_rider_cap, tx_context::sender(ctx));
+
     }
 
 
    
 
 
-    fun mint_capy_soldier(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
+     // Capy Soldier Owner Cap
+    struct CapySoldierOwnerCap has key, store {
+        id: UID,
+        capy_soldier_id: ID,
+    }
 
-        Card {
-            id: id,
+
+    fun mint_capy_soldier(ctx: &mut TxContext) : CapySoldierOwnerCap {
+
+        let capy_soldier = Card {
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
-            type: utf8(b"capy soldier"),
-            type_id: 4,
-            name: utf8(b"capy soldier"),
-            image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
-            attack: 4,
-            defense: 4,
-            health: 7,
-            cost: 2,
-            // ability: utf8(b"Shield Wall"),
-        }
+            type: utf8(b"capy general"),
+            type_id: 1,
+            name: utf8(b"capy general"),
+            image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
+            // ability_one: utf8(b"Rally"),
+            // ability_two: utf8(b"Defensive Orders"),
+        };
+
+
+        let capy_soldier_cap = CapySoldierOwnerCap {
+            id: object::new(ctx),
+            capy_soldier_id: object::id(&capy_soldier),
+        };
+
+
+        transfer::public_share_object(capy_soldier);
+
+        capy_soldier_cap
+
+
+
+
     }
 
 
     fun transfer_capy_soldier(ctx: &mut TxContext) {
-        let id = object::new(ctx);
-
         let capy_soldier = Card {
-            id: id,
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
-            type: utf8(b"capy soldier"),
-            type_id: 4,
-            name: utf8(b"capy soldier"),
-            image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
-            attack: 4,
-            defense: 4,
-            health: 7,
-            cost: 2,
-            // ability: utf8(b"Shield Wall"),
+            type: utf8(b"capy general"),
+            type_id: 1,
+            name: utf8(b"capy general"),
+            image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
+            attack: 10,
+            defense: 2,
+            health: 3,
+            cost: 6,
+            // ability_one: utf8(b"Rally"),
+            // ability_two: utf8(b"Defensive Orders"),
         };
 
-        transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
+
+        let capy_soldier_cap = CapySoldierOwnerCap {
+            id: object::new(ctx),
+            capy_soldier_id: object::id(&capy_soldier),
+        };
+
+
+        transfer::public_share_object(capy_soldier);
+
+        
+
+
+        transfer::public_transfer(capy_soldier_cap, tx_context::sender(ctx));
     }
 
 
@@ -1206,59 +1319,59 @@ module capy_vs_gnome::card_deck {
     
 
 
-    public entry fun transfer_capy_cards(ctx: &mut TxContext) {
+    // public entry fun transfer_capy_cards(ctx: &mut TxContext) {
 
-        let capy_general = mint_capy_general(ctx);
-        let capy_monster = mint_capy_monster(ctx);
-        let capy_rider = mint_capy_rider(ctx);
-        let capy_soldier = mint_capy_soldier(ctx);
+    //     let capy_general = mint_capy_general(ctx);
+    //     let capy_monster = mint_capy_monster(ctx);
+    //     let capy_rider = mint_capy_rider(ctx);
+    //     let capy_soldier = mint_capy_soldier(ctx);
 
-        transfer::public_transfer(capy_general, tx_context::sender(ctx));
-        transfer::public_transfer(capy_monster, tx_context::sender(ctx));
-        transfer::public_transfer(capy_rider, tx_context::sender(ctx));
-        transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
+    //     transfer::public_transfer(capy_general, tx_context::sender(ctx));
+    //     transfer::public_transfer(capy_monster, tx_context::sender(ctx));
+    //     transfer::public_transfer(capy_rider, tx_context::sender(ctx));
+    //     transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
 
-    }
-
-
+    // }
 
 
-    public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+
+
+    // public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
         
         
-        let capy_general = mint_capy_general(ctx);
-        let capy_monster = mint_capy_monster(ctx);
-        let capy_rider = mint_capy_rider(ctx);
-        let capy_soldier = mint_capy_soldier(ctx);
+    //     let capy_general = mint_capy_general(ctx);
+    //     let capy_monster = mint_capy_monster(ctx);
+    //     let capy_rider = mint_capy_rider(ctx);
+    //     let capy_soldier = mint_capy_soldier(ctx);
       
 
 
-        (capy_general, capy_monster, capy_rider, capy_soldier)      
+    //     (capy_general, capy_monster, capy_rider, capy_soldier)      
 
 
-    } 
-
-
-
+    // } 
 
 
 
 
-    public fun capy_deck(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
 
-        let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_cards(ctx);
+
+    // public fun capy_deck(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+
+
+    //     let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_cards(ctx);
         
 
 
 
         
-        (capy_general, capy_monster, capy_rider, capy_soldier)
+    //     (capy_general, capy_monster, capy_rider, capy_soldier)
         
 
 
-    }
+    // }
 
 
 
