@@ -13,7 +13,7 @@ module capy_vs_gnome::card_deck_tests_game {
 
     // GAME IMPORTS
     use capy_vs_gnome::card_deck::{Card, Game, TurnKey};
-    use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
+    use capy_vs_gnome::card_deck::{mint_gnome_cards, delete_all_gnome_cards};
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
     use capy_vs_gnome::card_deck::{start_game, turn_trial, first_turn};
@@ -76,7 +76,7 @@ module capy_vs_gnome::card_deck_tests_game {
         test_scenario::next_tx(scenario_val, admin);
         {
             
-            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = gnome_deck(test_scenario::ctx(scenario_val));
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(test_scenario::ctx(scenario_val));
             
             
             delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val)); 
@@ -107,7 +107,7 @@ module capy_vs_gnome::card_deck_tests_game {
         {
             
             // create gnome deck and confirm it
-            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = gnome_deck(test_scenario::ctx(scenario_val));
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(test_scenario::ctx(scenario_val));
 
             // create capy deck and confirm it
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));

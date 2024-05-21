@@ -13,7 +13,7 @@ module capy_vs_gnome::card_deck_tests_attacks {
 
 
     use capy_vs_gnome::card_deck::{Card, ConfirmedDeck};
-    use capy_vs_gnome::card_deck::{gnome_deck, delete_all_gnome_cards};
+    use capy_vs_gnome::card_deck::{mint_gnome_cards, delete_all_gnome_cards};
     use capy_vs_gnome::card_deck::{capy_deck, delete_all_capy_cards};
     use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
 
@@ -71,7 +71,7 @@ module capy_vs_gnome::card_deck_tests_attacks {
         test_scenario::next_tx(scenario_val, admin);
         {
             // create gnome deck and confirm it
-            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = gnome_deck(test_scenario::ctx(scenario_val));
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(test_scenario::ctx(scenario_val));
 
             // create capy deck and confirm it
             let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
