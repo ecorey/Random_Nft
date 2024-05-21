@@ -1256,21 +1256,21 @@ module capy_vs_gnome::card_deck {
 
      // GNOME DECK
 
-    // public fun mint_gnome_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+    public fun mint_gnome_cards(ctx: &mut TxContext) : (GnomeGeneralOwnerCap, GnomeMonsterOwnerCap, GnomeRiderOwnerCap, GnomeSoldierOwnerCap) {
 
         
         
-    //     let gnome_general = mint_gnome_general(ctx);
-    //     let gnome_monster = mint_gnome_monster(ctx);
-    //     let gnome_rider = mint_gnome_rider(ctx);
-    //     let gnome_soldier = mint_gnome_soldier(ctx);
+        let gnome_general_owner_cap = mint_gnome_general(ctx);
+        let gnome_monster_owner_cap = mint_gnome_monster(ctx);
+        let gnome_rider_owner_cap = mint_gnome_rider(ctx);
+        let gnome_soldier_owner_cap = mint_gnome_soldier(ctx);
       
 
 
-    //     (gnome_general, gnome_monster, gnome_rider, gnome_soldier)      
+        (gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap)      
 
 
-    // } 
+    } 
     
 
 
