@@ -3229,7 +3229,8 @@ module capy_vs_gnome::card_deck {
 
 
     // turn actions and deletes the HashedSelectionProved object
-    // UNDER CONSTRUCTION
+    // UNDER CONSTRUCTION 
+    // requires two owners break down the turn_trial function
     entry fun turn_trial_with_hash(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
 
 
