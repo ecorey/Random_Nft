@@ -22,10 +22,10 @@ module capy_vs_gnome::card_deck {
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
 
 
-    #[test_only]
-    friend capy_vs_gnome::card_deck_tests_attacks;
-    #[test_only]
-    friend capy_vs_gnome::card_deck_tests_getters;
+    // #[test_only]
+    // friend capy_vs_gnome::card_deck_tests_attacks;
+    // #[test_only]
+    // friend capy_vs_gnome::card_deck_tests_getters;
 
 
 
@@ -231,11 +231,20 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
 
 
+    // Gnome General Owner Cap
+    struct GnomeGeneralOwnerCap has key, store {
+        id: UID,
+        gnome_general_id: ID,
+    }
 
-    fun mint_gnome_general(ctx: &mut TxContext) : Card {
+
+
+    fun mint_gnome_general(ctx: &mut TxContext) : GnomeGeneralOwnerCap {
         
 
-        Card {
+
+
+        let gnome_general = Card {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx), 
             type: utf8(b"gnome general"),
@@ -249,16 +258,32 @@ module capy_vs_gnome::card_deck {
             cost: 6,
             // ability_one: utf8(b"Rally"),
             
-        }
+        };
+
+
+        let gnome_general_cap = GnomeGeneralOwnerCap {
+            id: object::new(ctx),
+            gnome_general_id: object::id(&gnome_general),
+        };
+
+
+        transfer::public_share_object(gnome_general);
+
+        gnome_general_cap
+
+
     }
 
 
-    fun transfer_gnome_general(ctx: &mut TxContext) {
-        let id = object::new(ctx);
 
+    fun transfer_gnome_general(ctx: &mut TxContext) {
+
+
+        
         let gnome_general = Card {
-            id: id,
-            owner_address: tx_context::sender(ctx),
+
+            id: object::new(ctx),
+            owner_address: tx_context::sender(ctx), 
             type: utf8(b"gnome general"),
             type_id: 1,
             // gnome_general_id: object::uid_to_inner(&id),
@@ -269,19 +294,40 @@ module capy_vs_gnome::card_deck {
             health: 3,
             cost: 6,
             // ability_one: utf8(b"Rally"),
-           
+            
         };
 
-        transfer::public_transfer(gnome_general, tx_context::sender(ctx));
+
+        let gnome_general_cap = GnomeGeneralOwnerCap {
+            id: object::new(ctx),
+            gnome_general_id: object::id(&gnome_general),
+        };
+
+
+        transfer::public_share_object(gnome_general);
+
+
+
+        transfer::public_transfer(gnome_general_cap, tx_context::sender(ctx));
+
     }
 
 
 
-    fun mint_gnome_monster(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
 
-        Card {
-            id: id,
+
+    // Gnome Monster Owner Cap
+    struct GnomeMonsterOwnerCap has key, store {
+        id: UID,
+        gnome_monster_id: ID,
+    }
+
+
+
+    fun mint_gnome_monster(ctx: &mut TxContext) : GnomeMonsterOwnerCap {
+
+        let gnome_monster = Card {
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
             type_id: 2,
@@ -293,16 +339,26 @@ module capy_vs_gnome::card_deck {
             health: 6,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
-        }
+        };
+
+        let gnome_monster_cap = GnomeMonsterOwnerCap {
+            id: object::new(ctx),
+            gnome_monster_id: object::id(&gnome_monster),
+        };
+
+
+        transfer::public_share_object(gnome_monster);
+
+        gnome_monster_cap
+
     }
 
 
 
     fun transfer_gnome_monster(ctx: &mut TxContext) {
-        let id = object::new(ctx);
 
-        let gnome_monster = Card {
-            id: id,
+       let gnome_monster = Card {
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
             type_id: 2,
@@ -316,18 +372,34 @@ module capy_vs_gnome::card_deck {
             // ability: utf8(b"Fury Assault"),
         };
 
-        transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
+        let gnome_monster_cap = GnomeMonsterOwnerCap {
+            id: object::new(ctx),
+            gnome_monster_id: object::id(&gnome_monster),
+        };
+
+
+        transfer::public_share_object(gnome_monster);
+
+        
+
+        transfer::public_transfer(gnome_monster_cap, tx_context::sender(ctx));
     }
 
 
     
+    // Gnome Rider Owner Cap
+    struct GnomeRiderOwnerCap has key, store {
+        id: UID,
+        gnome_rider_id: ID,
+    }
 
 
-    fun mint_gnome_rider(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
+    fun mint_gnome_rider(ctx: &mut TxContext) : GnomeRiderOwnerCap {
 
-        Card {
-            id: id,
+        
+
+        let gnome_rider = Card {
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
             type_id: 3,
@@ -339,15 +411,27 @@ module capy_vs_gnome::card_deck {
             health: 4,
             cost: 4,
             // ability: utf8(b"Lightning Strike"),
-        }
+        };
+
+
+        let gnome_rider_cap = GnomeRiderOwnerCap {
+            id: object::new(ctx),
+            gnome_rider_id: object::id(&gnome_rider),
+        };
+
+
+        transfer::public_share_object(gnome_rider);
+
+        gnome_rider_cap
+
+
     }
 
 
     fun transfer_gnome_rider(ctx: &mut TxContext) {
-        let id = object::new(ctx);
 
         let gnome_rider = Card {
-            id: id,
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
             type_id: 3,
@@ -361,42 +445,36 @@ module capy_vs_gnome::card_deck {
             // ability: utf8(b"Lightning Strike"),
         };
 
-        transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
+
+        let gnome_rider_cap = GnomeRiderOwnerCap {
+            id: object::new(ctx),
+            gnome_rider_id: object::id(&gnome_rider),
+        };
+
+
+        transfer::public_share_object(gnome_rider);
+
+        
+        transfer::public_transfer(gnome_rider_cap, tx_context::sender(ctx));
     }
 
 
     
-
-
-    fun mint_gnome_soldier(ctx: &mut TxContext) : Card {
-        let id = object::new(ctx);
-
-        Card {
-            id: id,
-            owner_address: tx_context::sender(ctx),
-            // gnome_soldier_id: object::uid_to_inner(&id),
-            type: utf8(b"gnome soldier"),
-            type_id: 4,
-            name: utf8(b"gnome soldier"),
-            image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
-            attack: 4,
-            defense: 4,
-            health: 7,
-            cost: 2,
-            // ability: utf8(b"Shield Wall"),
-        }
+    // Gnome Soldier Owner Cap
+    struct GnomeSoldierOwnerCap has key, store {
+        id: UID,
+        gnome_soldier_id: ID,
     }
 
-
-    fun transfer_gnome_soldier(ctx: &mut TxContext) {
-        let id = object::new(ctx);
+    fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldierOwnerCap {
+       
 
         let gnome_soldier = Card {
-            id: id,
+            id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
+            // gnome_soldier_id: object::uid_to_inner(&id),
             type: utf8(b"gnome soldier"),
             type_id: 4,
-            // gnome_soldier_id: object::uid_to_inner(&id),
             name: utf8(b"gnome soldier"),
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
@@ -406,7 +484,49 @@ module capy_vs_gnome::card_deck {
             // ability: utf8(b"Shield Wall"),
         };
 
-        transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+
+         let gnome_soldier_cap = GnomeSoldierOwnerCap {
+            id: object::new(ctx),
+            gnome_soldier_id: object::id(&gnome_soldier),
+        };
+
+
+        transfer::public_share_object(gnome_soldier);
+
+        gnome_soldier_cap
+
+    }
+
+
+    fun transfer_gnome_soldier(ctx: &mut TxContext) {
+        
+        let gnome_soldier = Card {
+            id: object::new(ctx),
+            owner_address: tx_context::sender(ctx),
+            // gnome_soldier_id: object::uid_to_inner(&id),
+            type: utf8(b"gnome soldier"),
+            type_id: 4,
+            name: utf8(b"gnome soldier"),
+            image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
+            attack: 4,
+            defense: 4,
+            health: 7,
+            cost: 2,
+            // ability: utf8(b"Shield Wall"),
+        };
+
+
+         let gnome_soldier_cap = GnomeSoldierOwnerCap {
+            id: object::new(ctx),
+            gnome_soldier_id: object::id(&gnome_soldier),
+        };
+
+
+        transfer::public_share_object(gnome_soldier);
+
+        
+
+        transfer::public_transfer(gnome_soldier_cap, tx_context::sender(ctx));
     }
 
 
@@ -1023,38 +1143,38 @@ module capy_vs_gnome::card_deck {
 
      // GNOME DECK
 
-    public fun mint_gnome_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+    // public fun mint_gnome_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
 
         
         
-        let gnome_general = mint_gnome_general(ctx);
-        let gnome_monster = mint_gnome_monster(ctx);
-        let gnome_rider = mint_gnome_rider(ctx);
-        let gnome_soldier = mint_gnome_soldier(ctx);
+    //     let gnome_general = mint_gnome_general(ctx);
+    //     let gnome_monster = mint_gnome_monster(ctx);
+    //     let gnome_rider = mint_gnome_rider(ctx);
+    //     let gnome_soldier = mint_gnome_soldier(ctx);
       
 
 
-        (gnome_general, gnome_monster, gnome_rider, gnome_soldier)      
+    //     (gnome_general, gnome_monster, gnome_rider, gnome_soldier)      
 
 
-    } 
+    // } 
     
 
 
 
-    public entry fun transfer_gnome_cards(ctx: &mut TxContext) {
+    // public entry fun transfer_gnome_cards(ctx: &mut TxContext) {
             
-            let gnome_general = mint_gnome_general(ctx);
-            let gnome_monster = mint_gnome_monster(ctx);
-            let gnome_rider = mint_gnome_rider(ctx);
-            let gnome_soldier = mint_gnome_soldier(ctx);
+    //         let gnome_general = mint_gnome_general(ctx);
+    //         let gnome_monster = mint_gnome_monster(ctx);
+    //         let gnome_rider = mint_gnome_rider(ctx);
+    //         let gnome_soldier = mint_gnome_soldier(ctx);
     
-            transfer::public_transfer(gnome_general, tx_context::sender(ctx));
-            transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
-            transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
-            transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+    //         transfer::public_transfer(gnome_general, tx_context::sender(ctx));
+    //         transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
+    //         transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
+    //         transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
 
-    }
+    // }
 
 
 
