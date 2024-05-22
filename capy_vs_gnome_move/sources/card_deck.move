@@ -1058,8 +1058,29 @@ module capy_vs_gnome::card_deck {
 
 
 
+    // owner address
+    public fun owner_address_gnome_general(card: &GnomeGeneral) : address {
 
-    public fun owner_address(card: &Card) : address {
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_gnome_monster(card: &GnomeMonster) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_gnome_rider(card: &GnomeRider) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_gnome_soldier(card: &GnomeSoldier) : address {
 
         let address = card.owner_address;
 
@@ -1068,7 +1089,33 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun type(card: &Card) : String {
+
+    // type
+    public fun type_gnome_general(card: &GnomeGeneral) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_gnome_monster(card: &GnomeMonster) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_gnome_rider(card: &GnomeRider) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_gnome_soldier(card: &GnomeSoldier) : String {
 
         let t = card.type;
        
@@ -1077,7 +1124,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun type_id(card: &Card) : u64 {
+    // type id
+    public fun type_id_gnome_general(card: &GnomeGeneral) : u64 {
 
         let t = card.type_id;
        
@@ -1085,8 +1133,48 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    public fun type_id_gnome_monster(card: &GnomeMonster) : u64 {
 
-    public fun name(card: &Card) : String {
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    public fun type_id_gnome_rider(card: &GnomeRider) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    public fun type_id_gnome_soldier(card: &GnomeSoldier) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    // name 
+    public fun name_gnome_general(card: &GnomeGeneral) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    public fun name_gnome_monster(card: &GnomeMonster) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    public fun name_gnome_rider(card: &GnomeRider) : String {
 
         let name = card.name;
        
@@ -1095,7 +1183,40 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun image_url(card: &Card) : String {
+    public fun name_gnome_soldier(card: &GnomeSoldier) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    // img url
+    public fun image_url_gnome_general(card: &GnomeGeneral) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+    
+
+    public fun image_url_gnome_monster(card: &GnomeMonster) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+
+    public fun image_url_gnome_rider(card: &GnomeRider) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+    public fun image_url_gnome_soldier(card: &GnomeSoldier) : String {
 
         let image_url = card.image_url;
        
@@ -1104,7 +1225,33 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun attack(card: &Card) : u64 {
+
+    // attack 
+    public fun attack_gnome_general(card: &GnomeGeneral) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_gnome_monster(card: &GnomeMonster) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_gnome_rider(card: &GnomeRider) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_gnome_soldier(card: &GnomeSoldier) : u64 {
 
         let attack = card.attack;
        
@@ -1113,7 +1260,31 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun defense(card: &Card) : u64 {
+    // defense
+    public fun defense_gnome_general(card: &GnomeGeneral) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+    public fun defense_gnome_monster(card: &GnomeMonster) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+    public fun defense_gnome_rider(card: &GnomeRider) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+    public fun defense_gnome_soldier(card: &GnomeSoldier) : u64 {
 
         let defense = card.defense;
        
@@ -1122,7 +1293,32 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun health(card: &Card) : u64 {
+    // health
+    public fun health_gnome_general(card: &GnomeGeneral) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_gnome_monster(card: &GnomeMonster) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_gnome_rider(card: &GnomeRider) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_gnome_soldier(card: &GnomeSoldier) : u64 {
 
         let health = card.health;
        
@@ -1131,7 +1327,32 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public fun cost(card: &Card) : u64 {
+
+
+
+    // cost
+    public fun cost_gnome_general(card: &GnomeGeneral) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_gnome_monster(card: &GnomeMonster) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_gnome_rider(card: &GnomeRider) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_gnome_soldier(card: &GnomeSoldier) : u64 {
 
         let cost = card.cost;
        
