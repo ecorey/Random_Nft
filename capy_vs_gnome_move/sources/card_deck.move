@@ -1364,6 +1364,314 @@ module capy_vs_gnome::card_deck {
 
 
 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // CAPY GETTERS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    
+    // owner address
+    public fun owner_address_capy_general(card: &CapyGeneral) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_capy_monster(card: &CapyMonster) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_capy_rider(card: &CapyRider) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+    public fun owner_address_capy_soldier(card: &CapySoldier) : address {
+
+        let address = card.owner_address;
+
+        address
+    }
+
+
+
+
+    // type
+    public fun type_capy_general(card: &CapyGeneral) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_capy_monster(card: &CapyMonster) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_capy_rider(card: &CapyRider) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+    public fun type_capy_soldier(card: &CapySoldier) : String {
+
+        let t = card.type;
+       
+        t
+    }
+
+
+
+    // type id
+    public fun type_id_capy_general(card: &CapyGeneral) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    public fun type_id_capy_monster(card: &CapyMonster) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    public fun type_id_capy_rider(card: &CapyRider) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    public fun type_id_capy_soldier(card: &CapySoldier) : u64 {
+
+        let t = card.type_id;
+       
+        t
+    }
+
+
+    // name 
+    public fun name_capy_general(card: &CapyGeneral) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    public fun name_capy_monster(card: &CapyMonster) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    public fun name_capy_rider(card: &CapyRider) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+
+    public fun name_capy_soldier(card: &CapySoldier) : String {
+
+        let name = card.name;
+       
+        name
+    }
+
+
+    // img url
+    public fun image_url_capy_general(card: &CapyGeneral) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+    
+
+    public fun image_url_capy_monster(card: &CapyMonster) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+
+    public fun image_url_capy_rider(card: &CapyRider) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+    public fun image_url_capy_soldier(card: &CapySoldier) : String {
+
+        let image_url = card.image_url;
+       
+        image_url
+    }
+
+
+
+
+    // attack 
+    public fun attack_capy_general(card: &CapyGeneral) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_capy_monster(card: &CapyMonster) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_capy_rider(card: &CapyRider) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+    public fun attack_capy_soldier(card: &CapySoldier) : u64 {
+
+        let attack = card.attack;
+       
+        attack
+    }
+
+
+
+    // defense
+    public fun defense_capy_general(card: &CapyGeneral) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+    public fun defense_capy_monster(card: &CapyMonster) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+    public fun defense_capy_rider(card: &CapyRider) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+    public fun defense_capy_soldier(card: &CapySoldier) : u64 {
+
+        let defense = card.defense;
+       
+        defense
+    }
+
+
+
+    // health
+    public fun health_capy_general(card: &CapyGeneral) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_capy_monster(card: &CapyMonster) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_capy_rider(card: &CapyRider) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+    public fun health_capy_soldier(card: &CapySoldier) : u64 {
+
+        let health = card.health;
+       
+        health
+    }
+
+
+
+
+
+
+    // cost
+    public fun cost_capy_general(card: &CapyGeneral) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_capy_monster(card: &CapyMonster) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_capy_rider(card: &CapyRider) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+    public fun cost_capy_soldier(card: &CapySoldier) : u64 {
+
+        let cost = card.cost;
+       
+        cost
+    }
+
+
 
 
 
