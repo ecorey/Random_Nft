@@ -3554,19 +3554,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards is still in gameplay
-        if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
-        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
-        };
-
-
-        if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
-        } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
-        };
-
+       
 
         // checks cards are confirmed for gameplay
         
@@ -3683,42 +3671,17 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(rider_defense.type_id == 4, 99);
+        assert!(rider_defense.type_id == 3, 99);
 
 
 
 
         // checks cards is still in gameplay
-        if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
-        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
-        };
-
-
-        if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
-        } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
-        };
+        
 
 
         // checks cards are confirmed for gameplay
         
-        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
-        //     attack_card_confirmed = true;
-        // };
-
-
-        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-        //     defense_card_confirmed = true;
-        // };
-
-
-        // assert!(attack_card_confirmed == true, 99);
-        // assert!(defense_card_confirmed == true, 99);
-
-
 
 
         // 40% probability of attack success
@@ -3756,9 +3719,9 @@ module capy_vs_gnome::card_deck {
             });
 
             if (defender == 1) {
-                game.player_one_soldier_status = 0;
+                game.player_one_rider_status = 0;
             } else {
-                game.player_two_soldier_status = 0;
+                game.player_two_rider_status = 0;
             };
             
 
@@ -3828,7 +3791,7 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(monster_defense.type_id == 4, 99);
+        assert!(monster_defense.type_id == 2, 99);
 
 
 
@@ -3873,9 +3836,9 @@ module capy_vs_gnome::card_deck {
             });
 
             if (defender == 1) {
-                game.player_one_soldier_status = 0;
+                game.player_one_monster_status = 0;
             } else {
-                game.player_two_soldier_status = 0;
+                game.player_two_monster_status = 0;
             };
             
 
@@ -3950,7 +3913,7 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(general_defense.type_id == 4, 99);
+        assert!(general_defense.type_id == 1, 99);
 
 
 
@@ -4030,14 +3993,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-
-
-
-
-
-
-
     }
 
 
@@ -4045,13 +4000,6 @@ module capy_vs_gnome::card_deck {
 
 
     
-
-
-
-
-
-
-
 
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
@@ -4096,26 +4044,16 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(rider_attack.type_id == 4, 99);
+        assert!(rider_attack.type_id == 3, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
 
 
 
         // checks cards is still in gameplay
-        if(game.player_one_rider_status == 0 && current_player == 1) {
-            abort(1)
-        } else if (game.player_two_rider_status == 0 && current_player == 2) {
-            abort(1)
-        };
+        
 
-
-        if(game.player_one_rider_status == 0 && defender == 1) {
-            abort(1)
-        } else if (game.player_two_rider_status == 0 && defender == 2) {
-            abort(1)
-        };
-
+       
 
        
 
@@ -4154,9 +4092,9 @@ module capy_vs_gnome::card_deck {
             });
 
             if (defender == 1) {
-                game.player_one_rider_status = 0;
+                game.player_one_soldier_status = 0;
             } else {
-                game.player_two_rider_status = 0;
+                game.player_two_soldier_status = 0;
             };
             
 
