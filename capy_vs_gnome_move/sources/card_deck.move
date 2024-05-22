@@ -965,17 +965,18 @@ module capy_vs_gnome::card_deck {
         let capy_soldier = CapySoldier {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
-            type: utf8(b"capy general"),
-            type_id: 1,
-            name: utf8(b"capy general"),
-            image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
-            attack: 10,
-            defense: 2,
-            health: 3,
-            cost: 6,
-            // ability_one: utf8(b"Rally"),
-            // ability_two: utf8(b"Defensive Orders"),
+            // gnome_soldier_id: object::uid_to_inner(&id),
+            type: utf8(b"capy soldier"),
+            type_id: 4,
+            name: utf8(b"capy soldier"),
+            image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
+            attack: 4,
+            defense: 4,
+            health: 7,
+            cost: 2,
+            // ability: utf8(b"Shield Wall"),
         };
+
 
 
         let capy_soldier_cap = CapySoldierOwnerCap {
@@ -2133,7 +2134,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // to confirm the playesrs are using an accurate deck and correct cards during gameplay
+    // ensures the players are using an accurate deck and correct cards during gameplay
     public entry fun confirm_gnome_deck( general: GnomeGeneral, monster: GnomeMonster, rider: GnomeRider, soldier: GnomeSoldier, ctx: &mut TxContext) {
 
 
