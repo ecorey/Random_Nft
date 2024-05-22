@@ -509,16 +509,16 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
             // get shared obj
-            // let capy_general = test_scenario::take_shared<CapyGeneral>(scenario_val);
-            // let capy_monster = test_scenario::take_shared<CapyMonster>(scenario_val);
-            // let capy_rider = test_scenario::take_shared<CapyRider>(scenario_val);
-            // let capy_soldier = test_scenario::take_shared<CapySoldier>(scenario_val);
+            let capy_general = test_scenario::take_shared<CapyGeneral>(scenario_val);
+            let capy_monster = test_scenario::take_shared<CapyMonster>(scenario_val);
+            let capy_rider = test_scenario::take_shared<CapyRider>(scenario_val);
+            let capy_soldier = test_scenario::take_shared<CapySoldier>(scenario_val);
 
 
 
            
 
-            // confirm_capy_deck(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
+            confirm_capy_deck(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
 
 
 
