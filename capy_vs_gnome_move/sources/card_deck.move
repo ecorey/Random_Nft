@@ -40,6 +40,53 @@ module capy_vs_gnome::card_deck {
     // PERMENANTS CARDS 
     //   - Card
     //   - delete_card
+    //   - GnomeGeneralOwnerCap
+    //   - delete_gnome_general_owner_cap
+    //   - GnomeGeneral
+    //   - mint_gnome_general
+    //   - transfer_gnome_general
+    //    
+    //   - GnomeMonsterOwnerCap
+    //   - delete_gnome_monster_owner_cap
+    //   - GnomeMonster
+    //   - mint_gnome_monster
+    //   - transfer_gnome_monster
+    //    
+    //   - GnomeRiderOwnerCap
+    //   - delete_gnome_rider_owner_cap
+    //   - GnomeRider
+    //   - mint_gnome_rider
+    //   - transfer_gnome_rider
+    //   
+    //   - GnomeSodierOwnerCap
+    //   - delete_gnome_soldier_owner_cap
+    //   - GnomeSoldier
+    //   - mint_gnome_soldier
+    //   - transfer_gnome_soldier
+    //    
+    //   - CapyGeneralOwnerCap
+    //   - delete_capy_general_owner_cap
+    //   - CapyGeneral
+    //   - mint_capy_general
+    //   - transfer_capy_general
+    //    
+    //   - CapyMonsterOwnerCap
+    //   - delete_capy_monster_owner_cap
+    //   - CapyMonster
+    //   - mint_capy_monster
+    //   - transfer_capy_monster
+    //    
+    //   - CapyRiderOwnerCap
+    //   - delete_capy_rider_owner_cap
+    //   - CapyRider
+    //   - mint_capy_rider
+    //   - transfer_capy_rider
+    //    
+    //   - CapySodierOwnerCap
+    //   - delete_capy_soldier_owner_cap
+    //   - CapySoldier
+    //   - mint_capy_soldier
+    //   - transfer_capy_soldier
     // GNOME CARDS
     //   - mint_gnome_general
     //   - transfer_gnome_general
@@ -59,24 +106,108 @@ module capy_vs_gnome::card_deck {
     //   - mint_capy_soldier
     //   - transfer_capy_soldier
     // PERMENANTS GETTERS 
-    //   - owner_address
-    //   - type
-    //   - type_id
-    //   - name
-    //   - image_url
-    //   - attack
-    //   - defense
-    //   - health
-    //   - cost
+    //   - owner_address_gnome_general
+    //   - owner_address_gnome_monster
+    //   - owner_address_gnome_rider
+    //   - owner_address_gnome_soldier
+    //   
+    //   - type_gnome_general
+    //   - type_gnome_monster
+    //   - type_gnome_rider
+    //   - type_gnome_soldier
+    //   
+    //   - type_id_gnome_general
+    //   - type_id_gnome_monster
+    //   - type_id_gnome_rider
+    //   - type_id_gnome_soldier
+    //  
+    //   - name_gnome_general
+    //   - name_gnome_monster
+    //   - name_gnome_rider
+    //   - name_gnome_soldier
+    //  
+    //   - image_url_gnome_general
+    //   - image_url_gnome_monster
+    //   - image_url_gnome_rider
+    //   - image_url_gnome_soldier
+    //   
+    //   - attack_gnome_general
+    //   - attack_gnome_monster
+    //   - attack_gnome_rider
+    //   - attack_gnome_soldier
+    //   
+    //   - defense_gnome_general
+    //   - defense_gnome_monster
+    //   - defense_gnome_rider
+    //   - defense_gnome_soldier
+    //   
+    //   - health_gnome_general
+    //   - health_gnome_monster
+    //   - health_gnome_rider
+    //   - health_gnome_soldier
+    //   
+    //   - cost_gnome_general
+    //   - cost_gnome_monster
+    //   - cost_gnome_rider
+    //   - cost_gnome_soldier
+    //   
+    //   - owner_address_capy_general
+    //   - owner_address_capy_monster
+    //   - owner_address_capy_rider
+    //   - owner_address_capy_soldier
+    //    
+    //   - type_capy_general
+    //   - type_capy_monster
+    //   - type_capy_rider
+    //   - type_capy_soldier
+    //    
+    //   - type_id_capy_general
+    //   - type_id_capy_monster
+    //   - type_id_capy_rider
+    //   - type_id_capy_soldier
+    //    
+    //   - name_capy_general
+    //   - name_capy_monster
+    //   - name_capy_rider
+    //   - name_capy_soldier
+    //    
+    //   - image_url_capy_general
+    //   - image_url_capy_monster
+    //   - image_url_capy_rider
+    //   - image_url_capy_soldier
+    //    
+    //   - attack_capy_general
+    //   - attack_capy_monster
+    //   - attack_capy_rider
+    //   - attack_capy_soldier
+    //    
+    //   - defense_capy_general
+    //   - defense_capy_monster
+    //   - defense_capy_rider
+    //   - defense_capy_soldier
+    //    
+    //   - health_capy_general
+    //   - health_capy_monster
+    //   - health_capy_rider
+    //   - health_capy_soldier
+    //    
+    //   - cost_capy_general
+    //   - cost_capy_monster
+    //   - cost_capy_rider
+    //   - cost_capy_soldier
+    //    
     // INIT
     //   - init
     // MINT DECKS
     //   - mint_gnome_cards
     //   - transfer_gnome_cards
-    //   - delete_all_gnome_cards
+    //   - delete_all_gnome_card_caps
+    //   - mint_capy_cards
     //   - transfer_capy_cards
+    //   - delete_all_capy_card_caps
     // CONFIRM DECKS
-    //   - confirm_deck
+    //   - confirm_gnome_deck
+    //   - confirm_capy_deck
     // GAME SETUP
     //    - Game
     //    - GameStatsEvent
