@@ -203,17 +203,7 @@ module capy_vs_gnome::card_deck {
     }
 
 
-    public fun delete_card_option(card: Option<Card>) {
-
-       
-        if (option::is_some(&card)) {
-            let card_temp = option::extract(&mut card);
-            delete_card(card_temp);
-        };
-
-        option::destroy_none(card);
-
-    }   
+      
 
 
 
@@ -235,6 +225,14 @@ module capy_vs_gnome::card_deck {
     struct GnomeGeneralOwnerCap has key, store {
         id: UID,
         gnome_general_id: ID,
+    }
+
+
+    public fun delete_gnome_general_owner_cap(cap: GnomeGeneralOwnerCap) {
+
+        let GnomeGeneralOwnerCap { id, gnome_general_id: _} = cap;
+        object::delete(id);
+
     }
 
 
@@ -323,6 +321,14 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    public fun delete_gnome_monster_owner_cap(cap: GnomeMonsterOwnerCap) {
+
+        let GnomeMonsterOwnerCap { id, gnome_monster_id: _} = cap;
+        object::delete(id);
+
+    }
+
+
 
     fun mint_gnome_monster(ctx: &mut TxContext) : GnomeMonsterOwnerCap {
 
@@ -391,6 +397,14 @@ module capy_vs_gnome::card_deck {
     struct GnomeRiderOwnerCap has key, store {
         id: UID,
         gnome_rider_id: ID,
+    }
+
+
+    public fun delete_gnome_rider_owner_cap(cap: GnomeRiderOwnerCap) {
+
+        let GnomeRiderOwnerCap { id, gnome_rider_id: _} = cap;
+        object::delete(id);
+
     }
 
 
@@ -465,6 +479,16 @@ module capy_vs_gnome::card_deck {
         id: UID,
         gnome_soldier_id: ID,
     }
+
+
+    public fun delete_gnome_soldier_owner_cap(cap: GnomeSoldierOwnerCap) {
+
+        let GnomeSoldierOwnerCap { id, gnome_soldier_id: _} = cap;
+        object::delete(id);
+
+    }
+
+
 
     fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldierOwnerCap {
        
@@ -550,6 +574,15 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    public fun delete_capy_general_owner_cap(cap: CapyGeneralOwnerCap) {
+
+        let CapyGeneralOwnerCap { id, capy_general_id: _} = cap;
+        object::delete(id);
+
+    }
+
+
+
     fun mint_capy_general(ctx: &mut TxContext) : CapyGeneralOwnerCap {
 
         let capy_general = Card {
@@ -626,6 +659,14 @@ module capy_vs_gnome::card_deck {
         capy_monster_id: ID,
     }
 
+
+    public fun delete_capy_monster_owner_cap(cap: CapyMonsterOwnerCap) {
+
+        let CapyMonsterOwnerCap { id, capy_monster_id: _} = cap;
+        object::delete(id);
+
+    }
+
     fun mint_capy_monster(ctx: &mut TxContext) : CapyMonsterOwnerCap {
 
         let capy_monster = Card {
@@ -696,6 +737,16 @@ module capy_vs_gnome::card_deck {
         capy_rider_id: ID,
     }
 
+
+    public fun delete_capy_rider_owner_cap(cap: CapyRiderOwnerCap) {
+
+        let CapyRiderOwnerCap { id, capy_rider_id: _} = cap;
+        object::delete(id);
+
+    }
+
+
+
     fun mint_capy_rider(ctx: &mut TxContext) : CapyRiderOwnerCap {
         
 
@@ -765,6 +816,14 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    public fun delete_capy_soldier_owner_cap(cap: CapySoldierOwnerCap) {
+
+        let CapySoldierOwnerCap { id, capy_soldier_id: _} = cap;
+        object::delete(id);
+
+    }
+
+
     fun mint_capy_soldier(ctx: &mut TxContext) : CapySoldierOwnerCap {
 
         let capy_soldier = Card {
@@ -829,6 +888,9 @@ module capy_vs_gnome::card_deck {
 
         transfer::public_transfer(capy_soldier_cap, tx_context::sender(ctx));
     }
+
+
+
 
 
 
@@ -1275,19 +1337,19 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // public entry fun transfer_gnome_cards(ctx: &mut TxContext) {
+    public entry fun transfer_gnome_cards(ctx: &mut TxContext) {
             
-    //         let gnome_general = mint_gnome_general(ctx);
-    //         let gnome_monster = mint_gnome_monster(ctx);
-    //         let gnome_rider = mint_gnome_rider(ctx);
-    //         let gnome_soldier = mint_gnome_soldier(ctx);
+            let gnome_general_owner_cap = mint_gnome_general(ctx);
+            let gnome_monster_owner_cap = mint_gnome_monster(ctx);
+            let gnome_rider_owner_cap = mint_gnome_rider(ctx);
+            let gnome_soldier_owner_cap = mint_gnome_soldier(ctx);
     
-    //         transfer::public_transfer(gnome_general, tx_context::sender(ctx));
-    //         transfer::public_transfer(gnome_monster, tx_context::sender(ctx));
-    //         transfer::public_transfer(gnome_rider, tx_context::sender(ctx));
-    //         transfer::public_transfer(gnome_soldier, tx_context::sender(ctx));
+            transfer::public_transfer(gnome_general_owner_cap, tx_context::sender(ctx));
+            transfer::public_transfer(gnome_monster_owner_cap, tx_context::sender(ctx));
+            transfer::public_transfer(gnome_rider_owner_cap, tx_context::sender(ctx));
+            transfer::public_transfer(gnome_soldier_owner_cap, tx_context::sender(ctx));
 
-    // }
+    }
 
 
 
@@ -1299,12 +1361,12 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public entry fun delete_all_gnome_cards(gnome_general: Card, gnome_monster: Card, gnome_rider: Card, gnome_soldier: Card, ctx: &mut TxContext) {
+    public entry fun delete_all_gnome_card_caps(gnome_general_owner_cap: GnomeGeneralOwnerCap, gnome_monster_owner_cap: GnomeMonsterOwnerCap, gnome_rider_owner_cap: GnomeRiderOwnerCap, gnome_soldier_owner_cap: GnomeSoldierOwnerCap, ctx: &mut TxContext) {
         
-        delete_card(gnome_general);
-        delete_card(gnome_monster);
-        delete_card(gnome_rider);
-        delete_card(gnome_soldier);
+        delete_gnome_general_owner_cap(gnome_general_owner_cap);
+        delete_gnome_monster_owner_cap(gnome_monster_owner_cap);
+        delete_gnome_rider_owner_cap(gnome_rider_owner_cap);
+        delete_gnome_soldier_owner_cap(gnome_soldier_owner_cap);
 
       
     }
@@ -1316,74 +1378,55 @@ module capy_vs_gnome::card_deck {
 
     
     // CAPY DECK
-    
-
-
-    // public entry fun transfer_capy_cards(ctx: &mut TxContext) {
-
-    //     let capy_general = mint_capy_general(ctx);
-    //     let capy_monster = mint_capy_monster(ctx);
-    //     let capy_rider = mint_capy_rider(ctx);
-    //     let capy_soldier = mint_capy_soldier(ctx);
-
-    //     transfer::public_transfer(capy_general, tx_context::sender(ctx));
-    //     transfer::public_transfer(capy_monster, tx_context::sender(ctx));
-    //     transfer::public_transfer(capy_rider, tx_context::sender(ctx));
-    //     transfer::public_transfer(capy_soldier, tx_context::sender(ctx));
-
-    // }
 
 
 
-
-    // public fun mint_capy_cards(ctx: &mut TxContext) : (Card, Card, Card, Card) {
+    public fun mint_capy_cards(ctx: &mut TxContext) : (CapyGeneralOwnerCap, CapyMonsterOwnerCap, CapyRiderOwnerCap, CapySoldierOwnerCap) {
 
         
         
-    //     let capy_general = mint_capy_general(ctx);
-    //     let capy_monster = mint_capy_monster(ctx);
-    //     let capy_rider = mint_capy_rider(ctx);
-    //     let capy_soldier = mint_capy_soldier(ctx);
+        let capy_general_owner_cap = mint_capy_general(ctx);
+        let capy_monster_owner_cap = mint_capy_monster(ctx);
+        let capy_rider_owner_cap = mint_capy_rider(ctx);
+        let capy_soldier_owner_cap = mint_capy_soldier(ctx);
       
 
 
-    //     (capy_general, capy_monster, capy_rider, capy_soldier)      
+        (capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap)      
 
 
-    // } 
+    } 
+
+    
+
+
+    public entry fun transfer_capy_cards(ctx: &mut TxContext) {
+
+        let capy_general_owner_cap = mint_capy_general(ctx);
+        let capy_monster_owner_cap = mint_capy_monster(ctx);
+        let capy_rider_owner_cap = mint_capy_rider(ctx);
+        let capy_soldier_owner_cap = mint_capy_soldier(ctx);
+
+        transfer::public_transfer(capy_general_owner_cap, tx_context::sender(ctx));
+        transfer::public_transfer(capy_monster_owner_cap, tx_context::sender(ctx));
+        transfer::public_transfer(capy_rider_owner_cap, tx_context::sender(ctx));
+        transfer::public_transfer(capy_soldier_owner_cap, tx_context::sender(ctx));
+
+    }
 
 
 
 
 
 
-
-    // public fun capy_deck(ctx: &mut TxContext) : (Card, Card, Card, Card) {
-
-
-    //     let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_cards(ctx);
+    public entry fun delete_all_capy_card_caps(capy_general_owner_cap: CapyGeneralOwnerCap, capy_monster_owner_cap: CapyMonsterOwnerCap, capy_rider_owner_cap: CapyRiderOwnerCap, capy_soldier_owner_cap: CapySoldierOwnerCap, ctx: &mut TxContext) {
         
+        delete_capy_general_owner_cap(capy_general_owner_cap);
+        delete_capy_monster_owner_cap(capy_monster_owner_cap);
+        delete_capy_rider_owner_cap(capy_rider_owner_cap);
+        delete_capy_soldier_owner_cap(capy_soldier_owner_cap);
 
-
-
-        
-    //     (capy_general, capy_monster, capy_rider, capy_soldier)
-        
-
-
-    // }
-
-
-
-    public entry fun delete_all_capy_cards(capy_general: Card, capy_monster: Card, capy_rider: Card, capy_soldier: Card, ctx: &mut TxContext) {
-        
-        delete_card(capy_general);
-        delete_card(capy_monster);
-        delete_card(capy_rider);
-        delete_card(capy_soldier);
-
-        
-
+      
     }
 
 
