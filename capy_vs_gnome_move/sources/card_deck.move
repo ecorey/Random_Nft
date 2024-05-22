@@ -3660,249 +3660,448 @@ module capy_vs_gnome::card_deck {
     
 
     // ADD CP COSTS
-    // // soldier vs rider
-    // entry fun soldier_vs_rider(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // soldier vs rider
+    entry fun gnome_soldier_vs_capy_rider(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapyRider, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
-
-    //     // vars
-    //     let successful = false; 
-    //     let address_attacker = soldier_attack.owner_address;
-    //     let address_defender = rider_defense.owner_address;
-    //     let attack_card_confirmed = false;
-    //     let defense_card_confirmed = false;
-        
-        
-    //     // checks cards are correct type
-    //     assert!(soldier_attack.type_id == 4, 99);
-    //     assert!(rider_defense.type_id == 3, 99);
-
-
-    //     // checks cards are confirmed for gameplay
-    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-    //         attack_card_confirmed = true;
-    //     };
-
-
-    //     if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
-    //         defense_card_confirmed = true;
-    //     };
-
-
-    //     assert!(attack_card_confirmed == true, 99);
-    //     assert!(defense_card_confirmed == true, 99);
-
-
-
-
-    //     // 40% probability of attack success
-    //     if( forty_percent_probability(r, ctx) == 1) {
-    //         successful = true;
-    //     };
-
-
-    //     // if successful, decrease health of defense card by 1
-    //     if(successful == true) {
-    //         rider_defense.health = rider_defense.health - 1;
-    //         event::emit(AttackSuccess {
-    //             attack_success: true,
-    //         });
-    //     } else {
-    //         event::emit(AttackFail {
-    //             attack_success: false,
-    //         });
-    //     };
-
-
-
-    //     // if defense card health is 0, delete card
-    //     if(rider_defense.health == 0) {
-    //         delete_card(rider_defense);
-    //         event::emit(Death {
-    //             death: true,
-    //         });
-    //     }  else {
-
-    //         // public transfer defense card back to player
-    //         transfer::public_transfer(rider_defense, address_defender);
-
-    //     };
-        
-
-
-
-    //     // public transfer attack card back to player
-    //     transfer::public_transfer(soldier_attack, address_attacker);
-        
 
         
 
-    // }
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
+        
+        
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
+
+
+
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
+
+
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 40% probability of attack success
+        if( forty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+    }
 
 
 
 
     // // ADD CP COSTS
-    // // soldier vs monster
-    // entry fun soldier_vs_monster(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // soldier vs monster
+    entry fun gnome_soldier_vs_capy_monster(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapyMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
-
-    //     // vars
-    //     let successful = false; 
-    //     let address_attacker = soldier_attack.owner_address;
-    //     let address_defender = monster_defense.owner_address;
-    //     let attack_card_confirmed = false;
-    //     let defense_card_confirmed = false;
-        
-        
-    //     // checks cards are correct type
-    //     assert!(soldier_attack.type_id == 4, 99);
-    //     assert!(monster_defense.type_id == 2, 99);
-
-
-    //     // checks cards are confirmed for gameplay
-    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-    //         attack_card_confirmed = true;
-    //     };
-
-
-    //     if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
-    //         defense_card_confirmed = true;
-    //     };
-
-
-    //     assert!(attack_card_confirmed == true, 99);
-    //     assert!(defense_card_confirmed == true, 99);
-
-
-
-
-    //     // 33% probability of attack success
-    //     if( thirty_three_percent_probability(r, ctx) == 1) {
-    //         successful = true;
-    //     };
-
-
-    //     // if successful, decrease health of defense card by 1
-    //     if(successful == true) {
-    //         monster_defense.health = monster_defense.health - 1;
-    //         event::emit(AttackSuccess {
-    //             attack_success: true,
-    //         });
-    //     } else {
-    //         event::emit(AttackFail {
-    //             attack_success: false,
-    //         });
-    //     };
-
-
-
-    //     // if defense card health is 0, delete card
-    //     if(monster_defense.health == 0) {
-    //         delete_card(monster_defense);
-    //         event::emit(Death {
-    //             death: true,
-    //         });
-    //     }  else {
-
-    //         // public transfer defense card back to player
-    //         transfer::public_transfer(monster_defense, address_defender);
-
-    //     };
-        
-
-
-
-    //     // public transfer attack card back to player
-    //     transfer::public_transfer(soldier_attack, address_attacker);
-        
 
         
 
-    // }
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
 
 
 
-
-
-
-    // // ADD CP COSTS
-    // // soldier vs general
-    // entry fun soldier_vs_general(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-    //     // vars
-    //     let successful = false; 
-    //     let address_attacker = soldier_attack.owner_address;
-    //     let address_defender = general_defense.owner_address;
-    //     let attack_card_confirmed = false;
-    //     let defense_card_confirmed = false;
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
         
         
-    //     // checks cards are correct type
-    //     assert!(soldier_attack.type_id == 4, 99);
-    //     assert!(general_defense.type_id == 1, 99);
-
-
-    //     // checks cards are confirmed for gameplay
-    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-    //         attack_card_confirmed = true;
-    //     };
-
-
-    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
-    //         defense_card_confirmed = true;
-    //     };
-
-
-    //     assert!(attack_card_confirmed == true, 99);
-    //     assert!(defense_card_confirmed == true, 99);
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
 
 
 
 
-    //     // 66% probability of attack success
-    //     if( sixty_six_percent_probability(r, ctx) == 1) {
-    //         successful = true;
-    //     };
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
 
 
-    //     // if successful, decrease health of defense card by 1
-    //     if(successful == true) {
-    //         general_defense.health = general_defense.health - 1;
-    //         event::emit(AttackSuccess {
-    //             attack_success: true,
-    //         });
-    //     } else {
-    //         event::emit(AttackFail {
-    //             attack_success: false,
-    //         });
-    //     };
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
 
 
 
-    //     // if defense card health is 0, delete card
-    //     if(general_defense.health == 0) {
-    //         delete_card(general_defense);
-    //         event::emit(Death {
-    //             death: true,
-    //         });
-    //     }  else {
 
-    //         // public transfer defense card back to player
-    //         transfer::public_transfer(general_defense, address_defender);
+        // 33% probability of attack success
+        if( thirty_three_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
 
-    //     };
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+
+
+    }
+
+
+
+
+
+
+    // ADD CP COSTS
+    // soldier vs general
+    entry fun soldier_vs_general(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
         
 
 
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
 
-    //     // public transfer attack card back to player
-    //     transfer::public_transfer(soldier_attack, address_attacker);
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
         
-
         
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
 
-    // }
+
+
+
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
+
+
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 66% probability of attack success
+        if( sixty_six_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 
@@ -4949,6 +5148,16 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------------------------
     // -----------------------------------------------------------------------
     // CAPY ATTACK FUNCTIONS
@@ -5097,6 +5306,456 @@ module capy_vs_gnome::card_deck {
         
 
     }
+
+
+
+
+
+
+
+
+
+    // soldier vs rider
+    entry fun capy_soldier_vs_gnome_rider(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, gnome_soldier_owner_cap: &CapySoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut GnomeRider, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        
+
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
+        
+        
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
+
+
+
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
+
+
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 40% probability of attack success
+        if( forty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+    }
+
+
+
+
+
+
+
+     entry fun capy_soldier_vs_gnome_monster(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, gnome_soldier_owner_cap: &CapySoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut GnomeMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        
+
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
+        
+        
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
+
+
+
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
+
+
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 33% probability of attack success
+        if( thirty_three_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+
+
+    }
+
+
+
+    // soldier vs general
+    entry fun capy_soldier_vs_gnome_general(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, gnome_soldier_owner_cap: &CapySoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut GnomeGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
+        
+        
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
+
+
+
+
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
+
+
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
+
+
+
+
+        // 66% probability of attack success
+        if( sixty_six_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 
