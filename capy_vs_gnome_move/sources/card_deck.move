@@ -695,7 +695,6 @@ module capy_vs_gnome::card_deck {
         owner_address: address,
         type: String,
         type_id: u64,
-        // card_id: ID,
         name: String, 
         image_url: String,
         attack: u64,
@@ -709,11 +708,11 @@ module capy_vs_gnome::card_deck {
 
     fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldierOwnerCap {
        
+        let id = object::new(ctx);
 
         let gnome_soldier = GnomeSoldier {
-            id: object::new(ctx),
+            id,
             owner_address: tx_context::sender(ctx),
-            // gnome_soldier_id: object::uid_to_inner(&id),
             type: utf8(b"gnome soldier"),
             type_id: 4,
             name: utf8(b"gnome soldier"),
@@ -740,11 +739,12 @@ module capy_vs_gnome::card_deck {
 
 
     fun transfer_gnome_soldier(ctx: &mut TxContext) {
+
+        let id = object::new(ctx);
         
         let gnome_soldier = GnomeSoldier {
-            id: object::new(ctx),
+            id,
             owner_address: tx_context::sender(ctx),
-            // gnome_soldier_id: object::uid_to_inner(&id),
             type: utf8(b"gnome soldier"),
             type_id: 4,
             name: utf8(b"gnome soldier"),
@@ -3525,6 +3525,7 @@ module capy_vs_gnome::card_deck {
         let successful = false; 
         let address_attacker = soldier_attack.owner_address;
         let address_defender = soldier_defense.owner_address;
+
         let attack_card_confirmed = false;
         let defense_card_confirmed = false;
 
@@ -3568,7 +3569,8 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        // if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+        
+        // if(soldier_attack_confirmed.soldier_id == soldier_attack){
         //     attack_card_confirmed = true;
         // };
 
@@ -3627,10 +3629,26 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // public transfer attack card back to player
-        // transfer::public_transfer(soldier_attack);
-        // transfer::public_transfer(soldier_defense);
-        
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
 
         
 
