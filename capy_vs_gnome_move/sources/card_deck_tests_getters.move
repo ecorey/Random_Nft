@@ -14,12 +14,12 @@ module capy_vs_gnome::card_deck_tests_getters {
     use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier};
     use capy_vs_gnome::card_deck::{mint_gnome_cards, delete_all_gnome_card_caps};
     use capy_vs_gnome::card_deck::{mint_capy_cards, delete_all_capy_card_caps};
-    use capy_vs_gnome::card_deck::{confirm_gnome_deck_for_testing, confirm_capy_deck_for_testing};
+    use capy_vs_gnome::card_deck::{confirm_gnome_deck, confirm_capy_deck};
     use capy_vs_gnome::card_deck::{owner_address, type,  type_id, name,  image_url, attack, defense, health, cost};
     
 
 
-    use capy_vs_gnome::card_deck::{soldier_vs_soldier};
+    // use capy_vs_gnome::card_deck::{soldier_vs_soldier};
 
 
 
@@ -109,14 +109,10 @@ module capy_vs_gnome::card_deck_tests_getters {
 
             
             // confirm gnome it
-            confirm_gnome_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
+            confirm_gnome_deck(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
 
 
-            // return shared obj
-            test_scenario::return_shared(gnome_general);
-            test_scenario::return_shared(gnome_monster);
-            test_scenario::return_shared(gnome_rider);
-            test_scenario::return_shared(gnome_soldier);
+           
 
 
             // // check getters (gnome general)
@@ -242,7 +238,7 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
             // delete the decks
-            delete_all_gnome_cards(gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
+            delete_all_gnome_card_caps(gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
 
 
 
