@@ -251,23 +251,40 @@ module capy_vs_gnome::card_deck {
     //    - game_over
     // COIN TOSS FUNCTIONS
     //   - coin_toss
-    // ATTACK FUNCTIONS
-    //   - soldier_vs_soldier 
-    //   - soldier_vs_rider
-    //   - soldier_vs_monster
-    //   - soldier_vs_general
-    //   - rider_vs_soldier 
-    //   - rider_vs_rider
-    //   - rider_vs_monster
-    //   - rider_vs_general
-    //   - monster_vs_soldier 
-    //   - monster_vs_rider
-    //   - monster_vs_monster
-    //   - monster_vs_general
-    //   - general_vs_soldier 
-    //   - general_vs_rider
-    //   - general_vs_monster
-    //   - general_vs_general
+    // GNOME ATTACK FUNCTIONS
+    //   - gnome_soldier_vs_capy_soldier 
+    //   - gnome_soldier_vs_capy_rider
+    //   - gnome_soldier_vs_capy_monster
+    //   - gnome_soldier_vs_capy_general
+    //   - gnome_rider_vs_capy_soldier 
+    //   - gnome_rider_vs_capy_rider
+    //   - gnome_rider_vs_capy_monster
+    //   - gnome_rider_vs_capy_general
+    //   - gnome_monster_vs_capy_soldier 
+    //   - gnome_monster_vs_capy_rider
+    //   - gnome_monster_vs_capy_monster
+    //   - gnome_monster_vs_capy_general
+    //   - gnome_general_vs_capy_soldier 
+    //   - gnome_general_vs_capy_rider
+    //   - gnome_general_vs_capy_monster
+    //   - gnome_general_vs_capy_general
+    // CAPY ATTACK FUNCTIONS
+    //   - capy_soldier_vs_gnome_soldier 
+    //   - capy_soldier_vs_gnome_rider
+    //   - capy_soldier_vs_gnome_monster
+    //   - capy_soldier_vs_gnome_general
+    //   - capy_rider_vs_gnome_soldier 
+    //   - capy_rider_vs_gnome_rider
+    //   - capy_rider_vs_gnome_monster
+    //   - capy_rider_vs_gnome_general
+    //   - capy_monster_vs_gnome_soldier 
+    //   - capy_monster_vs_gnome_rider
+    //   - capy_monster_vs_gnome_monster
+    //   - capy_monster_vs_gnome_general
+    //   - capy_general_vs_gnome_soldier 
+    //   - capy_general_vs_gnome_rider
+    //   - capy_general_vs_gnome_monster
+    //   - capy_general_vs_gnome_general
     // DEFENSE FUNCTIONS
     //   - frontline_defense_stance
     //   - backline_defense_stance
@@ -3501,81 +3518,123 @@ module capy_vs_gnome::card_deck {
     // ADD CP COSTS
     // MAKE PRICVATE!!!!!!!!
     // soldier vs soldier
-    // entry fun gnome_soldier_vs_capy_soldier(r: &Random, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_soldier_vs_capy_soldier(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-    //     // vars
-    //     let successful = false; 
-    //     let address_attacker = soldier_attack.owner_address;
-    //     let address_defender = soldier_defense.owner_address;
-    //     let attack_card_confirmed = false;
-    //     let defense_card_confirmed = false;
+        // vars
+        let successful = false; 
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (soldier_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (soldier_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
         
         
-    //     // checks cards are correct type
-    //     assert!(soldier_attack.type_id == 4, 99);
-    //     assert!(soldier_defense.type_id == 4, 99);
-
-
-    //     // checks cards are confirmed for gameplay
-    //     // if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-    //     //     attack_card_confirmed = true;
-    //     // };
-
-
-    //     // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-    //     //     defense_card_confirmed = true;
-    //     // };
-
-
-    //     // assert!(attack_card_confirmed == true, 99);
-    //     // assert!(defense_card_confirmed == true, 99);
+        // checks cards are correct type
+        assert!(soldier_attack.type_id == 4, 99);
+        assert!(soldier_defense.type_id == 4, 99);
 
 
 
 
-    //     // 50% probability of attack success
-    //     if( fifty_percent_probability(r, ctx) == 1) {
-    //         successful = true;
-    //     };
+        // checks cards is still in gameplay
+        if(game.player_one_soldier_status == 0 && current_player == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && current_player == 2) {
+            abort(1)
+        };
 
 
-    //     // if successful, decrease health of defense card by 1
-    //     if(successful == true) {
-    //         soldier_defense.health = soldier_defense.health - 1;
-    //         event::emit(AttackSuccess {
-    //             attack_success: true,
-    //         });
-    //     } else {
-    //         event::emit(AttackFail {
-    //             attack_success: false,
-    //         });
-    //     };
+        if(game.player_one_soldier_status == 0 && defender == 1) {
+            abort(1)
+        } else if (game.player_two_soldier_status == 0 && defender == 2) {
+            abort(1)
+        };
+
+
+        // checks cards are confirmed for gameplay
+        // if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+        //     attack_card_confirmed = true;
+        // };
+
+
+        // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+        //     defense_card_confirmed = true;
+        // };
+
+
+        // assert!(attack_card_confirmed == true, 99);
+        // assert!(defense_card_confirmed == true, 99);
 
 
 
-    //     // if defense card health is 0, emit death event
-    //     if(soldier_defense.health == 0) {
-    //         event::emit(Death {
-    //             death: true,
-    //         });
-    //     }  else {
 
-    //         // public transfer defense card back to player
-    //         transfer::public_transfer(soldier_defense, address_defender);
+        // 50% probability of attack success
+        if( fifty_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
 
-    //     };
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            soldier_defense.health = soldier_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(soldier_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_soldier_status = 0;
+            } else {
+                game.player_two_soldier_status = 0;
+            };
+            
+
+        };
+
+
+
+        // public transfer attack card back to player
+        // transfer::public_transfer(soldier_attack);
+        // transfer::public_transfer(soldier_defense);
         
 
-
-
-    //     // public transfer attack card back to player
-    //     transfer::public_transfer(soldier_attack, address_attacker);
         
 
-        
-
-    // }
+    }
 
 
 
