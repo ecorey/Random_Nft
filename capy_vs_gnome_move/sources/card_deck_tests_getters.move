@@ -80,10 +80,10 @@ module capy_vs_gnome::card_deck_tests_getters {
         test_scenario::next_tx(scenario_val, admin);
         {
         
-            let (capy_general, capy_monster, capy_rider, capy_soldier) = mint_capy_cards(test_scenario::ctx(scenario_val));
+            let (capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap) = mint_capy_cards(test_scenario::ctx(scenario_val));
             
             
-            delete_all_capy_card_caps(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val)); 
+            delete_all_capy_card_caps(capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
 
         };
 
@@ -92,145 +92,151 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
         // create decks, confirm and test getters
-        // test_scenario::next_tx(scenario_val, admin);
-        // {
+        test_scenario::next_tx(scenario_val, admin);
+        {
             
-        //     // create gnome deck and confirm it
-        //     let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = mint_gnome_cards(test_scenario::ctx(scenario_val));
-
-        //     // create capy deck and confirm it
-        //     let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
+            // create gnome deck 
+            let (gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap) = mint_gnome_cards(test_scenario::ctx(scenario_val));
 
 
 
-        //     // check getters (gnome general)
-        //     let address_general = owner_address(&gnome_general);
-        //     debug::print<address>(&address_general);
+            let gnome_gen = test_scenario::take_shared<Card>(scenario_val);
 
-        //     let type_general = type(&gnome_general);
-        //     debug::print<String>(&type_general);
-
-        //     let type_id_general = type_id(&gnome_general);
-        //     debug::print<u64>(&type_id_general);
-
-        //     let name_general = name(&gnome_general);
-        //     debug::print<String>(&name_general);
-
-        //     let image_url_general = image_url(&gnome_general);
-        //     debug::print<String>(&image_url_general);
-
-        //     let attack_general = attack(&gnome_general);
-        //     debug::print<u64>(&attack_general);
-
-        //     let defense_general = defense(&gnome_general);
-        //     debug::print<u64>(&defense_general);
-
-        //     let health_general = health(&gnome_general);
-        //     debug::print<u64>(&health_general);
-
-        //     let cost_general = cost(&gnome_general);
-        //     debug::print<u64>(&cost_general);
+            // GET SHARED OBJ
+            // confirm gnome it
+            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
 
 
-        //     // check getters (gnome monster)
-        //     let address_monster = owner_address(&gnome_monster);
-        //     debug::print<address>(&address_monster);
+            
 
-        //     let type_monster = type(&gnome_monster);
-        //     debug::print<String>(&type_monster);
+            // // check getters (gnome general)
+            // let address_general = owner_address(&gnome_general);
+            // debug::print<address>(&address_general);
 
-        //     let type_id_monster = type_id(&gnome_monster);
-        //     debug::print<u64>(&type_id_monster);
+            // let type_general = type(&gnome_general);
+            // debug::print<String>(&type_general);
 
-        //     let name_monster = name(&gnome_monster);
-        //     debug::print<String>(&name_monster);
+            // let type_id_general = type_id(&gnome_general);
+            // debug::print<u64>(&type_id_general);
 
-        //     let image_url_monster = image_url(&gnome_monster);
-        //     debug::print<String>(&image_url_monster);
+            // let name_general = name(&gnome_general);
+            // debug::print<String>(&name_general);
 
-        //     let attack_general = attack(&gnome_general);
-        //     debug::print<u64>(&attack_general);
+            // let image_url_general = image_url(&gnome_general);
+            // debug::print<String>(&image_url_general);
 
-        //     let defense_monster = defense(&gnome_monster);
-        //     debug::print<u64>(&defense_monster);
+            // let attack_general = attack(&gnome_general);
+            // debug::print<u64>(&attack_general);
 
-        //     let health_monster = health(&gnome_monster);
-        //     debug::print<u64>(&health_monster);
+            // let defense_general = defense(&gnome_general);
+            // debug::print<u64>(&defense_general);
 
-        //     let cost_monster = cost(&gnome_monster);
-        //     debug::print<u64>(&cost_monster);
+            // let health_general = health(&gnome_general);
+            // debug::print<u64>(&health_general);
+
+            // let cost_general = cost(&gnome_general);
+            // debug::print<u64>(&cost_general);
 
 
+            // // check getters (gnome monster)
+            // let address_monster = owner_address(&gnome_monster);
+            // debug::print<address>(&address_monster);
 
-        //     // check getters (gnome rider)
-        //     let address_rider = owner_address(&gnome_rider);
-        //     debug::print<address>(&address_rider);
+            // let type_monster = type(&gnome_monster);
+            // debug::print<String>(&type_monster);
 
-        //     let type_rider = type(&gnome_rider);
-        //     debug::print<String>(&type_rider);
+            // let type_id_monster = type_id(&gnome_monster);
+            // debug::print<u64>(&type_id_monster);
 
-        //     let type_id_rider = type_id(&gnome_rider);
-        //     debug::print<u64>(&type_id_rider);
+            // let name_monster = name(&gnome_monster);
+            // debug::print<String>(&name_monster);
 
-        //     let name_rider = name(&gnome_rider);
-        //     debug::print<String>(&name_rider);
+            // let image_url_monster = image_url(&gnome_monster);
+            // debug::print<String>(&image_url_monster);
 
-        //     let image_url_rider = image_url(&gnome_rider);
-        //     debug::print<String>(&image_url_rider);
+            // let attack_general = attack(&gnome_general);
+            // debug::print<u64>(&attack_general);
 
-        //     let attack_rider = attack(&gnome_rider);
-        //     debug::print<u64>(&attack_rider);
+            // let defense_monster = defense(&gnome_monster);
+            // debug::print<u64>(&defense_monster);
 
-        //     let defense_rider = defense(&gnome_rider);
-        //     debug::print<u64>(&defense_rider);
+            // let health_monster = health(&gnome_monster);
+            // debug::print<u64>(&health_monster);
 
-        //     let health_rider = health(&gnome_rider);
-        //     debug::print<u64>(&health_rider);
-
-        //     let cost_rider = cost(&gnome_rider);
-        //     debug::print<u64>(&cost_rider);
+            // let cost_monster = cost(&gnome_monster);
+            // debug::print<u64>(&cost_monster);
 
 
 
+            // // check getters (gnome rider)
+            // let address_rider = owner_address(&gnome_rider);
+            // debug::print<address>(&address_rider);
 
-        //     // check getters (gnome soldier)
-        //     let address_soldier = owner_address(&gnome_soldier);
-        //     debug::print<address>(&address_soldier);
+            // let type_rider = type(&gnome_rider);
+            // debug::print<String>(&type_rider);
 
-        //     let type_soldier = type(&gnome_soldier);
-        //     debug::print<String>(&type_soldier);
+            // let type_id_rider = type_id(&gnome_rider);
+            // debug::print<u64>(&type_id_rider);
 
-        //     let type_id_soldier = type_id(&gnome_soldier);
-        //     debug::print<u64>(&type_id_soldier);
+            // let name_rider = name(&gnome_rider);
+            // debug::print<String>(&name_rider);
 
-        //     let name_soldier = name(&gnome_soldier);
-        //     debug::print<String>(&name_soldier);
+            // let image_url_rider = image_url(&gnome_rider);
+            // debug::print<String>(&image_url_rider);
 
-        //     let image_url_soldier = image_url(&gnome_soldier);
-        //     debug::print<String>(&image_url_soldier);
+            // let attack_rider = attack(&gnome_rider);
+            // debug::print<u64>(&attack_rider);
 
-        //     let attack_soldier = attack(&gnome_soldier);
-        //     debug::print<u64>(&attack_soldier);
+            // let defense_rider = defense(&gnome_rider);
+            // debug::print<u64>(&defense_rider);
 
-        //     let defense_soldier = defense(&gnome_soldier);
-        //     debug::print<u64>(&defense_soldier);
+            // let health_rider = health(&gnome_rider);
+            // debug::print<u64>(&health_rider);
 
-        //     let health_soldier = health(&gnome_soldier);
-        //     debug::print<u64>(&health_soldier);
-
-        //     let cost_soldier = cost(&gnome_soldier);
-        //     debug::print<u64>(&cost_soldier);
+            // let cost_rider = cost(&gnome_rider);
+            // debug::print<u64>(&cost_rider);
 
 
 
 
+            // // check getters (gnome soldier)
+            // let address_soldier = owner_address(&gnome_soldier);
+            // debug::print<address>(&address_soldier);
 
-        //     // delete the decks
-        //     delete_all_gnome_cards(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val)); 
+            // let type_soldier = type(&gnome_soldier);
+            // debug::print<String>(&type_soldier);
+
+            // let type_id_soldier = type_id(&gnome_soldier);
+            // debug::print<u64>(&type_id_soldier);
+
+            // let name_soldier = name(&gnome_soldier);
+            // debug::print<String>(&name_soldier);
+
+            // let image_url_soldier = image_url(&gnome_soldier);
+            // debug::print<String>(&image_url_soldier);
+
+            // let attack_soldier = attack(&gnome_soldier);
+            // debug::print<u64>(&attack_soldier);
+
+            // let defense_soldier = defense(&gnome_soldier);
+            // debug::print<u64>(&defense_soldier);
+
+            // let health_soldier = health(&gnome_soldier);
+            // debug::print<u64>(&health_soldier);
+
+            // let cost_soldier = cost(&gnome_soldier);
+            // debug::print<u64>(&cost_soldier);
 
 
 
-        // };
+
+
+            // delete the decks
+            delete_all_gnome_cards(gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
+
+
+
+        };
 
 
 
