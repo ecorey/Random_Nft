@@ -237,12 +237,29 @@ module capy_vs_gnome::card_deck {
 
 
 
+    struct GnomeGeneral has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
+
     fun mint_gnome_general(ctx: &mut TxContext) : GnomeGeneralOwnerCap {
         
 
 
 
-        let gnome_general = Card {
+        let gnome_general = GnomeGeneral {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx), 
             type: utf8(b"gnome general"),
@@ -278,7 +295,7 @@ module capy_vs_gnome::card_deck {
 
 
         
-        let gnome_general = Card {
+        let gnome_general = GnomeGeneral {
 
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx), 
@@ -312,6 +329,8 @@ module capy_vs_gnome::card_deck {
 
 
 
+    
+
 
 
     // Gnome Monster Owner Cap
@@ -329,10 +348,26 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct GnomeMonster has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
 
     fun mint_gnome_monster(ctx: &mut TxContext) : GnomeMonsterOwnerCap {
 
-        let gnome_monster = Card {
+        let gnome_monster = GnomeMonster {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
@@ -363,7 +398,7 @@ module capy_vs_gnome::card_deck {
 
     fun transfer_gnome_monster(ctx: &mut TxContext) {
 
-       let gnome_monster = Card {
+       let gnome_monster = GnomeMonster {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome monster"),
@@ -408,11 +443,28 @@ module capy_vs_gnome::card_deck {
     }
 
 
+
+    struct GnomeRider has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
     fun mint_gnome_rider(ctx: &mut TxContext) : GnomeRiderOwnerCap {
 
         
 
-        let gnome_rider = Card {
+        let gnome_rider = GnomeRider {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
@@ -444,7 +496,7 @@ module capy_vs_gnome::card_deck {
 
     fun transfer_gnome_rider(ctx: &mut TxContext) {
 
-        let gnome_rider = Card {
+        let gnome_rider = GnomeRider {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"gnome rider"),
@@ -490,10 +542,27 @@ module capy_vs_gnome::card_deck {
 
 
 
+    struct GnomeSoldier has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
+
     fun mint_gnome_soldier(ctx: &mut TxContext) : GnomeSoldierOwnerCap {
        
 
-        let gnome_soldier = Card {
+        let gnome_soldier = GnomeSoldier {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             // gnome_soldier_id: object::uid_to_inner(&id),
@@ -524,7 +593,7 @@ module capy_vs_gnome::card_deck {
 
     fun transfer_gnome_soldier(ctx: &mut TxContext) {
         
-        let gnome_soldier = Card {
+        let gnome_soldier = GnomeSoldier {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             // gnome_soldier_id: object::uid_to_inner(&id),
@@ -582,10 +651,26 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct CapyGeneral has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
 
     fun mint_capy_general(ctx: &mut TxContext) : CapyGeneralOwnerCap {
 
-        let capy_general = Card {
+        let capy_general = CapyGeneral {
 
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
@@ -620,7 +705,7 @@ module capy_vs_gnome::card_deck {
 
     fun transfer_capy_general(ctx: &mut TxContext) {
 
-        let capy_general = Card {
+        let capy_general = CapyGeneral {
             
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
@@ -667,9 +752,28 @@ module capy_vs_gnome::card_deck {
 
     }
 
+
+
+    struct CapyMonster has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
+
     fun mint_capy_monster(ctx: &mut TxContext) : CapyMonsterOwnerCap {
 
-        let capy_monster = Card {
+        let capy_monster = CapyMonster {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy monster"),
@@ -700,7 +804,7 @@ module capy_vs_gnome::card_deck {
 
 
     fun transfer_capy_monster(ctx: &mut TxContext) {
-        let capy_monster = Card {
+        let capy_monster = CapyMonster {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy monster"),
@@ -746,11 +850,27 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct CapyRider has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
 
     fun mint_capy_rider(ctx: &mut TxContext) : CapyRiderOwnerCap {
         
 
-        let capy_rider = Card {
+        let capy_rider = CapyRider {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
@@ -778,7 +898,7 @@ module capy_vs_gnome::card_deck {
 
 
     fun transfer_capy_rider(ctx: &mut TxContext) {
-        let capy_rider = Card {
+        let capy_rider = CapyRider {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy rider"),
@@ -824,9 +944,25 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct CapySoldier has key, store {
+        id: UID,
+        owner_address: address,
+        type: String,
+        type_id: u64,
+        // card_id: ID,
+        name: String, 
+        image_url: String,
+        attack: u64,
+        defense: u64,
+        health: u64,
+        cost: u64,
+        // ability_one: String,
+    }
+
+
     fun mint_capy_soldier(ctx: &mut TxContext) : CapySoldierOwnerCap {
 
-        let capy_soldier = Card {
+        let capy_soldier = CapySoldier {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
@@ -859,7 +995,8 @@ module capy_vs_gnome::card_deck {
 
 
     fun transfer_capy_soldier(ctx: &mut TxContext) {
-        let capy_soldier = Card {
+
+        let capy_soldier = CapySoldier {
             id: object::new(ctx),
             owner_address: tx_context::sender(ctx),
             type: utf8(b"capy general"),
@@ -1468,7 +1605,7 @@ module capy_vs_gnome::card_deck {
 
 
     // to confirm the playesrs are using an accurate deck and correct cards during gameplay
-    public entry fun confirm_deck( general: Card, monster: Card, rider: Card, soldier: Card, ctx: &mut TxContext) {
+    public entry fun confirm_gnome_deck( general: GnomeGeneral, monster: GnomeMonster, rider: GnomeRider, soldier: GnomeSoldier, ctx: &mut TxContext) {
 
 
         // instantiate first to avoid error then check
@@ -1576,11 +1713,11 @@ module capy_vs_gnome::card_deck {
 
 
         transfer::public_share_object(confirmed_deck);
-        transfer::public_transfer(general, tx_context::sender(ctx));
-        transfer::public_transfer(monster, tx_context::sender(ctx));
-        transfer::public_transfer(rider, tx_context::sender(ctx));
-        transfer::public_transfer(soldier, tx_context::sender(ctx));
 
+        transfer::public_share_object(general);
+        transfer::public_share_object(monster);
+        transfer::public_share_object(rider);
+        transfer::public_share_object(soldier);
 
 
     }
@@ -1590,7 +1727,7 @@ module capy_vs_gnome::card_deck {
 
 
     #[test_only]
-    public fun confirm_deck_for_testing( general: Card, monster: Card, rider: Card, soldier: Card, ctx: &mut TxContext) : (Card, Card, Card, Card) {
+    public fun confirm_capy_deck_for_testing( general: CapyGeneral, monster: CapyMonster, rider: CapyRider, soldier: CapySoldier, ctx: &mut TxContext) {
 
 
         // instantiate first to avoid error then check
@@ -1697,11 +1834,144 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+
+
+        // shared object that confirms the deck
         transfer::public_share_object(confirmed_deck);
 
 
+        transfer::public_share_object(general);
+        transfer::public_share_object(monster);
+        transfer::public_share_object(rider);
+        transfer::public_share_object(soldier);
+
+
+
+
+
+
+    }
+
+
+
+
+
+     #[test_only]
+    public fun confirm_capy_deck_for_testing( general: &CapyGeneral, monster: &CapyMonster, rider: &CapyRider, soldier: &CapySoldier, ctx: &mut TxContext) {
+
+
+        // instantiate first to avoid error then check
+        // create as shared object with object ids to later use to check and verify 
+        let confirmed_deck = ConfirmedDeck {
+            id: object::new(ctx),
+            general_id: object::id(&general),
+            monster_id: object::id(&monster),
+            rider_id: object::id(&rider),
+            soldier_id: object::id(&soldier),
+        };
+
+
+
+        // assert that the gnome cards attack is correct
+        if(general.attack == 10){
+            confirmed_deck.general_id = object::id(&general)
+        } else {
+            abort(1)
+        };
         
-        (general, monster, rider, soldier)
+        if(monster.attack == 8){
+            confirmed_deck.monster_id = object::id(&monster)
+        } else {
+            abort(1)
+        };
+        if(rider.attack == 6){
+            confirmed_deck.rider_id = object::id(&rider)
+        } else {
+            abort(1)
+        };
+        if(soldier.attack == 4){
+            confirmed_deck.soldier_id = object::id(&soldier)
+        } else {
+            abort(1)
+        };
+
+        // assert that the gnome cards defense is correct
+        if(general.defense == 2){
+            confirmed_deck.general_id = object::id(&general)
+        }else {
+            abort(1)
+        };
+        if(monster.defense  == 8){
+            confirmed_deck.monster_id = object::id(&monster)
+        } else {
+            abort(1)
+        };
+        if(rider.defense  == 6){
+            confirmed_deck.rider_id = object::id(&rider)
+        } else {
+            abort(1)
+        };
+        if(soldier.defense  == 4){
+            confirmed_deck.soldier_id = object::id(&soldier)
+        } else {
+            abort(1)
+        };
+
+        // assert that the gnome cards health is correct
+        if(general.health == 3){
+            confirmed_deck.general_id = object::id(&general)
+        } else {
+            abort(1)
+        };
+        if(monster.health == 6){
+            confirmed_deck.monster_id = object::id(&monster)
+        } else {
+            abort(1)
+        };
+        if(rider.health == 4){
+            confirmed_deck.rider_id = object::id(&rider)
+        } else {
+            abort(1)
+        };
+        if(soldier.health == 7){
+            confirmed_deck.soldier_id = object::id(&soldier)
+        } else {
+            abort(1)
+        };
+
+
+        // assert that the gnome cards monsti cost is correct
+        if(general.cost == 6){
+            confirmed_deck.general_id = object::id(&general)
+        } else {
+            abort(1)
+        };
+        if(monster.cost == 5){
+            confirmed_deck.monster_id = object::id(&monster)
+        } else {
+            abort(1)
+        };
+        if(rider.cost == 4){
+            confirmed_deck.rider_id = object::id(&rider)
+        } else {
+            abort(1)
+        };
+        if(soldier.cost == 2){
+            confirmed_deck.soldier_id = object::id(&soldier)
+        } else {
+            abort(1)
+        };
+
+
+
+
+
+
+        // shared object that confirms the deck
+        transfer::public_share_object(confirmed_deck);
+
+
 
 
 
@@ -1930,43 +2200,43 @@ module capy_vs_gnome::card_deck {
 
 
     // turn trial no hash
-    entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
+    // entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
+    //     // sets which player is using turn
+    //     let player_on_deck: u8 = 0;
 
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
+    //     if(game.player_one_address == tx_context::sender(ctx)){
+    //         player_on_deck = 1;
+    //     };
 
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+    //     if(game.player_two_address == tx_context::sender(ctx)){
+    //         player_on_deck = 2;
+    //     };
 
 
 
 
-        // attack andd defend
-        attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
+
+    //     // pass the turn key
+    //     // check the player and pass to the opposite player
+    //     if(player_on_deck == 1){
+    //         transfer::public_transfer(turn_key, game.player_two_address);
+    //     } else {
+    //         transfer::public_transfer(turn_key, game.player_one_address);
+    //     };
+
+
+
+
+    //     // attack andd defend
+    //     // attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
 
      
 
     
 
-    }
+    // }
 
 
 
@@ -2215,50 +2485,50 @@ module capy_vs_gnome::card_deck {
 
 
     // takes random, game, attack card, attacker confirmed deck, defender confirmed
-    // uses the type_id to match and call the correct attack function
-    entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // uses the type_id to match and call the correct attack function
+    // entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
-        // ONES (General)
-        if(attacker.type_id == 1 && defender.type_id == 1) {
-            general_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 1 && defender.type_id == 2) {
-            general_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 1 && defender.type_id == 3) {
-            general_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 1 && defender.type_id == 4) {
-            general_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 2 && defender.type_id == 1) {
-            monster_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 2 && defender.type_id == 2) {
-            monster_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 2 && defender.type_id == 3) {
-            monster_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 2 && defender.type_id == 4) {
-            monster_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 3 && defender.type_id == 1) {
-            rider_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 3 && defender.type_id == 2) {
-            rider_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 3 && defender.type_id == 3) {
-            rider_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 3 && defender.type_id == 4) {
-            rider_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 4 && defender.type_id == 1) {
-            soldier_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 4 && defender.type_id == 2) {
-            soldier_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 4 && defender.type_id == 3) {
-            soldier_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else if(attacker.type_id == 4 && defender.type_id == 4) {
-            soldier_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-        } else {
-            transfer::public_transfer(attacker, tx_context::sender(ctx));
-            transfer::public_transfer(defender, tx_context::sender(ctx));
-        };   
+    //     // ONES (General)
+    //     if(attacker.type_id == 1 && defender.type_id == 1) {
+    //         general_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 1 && defender.type_id == 2) {
+    //         general_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 1 && defender.type_id == 3) {
+    //         general_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 1 && defender.type_id == 4) {
+    //         general_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 2 && defender.type_id == 1) {
+    //         monster_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 2 && defender.type_id == 2) {
+    //         monster_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 2 && defender.type_id == 3) {
+    //         monster_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 2 && defender.type_id == 4) {
+    //         monster_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 3 && defender.type_id == 1) {
+    //         rider_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 3 && defender.type_id == 2) {
+    //         rider_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 3 && defender.type_id == 3) {
+    //         rider_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 3 && defender.type_id == 4) {
+    //         rider_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 4 && defender.type_id == 1) {
+    //         soldier_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 4 && defender.type_id == 2) {
+    //         soldier_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 4 && defender.type_id == 3) {
+    //         soldier_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else if(attacker.type_id == 4 && defender.type_id == 4) {
+    //         soldier_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
+    //     } else {
+    //         transfer::public_transfer(attacker, tx_context::sender(ctx));
+    //         transfer::public_transfer(defender, tx_context::sender(ctx));
+    //     };   
 
         
 
-    }
+    // }
 
 
     struct DefenseCardAttacked has copy, drop {
@@ -2321,73 +2591,73 @@ module capy_vs_gnome::card_deck {
     // takes defense posture choice and all of the defenders cards
 
 
-    entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender_deck_confirmed: &ConfirmedDeck, defense_choice: u8, possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext) {
+    // entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender_deck_confirmed: &ConfirmedDeck, defense_choice: u8, possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext) {
 
 
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+    //     let defense_card = defensive_posture(r, defense_choice, ctx);
 
-        let defender: Card;
+    //     let defender: Card;
 
-        let attacker_address: address = attacker.owner_address;
+    //     let attacker_address: address = attacker.owner_address;
 
-        let defender_address: address = possible_defense_general.owner_address;
-
-
-        // determines the attack functions used
-        if (defense_card == 1 ) {
-
-            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
+    //     let defender_address: address = possible_defense_general.owner_address;
 
 
-            transfer::public_transfer(possible_defense_monster, defender_address);
-            transfer::public_transfer(possible_defense_rider, defender_address);
-            transfer::public_transfer(possible_defense_soldier, defender_address);
+    //     // determines the attack functions used
+    //     if (defense_card == 1 ) {
 
-        } else if ( defense_card == 2 ) {
-
-            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_monster, defender_deck_confirmed, ctx);
+    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
 
 
-            transfer::public_transfer(possible_defense_general, defender_address);
-            transfer::public_transfer(possible_defense_rider, defender_address);
-            transfer::public_transfer(possible_defense_soldier, defender_address);
+    //         transfer::public_transfer(possible_defense_monster, defender_address);
+    //         transfer::public_transfer(possible_defense_rider, defender_address);
+    //         transfer::public_transfer(possible_defense_soldier, defender_address);
+
+    //     } else if ( defense_card == 2 ) {
+
+    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_monster, defender_deck_confirmed, ctx);
+
+
+    //         transfer::public_transfer(possible_defense_general, defender_address);
+    //         transfer::public_transfer(possible_defense_rider, defender_address);
+    //         transfer::public_transfer(possible_defense_soldier, defender_address);
 
            
-        } else if ( defense_card == 3 ) {
+    //     } else if ( defense_card == 3 ) {
             
-            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_rider, defender_deck_confirmed, ctx);
+    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_rider, defender_deck_confirmed, ctx);
 
 
-            transfer::public_transfer(possible_defense_general, defender_address);
-            transfer::public_transfer(possible_defense_monster, defender_address);
-            transfer::public_transfer(possible_defense_soldier, defender_address);
+    //         transfer::public_transfer(possible_defense_general, defender_address);
+    //         transfer::public_transfer(possible_defense_monster, defender_address);
+    //         transfer::public_transfer(possible_defense_soldier, defender_address);
 
            
-        } else if ( defense_card == 4 ) {
+    //     } else if ( defense_card == 4 ) {
 
-            attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_soldier, defender_deck_confirmed, ctx);
-
-
-            transfer::public_transfer(possible_defense_general, defender_address);
-            transfer::public_transfer(possible_defense_monster, defender_address);
-            transfer::public_transfer(possible_defense_rider, defender_address);
+    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_soldier, defender_deck_confirmed, ctx);
 
 
-        } else {
-
-            transfer::public_transfer(attacker, attacker_address);
-
-
-            transfer::public_transfer(possible_defense_general, defender_address);
-            transfer::public_transfer(possible_defense_monster, defender_address);
-            transfer::public_transfer(possible_defense_rider, defender_address);
-            transfer::public_transfer(possible_defense_soldier, defender_address);
+    //         transfer::public_transfer(possible_defense_general, defender_address);
+    //         transfer::public_transfer(possible_defense_monster, defender_address);
+    //         transfer::public_transfer(possible_defense_rider, defender_address);
 
 
-        };
+    //     } else {
+
+    //         transfer::public_transfer(attacker, attacker_address);
 
 
-    }
+    //         transfer::public_transfer(possible_defense_general, defender_address);
+    //         transfer::public_transfer(possible_defense_monster, defender_address);
+    //         transfer::public_transfer(possible_defense_rider, defender_address);
+    //         transfer::public_transfer(possible_defense_soldier, defender_address);
+
+
+    //     };
+
+
+    // }
 
 
 
@@ -2700,332 +2970,332 @@ module capy_vs_gnome::card_deck {
 
     
     // ADD CP COSTS
+    // MAKE PRICVATE!!!!!!!!
     // soldier vs soldier
-    entry fun soldier_vs_soldier(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // entry fun gnome_soldier_vs_capy_soldier(r: &Random, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = soldier_attack.owner_address;
+    //     let address_defender = soldier_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(soldier_attack.type_id == 4, 99);
-        assert!(soldier_defense.type_id == 4, 99);
+    //     // checks cards are correct type
+    //     assert!(soldier_attack.type_id == 4, 99);
+    //     assert!(soldier_defense.type_id == 4, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     // if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+    //     //     attack_card_confirmed = true;
+    //     // };
 
 
-        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-            defense_card_confirmed = true;
-        };
+    //     // if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+    //     //     defense_card_confirmed = true;
+    //     // };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 50% probability of attack success
-        if( fifty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            soldier_defense.health = soldier_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     // assert!(attack_card_confirmed == true, 99);
+    //     // assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(soldier_defense.health == 0) {
-            delete_card(soldier_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(soldier_defense, address_defender);
+    //     // 50% probability of attack success
+    //     if( fifty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         soldier_defense.health = soldier_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, emit death event
+    //     if(soldier_defense.health == 0) {
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(soldier_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(soldier_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(soldier_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
     
 
     // ADD CP COSTS
-    // soldier vs rider
-    entry fun soldier_vs_rider(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // soldier vs rider
+    // entry fun soldier_vs_rider(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = rider_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = soldier_attack.owner_address;
+    //     let address_defender = rider_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(soldier_attack.type_id == 4, 99);
-        assert!(rider_defense.type_id == 3, 99);
+    //     // checks cards are correct type
+    //     assert!(soldier_attack.type_id == 4, 99);
+    //     assert!(rider_defense.type_id == 3, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 40% probability of attack success
-        if( forty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            rider_defense.health = rider_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(rider_defense.health == 0) {
-            delete_card(rider_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(rider_defense, address_defender);
-
-        };
-        
-
-
-
-        // public transfer attack card back to player
-        transfer::public_transfer(soldier_attack, address_attacker);
-        
-
-        
-
-    }
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
 
-    // ADD CP COSTS
-    // soldier vs monster
-    entry fun soldier_vs_monster(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    //     // 40% probability of attack success
+    //     if( forty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = monster_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
-        
-        
-        // checks cards are correct type
-        assert!(soldier_attack.type_id == 4, 99);
-        assert!(monster_defense.type_id == 2, 99);
-
-
-        // checks cards are confirmed for gameplay
-        if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-            attack_card_confirmed = true;
-        };
-
-
-        if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
-            defense_card_confirmed = true;
-        };
-
-
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         rider_defense.health = rider_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
 
 
 
+    //     // if defense card health is 0, delete card
+    //     if(rider_defense.health == 0) {
+    //         delete_card(rider_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
 
-        // 33% probability of attack success
-        if( thirty_three_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(rider_defense, address_defender);
 
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            monster_defense.health = monster_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(monster_defense.health == 0) {
-            delete_card(monster_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(monster_defense, address_defender);
-
-        };
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(soldier_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(soldier_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
 
+    // // ADD CP COSTS
+    // // soldier vs monster
+    // entry fun soldier_vs_monster(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-    // ADD CP COSTS
-    // soldier vs general
-    entry fun soldier_vs_general(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-        // vars
-        let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = general_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = soldier_attack.owner_address;
+    //     let address_defender = monster_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(soldier_attack.type_id == 4, 99);
-        assert!(general_defense.type_id == 1, 99);
+    //     // checks cards are correct type
+    //     assert!(soldier_attack.type_id == 4, 99);
+    //     assert!(monster_defense.type_id == 2, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(general_defense_confirmed.general_id == object::id(&general_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 66% probability of attack success
-        if( sixty_six_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            general_defense.health = general_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(general_defense.health == 0) {
-            delete_card(general_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(general_defense, address_defender);
+    //     // 33% probability of attack success
+    //     if( thirty_three_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         monster_defense.health = monster_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(monster_defense.health == 0) {
+    //         delete_card(monster_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(monster_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(soldier_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(soldier_attack, address_attacker);
         
 
         
 
-    }
+    // }
+
+
+
+
+
+
+    // // ADD CP COSTS
+    // // soldier vs general
+    // entry fun soldier_vs_general(r: &Random, soldier_attack: Card, soldier_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = soldier_attack.owner_address;
+    //     let address_defender = general_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
+        
+        
+    //     // checks cards are correct type
+    //     assert!(soldier_attack.type_id == 4, 99);
+    //     assert!(general_defense.type_id == 1, 99);
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(soldier_attack_confirmed.soldier_id == object::id(&soldier_attack)){
+    //         attack_card_confirmed = true;
+    //     };
+
+
+    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
+    //         defense_card_confirmed = true;
+    //     };
+
+
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
+
+
+
+
+    //     // 66% probability of attack success
+    //     if( sixty_six_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
+
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         general_defense.health = general_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(general_defense.health == 0) {
+    //         delete_card(general_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(general_defense, address_defender);
+
+    //     };
+        
+
+
+
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(soldier_attack, address_attacker);
+        
+
+        
+
+    // }
 
 
 
@@ -3050,332 +3320,332 @@ module capy_vs_gnome::card_deck {
 
     
     // ADD CP COSTS
-    // rider vs soldier
-    entry fun rider_vs_soldier(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // rider vs soldier
+    // entry fun rider_vs_soldier(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = rider_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = rider_attack.owner_address;
+    //     let address_defender = soldier_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(rider_attack.type_id == 3, 99);
-        assert!(soldier_defense.type_id == 4, 99);
+    //     // checks cards are correct type
+    //     assert!(rider_attack.type_id == 3, 99);
+    //     assert!(soldier_defense.type_id == 4, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 60% probability of attack success
-        if( sixty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            soldier_defense.health = soldier_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(soldier_defense.health == 0) {
-            delete_card(soldier_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(soldier_defense, address_defender);
+    //     // 60% probability of attack success
+    //     if( sixty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         soldier_defense.health = soldier_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(soldier_defense.health == 0) {
+    //         delete_card(soldier_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(soldier_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(rider_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(rider_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
     
 
-    // ADD CP COSTS
-    // rider vs rider
-    entry fun rider_vs_rider(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // ADD CP COSTS
+    // // rider vs rider
+    // entry fun rider_vs_rider(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = rider_attack.owner_address;
-        let address_defender = rider_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = rider_attack.owner_address;
+    //     let address_defender = rider_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(rider_attack.type_id == 3, 99);
-        assert!(rider_defense.type_id == 3, 99);
+    //     // checks cards are correct type
+    //     assert!(rider_attack.type_id == 3, 99);
+    //     assert!(rider_defense.type_id == 3, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 50% probability of attack success
-        if( fifty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            rider_defense.health = rider_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(rider_defense.health == 0) {
-            delete_card(rider_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(rider_defense, address_defender);
-
-        };
-        
-
-
-
-        // public transfer attack card back to player
-        transfer::public_transfer(rider_attack, address_attacker);
-        
-
-        
-
-    }
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
 
-    // ADD CP COSTS
-    // rider vs monster
-    entry fun rider_vs_monster(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    //     // 50% probability of attack success
+    //     if( fifty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = rider_attack.owner_address;
-        let address_defender = monster_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
-        
-        
-        // checks cards are correct type
-        assert!(rider_attack.type_id == 3, 99);
-        assert!(monster_defense.type_id == 2, 99);
-
-
-        // checks cards are confirmed for gameplay
-        if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
-            attack_card_confirmed = true;
-        };
-
-
-        if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
-            defense_card_confirmed = true;
-        };
-
-
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         rider_defense.health = rider_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
 
 
 
+    //     // if defense card health is 0, delete card
+    //     if(rider_defense.health == 0) {
+    //         delete_card(rider_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
 
-        // 40% probability of attack success
-        if( forty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(rider_defense, address_defender);
 
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            monster_defense.health = monster_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(monster_defense.health == 0) {
-            delete_card(monster_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(monster_defense, address_defender);
-
-        };
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(rider_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(rider_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
 
+    // // ADD CP COSTS
+    // // rider vs monster
+    // entry fun rider_vs_monster(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-    // ADD CP COSTS
-    // rider vs general
-    entry fun rider_vs_general(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-        // vars
-        let successful = false; 
-        let address_attacker = rider_attack.owner_address;
-        let address_defender = general_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = rider_attack.owner_address;
+    //     let address_defender = monster_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(rider_attack.type_id == 3, 99);
-        assert!(general_defense.type_id == 1, 99);
+    //     // checks cards are correct type
+    //     assert!(rider_attack.type_id == 3, 99);
+    //     assert!(monster_defense.type_id == 2, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(general_defense_confirmed.general_id == object::id(&general_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 75% probability of attack success
-        if( seventy_five_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            general_defense.health = general_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(general_defense.health == 0) {
-            delete_card(general_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(general_defense, address_defender);
+    //     // 40% probability of attack success
+    //     if( forty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         monster_defense.health = monster_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(monster_defense.health == 0) {
+    //         delete_card(monster_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(monster_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(rider_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(rider_attack, address_attacker);
         
 
         
 
-    }
+    // }
+
+
+
+
+
+
+    // // ADD CP COSTS
+    // // rider vs general
+    // entry fun rider_vs_general(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = rider_attack.owner_address;
+    //     let address_defender = general_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
+        
+        
+    //     // checks cards are correct type
+    //     assert!(rider_attack.type_id == 3, 99);
+    //     assert!(general_defense.type_id == 1, 99);
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
+    //         attack_card_confirmed = true;
+    //     };
+
+
+    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
+    //         defense_card_confirmed = true;
+    //     };
+
+
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
+
+
+
+
+    //     // 75% probability of attack success
+    //     if( seventy_five_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
+
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         general_defense.health = general_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(general_defense.health == 0) {
+    //         delete_card(general_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(general_defense, address_defender);
+
+    //     };
+        
+
+
+
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(rider_attack, address_attacker);
+        
+
+        
+
+    // }
 
 
 
@@ -3398,331 +3668,331 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // monster vs soldier
-    entry fun monster_vs_soldier(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // entry fun monster_vs_soldier(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = monster_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = monster_attack.owner_address;
+    //     let address_defender = soldier_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(monster_attack.type_id == 2, 99);
-        assert!(soldier_defense.type_id == 4, 99);
+    //     // checks cards are correct type
+    //     assert!(monster_attack.type_id == 2, 99);
+    //     assert!(soldier_defense.type_id == 4, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 60% probability of attack success
-        if( sixty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            soldier_defense.health = soldier_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(soldier_defense.health == 0) {
-            delete_card(soldier_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(soldier_defense, address_defender);
+    //     // 60% probability of attack success
+    //     if( sixty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         soldier_defense.health = soldier_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(soldier_defense.health == 0) {
+    //         delete_card(soldier_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(soldier_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(monster_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(monster_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
     
 
-    // ADD CP COSTS
-    // monster vs rider
-    entry fun monster_vs_rider(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // ADD CP COSTS
+    // // monster vs rider
+    // entry fun monster_vs_rider(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = monster_attack.owner_address;
-        let address_defender = rider_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = monster_attack.owner_address;
+    //     let address_defender = rider_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(monster_attack.type_id == 2, 99);
-        assert!(rider_defense.type_id == 3, 99);
+    //     // checks cards are correct type
+    //     assert!(monster_attack.type_id == 2, 99);
+    //     assert!(rider_defense.type_id == 3, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 55% probability of attack success
-        if( fifty_five_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            rider_defense.health = rider_defense.health - 1;
-        event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(rider_defense.health == 0) {
-            delete_card(rider_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(rider_defense, address_defender);
-
-        };
-        
-
-
-
-        // public transfer attack card back to player
-        transfer::public_transfer(monster_attack, address_attacker);
-        
-
-        
-
-    }
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
 
-    // ADD CP COSTS
-    // monster vs monster
-    entry fun monster_vs_monster(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    //     // 55% probability of attack success
+    //     if( fifty_five_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = monster_attack.owner_address;
-        let address_defender = monster_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
-        
-        
-        // checks cards are correct type
-        assert!(monster_attack.type_id == 2, 99);
-        assert!(monster_defense.type_id == 2, 99);
-
-
-        // checks cards are confirmed for gameplay
-        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
-            attack_card_confirmed = true;
-        };
-
-
-        if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
-            defense_card_confirmed = true;
-        };
-
-
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         rider_defense.health = rider_defense.health - 1;
+    //     event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
 
 
 
+    //     // if defense card health is 0, delete card
+    //     if(rider_defense.health == 0) {
+    //         delete_card(rider_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
 
-        // 50% probability of attack success
-        if( fifty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(rider_defense, address_defender);
 
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            monster_defense.health = monster_defense.health - 1;
-        event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(monster_defense.health == 0) {
-            delete_card(monster_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(monster_defense, address_defender);
-
-        };
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(monster_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(monster_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
 
+    // // ADD CP COSTS
+    // // monster vs monster
+    // entry fun monster_vs_monster(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-    // ADD CP COSTS
-    // monster vs general
-    entry fun monster_vs_general(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-        // vars
-        let successful = false; 
-        let address_attacker = monster_attack.owner_address;
-        let address_defender = general_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = monster_attack.owner_address;
+    //     let address_defender = monster_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(monster_attack.type_id == 2, 99);
-        assert!(general_defense.type_id == 1, 99);
+    //     // checks cards are correct type
+    //     assert!(monster_attack.type_id == 2, 99);
+    //     assert!(monster_defense.type_id == 2, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(general_defense_confirmed.general_id == object::id(&general_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 80% probability of attack success
-        if( eighty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            general_defense.health = general_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(general_defense.health == 0) {
-            delete_card(general_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(general_defense, address_defender);
+    //     // 50% probability of attack success
+    //     if( fifty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         monster_defense.health = monster_defense.health - 1;
+    //     event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(monster_defense.health == 0) {
+    //         delete_card(monster_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(monster_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(monster_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(monster_attack, address_attacker);
         
 
         
 
-    }
+    // }
+
+
+
+
+
+
+    // // ADD CP COSTS
+    // // monster vs general
+    // entry fun monster_vs_general(r: &Random, monster_attack: Card, monster_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = monster_attack.owner_address;
+    //     let address_defender = general_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
+        
+        
+    //     // checks cards are correct type
+    //     assert!(monster_attack.type_id == 2, 99);
+    //     assert!(general_defense.type_id == 1, 99);
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(monster_attack_confirmed.monster_id == object::id(&monster_attack)){
+    //         attack_card_confirmed = true;
+    //     };
+
+
+    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
+    //         defense_card_confirmed = true;
+    //     };
+
+
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
+
+
+
+
+    //     // 80% probability of attack success
+    //     if( eighty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
+
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         general_defense.health = general_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(general_defense.health == 0) {
+    //         delete_card(general_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(general_defense, address_defender);
+
+    //     };
+        
+
+
+
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(monster_attack, address_attacker);
+        
+
+        
+
+    // }
 
 
 
@@ -3741,332 +4011,332 @@ module capy_vs_gnome::card_deck {
 
     
     // ADD CP COSTS
-    // general vs soldier
-    entry fun general_vs_soldier(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // general vs soldier
+    // entry fun general_vs_soldier(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, soldier_defense: Card, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = general_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = general_attack.owner_address;
+    //     let address_defender = soldier_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(general_attack.type_id == 1, 99);
-        assert!(soldier_defense.type_id == 4, 99);
+    //     // checks cards are correct type
+    //     assert!(general_attack.type_id == 1, 99);
+    //     assert!(soldier_defense.type_id == 4, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(general_attack_confirmed.general_id == object::id(&general_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(general_attack_confirmed.general_id == object::id(&general_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(soldier_defense_confirmed.soldier_id == object::id(&soldier_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 70% probability of attack success
-        if( seventy_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            soldier_defense.health = soldier_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
-        // if defense card health is 0, delete card
-        if(soldier_defense.health == 0) {
-            delete_card(soldier_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
 
-            // public transfer defense card back to player
-            transfer::public_transfer(soldier_defense, address_defender);
+    //     // 70% probability of attack success
+    //     if( seventy_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
-        };
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         soldier_defense.health = soldier_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(soldier_defense.health == 0) {
+    //         delete_card(soldier_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(soldier_defense, address_defender);
+
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(general_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(general_attack, address_attacker);
         
 
         
 
-    }
+    // }
 
 
 
     
 
+    // // ADD CP COSTS
+    // // general vs rider
+    // entry fun general_vs_rider(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = general_attack.owner_address;
+    //     let address_defender = rider_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
+        
+        
+    //     // checks cards are correct type
+    //     assert!(general_attack.type_id == 1, 99);
+    //     assert!(rider_defense.type_id == 3, 99);
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(general_attack_confirmed.general_id == object::id(&general_attack)){
+    //         attack_card_confirmed = true;
+    //     };
+
+
+    //     if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
+    //         defense_card_confirmed = true;
+    //     };
+
+
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
+
+
+
+
+    //     // 60% probability of attack success
+    //     if( sixty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
+
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         rider_defense.health = rider_defense.health - 1;
+    //         event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(rider_defense.health == 0) {
+    //         delete_card(rider_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(rider_defense, address_defender);
+
+    //     };
+        
+
+
+
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(general_attack, address_attacker);
+        
+
+        
+
+    // }
+
+
+
+
+    // // ADD CP COSTS
+    // // general vs monster
+    // entry fun general_vs_monster(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = general_attack.owner_address;
+    //     let address_defender = monster_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
+        
+        
+    //     // checks cards are correct type
+    //     assert!(general_attack.type_id == 1, 99);
+    //     assert!(monster_defense.type_id == 2, 99);
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(general_attack_confirmed.general_id == object::id(&general_attack)){
+    //         attack_card_confirmed = true;
+    //     };
+
+
+    //     if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
+    //         defense_card_confirmed = true;
+    //     };
+
+
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
+
+
+
+
+    //     // 556% probability of attack success
+    //     if( fifty_five_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
+
+
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         monster_defense.health = monster_defense.health - 1;
+    //     event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
+
+
+
+    //     // if defense card health is 0, delete card
+    //     if(monster_defense.health == 0) {
+    //         delete_card(monster_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
+
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(monster_defense, address_defender);
+
+    //     };
+        
+
+
+
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(general_attack, address_attacker);
+        
+
+        
+
+    // }
+
+
+
+
+
+
     // ADD CP COSTS
-    // general vs rider
-    entry fun general_vs_rider(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, rider_defense: Card, rider_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // // general vs general
+    // entry fun general_vs_general(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = general_attack.owner_address;
-        let address_defender = rider_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+    //     // vars
+    //     let successful = false; 
+    //     let address_attacker = general_attack.owner_address;
+    //     let address_defender = general_defense.owner_address;
+    //     let attack_card_confirmed = false;
+    //     let defense_card_confirmed = false;
         
         
-        // checks cards are correct type
-        assert!(general_attack.type_id == 1, 99);
-        assert!(rider_defense.type_id == 3, 99);
+    //     // checks cards are correct type
+    //     assert!(general_attack.type_id == 1, 99);
+    //     assert!(general_defense.type_id == 1, 99);
 
 
-        // checks cards are confirmed for gameplay
-        if(general_attack_confirmed.general_id == object::id(&general_attack)){
-            attack_card_confirmed = true;
-        };
+    //     // checks cards are confirmed for gameplay
+    //     if(general_attack_confirmed.general_id == object::id(&general_attack)){
+    //         attack_card_confirmed = true;
+    //     };
 
 
-        if(rider_defense_confirmed.rider_id == object::id(&rider_defense)){
-            defense_card_confirmed = true;
-        };
+    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
+    //         defense_card_confirmed = true;
+    //     };
 
 
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 60% probability of attack success
-        if( sixty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            rider_defense.health = rider_defense.health - 1;
-            event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(rider_defense.health == 0) {
-            delete_card(rider_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(rider_defense, address_defender);
-
-        };
-        
-
-
-
-        // public transfer attack card back to player
-        transfer::public_transfer(general_attack, address_attacker);
-        
-
-        
-
-    }
+    //     assert!(attack_card_confirmed == true, 99);
+    //     assert!(defense_card_confirmed == true, 99);
 
 
 
 
-    // ADD CP COSTS
-    // general vs monster
-    entry fun general_vs_monster(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, monster_defense: Card, monster_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    //     // 80% probability of attack success
+    //     if( eighty_percent_probability(r, ctx) == 1) {
+    //         successful = true;
+    //     };
 
 
-        // vars
-        let successful = false; 
-        let address_attacker = general_attack.owner_address;
-        let address_defender = monster_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
-        
-        
-        // checks cards are correct type
-        assert!(general_attack.type_id == 1, 99);
-        assert!(monster_defense.type_id == 2, 99);
-
-
-        // checks cards are confirmed for gameplay
-        if(general_attack_confirmed.general_id == object::id(&general_attack)){
-            attack_card_confirmed = true;
-        };
-
-
-        if(monster_defense_confirmed.monster_id == object::id(&monster_defense)){
-            defense_card_confirmed = true;
-        };
-
-
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
+    //     // if successful, decrease health of defense card by 1
+    //     if(successful == true) {
+    //         general_defense.health = general_defense.health - 1;
+    //     event::emit(AttackSuccess {
+    //             attack_success: true,
+    //         });
+    //     } else {
+    //         event::emit(AttackFail {
+    //             attack_success: false,
+    //         });
+    //     };
 
 
 
+    //     // if defense card health is 0, delete card
+    //     if(general_defense.health == 0) {
+    //         delete_card(general_defense);
+    //         event::emit(Death {
+    //             death: true,
+    //         });
+    //     }  else {
 
-        // 556% probability of attack success
-        if( fifty_five_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
+    //         // public transfer defense card back to player
+    //         transfer::public_transfer(general_defense, address_defender);
 
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            monster_defense.health = monster_defense.health - 1;
-        event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(monster_defense.health == 0) {
-            delete_card(monster_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(monster_defense, address_defender);
-
-        };
+    //     };
         
 
 
 
-        // public transfer attack card back to player
-        transfer::public_transfer(general_attack, address_attacker);
+    //     // public transfer attack card back to player
+    //     transfer::public_transfer(general_attack, address_attacker);
         
 
         
 
-    }
-
-
-
-
-
-
-    // ADD CP COSTS
-    // general vs general
-    entry fun general_vs_general(r: &Random, general_attack: Card, general_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-        // vars
-        let successful = false; 
-        let address_attacker = general_attack.owner_address;
-        let address_defender = general_defense.owner_address;
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
-        
-        
-        // checks cards are correct type
-        assert!(general_attack.type_id == 1, 99);
-        assert!(general_defense.type_id == 1, 99);
-
-
-        // checks cards are confirmed for gameplay
-        if(general_attack_confirmed.general_id == object::id(&general_attack)){
-            attack_card_confirmed = true;
-        };
-
-
-        if(general_defense_confirmed.general_id == object::id(&general_defense)){
-            defense_card_confirmed = true;
-        };
-
-
-        assert!(attack_card_confirmed == true, 99);
-        assert!(defense_card_confirmed == true, 99);
-
-
-
-
-        // 80% probability of attack success
-        if( eighty_percent_probability(r, ctx) == 1) {
-            successful = true;
-        };
-
-
-        // if successful, decrease health of defense card by 1
-        if(successful == true) {
-            general_defense.health = general_defense.health - 1;
-        event::emit(AttackSuccess {
-                attack_success: true,
-            });
-        } else {
-            event::emit(AttackFail {
-                attack_success: false,
-            });
-        };
-
-
-
-        // if defense card health is 0, delete card
-        if(general_defense.health == 0) {
-            delete_card(general_defense);
-            event::emit(Death {
-                death: true,
-            });
-        }  else {
-
-            // public transfer defense card back to player
-            transfer::public_transfer(general_defense, address_defender);
-
-        };
-        
-
-
-
-        // public transfer attack card back to player
-        transfer::public_transfer(general_attack, address_attacker);
-        
-
-        
-
-    }
+    // }
 
 
 

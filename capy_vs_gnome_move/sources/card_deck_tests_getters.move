@@ -11,10 +11,10 @@ module capy_vs_gnome::card_deck_tests_getters {
     use capy_vs_gnome::card_deck::{CARD_DECK, init_for_testing};
 
 
-    use capy_vs_gnome::card_deck::{Card};
+    use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier};
     use capy_vs_gnome::card_deck::{mint_gnome_cards, delete_all_gnome_card_caps};
     use capy_vs_gnome::card_deck::{mint_capy_cards, delete_all_capy_card_caps};
-    use capy_vs_gnome::card_deck::{confirm_deck_for_testing};
+    use capy_vs_gnome::card_deck::{confirm_gnome_deck_for_testing, confirm_capy_deck_for_testing};
     use capy_vs_gnome::card_deck::{owner_address, type,  type_id, name,  image_url, attack, defense, health, cost};
     
 
@@ -100,14 +100,24 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
 
-            let gnome_gen = test_scenario::take_shared<Card>(scenario_val);
-
-            // GET SHARED OBJ
-            // confirm gnome it
-            let (gnome_general, gnome_monster, gnome_rider, gnome_soldier) = confirm_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
+            // get shared obj
+            let gnome_general = test_scenario::take_shared<GnomeGeneral>(scenario_val);
+            let gnome_monster = test_scenario::take_shared<GnomeMonster>(scenario_val);
+            let gnome_rider = test_scenario::take_shared<GnomeRider>(scenario_val);
+            let gnome_soldier = test_scenario::take_shared<GnomeSoldier>(scenario_val);
 
 
             
+            // confirm gnome it
+            confirm_gnome_deck_for_testing(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
+
+
+            // return shared obj
+            test_scenario::return_shared(gnome_general);
+            test_scenario::return_shared(gnome_monster);
+            test_scenario::return_shared(gnome_rider);
+            test_scenario::return_shared(gnome_soldier);
+
 
             // // check getters (gnome general)
             // let address_general = owner_address(&gnome_general);
