@@ -302,34 +302,40 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
         // // next test
-        // test_scenario::next_tx(scenario_val, admin );
-        // {
+        test_scenario::next_tx(scenario_val, admin );
+        {
 
 
-        //     // create capy deck 
-        //     let (capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap) = mint_capy_cards(test_scenario::ctx(scenario_val));
+            // create capy deck 
+            let (capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap) = mint_capy_cards(test_scenario::ctx(scenario_val));
 
 
-        //     // get shared obj
-        //     let capy_general = test_scenario::take_shared<CapyGeneral>(scenario_val);
-        //     let capy_monster = test_scenario::take_shared<CapyMonster>(scenario_val);
-        //     let capy_rider = test_scenario::take_shared<CapyRider>(scenario_val);
-        //     let capy_soldier = test_scenario::take_shared<CapySoldier>(scenario_val);
+            // // get shared obj
+            let capy_general = test_scenario::take_shared<CapyGeneral>(scenario_val);
+            let capy_monster = test_scenario::take_shared<CapyMonster>(scenario_val);
+            let capy_rider = test_scenario::take_shared<CapyRider>(scenario_val);
+            let capy_soldier = test_scenario::take_shared<CapySoldier>(scenario_val);
 
 
-        //     // confirm capy deck
-        //     confirm_capy_deck(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
+            // confirm capy deck
+            // confirm_capy_deck(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
+
+
+            test_scenario::return_shared(capy_general);
+            test_scenario::return_shared(capy_monster);
+            test_scenario::return_shared(capy_rider);
+            test_scenario::return_shared(capy_soldier);
+
+
+            // delete the decks
+            delete_all_capy_card_caps(capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
 
 
 
-
-
-        //     // delete the decks
-        //     delete_all_capy_card_caps(capy_general_owner_cap, capy_monster_owner_cap, capy_rider_owner_cap, capy_soldier_owner_cap, test_scenario::ctx(scenario_val)); 
+        };
 
 
 
-        // };
 
 
 
