@@ -2586,6 +2586,7 @@ module capy_vs_gnome::card_deck {
         player_two_monster_status: u8,
         player_two_rider_status: u8,
         player_two_soldier_status: u8,
+        winner: bool,
 
        
     }
@@ -2614,6 +2615,7 @@ module capy_vs_gnome::card_deck {
         player_two_monster_status: u8,
         player_two_rider_status: u8,
         player_two_soldier_status: u8,
+        winner: bool,
     }
 
 
@@ -2639,6 +2641,7 @@ module capy_vs_gnome::card_deck {
             player_two_monster_status: game.player_two_monster_status,
             player_two_rider_status: game.player_two_rider_status,
             player_two_soldier_status: game.player_two_soldier_status,
+            winner: false,
         });
 
     }
@@ -2703,6 +2706,8 @@ module capy_vs_gnome::card_deck {
             player_two_monster_status: 1,
             player_two_rider_status: 1,
             player_two_soldier_status: 1,
+
+            winner: false,
            
         };
 
@@ -3398,6 +3403,15 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    // player two soldier status
+    public fun winner(game: &Game) : bool {
+
+        let winner = game.winner;
+
+        winner
+    }
+
+
 
 
 
@@ -3415,15 +3429,13 @@ module capy_vs_gnome::card_deck {
 
 
 
-    public entry fun game_over(game: &mut Game) {
-
-        let player_one_wins: bool = false;
-        let player_two_wins: bool = false;
 
 
-        if(game.player_one_general_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_soldier_status == 0) {
-            player_two_wins = true;
+    fun check_for_winner(game: &mut Game){
 
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
             event::emit( Winner {
                 player_one_winner: false,
                 player_two_winner: true,
@@ -3432,9 +3444,9 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        if(game.player_two_general_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_soldier_status == 0) {
-            player_one_wins = true;
-
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
             event::emit( Winner {
                 player_one_winner: true,
                 player_two_winner: false,
@@ -3443,8 +3455,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-
-
+        game.winner = true;
 
     }
     
@@ -3515,6 +3526,9 @@ module capy_vs_gnome::card_deck {
 
 
     
+
+
+    
     // ADD CP COSTS
     // MAKE PRICVATE!!!!!!!!
     // soldier vs soldier
@@ -3523,11 +3537,11 @@ module capy_vs_gnome::card_deck {
 
         // vars
         let successful = false; 
-        let address_attacker = soldier_attack.owner_address;
-        let address_defender = soldier_defense.owner_address;
-
         let attack_card_confirmed = false;
         let defense_card_confirmed = false;
+
+        let address_attacker = soldier_attack.owner_address;
+        let address_defender = soldier_defense.owner_address;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -3589,7 +3603,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if defense card health is 0, emit death event
+        // if defense card health is 0, emit death event and sets the status in the game to 0
         if(soldier_defense.health == 0) {
 
             event::emit(Death {
@@ -3607,27 +3621,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
-
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
-
+        check_for_winner(game);
 
         
 
@@ -3729,26 +3723,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -3846,26 +3822,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -3969,26 +3927,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -4102,26 +4042,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -4219,26 +4141,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
         
         
@@ -4340,26 +4244,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -4458,26 +4344,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
     }
@@ -4587,26 +4455,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
-
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
+        check_for_winner(game);
 
 
         
@@ -4704,26 +4553,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
-
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
+        check_for_winner(game);
 
         
         
@@ -4825,26 +4655,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -4943,26 +4755,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
     }
@@ -5077,26 +4871,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -5198,26 +4974,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -5315,26 +5073,10 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        
 
-        };
+        check_for_winner(game);
 
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
   
 
@@ -5433,26 +5175,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
         
 
 
@@ -5596,26 +5320,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-        
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -5746,26 +5452,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -5891,26 +5579,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -6036,26 +5706,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -6176,26 +5828,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -6289,26 +5923,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
         
         
@@ -6409,26 +6025,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -6524,26 +6122,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
     }
@@ -6662,26 +6242,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -6779,26 +6341,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
         
         
@@ -6900,26 +6444,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -7018,26 +6544,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
     }
@@ -7151,26 +6659,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
 
@@ -7272,26 +6762,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
 
         
@@ -7389,26 +6861,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
 
   
 
@@ -7507,26 +6961,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // if all cards are dead emit winner event
-        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: false,
-                player_two_winner: true,
-            });
+        check_for_winner(game);
 
-        };
-
-
-        // if all cards are dead emit winner event
-        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
-            
-            event::emit( Winner {
-                player_one_winner: true,
-                player_two_winner: false,
-            });
-
-        };
         
 
 
