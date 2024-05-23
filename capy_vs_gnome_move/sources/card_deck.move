@@ -3507,14 +3507,14 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // MAKE PRICVATE!!!!!!!!
+    // ADD CARD CHECKS
     // soldier vs soldier
-    entry fun gnome_soldier_vs_capy_soldier(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_soldier_vs_capy_soldier(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
+        
 
         let address_attacker = soldier_attack.owner_address;
         let address_defender = soldier_defense.owner_address;
@@ -3539,16 +3539,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
         assert!(soldier_defense.type_id == 4, 99);
-
-
-
-
-        // checks cards is still in gameplay
-       
-
-        // checks cards are confirmed for gameplay
-        
-        
 
 
 
@@ -3609,7 +3599,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // soldier vs rider
-    entry fun gnome_soldier_vs_capy_rider(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: &mut CapyRider, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_soldier_vs_capy_rider(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
 
 
         
@@ -3619,8 +3609,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = soldier_attack.owner_address;
         let address_defender = rider_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -3644,14 +3632,6 @@ module capy_vs_gnome::card_deck {
         assert!(rider_defense.type_id == 3, 99);
 
 
-
-
-        // checks cards is still in gameplay
-        
-
-
-        // checks cards are confirmed for gameplay
-        
 
 
         // 40% probability of attack success
@@ -3711,18 +3691,15 @@ module capy_vs_gnome::card_deck {
 
     // // ADD CP COSTS
     // soldier vs monster
-    entry fun gnome_soldier_vs_capy_monster(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: &mut CapyMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_soldier_vs_capy_monster(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap,  monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
-        
-
+    
         // vars
         let successful = false; 
         let address_attacker = soldier_attack.owner_address;
         let address_defender = monster_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -3746,12 +3723,6 @@ module capy_vs_gnome::card_deck {
         assert!(monster_defense.type_id == 2, 99);
 
 
-
-
-        // checks cards is still in gameplay
-       
-
-        
 
 
         // 33% probability of attack success
@@ -3802,9 +3773,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-
-
     }
 
 
@@ -3814,10 +3782,8 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // soldier vs general
-    entry fun gnome_soldier_vs_capy_general(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_soldier_vs_capy_general(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, general_defense: &mut CapyGeneral,  ctx: &mut TxContext) {
 
-
-        
 
 
         // vars
@@ -3825,8 +3791,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = soldier_attack.owner_address;
         let address_defender = general_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -3848,14 +3812,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
         assert!(general_defense.type_id == 1, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-
 
 
 
@@ -3928,10 +3884,8 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // rider vs soldier
-    entry fun gnome_rider_vs_capy_soldier(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_rider_vs_capy_soldier(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
-
-        
 
 
         // vars
@@ -3939,8 +3893,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = rider_attack.owner_address;
         let address_defender = soldier_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -3963,15 +3915,6 @@ module capy_vs_gnome::card_deck {
         assert!(rider_attack.type_id == 3, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
-
-       
 
 
         // 66% probability of attack success
@@ -4022,8 +3965,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-        
-
     }
 
 
@@ -4032,16 +3973,13 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs rider
-    entry fun gnome_rider_vs_gnome_rider(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_rider_vs_gnome_rider(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, rider_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
         let address_attacker = rider_attack.owner_address;
         let address_defender = rider_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4063,14 +4001,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(rider_attack.type_id == 3, 99);
         assert!(rider_defense.type_id == 3, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 50% probability of attack success
@@ -4118,12 +4048,7 @@ module capy_vs_gnome::card_deck {
 
 
         check_for_winner(game);
-
-
-        
-        
-
-        
+ 
 
     }
 
@@ -4132,10 +4057,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs monster
-    entry fun gnome_rider_vs_capy_monster(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: &mut CapyMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-
-        
+    entry fun gnome_rider_vs_capy_monster(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
         // vars
@@ -4143,8 +4065,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = rider_attack.owner_address;
         let address_defender = monster_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4168,14 +4088,6 @@ module capy_vs_gnome::card_deck {
         assert!(monster_defense.type_id == 2, 99);
 
 
-
-
-        // checks cards is still in gameplay
-        
-
-       
-
-    
         // 40% probability of attack success
         if( forty_percent_probability(r, ctx) == 1) {
             successful = true;
@@ -4222,9 +4134,6 @@ module capy_vs_gnome::card_deck {
 
         check_for_winner(game);
 
-
-
-
     }
 
 
@@ -4234,16 +4143,13 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs general
-    entry fun gnome_rider_vs_capy_general(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_rider_vs_capy_general(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
         let address_attacker = rider_attack.owner_address;
         let address_defender = general_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4265,14 +4171,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(rider_attack.type_id == 3, 99);
         assert!(general_defense.type_id == 1, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 75% probability of attack success
@@ -4341,10 +4239,8 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs soldier
-    entry fun gnome_monster_vs_capy_soldier(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_monster_vs_capy_soldier(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
-
-        
 
 
         // vars
@@ -4376,15 +4272,6 @@ module capy_vs_gnome::card_deck {
         assert!(monster_attack.type_id == 3, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
-
-       
 
 
         // 66% probability of attack success
@@ -4432,9 +4319,7 @@ module capy_vs_gnome::card_deck {
 
 
         check_for_winner(game);
-
-
-        
+ 
 
     }
 
@@ -4444,7 +4329,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs rider
-    entry fun gnome_monster_vs_gnome_rider(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: &mut CapyRider, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_monster_vs_gnome_rider(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
 
 
         // vars
@@ -4452,8 +4337,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = monster_attack.owner_address;
         let address_defender = rider_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4475,14 +4358,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(monster_attack.type_id == 2, 99);
         assert!(rider_defense.type_id == 3, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 50% probability of attack success
@@ -4531,11 +4406,6 @@ module capy_vs_gnome::card_deck {
 
         check_for_winner(game);
 
-        
-        
-
-        
-
     }
 
 
@@ -4543,10 +4413,8 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs monster
-    entry fun gnome_monster_vs_capy_monster(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: &mut CapyMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_monster_vs_capy_monster(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
-
-        
 
 
         // vars
@@ -4554,8 +4422,6 @@ module capy_vs_gnome::card_deck {
         let address_attacker = monster_attack.owner_address;
         let address_defender = monster_defense.owner_address;
 
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4578,13 +4444,6 @@ module capy_vs_gnome::card_deck {
         assert!(monster_attack.type_id == 2, 99);
         assert!(monster_defense.type_id == 2, 99);
 
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 40% probability of attack success
@@ -4633,9 +4492,6 @@ module capy_vs_gnome::card_deck {
 
         check_for_winner(game);
 
-
-
-
     }
 
 
@@ -4645,16 +4501,13 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs general
-    entry fun gnome_monster_vs_capy_general(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_monster_vs_capy_general(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
         let address_attacker = monster_attack.owner_address;
         let address_defender = general_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4677,20 +4530,11 @@ module capy_vs_gnome::card_deck {
         assert!(monster_attack.type_id == 2, 99);
         assert!(general_defense.type_id == 1, 99);
 
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
-
     
         // 75% probability of attack success
         if( seventy_five_percent_probability(r, ctx) == 1) {
             successful = true;
         };
-
 
 
 
@@ -4760,7 +4604,7 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // general vs soldier
-    entry fun gnome_general_vs_capy_soldier(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, soldier_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_general_vs_capy_soldier(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
 
@@ -4768,9 +4612,6 @@ module capy_vs_gnome::card_deck {
         let successful = false; 
         let address_attacker = general_attack.owner_address;
         let address_defender = soldier_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4792,14 +4633,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(general_attack.type_id == 1, 99);
         assert!(soldier_defense.type_id == 4, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 70% probability of attack success
@@ -4849,10 +4682,6 @@ module capy_vs_gnome::card_deck {
 
         check_for_winner(game);
 
-
-
-
-       
         
 
     }
@@ -4863,17 +4692,13 @@ module capy_vs_gnome::card_deck {
 
     // // ADD CP COSTS
     // general vs rider
-    entry fun gnome_general_vs_capy_rider(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, rider_defense: &mut CapySoldier, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
+    entry fun gnome_general_vs_capy_rider(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, rider_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
         let address_attacker = general_attack.owner_address;
         let address_defender = rider_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4896,13 +4721,6 @@ module capy_vs_gnome::card_deck {
         assert!(general_attack.type_id == 1, 99);
         assert!(rider_defense.type_id == 3, 99);
 
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 60% probability of attack success
@@ -4954,8 +4772,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-        
-
     }
 
 
@@ -4963,16 +4779,13 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // general vs monster
-    entry fun gnome_general_vs_capy_monster(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, monster_defense: &mut CapyMonster, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_general_vs_capy_monster(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
         // vars
         let successful = false; 
         let address_attacker = general_attack.owner_address;
         let address_defender = monster_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -4994,14 +4807,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(general_attack.type_id == 2, 99);
         assert!(monster_defense.type_id == 1, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 556% probability of attack success
@@ -5049,13 +4854,10 @@ module capy_vs_gnome::card_deck {
 
 
 
-        
-
         check_for_winner(game);
 
 
   
-
     }
 
 
@@ -5064,7 +4866,7 @@ module capy_vs_gnome::card_deck {
 
 
     // general vs general
-    entry fun gnome_general_vs_capy_general(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    entry fun gnome_general_vs_capy_general(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
 
@@ -5072,9 +4874,6 @@ module capy_vs_gnome::card_deck {
         let successful = false; 
         let address_attacker = general_attack.owner_address;
         let address_defender = general_defense.owner_address;
-
-        let attack_card_confirmed = false;
-        let defense_card_confirmed = false;
 
         let player_one_address = game.player_one_address;
         let player_two_address = game.player_two_address;
@@ -5096,14 +4895,6 @@ module capy_vs_gnome::card_deck {
         // checks cards are correct type
         assert!(general_attack.type_id == 2, 99);
         assert!(general_defense.type_id == 1, 99);
-
-
-
-
-        // checks cards is still in gameplay
-        
-
-       
 
     
         // 80% probability of attack success
@@ -5154,8 +4945,6 @@ module capy_vs_gnome::card_deck {
         check_for_winner(game);
 
         
-
-
 
     }
 
