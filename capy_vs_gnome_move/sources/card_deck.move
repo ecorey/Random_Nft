@@ -3919,7 +3919,7 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
 
 
-    // winner struct used to claim the bet 
+    // struct transfered to teh winner and used to claim the bet pot
     struct Trophy has key, store {
         id: UID,
         winner: address,
