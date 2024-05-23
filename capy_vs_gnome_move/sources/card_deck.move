@@ -18,8 +18,11 @@ module capy_vs_gnome::card_deck {
     use sui::coin::{Self, TreasuryCap};
     use sui::random::{Self, Random, new_generator};
 
+
+    // closed-loop token
     use capy_vs_gnome::pleco::{PLECO, first_turns_mint};
 
+    // used for random number generation 
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
 
 
@@ -38,9 +41,8 @@ module capy_vs_gnome::card_deck {
 
 
     // CONTENTS:
-    // PERMENANTS CARDS 
-    //   - Card
-    //   - delete_card
+    // PERMENANTS CARDS
+    // GNOME CARDS 
     //   - GnomeGeneralOwnerCap
     //   - delete_gnome_general_owner_cap
     //   - GnomeGeneral
@@ -65,6 +67,7 @@ module capy_vs_gnome::card_deck {
     //   - mint_gnome_soldier
     //   - transfer_gnome_soldier
     //    
+    // CAPYBARA CARDS
     //   - CapyGeneralOwnerCap
     //   - delete_capy_general_owner_cap
     //   - CapyGeneral
@@ -88,25 +91,7 @@ module capy_vs_gnome::card_deck {
     //   - CapySoldier
     //   - mint_capy_soldier
     //   - transfer_capy_soldier
-    // GNOME CARDS
-    //   - mint_gnome_general
-    //   - transfer_gnome_general
-    //   - mint_gnome_monster
-    //   - transfer_gnome_monster
-    //   - mint_gnome_rider
-    //   - transfer_gnome_rider
-    //   - mint_gnome_soldier
-    //   - transfer_gnome_soldier
-    // CAPYBARA CARDS
-    //   - mint_capy_general
-    //   - transfer_capy_general
-    //   - mint_capy_monster
-    //   - transfer_capy_monster
-    //   - mint_capy_rider
-    //   - transfer_capy_rider
-    //   - mint_capy_soldier
-    //   - transfer_capy_soldier
-    // PERMENANTS GETTERS 
+    // PERMENANT CARD GETTERS 
     //   - owner_address_gnome_general
     //   - owner_address_gnome_monster
     //   - owner_address_gnome_rider
@@ -206,9 +191,17 @@ module capy_vs_gnome::card_deck {
     //   - mint_capy_cards
     //   - transfer_capy_cards
     //   - delete_all_capy_card_caps
-    // CONFIRM DECKS
+    // CONFIRM DECKS AND CARDS
     //   - confirm_gnome_deck
+    //   - confirm_gnome_soldier
+    //   - confirm_gnome_rider
+    //   - confirm_gnome_monster
+    //   - confirm_gnome_general
     //   - confirm_capy_deck
+    //   - confirm_capy_soldier
+    //   - confirm_capy_rider
+    //   - confirm_capy_monster
+    //   - confirm_capy_general
     // GAME SETUP
     //    - Game
     //    - GameStatsEvent
@@ -247,11 +240,18 @@ module capy_vs_gnome::card_deck {
     //    - player_two_monster_status
     //    - player_two_rider_status
     //    - player_two_soldier_status
+    //    - winner
+    //    - player_one_general_confirmed
+    //    - player_one_monster_confirmed
+    //    - player_one_rider_confirmed
+    //    - player_one_soldier_confirmed
+    //    - player_two_general_confirmed
+    //    - player_two_monster_confirmed
+    //    - player_two_rider_confirmed
+    //    - player_two_soldier_confirmed
     // END OF GAME CHECKS
     //    - Winner
-    //    - game_over
-    // COIN TOSS FUNCTIONS
-    //   - coin_toss
+    //    - check_for_winner
     // GNOME ATTACK FUNCTIONS
     //   - gnome_soldier_vs_capy_soldier 
     //   - gnome_soldier_vs_capy_rider
@@ -289,6 +289,8 @@ module capy_vs_gnome::card_deck {
     // DEFENSE FUNCTIONS
     //   - frontline_defense_stance
     //   - backline_defense_stance
+    // COIN TOSS FUNCTIONS
+    //   - coin_toss
     // PROBABILITY FUNCTIONS
     //   - twenty_five_percent_probability
     //   - thirty_three_percent_probability
@@ -305,9 +307,7 @@ module capy_vs_gnome::card_deck {
     // TEST INIT
     //   - init_for_testing
     //
-    //
-    // UNDER CONSTRUCTION
-    //   - marks current work location
+
 
 
 
@@ -325,43 +325,9 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
 
 
-    // type_id: 1 = gnome general, 2 = gnome monster, 3 = gnome rider, 4 = gnome soldier
+    // type_id: 1 = general, 2 = monster, 3 = rider, 4 = soldier
 
-    struct Card has key, store {
-        id: UID,
-        owner_address: address,
-        type: String,
-        type_id: u64,
-        // card_id: ID,
-        name: String, 
-        image_url: String,
-        attack: u64,
-        defense: u64,
-        health: u64,
-        cost: u64,
-        // ability_one: String,
-    }
-
-
-
-    public fun delete_card(card: Card) {
-
-        let Card { id, owner_address: _, type: _, type_id: _, name: _, image_url: _ , attack: _, defense: _, health: _, cost: _ } = card;
-        object::delete(id);
-
-    }
-
-
-      
-
-
-
-
-
-
-
-
-
+   
     
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
@@ -2011,7 +1977,7 @@ module capy_vs_gnome::card_deck {
 
         // add gnomes to display
         // add gnome general
-        let display_gnome_general = display::new_with_fields<Card>(
+        let display_gnome_general = display::new_with_fields<GnomeGeneral>(
             &publisher, gnome_general_keys, gnome_general_values, ctx
         );
 
@@ -2019,7 +1985,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome monster
-        let display_gnome_monster = display::new_with_fields<Card>(
+        let display_gnome_monster = display::new_with_fields<GnomeMonster>(
             &publisher, gnome_monster_keys, gnome_monster_values, ctx
         );
 
@@ -2027,7 +1993,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome rider
-        let display_gnome_rider = display::new_with_fields<Card>(
+        let display_gnome_rider = display::new_with_fields<GnomeRider>(
             &publisher, gnome_rider_keys, gnome_rider_values, ctx
         );
 
@@ -2035,7 +2001,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add gnome soldier
-        let display_gnome_soldier = display::new_with_fields<Card>(
+        let display_gnome_soldier = display::new_with_fields<GnomeSoldier>(
             &publisher, gnome_soldier_keys, gnome_soldier_values, ctx
         );
 
@@ -2046,7 +2012,7 @@ module capy_vs_gnome::card_deck {
 
         // add capybaras to display
         // add capy general
-        let display_capy_general = display::new_with_fields<Card>(
+        let display_capy_general = display::new_with_fields<CapyGeneral>(
             &publisher, capy_general_keys, capy_general_values, ctx
         );
 
@@ -2054,7 +2020,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy monster
-        let display_capy_monster = display::new_with_fields<Card>(
+        let display_capy_monster = display::new_with_fields<CapyMonster>(
             &publisher, capy_monster_keys, capy_monster_values, ctx
         );
 
@@ -2062,7 +2028,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy rider
-        let display_capy_rider = display::new_with_fields<Card>(
+        let display_capy_rider = display::new_with_fields<CapyRider>(
             &publisher, capy_rider_keys, capy_rider_values, ctx
         );
 
@@ -2070,7 +2036,7 @@ module capy_vs_gnome::card_deck {
 
 
         // add capy soldier
-        let display_capy_soldier = display::new_with_fields<Card>(
+        let display_capy_soldier = display::new_with_fields<CapySoldier>(
             &publisher, capy_soldier_keys, capy_soldier_values, ctx
         );
 
@@ -2426,7 +2392,7 @@ module capy_vs_gnome::card_deck {
 
 
     // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
-    entry fun confim_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2473,7 +2439,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2519,7 +2485,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_gnome_monster(card: GnomeMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_monster(card: GnomeMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2565,7 +2531,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_gnome_general(card: GnomeGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_general(card: GnomeGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2755,7 +2721,7 @@ module capy_vs_gnome::card_deck {
 
 
     // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
-    entry fun confim_capy_soldier(card: CapySoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_soldier(card: CapySoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2802,7 +2768,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_capy_rider(card: CapyRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_rider(card: CapyRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2848,7 +2814,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_capy_monster(card: CapyMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_monster(card: CapyMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2894,7 +2860,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun confim_capy_general(card: CapyGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_general(card: CapyGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -3952,6 +3918,16 @@ module capy_vs_gnome::card_deck {
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
 
+
+    // winner struct used to claim the bet 
+    struct Trophy has key, store {
+        id: UID,
+        winner: address,
+    }
+
+
+    
+    // winner event
     struct Winner has copy, drop {
         player_one_winner: bool,
         player_two_winner: bool,
@@ -3961,7 +3937,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-    fun check_for_winner(game: &mut Game){
+    fun check_for_winner(game: &mut Game, ctx: &mut TxContext) {
+
 
         // if all cards are dead emit winner event
         if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
@@ -3970,6 +3947,17 @@ module capy_vs_gnome::card_deck {
                 player_one_winner: false,
                 player_two_winner: true,
             });
+
+            let trophy = Trophy {
+                id: object::new(ctx),
+                winner: game.player_two_address,
+            };
+
+            transfer::public_transfer(trophy, game.player_two_address);
+
+
+            game.winner = true;
+
 
         };
 
@@ -3982,10 +3970,21 @@ module capy_vs_gnome::card_deck {
                 player_two_winner: false,
             });
 
+
+            let trophy = Trophy {
+                id: object::new(ctx),
+                winner: game.player_one_address,
+            };
+
+            transfer::public_transfer(trophy, game.player_one_address);
+
+
+            game.winner = true;
+
         };
 
 
-        game.winner = true;
+        
 
     }
     
@@ -4118,7 +4117,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
         
 
@@ -4211,7 +4210,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -4302,7 +4301,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -4393,7 +4392,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -4496,7 +4495,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -4583,7 +4582,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
  
 
     }
@@ -4669,7 +4668,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
     }
 
@@ -4756,7 +4755,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -4857,7 +4856,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
  
 
     }
@@ -4944,7 +4943,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
     }
 
@@ -5031,7 +5030,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
     }
 
@@ -5117,7 +5116,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -5223,7 +5222,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
         
 
@@ -5312,7 +5311,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -5399,7 +5398,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
   
@@ -5488,7 +5487,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
         
 
@@ -5608,7 +5607,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
         
 
@@ -5717,7 +5716,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
     }
@@ -5819,7 +5818,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -5922,7 +5921,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6037,7 +6036,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6120,7 +6119,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
         
@@ -6207,7 +6206,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6294,7 +6293,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6399,7 +6398,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6485,7 +6484,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
     }
@@ -6570,7 +6569,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6660,7 +6659,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -6764,7 +6763,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
     }
 
@@ -6850,7 +6849,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
   
 
     }
@@ -6934,7 +6933,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
 
@@ -7023,7 +7022,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        check_for_winner(game);
+        check_for_winner(game, ctx);
 
 
     }
