@@ -1,3 +1,4 @@
+#[allow(unused_use)]
 module capy_vs_gnome::pleco {
 
 

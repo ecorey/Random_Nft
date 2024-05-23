@@ -1,3 +1,4 @@
+
 module capy_vs_gnome::card_deck {
 
 
@@ -2269,6 +2270,7 @@ module capy_vs_gnome::card_deck {
 
 
     struct ConfirmedDeck has key, store {
+
         id: UID,
         
         general_id: ID,
@@ -2280,6 +2282,14 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    
+    
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // CONFIRM GNOME DECK AND CARDS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
 
 
     // ensures the players are using an accurate deck and correct cards during gameplay
@@ -2399,6 +2409,133 @@ module capy_vs_gnome::card_deck {
 
 
     }
+
+
+
+
+
+    struct CardConfirmed has copy, store, drop {
+
+        card_confirmed: bool,
+
+    }
+
+
+
+
+
+
+    // // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
+    // entry fun confim_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+
+    //     let card_confirmed = false;
+
+
+    //     // sets which player is using turn
+    //     let player_on_deck: u8 = 0;
+
+    //     if(game.player_one_address == tx_context::sender(ctx)){
+    //         player_on_deck = 1;
+    //     };
+
+    //     if(game.player_two_address == tx_context::sender(ctx)){
+    //         player_on_deck = 2;
+    //     };
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(confirmed_deck.gnome_id == object::id(&card)){
+            
+    //         card_confirmed = true;
+
+    //         event::emit( CardConfirmed {
+    //             card_confirmed,
+    //         });
+
+
+    //         if(player_on_deck == 1) {
+
+    //             game.player_one_soldier_confirmed = true;
+
+    //         } else if (player_on_deck == 2) {
+
+    //             game.player_two_soldier_confirmed = true;
+
+    //         };
+            
+
+    //     };
+
+    //     transfer::public_share_object(card);
+
+    // }
+
+
+
+
+    //  entry fun confim_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+
+    //     let card_confirmed = false;
+
+
+    //     // sets which player is using turn
+    //     let player_on_deck: u8 = 0;
+
+    //     if(game.player_one_address == tx_context::sender(ctx)){
+    //         player_on_deck = 1;
+    //     };
+
+    //     if(game.player_two_address == tx_context::sender(ctx)){
+    //         player_on_deck = 2;
+    //     };
+
+
+    //     // checks cards are confirmed for gameplay
+    //     if(confirmed_deck.gnome_id == object::id(&card)){
+            
+    //         card_confirmed = true;
+
+    //         event::emit( CardConfirmed {
+    //             card_confirmed,
+    //         });
+
+
+    //         if(player_on_deck == 1) {
+
+    //             game.player_one_rider_confirmed = true;
+
+    //         } else if (player_on_deck == 2) {
+
+    //             game.player_two_rider_confirmed = true;
+
+    //         };
+            
+
+    //     };
+
+    //     transfer::public_share_object(card);
+
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // CONFIRM GNOME DECK AND CARDS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
 
 
 
@@ -2587,6 +2724,15 @@ module capy_vs_gnome::card_deck {
         player_two_rider_status: u8,
         player_two_soldier_status: u8,
         winner: bool,
+        player_one_general_confirmed: bool,
+        player_one_monster_confirmed: bool,
+        player_one_rider_confirmed: bool,
+        player_one_soldier_confirmed: bool,
+        player_two_general_confirmed: bool,
+        player_two_monster_confirmed: bool,
+        player_two_rider_confirmed: bool,
+        player_two_soldier_confirmed: bool,
+
 
        
     }
@@ -2616,6 +2762,14 @@ module capy_vs_gnome::card_deck {
         player_two_rider_status: u8,
         player_two_soldier_status: u8,
         winner: bool,
+        player_one_general_confirmed: bool,
+        player_one_monster_confirmed: bool,
+        player_one_rider_confirmed: bool,
+        player_one_soldier_confirmed: bool,
+        player_two_general_confirmed: bool,
+        player_two_monster_confirmed: bool,
+        player_two_rider_confirmed: bool,
+        player_two_soldier_confirmed: bool,
     }
 
 
@@ -2642,6 +2796,14 @@ module capy_vs_gnome::card_deck {
             player_two_rider_status: game.player_two_rider_status,
             player_two_soldier_status: game.player_two_soldier_status,
             winner: false,
+            player_one_general_confirmed: game.player_one_general_confirmed,
+            player_one_monster_confirmed: game.player_one_monster_confirmed,
+            player_one_rider_confirmed: game.player_one_rider_confirmed,
+            player_one_soldier_confirmed: game.player_one_soldier_confirmed,
+            player_two_general_confirmed: game.player_two_general_confirmed,
+            player_two_monster_confirmed: game.player_two_monster_confirmed,
+            player_two_rider_confirmed: game.player_two_rider_confirmed,
+            player_two_soldier_confirmed: game.player_two_soldier_confirmed,
         });
 
     }
@@ -2708,6 +2870,16 @@ module capy_vs_gnome::card_deck {
             player_two_soldier_status: 1,
 
             winner: false,
+
+            // confirmation status
+            player_one_general_confirmed: false,
+            player_one_monster_confirmed: false,
+            player_one_rider_confirmed: false,
+            player_one_soldier_confirmed: false,
+            player_two_general_confirmed: false,
+            player_two_monster_confirmed: false,
+            player_two_rider_confirmed: false,
+            player_two_soldier_confirmed: false,
            
         };
 
@@ -3413,6 +3585,81 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    // player one general status
+    public fun player_one_general_confirmed(game: &Game) : bool {
+
+        let player_one_general_confirmed = game.player_one_general_confirmed;
+
+        player_one_general_confirmed
+    }
+
+
+    // player one monster status
+    public fun player_one_monster_confirmed(game: &Game) : bool {
+
+        let player_one_monster_confirmed = game.player_one_monster_confirmed;
+
+        player_one_monster_confirmed
+    }
+
+
+    // player one  rider status
+    public fun player_one_rider_confirmed(game: &Game) : bool {
+
+        let player_one_rider_confirmed = game.player_one_rider_confirmed;
+
+        player_one_rider_confirmed
+    }
+
+
+    // player one soldier status
+    public fun player_one_soldier_confirmed(game: &Game) : bool {
+
+        let player_one_soldier_confirmed = game.player_one_soldier_confirmed;
+
+        player_one_soldier_confirmed
+    }
+
+
+
+    // player two general status
+    public fun player_two_general_confirmed(game: &Game) : bool {
+
+        let player_two_general_confirmed = game.player_two_general_confirmed;
+
+        player_two_general_confirmed
+    }
+
+
+    // player two monster status
+    public fun player_two_monster_confirmed(game: &Game) : bool {
+
+        let player_two_monster_confirmed = game.player_two_monster_confirmed;
+
+        player_two_monster_confirmed
+    }
+
+
+    // player two rider status
+    public fun player_two_rider_confirmed(game: &Game) : bool {
+
+        let player_two_rider_confirmed = game.player_two_rider_confirmed;
+
+        player_two_rider_confirmed
+    }
+
+
+    // player two soldier status
+    public fun player_two_soldier_confirmed(game: &Game) : bool {
+
+        let player_two_soldier_confirmed = game.player_two_soldier_confirmed;
+
+        player_two_soldier_confirmed
+    }
+
+
+
+
 
 
 
@@ -3501,6 +3748,7 @@ module capy_vs_gnome::card_deck {
 
 
 
+
     
 
 
@@ -3509,6 +3757,7 @@ module capy_vs_gnome::card_deck {
     // MAKE PRICVATE!!!!!!!!
     // ADD CARD CHECKS
     // soldier vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_soldier_vs_capy_soldier(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -3599,6 +3848,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // soldier vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_soldier_vs_capy_rider(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
 
 
@@ -3691,6 +3941,7 @@ module capy_vs_gnome::card_deck {
 
     // // ADD CP COSTS
     // soldier vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_soldier_vs_capy_monster(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap,  monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
@@ -3782,6 +4033,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // soldier vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_soldier_vs_capy_general(r: &Random, game: &mut Game, soldier_attack: &mut GnomeSoldier, gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, general_defense: &mut CapyGeneral,  ctx: &mut TxContext) {
 
 
@@ -3884,6 +4136,7 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // rider vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_rider_vs_capy_soldier(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -3973,6 +4226,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_rider_vs_gnome_rider(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, rider_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -4057,6 +4311,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_rider_vs_capy_monster(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
@@ -4143,6 +4398,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_rider_vs_capy_general(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
@@ -4239,6 +4495,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_monster_vs_capy_soldier(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -4329,6 +4586,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_monster_vs_gnome_rider(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
 
 
@@ -4413,6 +4671,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_monster_vs_capy_monster(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
@@ -4501,6 +4760,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_monster_vs_capy_general(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
@@ -4604,6 +4864,7 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // general vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_general_vs_capy_soldier(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, soldier_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -4692,6 +4953,7 @@ module capy_vs_gnome::card_deck {
 
     // // ADD CP COSTS
     // general vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_general_vs_capy_rider(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, rider_defense: &mut CapySoldier, ctx: &mut TxContext) {
 
 
@@ -4779,6 +5041,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // general vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_general_vs_capy_monster(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, monster_defense: &mut CapyMonster, ctx: &mut TxContext) {
 
 
@@ -4866,6 +5129,7 @@ module capy_vs_gnome::card_deck {
 
 
     // general vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun gnome_general_vs_capy_general(r: &Random, game: &mut Game, general_attack: &mut GnomeGeneral, gnome_general_owner_cap: &GnomeGeneralOwnerCap, general_defense: &mut CapyGeneral, ctx: &mut TxContext) {
 
 
@@ -4976,7 +5240,7 @@ module capy_vs_gnome::card_deck {
     // -----------------------------------------------------------------------
 
 
-
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_soldier_vs_gnome_soldier(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, capy_soldier_owner_cap: &CapySoldierOwnerCap, soldier_defense: &mut GnomeSoldier, ctx: &mut TxContext) {
 
 
@@ -5077,6 +5341,7 @@ module capy_vs_gnome::card_deck {
 
 
     // soldier vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_soldier_vs_gnome_rider(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, capy_soldier_owner_cap: &CapySoldierOwnerCap, rider_defense: &mut GnomeRider,  ctx: &mut TxContext) {
 
 
@@ -5180,8 +5445,8 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-     entry fun capy_soldier_vs_gnome_monster(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, capy_soldier_owner_cap: &CapySoldierOwnerCap, monster_defense: &mut GnomeMonster, ctx: &mut TxContext) {
+    #[allow(unused_variable, unused_assignment)]
+    entry fun capy_soldier_vs_gnome_monster(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, capy_soldier_owner_cap: &CapySoldierOwnerCap, monster_defense: &mut GnomeMonster, ctx: &mut TxContext) {
 
 
         // vars
@@ -5281,6 +5546,7 @@ module capy_vs_gnome::card_deck {
 
 
     // soldier vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_soldier_vs_gnome_general(r: &Random, game: &mut Game, soldier_attack: &mut CapySoldier, capy_soldier_owner_cap: &CapySoldierOwnerCap, general_defense: &mut GnomeGeneral, ctx: &mut TxContext) {
 
 
@@ -5393,6 +5659,7 @@ module capy_vs_gnome::card_deck {
     
     // ADD CP COSTS
     // rider vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_rider_vs_gnome_soldier(r: &Random, game: &mut Game, rider_attack: &mut CapyRider, capy_rider_owner_cap: &CapyRiderOwnerCap, soldier_defense: &mut GnomeSoldier, ctx: &mut TxContext) {
 
 
@@ -5496,6 +5763,7 @@ module capy_vs_gnome::card_deck {
 
 
     // rider vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_rider_vs_gnome_rider(r: &Random, game: &mut Game, rider_attack: &mut CapyRider, capy_rider_owner_cap: &CapyRiderOwnerCap, rider_defense: &mut GnomeRider, ctx: &mut TxContext) {
 
 
@@ -5581,6 +5849,7 @@ module capy_vs_gnome::card_deck {
 
 
     // rider vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_rider_vs_gnome_monster(r: &Random, game: &mut Game, rider_attack: &mut CapyRider, capy_rider_owner_cap: &CapyRiderOwnerCap, monster_defense: &mut GnomeMonster, ctx: &mut TxContext) {
 
 
@@ -5666,6 +5935,7 @@ module capy_vs_gnome::card_deck {
 
 
     // rider vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_rider_vs_gnome_general(r: &Random, game: &mut Game, rider_attack: &mut CapyRider, gnome_rider_owner_cap: &CapyRiderOwnerCap, general_defense: &mut GnomeGeneral, ctx: &mut TxContext) {
 
 
@@ -5772,6 +6042,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // rider vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_monster_vs_gnome_soldier(r: &Random, game: &mut Game, monster_attack: &mut CapyMonster, gnome_rider_owner_cap: &CapyMonsterOwnerCap, soldier_defense: &mut GnomeSoldier, ctx: &mut TxContext) {
 
 
@@ -5858,6 +6129,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_monster_vs_gnome_rider(r: &Random, game: &mut Game, monster_attack: &mut CapyMonster, gnome_rider_owner_cap: &CapyMonsterOwnerCap, rider_defense: &mut GnomeRider, ctx: &mut TxContext) {
 
 
@@ -5941,6 +6213,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_monster_vs_gnome_monster(r: &Random, game: &mut Game, monster_attack: &mut CapyMonster, gnome_rider_owner_cap: &CapyMonsterOwnerCap, monster_defense: &mut GnomeMonster, ctx: &mut TxContext) {
 
 
@@ -6029,6 +6302,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // monster vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_monster_vs_gnome_general(r: &Random, game: &mut Game, monster_attack: &mut CapyMonster, gnome_rider_owner_cap: &CapyMonsterOwnerCap, general_defense: &mut GnomeGeneral, ctx: &mut TxContext) {
 
 
@@ -6132,6 +6406,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // general vs soldier
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_general_vs_gnome_soldier(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, soldier_defense: &mut GnomeSoldier,  ctx: &mut TxContext) {
 
 
@@ -6217,6 +6492,7 @@ module capy_vs_gnome::card_deck {
 
     // // ADD CP COSTS
     // general vs rider
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_general_vs_gnome_rider(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, rider_defense: &mut GnomeSoldier, ctx: &mut TxContext) {
 
 
@@ -6302,6 +6578,7 @@ module capy_vs_gnome::card_deck {
 
     // ADD CP COSTS
     // general vs monster
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_general_vs_gnome_monster(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, monster_defense: &mut GnomeMonster, ctx: &mut TxContext) {
 
 
@@ -6387,6 +6664,7 @@ module capy_vs_gnome::card_deck {
 
 
     // general vs general
+    #[allow(unused_variable, unused_assignment)]
     entry fun capy_general_vs_gnome_general(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, general_defense: &mut GnomeGeneral, ctx: &mut TxContext) {
 
 
