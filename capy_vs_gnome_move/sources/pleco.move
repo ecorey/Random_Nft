@@ -1,4 +1,4 @@
-module capy_vs_gnome::monsti {
+module capy_vs_gnome::pleco {
 
 
 
@@ -13,7 +13,7 @@ module capy_vs_gnome::monsti {
 
 
     #[test_only]
-    friend capy_vs_gnome::monsti_tests;
+    friend capy_vs_gnome::pleco_tests;
 
 
 
@@ -46,7 +46,7 @@ module capy_vs_gnome::monsti {
 
 
 
-    struct MONSTI has drop {}
+    struct PLECO has drop {}
 
 
     // for rule 
@@ -55,16 +55,16 @@ module capy_vs_gnome::monsti {
 
 
 
-    fun init(otw: MONSTI, ctx: &mut TxContext) {
+    fun init(otw: PLECO, ctx: &mut TxContext) {
 
 
 
         let (treasury_cap, coin_metadata) = coin::create_currency(
             otw,
             0,
-            b"MONSTI",
-            b"Monsti",
-            b"Command Points for Capy Vs. Gnome",
+            b"PLECO",
+            b"Pleco",
+            b"Pleco powered gas closed-loop token",
             option::none(),
             ctx,
         );
@@ -74,7 +74,7 @@ module capy_vs_gnome::monsti {
 
 
         // constrained spend example
-        token::add_rule_for_action<MONSTI, CardUse>(
+        token::add_rule_for_action<PLECO, CardUse>(
             &mut policy,
             &policy_cap,
             token::spend_action(),
@@ -94,9 +94,9 @@ module capy_vs_gnome::monsti {
 
 
 
-    // mint 4 MONSTI to the user at the start of first rounds of a turn
+    // mint 4 PLECO to the user at the start of first rounds of a turn
     public fun first_turns_mint(
-        cap: &mut TreasuryCap<MONSTI>,
+        cap: &mut TreasuryCap<PLECO>,
         recipient: address,
         ctx: &mut TxContext,
     ) {
@@ -109,9 +109,9 @@ module capy_vs_gnome::monsti {
 
 
 
-    // mint 1 MONSTI to the user at the start of sebsequent turns
+    // mint 1 PLECO to the user at the start of sebsequent turns
     public fun turn_mint(
-        cap: &mut TreasuryCap<MONSTI>,
+        cap: &mut TreasuryCap<PLECO>,
         ctx: &mut TxContext,
     ) {
         let token = token::mint(cap, 1, ctx);

@@ -17,7 +17,7 @@ module capy_vs_gnome::card_deck {
     use sui::coin::{Self, TreasuryCap};
     use sui::random::{Self, Random, new_generator};
 
-    use capy_vs_gnome::monsti::{MONSTI, first_turns_mint};
+    use capy_vs_gnome::pleco::{PLECO, first_turns_mint};
 
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
 
@@ -2890,7 +2890,7 @@ module capy_vs_gnome::card_deck {
 
 
     // mints first turn token amount
-    public fun first_turn( cap: &mut TreasuryCap<MONSTI>, recipient: address, ctx: &mut TxContext) {
+    public fun first_turn( cap: &mut TreasuryCap<PLECO>, recipient: address, ctx: &mut TxContext) {
 
         first_turns_mint(cap, recipient, ctx);
 

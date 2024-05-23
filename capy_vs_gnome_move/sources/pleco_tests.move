@@ -1,5 +1,5 @@
 #[test_only]
-module capy_vs_gnome::monsti_tests {
+module capy_vs_gnome::pleco_tests {
 
 
     use sui::test_scenario;
@@ -7,7 +7,7 @@ module capy_vs_gnome::monsti_tests {
     use std::debug;
     use std::vector;
     use sui::tx_context::{Self, TxContext};
-    // use capy_vs_gnome::monsti::{MONSTI, init_for_testing};
+    // use capy_vs_gnome::monsti::{PLECO, init_for_testing};
     
 
 
@@ -22,7 +22,7 @@ module capy_vs_gnome::monsti_tests {
         let scenario = test_scenario::begin(admin);
         let scenario_val = &mut scenario;
 
-        // let otw = create_one_time_witness<MONSTI>();
+        // let otw = create_one_time_witness<PLECO>();
 
 
         {
