@@ -2425,97 +2425,97 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
-    // entry fun confim_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
+    entry fun confim_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
-    //     let card_confirmed = false;
-
-
-    //     // sets which player is using turn
-    //     let player_on_deck: u8 = 0;
-
-    //     if(game.player_one_address == tx_context::sender(ctx)){
-    //         player_on_deck = 1;
-    //     };
-
-    //     if(game.player_two_address == tx_context::sender(ctx)){
-    //         player_on_deck = 2;
-    //     };
+        let card_confirmed = false;
 
 
-    //     // checks cards are confirmed for gameplay
-    //     if(confirmed_deck.gnome_id == object::id(&card)){
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+        // checks cards are confirmed for gameplay
+        if(confirmed_deck.soldier_id == object::id(&card)){
             
-    //         card_confirmed = true;
+            card_confirmed = true;
 
-    //         event::emit( CardConfirmed {
-    //             card_confirmed,
-    //         });
-
-
-    //         if(player_on_deck == 1) {
-
-    //             game.player_one_soldier_confirmed = true;
-
-    //         } else if (player_on_deck == 2) {
-
-    //             game.player_two_soldier_confirmed = true;
-
-    //         };
-            
-
-    //     };
-
-    //     transfer::public_share_object(card);
-
-    // }
+            event::emit( CardConfirmed {
+                card_confirmed,
+            });
 
 
+            if(player_on_deck == 1) {
 
+                game.player_one_soldier_confirmed = true;
 
-    //  entry fun confim_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+            } else if (player_on_deck == 2) {
 
-    //     let card_confirmed = false;
+                game.player_two_soldier_confirmed = true;
 
-
-    //     // sets which player is using turn
-    //     let player_on_deck: u8 = 0;
-
-    //     if(game.player_one_address == tx_context::sender(ctx)){
-    //         player_on_deck = 1;
-    //     };
-
-    //     if(game.player_two_address == tx_context::sender(ctx)){
-    //         player_on_deck = 2;
-    //     };
-
-
-    //     // checks cards are confirmed for gameplay
-    //     if(confirmed_deck.gnome_id == object::id(&card)){
-            
-    //         card_confirmed = true;
-
-    //         event::emit( CardConfirmed {
-    //             card_confirmed,
-    //         });
-
-
-    //         if(player_on_deck == 1) {
-
-    //             game.player_one_rider_confirmed = true;
-
-    //         } else if (player_on_deck == 2) {
-
-    //             game.player_two_rider_confirmed = true;
-
-    //         };
+            };
             
 
-    //     };
+        };
 
-    //     transfer::public_share_object(card);
+        transfer::public_share_object(card);
 
-    // }
+    }
+
+
+
+
+     entry fun confim_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+
+        let card_confirmed = false;
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+        // checks cards are confirmed for gameplay
+        if(confirmed_deck.rider_id == object::id(&card)){
+            
+            card_confirmed = true;
+
+            event::emit( CardConfirmed {
+                card_confirmed,
+            });
+
+
+            if(player_on_deck == 1) {
+
+                game.player_one_rider_confirmed = true;
+
+            } else if (player_on_deck == 2) {
+
+                game.player_two_rider_confirmed = true;
+
+            };
+            
+
+        };
+
+        transfer::public_share_object(card);
+
+    }
 
 
 
