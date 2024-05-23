@@ -4370,84 +4370,117 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // // ADD CP COSTS
-    // // rider vs general
-    // entry fun rider_vs_general(r: &Random, rider_attack: Card, rider_attack_confirmed: &ConfirmedDeck, general_defense: Card, general_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+    // ADD CP COSTS
+    // rider vs general
+    entry fun gnome_rider_vs_capy_general(r: &Random, game: &mut Game, rider_attack: &mut GnomeRider, gnome_rider_owner_cap: &GnomeRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut CapyGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
 
 
-    //     // vars
-    //     let successful = false; 
-    //     let address_attacker = rider_attack.owner_address;
-    //     let address_defender = general_defense.owner_address;
-    //     let attack_card_confirmed = false;
-    //     let defense_card_confirmed = false;
+        // vars
+        let successful = false; 
+        let address_attacker = rider_attack.owner_address;
+        let address_defender = general_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (rider_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (rider_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
         
         
-    //     // checks cards are correct type
-    //     assert!(rider_attack.type_id == 3, 99);
-    //     assert!(general_defense.type_id == 1, 99);
-
-
-    //     // checks cards are confirmed for gameplay
-    //     if(rider_attack_confirmed.rider_id == object::id(&rider_attack)){
-    //         attack_card_confirmed = true;
-    //     };
-
-
-    //     if(general_defense_confirmed.general_id == object::id(&general_defense)){
-    //         defense_card_confirmed = true;
-    //     };
-
-
-    //     assert!(attack_card_confirmed == true, 99);
-    //     assert!(defense_card_confirmed == true, 99);
+        // checks cards are correct type
+        assert!(rider_attack.type_id == 3, 99);
+        assert!(general_defense.type_id == 1, 99);
 
 
 
 
-    //     // 75% probability of attack success
-    //     if( seventy_five_percent_probability(r, ctx) == 1) {
-    //         successful = true;
-    //     };
-
-
-    //     // if successful, decrease health of defense card by 1
-    //     if(successful == true) {
-    //         general_defense.health = general_defense.health - 1;
-    //         event::emit(AttackSuccess {
-    //             attack_success: true,
-    //         });
-    //     } else {
-    //         event::emit(AttackFail {
-    //             attack_success: false,
-    //         });
-    //     };
-
-
-
-    //     // if defense card health is 0, delete card
-    //     if(general_defense.health == 0) {
-    //         delete_card(general_defense);
-    //         event::emit(Death {
-    //             death: true,
-    //         });
-    //     }  else {
-
-    //         // public transfer defense card back to player
-    //         transfer::public_transfer(general_defense, address_defender);
-
-    //     };
+        // checks cards is still in gameplay
         
 
+       
+
+    
+        // 75% probability of attack success
+        if( seventy_five_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
 
 
-    //     // public transfer attack card back to player
-    //     transfer::public_transfer(rider_attack, address_attacker);
-        
 
-        
 
-    // }
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            general_defense.health = general_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(general_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_monster_status = 0;
+            } else {
+                game.player_two_monster_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+    }
 
 
 
@@ -6114,6 +6147,124 @@ module capy_vs_gnome::card_deck {
 
 
     }
+
+
+
+
+    // rider vs general
+    entry fun capy_rider_vs_gnome_general(r: &Random, game: &mut Game, rider_attack: &mut CapyRider, gnome_rider_owner_cap: &CapyRiderOwnerCap, soldier_attack_confirmed: &ConfirmedDeck, general_defense: &mut GnomeGeneral, soldier_defense_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
+
+
+        // vars
+        let successful = false; 
+        let address_attacker = rider_attack.owner_address;
+        let address_defender = general_defense.owner_address;
+
+        let attack_card_confirmed = false;
+        let defense_card_confirmed = false;
+
+        let player_one_address = game.player_one_address;
+        let player_two_address = game.player_two_address;
+
+        let current_player = 0;
+        let defender = 0;
+
+
+
+        if (rider_attack.owner_address == game.player_one_address) {
+            current_player = 1;
+            defender = 2;
+        } else if (rider_attack.owner_address == game.player_two_address) {
+            current_player = 2;
+            defender = 1;
+        };
+        
+        
+        // checks cards are correct type
+        assert!(rider_attack.type_id == 3, 99);
+        assert!(general_defense.type_id == 1, 99);
+
+
+
+
+        // checks cards is still in gameplay
+        
+
+       
+
+    
+        // 75% probability of attack success
+        if( seventy_five_percent_probability(r, ctx) == 1) {
+            successful = true;
+        };
+
+
+
+
+        // if successful, decrease health of defense card by 1
+        if(successful == true) {
+            
+            general_defense.health = general_defense.health - 1;
+            
+            event::emit(AttackSuccess {
+                attack_success: true,
+            });
+
+        } else {
+
+            event::emit(AttackFail {
+                attack_success: false,
+            });
+
+        };
+
+
+
+        // if defense card health is 0, emit death event
+        if(general_defense.health == 0) {
+
+            event::emit(Death {
+                death: true,
+            });
+
+            if (defender == 1) {
+                game.player_one_monster_status = 0;
+            } else {
+                game.player_two_monster_status = 0;
+            };
+            
+
+        };
+
+
+
+        // if all cards are dead emit winner event
+        if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: false,
+                player_two_winner: true,
+            });
+
+        };
+
+
+        // if all cards are dead emit winner event
+        if(game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+            
+            event::emit( Winner {
+                player_one_winner: true,
+                player_two_winner: false,
+            });
+
+        };
+
+
+    }
+
+
+
+
 
 
 
