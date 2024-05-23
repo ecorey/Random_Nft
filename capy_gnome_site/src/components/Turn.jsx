@@ -5,8 +5,6 @@ import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package, RANDOM } from '../../../scripts/config';
 
-// UNDER CONSTRUCTION
-
 const Turn = () => {
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
@@ -102,20 +100,29 @@ const Turn = () => {
     };
 
     const handleTurn = async () => {
-        
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
     
         let attackerConfirmDeck;
         let defenderConfirmDeck;
+        let attackerAddress;
+        let defenderAddress;
     
         if (currentPlayer === 'Player 1') {
             attackerConfirmDeck = confirmDeckPlayerOne;
             defenderConfirmDeck = confirmDeckPlayerTwo;
+            attackerAddress = playerOneAddress;
+            defenderAddress = playerTwoAddress;
         } else {
             attackerConfirmDeck = confirmDeckPlayerTwo;
             defenderConfirmDeck = confirmDeckPlayerOne;
+            attackerAddress = playerTwoAddress;
+            defenderAddress = playerOneAddress;
         }
+    
+        console.log(`Attacker Address: ${attackerAddress}, Defender Address: ${defenderAddress}`);
+        console.log(`Attacker Confirm Deck: ${attackerConfirmDeck}, Defender Confirm Deck: ${defenderConfirmDeck}`);
+        console.log(`Attack Card: ${AttackCard}, Defense Choice: ${defenseChoice}`);
     
         txb.moveCall({
             target: `${Package}::card_deck::turn_trial`,
@@ -127,8 +134,6 @@ const Turn = () => {
                 txb.object(attackerConfirmDeck),
                 txb.pure(defenseChoice),
                 txb.object(defenderConfirmDeck),
-                txb.pure(playerOneAddress),
-                txb.pure(playerTwoAddress),
                 txb.object(possible_defense_general),
                 txb.object(possible_defense_monster),
                 txb.object(possible_defense_rider),
@@ -144,7 +149,6 @@ const Turn = () => {
             console.error('Sorry, Game NOT Started', e);
         }
     };
-    
 
     useEffect(() => {
         if (isFinal) {
