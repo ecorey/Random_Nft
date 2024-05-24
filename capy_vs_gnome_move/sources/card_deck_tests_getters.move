@@ -519,7 +519,12 @@ module capy_vs_gnome::card_deck_tests_getters {
 
            
 
-            confirm_capy_deck(capy_general, capy_monster, capy_rider, capy_soldier, test_scenario::ctx(scenario_val));
+            confirm_capy_deck(&capy_general, &capy_general_owner_cap, &capy_monster, &capy_monster_owner_cap, &capy_rider, &capy_rider_owner_cap, &capy_soldier, &capy_soldier_owner_cap, test_scenario::ctx(scenario_val));
+
+            test_scenario::return_shared(capy_general);
+            test_scenario::return_shared(capy_monster);
+            test_scenario::return_shared(capy_rider);
+            test_scenario::return_shared(capy_soldier);
 
 
 
