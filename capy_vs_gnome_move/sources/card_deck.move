@@ -3171,7 +3171,7 @@ module capy_vs_gnome::card_deck {
 
 
     // turn trial no hash
-    entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+    entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
 
         // sets which player is using turn
@@ -3199,13 +3199,44 @@ module capy_vs_gnome::card_deck {
 
 
 
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
 
-        // attack andd defend
-        // attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
+
+
+
+        // determines the attack functions used
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            gnome_soldier_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            gnome_soldier_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            gnome_soldier_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            gnome_soldier_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
 
      
-
-    
 
     }
 
@@ -3464,52 +3495,6 @@ module capy_vs_gnome::card_deck {
     // --------------------------------------------------------------------------
 
 
-    // takes random, game, attack card, attacker confirmed deck, defender confirmed
-    // // uses the type_id to match and call the correct attack function
-    // entry fun attack_generic(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender: Card, defender_deck_confirmed: &ConfirmedDeck, ctx: &mut TxContext) {
-
-    //     // ONES (General)
-    //     if(attacker.type_id == 1 && defender.type_id == 1) {
-    //         general_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 1 && defender.type_id == 2) {
-    //         general_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 1 && defender.type_id == 3) {
-    //         general_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 1 && defender.type_id == 4) {
-    //         general_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 2 && defender.type_id == 1) {
-    //         monster_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 2 && defender.type_id == 2) {
-    //         monster_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 2 && defender.type_id == 3) {
-    //         monster_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 2 && defender.type_id == 4) {
-    //         monster_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 3 && defender.type_id == 1) {
-    //         rider_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 3 && defender.type_id == 2) {
-    //         rider_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 3 && defender.type_id == 3) {
-    //         rider_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 3 && defender.type_id == 4) {
-    //         rider_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 4 && defender.type_id == 1) {
-    //         soldier_vs_general(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 4 && defender.type_id == 2) {
-    //         soldier_vs_monster(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 4 && defender.type_id == 3) {
-    //         soldier_vs_rider(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else if(attacker.type_id == 4 && defender.type_id == 4) {
-    //         soldier_vs_soldier(r, attacker, attacker_deck_confirmed, defender, defender_deck_confirmed, ctx);
-    //     } else {
-    //         transfer::public_transfer(attacker, tx_context::sender(ctx));
-    //         transfer::public_transfer(defender, tx_context::sender(ctx));
-    //     };   
-
-        
-
-    // }
-
 
     struct DefenseCardAttacked has copy, drop {
         type_id: u8,
@@ -3562,82 +3547,11 @@ module capy_vs_gnome::card_deck {
     
 
 
-    // attacker needs to commit one card, defender all cards
-    // modify to iinclude what to do in case of losing a card to take as parameter
-    // create a 'DEAD' card to pass after losing a player that has no value
-    // UNDER CONSTRUCTION
-
-    // takes random, game, attack card, attacker confirmed deck, all defenders cards, defender confirmed AND
-    // takes defense posture choice and all of the defenders cards
+    
 
 
-    // entry fun attack_defend(r: &Random, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defender_deck_confirmed: &ConfirmedDeck, defense_choice: u8, possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext) {
 
 
-    //     let defense_card = defensive_posture(r, defense_choice, ctx);
-
-    //     let defender: Card;
-
-    //     let attacker_address: address = attacker.owner_address;
-
-    //     let defender_address: address = possible_defense_general.owner_address;
-
-
-    //     // determines the attack functions used
-    //     if (defense_card == 1 ) {
-
-    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_general, defender_deck_confirmed, ctx);
-
-
-    //         transfer::public_transfer(possible_defense_monster, defender_address);
-    //         transfer::public_transfer(possible_defense_rider, defender_address);
-    //         transfer::public_transfer(possible_defense_soldier, defender_address);
-
-    //     } else if ( defense_card == 2 ) {
-
-    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_monster, defender_deck_confirmed, ctx);
-
-
-    //         transfer::public_transfer(possible_defense_general, defender_address);
-    //         transfer::public_transfer(possible_defense_rider, defender_address);
-    //         transfer::public_transfer(possible_defense_soldier, defender_address);
-
-           
-    //     } else if ( defense_card == 3 ) {
-            
-    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_rider, defender_deck_confirmed, ctx);
-
-
-    //         transfer::public_transfer(possible_defense_general, defender_address);
-    //         transfer::public_transfer(possible_defense_monster, defender_address);
-    //         transfer::public_transfer(possible_defense_soldier, defender_address);
-
-           
-    //     } else if ( defense_card == 4 ) {
-
-    //         attack_generic( r, game, attacker, attacker_deck_confirmed, possible_defense_soldier, defender_deck_confirmed, ctx);
-
-
-    //         transfer::public_transfer(possible_defense_general, defender_address);
-    //         transfer::public_transfer(possible_defense_monster, defender_address);
-    //         transfer::public_transfer(possible_defense_rider, defender_address);
-
-
-    //     } else {
-
-    //         transfer::public_transfer(attacker, attacker_address);
-
-
-    //         transfer::public_transfer(possible_defense_general, defender_address);
-    //         transfer::public_transfer(possible_defense_monster, defender_address);
-    //         transfer::public_transfer(possible_defense_rider, defender_address);
-    //         transfer::public_transfer(possible_defense_soldier, defender_address);
-
-
-    //     };
-
-
-    // }
 
 
 
