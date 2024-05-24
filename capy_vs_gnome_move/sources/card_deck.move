@@ -225,10 +225,8 @@ module capy_vs_gnome::card_deck {
     //    - hashed_selection
     //    - prove_hashed_selection
     // ATTACK AND DEFEND FOR TURN STRUCTURE
-    //    - attack_generic
     //    - DefenseCardAttacked
     //    - defensive_posture
-    //    - attack_defend
     // GAME GETTERS
     //    - player_one_address
     //    - player_two_address
