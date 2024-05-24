@@ -19,6 +19,10 @@ export const CardProvider = ({ children }) => {
         monsterId: '',
         riderId: '',
         soldierId: '',
+        generalOwnerCap: '',
+        monsterOwnerCap: '',
+        riderOwnerCap: '',
+        soldierOwnerCap: '',
         address: '',
         confirmDeck: ''
     }));
@@ -27,6 +31,10 @@ export const CardProvider = ({ children }) => {
         monsterId: '',
         riderId: '',
         soldierId: '',
+        generalOwnerCap: '',
+        monsterOwnerCap: '',
+        riderOwnerCap: '',
+        soldierOwnerCap: '',
         address: '',
         confirmDeck: ''
     }));

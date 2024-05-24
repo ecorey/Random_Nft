@@ -35,6 +35,6 @@ published-version = "1"
 
 [env.devnet]
 chain-id = "b3f81552"
-original-published-id = "0x513dfc0b29963bc1db6a5915b16ac001c331c7b8a1f9e4b78ad556abde9ba1f1"
-latest-published-id = "0x513dfc0b29963bc1db6a5915b16ac001c331c7b8a1f9e4b78ad556abde9ba1f1"
+original-published-id = "0x84b7d32ee0b48aaff7cf17fb165f833924f9812d3bc52dc33e10f54711bbb4ef"
+latest-published-id = "0x84b7d32ee0b48aaff7cf17fb165f833924f9812d3bc52dc33e10f54711bbb4ef"
 published-version = "1"

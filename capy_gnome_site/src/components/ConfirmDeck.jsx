@@ -53,7 +53,7 @@ const handleConfirmGnomeDeck = () => {
 
   txb.moveCall({
       target: `${Package}::card_deck::confirm_gnome_deck`,
-      arguments: [txb.object(generalIdGnome), txb.object(generalOwnerCapGnome), txb.object(monsterId), txb.object(monsterOwnerCapGnome), txb.object(riderId), txb.object(soldierId)],
+      arguments: [txb.object(generalIdGnome), txb.object(generalOwnerCapGnome), txb.object(monsterIdGnome), txb.object(monsterOwnerCapGnome), txb.object(riderIdGnome), txb.object(riderOwnerCapGnome), txb.object(soldierIdGnome), txb.object(soldierOwnerCapGnome)],
   });
     
 

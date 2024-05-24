@@ -17,6 +17,11 @@ const OutputData = () => {
             <p>Monster ID: {player1.monsterId || "Not set"}</p>
             <p>Rider ID: {player1.riderId || "Not set"}</p>
             <p>Soldier ID: {player1.soldierId || "Not set"}</p>
+            <br />
+            <p>General Owner Cap: {player1.generalOwnerCap || "Not set"}</p>
+            <p>Monster Owner Cap: {player1.monsterOwnerCap || "Not set"}</p>
+            <p>Rider Owner Cap: {player1.riderOwnerCap || "Not set"}</p>
+            <p>Soldier Owner Cap: {player1.soldierOwnerCap || "Not set"}</p>
             
 
             <h1>Player 2 Data</h1>
@@ -27,6 +32,10 @@ const OutputData = () => {
             <p>Monster ID: {player2.monsterId || "Not set"}</p>
             <p>Rider ID: {player2.riderId || "Not set"}</p>
             <p>Soldier ID: {player2.soldierId || "Not set"}</p>
+            <p>General Owner Cap: {player2.generalOwnerCap || "Not set"}</p>
+            <p>Monster Owner Cap: {player2.monsterOwnerCap || "Not set"}</p>
+            <p>Rider Owner Cap: {player2.riderOwnerCap || "Not set"}</p>
+            <p>Soldier Owner Cap: {player2.soldierOwnerCap || "Not set"}</p>
             
 
             <h1>Game Setup Data</h1>

@@ -46,6 +46,8 @@ const ConfigureCards = () => {
                         onChange={e => handleGameChange(e, 'game')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
                     <input
                         type="text"
                         placeholder="Turnkey"
@@ -63,6 +65,18 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'generalId')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+                    <input
+                        type="text"
+                        placeholder="General Owner Cap"
+                        value={data.generalOwnerCap}
+                        onChange={e => handleChange(e, 'generalOwnerCap')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+
+
+
                     <input
                         type="text"
                         placeholder="Monster ID"
@@ -70,6 +84,18 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'monsterId')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+                    <input
+                        type="text"
+                        placeholder="Monster Owner Cap"
+                        value={data.monsterOwnerCap}
+                        onChange={e => handleChange(e, 'monsterOwnerCap')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+
+
+
                     <input
                         type="text"
                         placeholder="Rider ID"
@@ -77,6 +103,18 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'riderId')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+                    <input
+                        type="text"
+                        placeholder="Rider Owner Cap"
+                        value={data.riderOwnerCap}
+                        onChange={e => handleChange(e, 'riderOwnerCap')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+
+
+
                     <input
                         type="text"
                         placeholder="Soldier ID"
@@ -84,6 +122,18 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'soldierId')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+                    <input
+                        type="text"
+                        placeholder="Soldier Owner Cap"
+                        value={data.soldierOwnerCap}
+                        onChange={e => handleChange(e, 'soldierOwnerCap')}
+                        style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
+                    />
+
+
+
                     <input
                         type="text"
                         placeholder="Address"
@@ -91,6 +141,9 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'address')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+
                     <input
                         type="text"
                         placeholder="Confirmed Deck"
@@ -98,6 +151,10 @@ const ConfigureCards = () => {
                         onChange={e => handleChange(e, 'confirmDeck')}
                         style={{ width: '100%', marginBottom: '20px', padding: '12px', fontSize: '16px', fontFamily: 'Pixelify sans' }}
                     />
+
+
+
+
                 </>
             )}
 
