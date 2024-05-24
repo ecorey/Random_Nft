@@ -42,7 +42,7 @@ module capy_vs_gnome::card_deck_tests_getters {
     // use capy_vs_gnome::card_deck::{soldier_vs_soldier};
 
 
-
+    #[allow(unused_variable)]
     fun init_test_helper() : test_scenario::Scenario {
 
         let admin = @0xABC;
@@ -115,11 +115,12 @@ module capy_vs_gnome::card_deck_tests_getters {
             let gnome_soldier = test_scenario::take_shared<GnomeSoldier>(scenario_val);
 
 
-            
-            // confirm gnome it
-            confirm_gnome_deck(gnome_general, gnome_monster, gnome_rider, gnome_soldier, test_scenario::ctx(scenario_val));
+            confirm_gnome_deck(&gnome_general, &gnome_general_owner_cap, &gnome_monster, &gnome_monster_owner_cap, &gnome_rider, &gnome_rider_owner_cap, &gnome_soldier, &gnome_soldier_owner_cap, test_scenario::ctx(scenario_val));
 
-
+            test_scenario::return_shared(gnome_general);
+            test_scenario::return_shared(gnome_monster);
+            test_scenario::return_shared(gnome_rider);
+            test_scenario::return_shared(gnome_soldier);
 
             // delete the decks
             delete_all_gnome_card_caps(gnome_general_owner_cap, gnome_monster_owner_cap, gnome_rider_owner_cap, gnome_soldier_owner_cap, test_scenario::ctx(scenario_val)); 

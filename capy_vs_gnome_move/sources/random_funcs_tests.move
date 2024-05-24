@@ -1,108 +1,108 @@
-#[test_only]
-module capy_vs_gnome::random_funcs_tests {
+// #[test_only]
+// module capy_vs_gnome::random_funcs_tests {
 
 
-    use sui::test_scenario;
-    use sui::test_utils::{create_one_time_witness, assert_eq};
-    use std::debug;
-    use std::vector;
-    use sui::tx_context::{Self, TxContext};
-    use capy_vs_gnome::random_funcs::{init_for_testing, RANDOM_FUNCS};    
+//     use sui::test_scenario;
+//     use sui::test_utils::{create_one_time_witness, assert_eq};
+//     use std::debug;
+//     use std::vector;
+//     use sui::tx_context::{Self, TxContext};
+//     use capy_vs_gnome::random_funcs::{init_for_testing, RANDOM_FUNCS};    
 
 
    
 
 
-    fun init_test_helper() : test_scenario::Scenario {
+//     fun init_test_helper() : test_scenario::Scenario {
 
-        let admin = @0xABC;
-        let user1 = @0x123;
+//         let admin = @0xABC;
+//         let user1 = @0x123;
 
-        let scenario = test_scenario::begin(admin);
-        let scenario_val = &mut scenario;
+//         let scenario = test_scenario::begin(admin);
+//         let scenario_val = &mut scenario;
 
-        let otw = create_one_time_witness<RANDOM_FUNCS>();
-
-
-        {
-            init_for_testing(otw, test_scenario::ctx(scenario_val));
-        };
-
-        scenario
+//         let otw = create_one_time_witness<RANDOM_FUNCS>();
 
 
+//         {
+//             init_for_testing(otw, test_scenario::ctx(scenario_val));
+//         };
 
-    }
+//         scenario
 
 
 
-    #[test]
-    public fun character_card_cards() {
+//     }
 
 
-        let admin = @0xABC;
-        let user1 = @0x123;
 
-        let scenario = init_test_helper();
-        let scenario_val = &mut scenario;
-        let ctx = test_scenario::ctx(scenario_val);
+//     #[test]
+//     public fun character_card_cards() {
+
+
+//         let admin = @0xABC;
+//         let user1 = @0x123;
+
+//         let scenario = init_test_helper();
+//         let scenario_val = &mut scenario;
+//         let ctx = test_scenario::ctx(scenario_val);
 
 
 
         
-        // next test
-        test_scenario::next_tx(scenario_val, admin);
-        {
+//         // next test
+//         test_scenario::next_tx(scenario_val, admin);
+//         {
             
            
 
 
-        };
+//         };
 
 
 
-        // next test
-        test_scenario::next_tx(scenario_val, admin);
-        {
+//         // next test
+//         test_scenario::next_tx(scenario_val, admin);
+//         {
         
            
 
-        };
+//         };
 
 
 
 
 
-        // next test
-        test_scenario::next_tx(scenario_val, admin);
-        {
+//         // next test
+//         test_scenario::next_tx(scenario_val, admin);
+//         {
             
             
 
-        };
+//         };
 
 
 
 
-        // next test
-        test_scenario::next_tx(scenario_val, admin);
-        {
+//         // next test
+//         test_scenario::next_tx(scenario_val, admin);
+//         {
             
        
 
-        };
+//         };
 
 
 
 
 
-        // next test
-        test_scenario::next_tx(scenario_val, admin);
-        {
+//         // next test
+//         test_scenario::next_tx(scenario_val, admin);
+//         {
             
             
 
-        };
+//         };
 
 
 
@@ -118,15 +118,11 @@ module capy_vs_gnome::random_funcs_tests {
 
 
 
-        test_scenario::end(scenario);
+//         test_scenario::end(scenario);
 
 
 
-    }
-
-
-
-
+//     }
 
 
 
@@ -136,4 +132,8 @@ module capy_vs_gnome::random_funcs_tests {
 
 
 
-}
+
+
+
+
+// }

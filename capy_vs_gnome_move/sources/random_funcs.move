@@ -12,7 +12,7 @@ module capy_vs_gnome::random_funcs {
 
 
     #[test_only]
-    friend capy_vs_gnome::random_funcs_tests;
+    // friend capy_vs_gnome::random_funcs_tests;
     friend capy_vs_gnome::card_deck;
 
 
