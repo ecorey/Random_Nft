@@ -3176,6 +3176,12 @@ module capy_vs_gnome::card_deck {
 
 
 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // GNOME TURNS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
 
 
     // turn trial no hash
@@ -3228,6 +3234,9 @@ module capy_vs_gnome::card_deck {
 
 
         };
+
+
+
         
         if ( defense_card == 2 ) {
 
@@ -3482,6 +3491,331 @@ module capy_vs_gnome::card_deck {
         if ( defense_card == 4 ) {
 
             gnome_general_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
+
+     
+
+    }
+
+
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // CAPY TURNS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
+
+
+    // turn trial no hash
+    entry fun turn_capy_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapySoldier, attacker_owner_cap: &CapySoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+
+
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+
+
+
+        // determines the attack functions used based on the defense card and chewcks for winner
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            capy_soldier_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            capy_soldier_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            capy_soldier_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            capy_soldier_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
+
+     
+
+    }
+
+
+
+
+    entry fun turn_capy_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyRider, attacker_owner_cap: &CapyRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+
+
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+
+
+
+        // determines the attack functions used based on the defense card and chewcks for winner
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            capy_rider_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            capy_rider_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            capy_rider_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            capy_rider_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
+
+     
+
+    }
+
+
+
+    entry fun turn_capy_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyMonster, attacker_owner_cap: &CapyMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+
+
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+
+
+
+        // determines the attack functions used based on the defense card and chewcks for winner
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            capy_monster_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            capy_monster_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            capy_monster_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            capy_monster_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
+
+     
+
+    }
+
+
+
+
+    entry fun turn_capy_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyGeneral, attacker_owner_cap: &CapyGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+
+
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+
+
+
+        // determines the attack functions used based on the defense card and chewcks for winner
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            capy_general_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            capy_general_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            capy_general_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            capy_general_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
         };
 
@@ -6950,7 +7284,7 @@ module capy_vs_gnome::card_deck {
     // // ADD CP COSTS
     // general vs rider
     #[allow(unused_variable, unused_assignment)]
-    entry fun capy_general_vs_gnome_rider(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, rider_defense: &mut GnomeSoldier, ctx: &mut TxContext) {
+    entry fun capy_general_vs_gnome_rider(r: &Random, game: &mut Game, general_attack: &mut CapyGeneral, gnome_general_owner_cap: &CapyGeneralOwnerCap, rider_defense: &mut GnomeRider, ctx: &mut TxContext) {
 
 
         // vars
