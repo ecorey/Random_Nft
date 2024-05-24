@@ -13,15 +13,36 @@ const ConfirmDeck = () => {
 
 
   const [generalIdGnome, setgeneralIdGnome] = useState('');
+  const [generalOwnerCapGnome, setgeneralOwnerCapGnome] = useState('');
+
   const [monsterIdGnome, setmonsterIdGnome] = useState('');
+  const [monsterOwnerCapGnome, setmonsterOwnerCapGnome] = useState('');
+
   const [riderIdGnome, setriderIdGnome] = useState('');
+  const [riderOwnerCapGnome, setriderOwnerCapGnome] = useState('');
+
+
   const [soldierIdGnome, setsoldierIdGnome] = useState('');
+  const [soldierOwnerCapGnome, setsoldierOwnerCapGnome] = useState('');
+
 
 
   const [generalIdCapy, setgeneralIdCapy] = useState('');
+  const [generalOwnerCapCapy, setgeneralOwnerCapCapy] = useState('');
+
+
   const [monsterIdCapy, setmonsterIdCapy] = useState('');
+  const [monsterOwnerCapCapy, setmonsterOwnerCapCapy] = useState('');
+
+
   const [riderIdCapy, setriderIdCapy] = useState('');
+  const [riderOwnerCapCapy, setriderOwnerCapCapy] = useState('');
+
+
   const [soldierIdCapy, setsoldierIdCapy] = useState('');
+  const [soldiOwnerCapCapy, setsoldierOwnerCapCapy] = useState('');
+
+
 
 
   const navigate = useNavigate();
@@ -43,7 +64,7 @@ const handleConfirmGnomeDeck = () => {
 
   txb.moveCall({
       target: `${Package}::card_deck::confirm_gnome_deck`,
-      arguments: [txb.object(generalIdGnome), txb.object(monsterIdGnome), txb.object(riderIdGnome), txb.object(soldierIdGnome)],
+      arguments: [txb.object(generalIdGnome), txb.object(generalOwnerCapGnome), txb.object(monsterIdGnome), txb.object(monsterOwnerCapGnome), txb.object(riderIdGnome), txb.object(riderOwnerCapGnome), txb.object(soldierIdGnome), txb.object(soldierOwnerCapGnome)],
   });
     
 
@@ -72,7 +93,7 @@ const handleConfirmCapyDeck = () => {
 
   txb.moveCall({
       target: `${Package}::card_deck::confirm_capy_deck`,
-      arguments: [txb.object(generalIdCapy), txb.object(monsterIdCapy), txb.object(riderIdCapy), txb.object(soldierIdCapy)],
+      arguments: [txb.object(generalIdCapy), txb.object(generalOwnerCapCapy),  txb.object(monsterIdCapy), txb.object(monsterOwnerCapCapy), txb.object(riderIdCapy), txb.object(riderOwnerCapCapy), txb.object(soldierIdCapy), txb.object(soldiOwnerCapCapy)],
   });
     
 
@@ -113,6 +134,17 @@ const handleConfirmCapyDeck = () => {
       </div>
 
       <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="generalOwnerCapGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome General Owner Cap</label>
+        <input
+          type="text"
+          id="generalOwnerCapGnome"
+          value={generalOwnerCapGnome}
+          onChange={e => setgeneralOwnerCapGnome(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
         <label htmlFor="monsterIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Monster ID</label>
         <input
           type="text"
@@ -122,6 +154,20 @@ const handleConfirmCapyDeck = () => {
           style={inputStyle}
         />
       </div>
+
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="monsterOwnerCapGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Monster Owner Cap</label>
+        <input
+          type="text"
+          id="monsterOwnerCapGnome"
+          value={generalOwnerCapGnome}
+          onChange={e => setmonsterOwnerCapGnome(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+
 
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="riderIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Rider ID</label>
@@ -135,12 +181,35 @@ const handleConfirmCapyDeck = () => {
       </div>
 
       <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="riderOwnerCapGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Rider Owner Cap</label>
+        <input
+          type="text"
+          id="riderOwnerCapGnome"
+          value={riderOwnerCapGnome}
+          onChange={e => setriderOwnerCapGnome(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
         <label htmlFor="soldierIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Soldier ID</label>
         <input
           type="text"
           id="soldierIdGnome"
           value={soldierIdGnome}
           onChange={e => setsoldierIdGnome(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="soldierOwnerCapGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Soldier Owner Cap</label>
+        <input
+          type="text"
+          id="soldierOwnerCapGnome"
+          value={soldierOwnerCapGnome}
+          onChange={e => setsoldierOwnerCapGnome(e.target.value)}
           style={inputStyle}
         />
       </div>
@@ -167,6 +236,17 @@ const handleConfirmCapyDeck = () => {
       </div>
 
       <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="generalOwnerCapCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy General Owner Cap</label>
+        <input
+          type="text"
+          id="generalOwnerCapCapy"
+          value={generalOwnerCapGnome}
+          onChange={e => setgeneralOwnerCapCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
         <label htmlFor="monsterIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Monster ID</label>
         <input
           type="text"
@@ -176,6 +256,20 @@ const handleConfirmCapyDeck = () => {
           style={inputStyle}
         />
       </div>
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="monsterOwnerCapCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Monster Owner Cap</label>
+        <input
+          type="text"
+          id="monsterOwnerCapCapy"
+          value={monsterOwnerCapGnome}
+          onChange={e => setmonsterOwnerCapCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+
+
 
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="riderIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Rider ID</label>
@@ -188,6 +282,19 @@ const handleConfirmCapyDeck = () => {
         />
       </div>
 
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="riderOwnerCapCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Rider Owner Cap</label>
+        <input
+          type="text"
+          id="riderOwnerCapCapy"
+          value={riderOwnerCapGnome}
+          onChange={e => setriderOwnerCapCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="soldierIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Soldier ID</label>
         <input
@@ -195,6 +302,18 @@ const handleConfirmCapyDeck = () => {
           id="soldierIdCapy"
           value={soldierIdCapy}
           onChange={e => setsoldierIdCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="soldierOwnerCapCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Soldier Owner Cap</label>
+        <input
+          type="text"
+          id="soldierOwnerCapCapy"
+          value={soldierOwnerCapGnome}
+          onChange={e => setsoldierOwnerCapCapy(e.target.value)}
           style={inputStyle}
         />
       </div>

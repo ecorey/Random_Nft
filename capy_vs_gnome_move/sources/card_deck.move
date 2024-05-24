@@ -2274,6 +2274,7 @@ module capy_vs_gnome::card_deck {
         soldier: &GnomeSoldier, 
         gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, 
         ctx: &mut TxContext
+        
     ) {
 
         let attack = false;

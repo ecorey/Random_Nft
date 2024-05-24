@@ -13,6 +13,8 @@ module capy_vs_gnome::card_deck_tests_getters {
 
     use capy_vs_gnome::card_deck::{GnomeGeneral, GnomeMonster, GnomeRider, GnomeSoldier};
     use capy_vs_gnome::card_deck::{CapyGeneral, CapyMonster, CapyRider, CapySoldier};
+    use capy_vs_gnome::card_deck::{ConfirmedDeck, Game};
+    use capy_vs_gnome::card_deck::{start_game};
     use capy_vs_gnome::card_deck::{mint_gnome_cards, delete_all_gnome_card_caps};
     use capy_vs_gnome::card_deck::{mint_capy_cards, delete_all_capy_card_caps};
     use capy_vs_gnome::card_deck::{confirm_gnome_deck, confirm_capy_deck};
@@ -35,6 +37,12 @@ module capy_vs_gnome::card_deck_tests_getters {
     use capy_vs_gnome::card_deck::{defense_capy_general, defense_capy_monster, defense_capy_rider, defense_capy_soldier};
     use capy_vs_gnome::card_deck::{health_capy_general, health_capy_monster, health_capy_rider, health_capy_soldier};
     use capy_vs_gnome::card_deck::{cost_capy_general, cost_capy_monster, cost_capy_rider, cost_capy_soldier};
+
+    use capy_vs_gnome::card_deck::{confirm_gnome_soldier, confirm_gnome_rider, confirm_gnome_monster, confirm_gnome_general};
+    use capy_vs_gnome::card_deck::{confirm_capy_soldier, confirm_capy_rider, confirm_capy_monster, confirm_capy_general};   
+
+
+
 
 
 
@@ -99,7 +107,7 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
 
-         // test gnome confirm deck
+        // test gnome confirm deck
         test_scenario::next_tx(scenario_val, admin);
         {
             
@@ -128,6 +136,8 @@ module capy_vs_gnome::card_deck_tests_getters {
 
 
         };
+
+
 
 
 
