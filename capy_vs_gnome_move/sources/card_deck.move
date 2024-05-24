@@ -208,7 +208,15 @@ module capy_vs_gnome::card_deck {
     //    - emit_game_stats_event
     //    - TurnKey
     //    - start_game
-    //    - turn_trial
+    //    - turn_gnome_soldier
+    //    - turn_gnome_rider
+    //    - turn_gnome_monster
+    //    - turn_gnome_general
+    //    - turn_capy_soldier
+    //    - turn_capy_rider
+    //    - turn_capy_monster
+    //    - turn_capy_general
+    //    - turn_trial_with_hash 
     //    - first_turn
     //    - HashedSelection
     //    - HashedSelectionProved
@@ -3328,6 +3336,81 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun turn_gnome_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeMonster, attacker_owner_cap: &GnomeMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+
+
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+        // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
+        let defense_card = defensive_posture(r, defense_choice, ctx);
+
+
+
+
+        // determines the attack functions used based on the defense card and chewcks for winner
+        if (defense_card == 1 ) {
+            
+            // checks for winner
+            gnome_monster_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
+
+
+        };
+        
+        if ( defense_card == 2 ) {
+
+            gnome_monster_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+        }; 
+        
+        if ( defense_card == 3 ) {
+            
+            gnome_monster_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+        };
+        
+        
+        if ( defense_card == 4 ) {
+
+            gnome_monster_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+        };
+
+
+
+     
+
+    }
 
 
 
@@ -3340,9 +3423,12 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // turn actions and deletes the HashedSelectionProved object
+
+
+
+    
     // UNDER CONSTRUCTION 
-    // requires two owners break down the turn_trial function
+    // first decision cant be changed after defense makes choice
     entry fun turn_trial_with_hash(turn_key: TurnKey, game: &mut Game, proven: HashedSelectionProved, ctx: &mut TxContext){
 
 
@@ -4878,7 +4964,7 @@ module capy_vs_gnome::card_deck {
     // ADD CP COSTS
     // monster vs rider
     #[allow(unused_variable, unused_assignment)]
-    entry fun gnome_monster_vs_gnome_rider(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
+    entry fun gnome_monster_vs_capy_rider(r: &Random, game: &mut Game, monster_attack: &mut GnomeMonster, gnome_rider_owner_cap: &GnomeMonsterOwnerCap, rider_defense: &mut CapyRider, ctx: &mut TxContext) {
 
 
         // vars
