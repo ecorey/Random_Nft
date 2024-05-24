@@ -3171,43 +3171,52 @@ module capy_vs_gnome::card_deck {
 
 
     // turn trial no hash
-    // entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: Card, attacker_deck_confirmed: &ConfirmedDeck, defense_choice: u8, defender_deck_confirmed: &ConfirmedDeck,  possible_defense_general: Card, possible_defense_monster: Card, possible_defense_rider: Card, possible_defense_soldier: Card, ctx: &mut TxContext){
+    entry fun turn_trial(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
 
-    //     // sets which player is using turn
-    //     let player_on_deck: u8 = 0;
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
 
-    //     if(game.player_one_address == tx_context::sender(ctx)){
-    //         player_on_deck = 1;
-    //     };
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
 
-    //     if(game.player_two_address == tx_context::sender(ctx)){
-    //         player_on_deck = 2;
-    //     };
-
-
-
-
-
-    //     // pass the turn key
-    //     // check the player and pass to the opposite player
-    //     if(player_on_deck == 1){
-    //         transfer::public_transfer(turn_key, game.player_two_address);
-    //     } else {
-    //         transfer::public_transfer(turn_key, game.player_one_address);
-    //     };
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
 
 
 
 
-    //     // attack andd defend
-    //     // attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+
+
+        // attack andd defend
+        // attack_defend(r, game, attacker, attacker_deck_confirmed, defender_deck_confirmed, defense_choice, possible_defense_general, possible_defense_monster, possible_defense_rider, possible_defense_soldier, ctx);
 
      
 
     
 
-    // }
+    }
+
+
+
+
+
+
+
+
+
 
 
 
