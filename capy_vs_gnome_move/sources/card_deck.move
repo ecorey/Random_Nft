@@ -2274,7 +2274,7 @@ module capy_vs_gnome::card_deck {
         soldier: &GnomeSoldier, 
         gnome_soldier_owner_cap: &GnomeSoldierOwnerCap, 
         ctx: &mut TxContext
-        
+
     ) {
 
         let attack = false;
@@ -2285,19 +2285,19 @@ module capy_vs_gnome::card_deck {
 
 
         // check conditions
-        if (general.attack != 10 || monster.attack != 8 || rider.attack != 6 || soldier.attack != 4) {
+        if (general.attack == 10 || monster.attack == 8 || rider.attack == 6 || soldier.attack == 4) {
             attack = true;
         };
 
-        if (general.defense != 2 || monster.defense != 8 || rider.defense != 6 || soldier.defense != 4) {
+        if (general.defense == 2 || monster.defense == 8 || rider.defense == 6 || soldier.defense == 4) {
             defense = true;
         };
 
-        if (general.health != 3 || monster.health != 6 || rider.health != 4 || soldier.health != 7) {
+        if (general.health == 3 || monster.health == 6 || rider.health == 4 || soldier.health == 7) {
             health = true;
         };
 
-        if (general.cost != 6 || monster.cost != 5 || rider.cost != 4 || soldier.cost != 2) {
+        if (general.cost == 6 || monster.cost == 5 || rider.cost == 4 || soldier.cost == 2) {
             cost = true;
         };
 
@@ -2565,19 +2565,19 @@ module capy_vs_gnome::card_deck {
 
 
         // check conditions
-        if (general.attack != 10 || monster.attack != 8 || rider.attack != 6 || soldier.attack != 4) {
+        if (general.attack == 10 || monster.attack == 8 || rider.attack == 6 || soldier.attack == 4) {
             attack = true;
         };
 
-        if (general.defense != 2 || monster.defense != 8 || rider.defense != 6 || soldier.defense != 4) {
+        if (general.defense == 2 || monster.defense == 8 || rider.defense == 6 || soldier.defense == 4) {
             defense = true;
         };
 
-        if (general.health != 3 || monster.health != 6 || rider.health != 4 || soldier.health != 7) {
+        if (general.health == 3 || monster.health == 6 || rider.health == 4 || soldier.health == 7) {
             health = true;
         };
 
-        if (general.cost != 6 || monster.cost != 5 || rider.cost != 4 || soldier.cost != 2) {
+        if (general.cost == 6 || monster.cost == 5 || rider.cost == 4 || soldier.cost == 2) {
             cost = true;
         };
 
