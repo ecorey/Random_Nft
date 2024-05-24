@@ -2342,7 +2342,7 @@ module capy_vs_gnome::card_deck {
 
 
     // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
-    entry fun confirm_gnome_soldier(card: GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_soldier(card: &GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2360,7 +2360,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.soldier_id == object::id(&card)){
+        if(confirmed_deck.soldier_id == *object::borrow_id<GnomeSoldier>(card)){
             
             card_confirmed = true;
 
@@ -2382,14 +2382,13 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
 
 
 
-    entry fun confirm_gnome_rider(card: GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_rider(card: &GnomeRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2407,7 +2406,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.rider_id == object::id(&card)){
+        if(confirmed_deck.rider_id == *object::borrow_id<GnomeRider>(card)){
             
             card_confirmed = true;
 
@@ -2429,13 +2428,12 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
 
 
-    entry fun confirm_gnome_monster(card: GnomeMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_monster(card: &GnomeMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2453,7 +2451,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.monster_id == object::id(&card)){
+        if(confirmed_deck.monster_id == *object::borrow_id<GnomeMonster>(card)){
             
             card_confirmed = true;
 
@@ -2475,13 +2473,12 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
 
 
-    entry fun confirm_gnome_general(card: GnomeGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_gnome_general(card: &GnomeGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2499,7 +2496,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.general_id == object::id(&card)){
+        if(confirmed_deck.general_id == *object::borrow_id<GnomeGeneral>(card)){
             
             card_confirmed = true;
 
@@ -2521,7 +2518,6 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
@@ -2615,7 +2611,7 @@ module capy_vs_gnome::card_deck {
 
 
     // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
-    entry fun confirm_capy_soldier(card: CapySoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_soldier(card: &CapySoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2633,7 +2629,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.soldier_id == object::id(&card)){
+        if(confirmed_deck.soldier_id == *object::borrow_id<CapySoldier>(card)){
             
             card_confirmed = true;
 
@@ -2655,14 +2651,14 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
+        
 
     }
 
 
 
 
-    entry fun confirm_capy_rider(card: CapyRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_rider(card: &CapyRider, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2680,7 +2676,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.rider_id == object::id(&card)){
+        if(confirmed_deck.rider_id == *object::borrow_id<CapyRider>(card)){
             
             card_confirmed = true;
 
@@ -2702,13 +2698,12 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
 
 
-    entry fun confirm_capy_monster(card: CapyMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_monster(card: &CapyMonster, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2726,7 +2721,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.monster_id == object::id(&card)){
+        if(confirmed_deck.monster_id == *object::borrow_id<CapyMonster>(card)){
             
             card_confirmed = true;
 
@@ -2748,13 +2743,12 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
 
 
-    entry fun confirm_capy_general(card: CapyGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
+    entry fun confirm_capy_general(card: &CapyGeneral, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
 
@@ -2772,7 +2766,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks cards are confirmed for gameplay
-        if(confirmed_deck.general_id == object::id(&card)){
+        if(confirmed_deck.general_id == *object::borrow_id<CapyGeneral>(card)){
             
             card_confirmed = true;
 
@@ -2794,7 +2788,6 @@ module capy_vs_gnome::card_deck {
 
         };
 
-        transfer::public_share_object(card);
 
     }
 
