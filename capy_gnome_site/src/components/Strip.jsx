@@ -74,7 +74,7 @@ async function transferCapyDeck(signAndExecuteTransactionBlock) {
     const txb = new TransactionBlock();
     txb.setGasBudget(1000000000);
     txb.moveCall({
-        target: `${Package}::card_deck::transfer_capy_cards`,
+        target: `${Package}::card_deck::mint_capy_cards`,
         arguments: [],
     });
 
@@ -93,7 +93,7 @@ async function transferGnomeDeck(signAndExecuteTransactionBlock) {
     const txb = new TransactionBlock();
     txb.setGasBudget(1000000000);
     txb.moveCall({
-        target: `${Package}::card_deck::transfer_gnome_cards`,
+        target: `${Package}::card_deck::mint_gnome_cards`,
         arguments: [],
     });
 

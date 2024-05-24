@@ -12,10 +12,16 @@ const ConfirmDeck = () => {
   const { signAndExecuteTransactionBlock } = useWallet();
 
 
-  const [generalId, setgeneralId] = useState('');
-  const [monsterId, setmonsterId] = useState('');
-  const [riderId, setriderId] = useState('');
-  const [soldierId, setsoldierId] = useState('');
+  const [generalIdGnome, setgeneralIdGnome] = useState('');
+  const [monsterIdGnome, setmonsterIdGnome] = useState('');
+  const [riderIdGnome, setriderIdGnome] = useState('');
+  const [soldierIdGnome, setsoldierIdGnome] = useState('');
+
+
+  const [generalIdCapy, setgeneralIdCapy] = useState('');
+  const [monsterIdCapy, setmonsterIdCapy] = useState('');
+  const [riderIdCapy, setriderIdCapy] = useState('');
+  const [soldierIdCapy, setsoldierIdCapy] = useState('');
 
 
   const navigate = useNavigate();
@@ -30,14 +36,14 @@ const ConfirmDeck = () => {
 
 
 
-const handleConfirm = () => {
+const handleConfirmGnomeDeck = () => {
 
   const txb = new TransactionBlock();
   txb.setGasBudget(1000000000);
 
   txb.moveCall({
-      target: `${Package}::card_deck::confirm_deck`,
-      arguments: [txb.object(generalId), txb.object(monsterId), txb.object(riderId), txb.object(soldierId)],
+      target: `${Package}::card_deck::confirm_gnome_deck`,
+      arguments: [txb.object(generalIdGnome), txb.object(monsterIdGnome), txb.object(riderIdGnome), txb.object(soldierIdGnome)],
   });
     
 
@@ -46,10 +52,10 @@ const handleConfirm = () => {
         const confirmData = signAndExecuteTransactionBlock({
             transactionBlock: txb
         });
-        console.log('Deck Confirmed!', confirmData);
-        alert(`Congrats! Deck Confirmed! \n Digest: ${confirmData.digest}`);
+        console.log('Gnome Deck Confirmed!', confirmData);
+        alert(`Congrats! Gnome Deck Confirmed! \n Digest: ${confirmData.digest}`);
     } catch (e) {
-        console.error('Sorry, Deck Was Not Confirmed', e);
+        console.error('Sorry, Gnome Deck Was Not Confirmed', e);
     }
 
 };
@@ -57,56 +63,148 @@ const handleConfirm = () => {
 
 
 
+
+
+const handleConfirmCapyDeck = () => {
+
+  const txb = new TransactionBlock();
+  txb.setGasBudget(1000000000);
+
+  txb.moveCall({
+      target: `${Package}::card_deck::confirm_capy_deck`,
+      arguments: [txb.object(generalIdCapy), txb.object(monsterIdCapy), txb.object(riderIdCapy), txb.object(soldierIdCapy)],
+  });
+    
+
+
+  try {
+        const confirmData = signAndExecuteTransactionBlock({
+            transactionBlock: txb
+        });
+        console.log('Capy Deck Confirmed!', confirmData);
+        alert(`Congrats! Capy Deck Confirmed! \n Digest: ${confirmData.digest}`);
+    } catch (e) {
+        console.error('Sorry, Capy Deck Was Not Confirmed', e);
+    }
+
+};
+
+
+
+
+
+
+
+
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto' }}>
 
-      <h1 style={{ textAlign: 'center' }}>Confirm Deck</h1>
+      <h1 style={{ textAlign: 'center' }}>Confirm Gnome Deck</h1>
 
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="generalId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>General ID</label>
+        <label htmlFor="generalIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome General ID</label>
         <input
           type="text"
-          id="generalId"
-          value={generalId}
-          onChange={e => setgeneralId(e.target.value)}
+          id="generalIdGnome"
+          value={generalIdGnome}
+          onChange={e => setgeneralIdGnome(e.target.value)}
           style={inputStyle}
         />
       </div>
 
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="monsterId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Monster ID</label>
+        <label htmlFor="monsterIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Monster ID</label>
         <input
           type="text"
-          id="monsterId"
-          value={monsterId}
-          onChange={e => setmonsterId(e.target.value)}
+          id="monsterIdGnome"
+          value={monsterIdGnome}
+          onChange={e => setmonsterIdGnome(e.target.value)}
           style={inputStyle}
         />
       </div>
 
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="riderId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Rider ID</label>
+        <label htmlFor="riderIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Rider ID</label>
         <input
           type="text"
-          id="riderId"
-          value={riderId}
-          onChange={e => setriderId(e.target.value)}
+          id="riderIdGnome"
+          value={riderIdGnome}
+          onChange={e => setriderIdGnome(e.target.value)}
           style={inputStyle}
         />
       </div>
 
       <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="soldierId" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Soldier ID</label>
+        <label htmlFor="soldierIdGnome" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Gnome Soldier ID</label>
         <input
           type="text"
-          id="soldierId"
-          value={soldierId}
-          onChange={e => setsoldierId(e.target.value)}
+          id="soldierIdGnome"
+          value={soldierIdGnome}
+          onChange={e => setsoldierIdGnome(e.target.value)}
           style={inputStyle}
         />
       </div>
 
-      <button onClick={handleConfirm} style={buttonStyle}>Confirm</button>
+      <button onClick={handleConfirmGnomeDeck} style={buttonStyle}>Confirm Gnome Deck</button>
+
+
+      <br />
+      <br />
+
+
+
+      <h1 style={{ textAlign: 'center' }}>Confirm Capy Deck</h1>
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="generalIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy General ID</label>
+        <input
+          type="text"
+          id="generalIdCapy"
+          value={generalIdCapy}
+          onChange={e => setgeneralIdCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="monsterIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Monster ID</label>
+        <input
+          type="text"
+          id="monsterIdCapy"
+          value={monsterIdCapy}
+          onChange={e => setmonsterIdCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="riderIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Rider ID</label>
+        <input
+          type="text"
+          id="riderIdCapy"
+          value={riderIdCapy}
+          onChange={e => setriderIdCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="soldierIdCapy" style={{ display: 'block', fontFamily: 'pixelify sans', color: 'white' }}>Capy Soldier ID</label>
+        <input
+          type="text"
+          id="soldierIdCapy"
+          value={soldierIdCapy}
+          onChange={e => setsoldierIdCapy(e.target.value)}
+          style={inputStyle}
+        />
+      </div>
+
+      <button onClick={handleConfirmCapyDeck} style={buttonStyle}>Confirm Gnome Deck</button>
+
+
+
+
+
 
 
       <button onClick={handleHomePage} style={buttonBackStyle}>Home</button>
@@ -128,6 +226,7 @@ const inputStyle = {
 
 const buttonStyle = {
   width: '100%',
+  marginBottom: '120px',
   padding: '10px',
   backgroundColor: 'blue',
   color: 'white',
