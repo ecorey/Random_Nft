@@ -5,6 +5,22 @@ import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package, RANDOM } from '../../../scripts/config';
 
+
+
+// entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+// entry fun turn_gnome_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeRider, attacker_owner_cap: &GnomeRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+// entry fun turn_gnome_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeMonster, attacker_owner_cap: &GnomeMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+// entry fun turn_gnome_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeGeneral, attacker_owner_cap: &GnomeGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+
+// entry fun turn_capy_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapySoldier, attacker_owner_cap: &CapySoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+// entry fun turn_capy_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyRider, attacker_owner_cap: &CapyRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+// entry fun turn_capy_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyMonster, attacker_owner_cap: &CapyMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+// entry fun turn_capy_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyGeneral, attacker_owner_cap: &CapyGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
+
+
+
+
+
 const Turn = () => {
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
