@@ -3174,6 +3174,13 @@ module capy_vs_gnome::card_deck {
     entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
 
+
+        // checks if the game is closed and a winner is declared
+        if(game.winner == true){
+            abort(1)
+        };
+
+
         // sets which player is using turn
         let player_on_deck: u8 = 0;
 
@@ -3205,7 +3212,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // determines the attack functions used
+        // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
             
             // checks for winner
