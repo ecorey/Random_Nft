@@ -121,7 +121,7 @@ const Turn = () => {
             if (selectedAction === 77) {
                 await txb.moveCall({
                     target: `${Package}::card_deck::pass_turn_key`,
-                    arguments: [txb.object(TurnKey), txb.object(TurnKey)],
+                    arguments: [txb.object(TurnKey), txb.object(GAME)],
                 });
 
                 try {

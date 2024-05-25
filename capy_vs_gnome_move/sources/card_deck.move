@@ -393,7 +393,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
             attack: 10,
             defense: 2,
-            health: 3,
+            health: 1,
             cost: 6,
             // ability_one: utf8(b"Rally"),
             
@@ -430,7 +430,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmRuTsfxHrX7gofugKgVhpD2euscH2txkHXosEpvxGUMd8"),
             attack: 10,
             defense: 2,
-            health: 3,
+            health: 1,
             cost: 6,
             // ability_one: utf8(b"Rally"),
             
@@ -501,7 +501,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
             attack: 8,
             defense: 8,
-            health: 6,
+            health: 1,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -532,7 +532,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"Qme7gJPZoRYJ75hBTyQUJKpiYCBacVeBEo6saJqUw99NVd"),
             attack: 8,
             defense: 8,
-            health: 6,
+            health: 1,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -598,7 +598,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
             attack: 6,
             defense: 6,
-            health: 4,
+            health: 1,
             cost: 4,
             // ability: utf8(b"Lightning Strike"),
         };
@@ -630,7 +630,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmYxYgTHBTs6u5yatgW8xxpD6NHVECypYUGaHRjzWr6BPG"),
             attack: 6,
             defense: 6,
-            health: 4,
+            health: 1,
             cost: 4,
             // ability: utf8(b"Lightning Strike"),
         };
@@ -695,7 +695,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
             defense: 4,
-            health: 7,
+            health: 1,
             cost: 2,
             // ability: utf8(b"Shield Wall"),
         };
@@ -727,7 +727,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmXkTwHYLSbuVCErb1rXsnG3dcXwdzBU9fE6WNtFjx4fLG"),
             attack: 4,
             defense: 4,
-            health: 7,
+            health: 1,
             cost: 2,
             // ability: utf8(b"Shield Wall"),
         };
@@ -804,7 +804,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 10,
             defense: 2,
-            health: 3,
+            health: 1,
             cost: 6,
             // ability_one: utf8(b"Rally"),
             // ability_two: utf8(b"Defensive Orders"),
@@ -839,7 +839,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 10,
             defense: 2,
-            health: 3,
+            health: 1,
             cost: 6,
             // ability_one: utf8(b"Rally"),
             // ability_two: utf8(b"Defensive Orders"),
@@ -906,7 +906,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 8,
             defense: 8,
-            health: 6,
+            health: 1,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -937,7 +937,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmULsZAotb8iDhUjWXRzW8KjqA7RedY9QdNuQL19eMpjis"),
             attack: 8,
             defense: 8,
-            health: 6,
+            health: 1,
             cost: 5,
             // ability: utf8(b"Fury Assault"),
         };
@@ -1003,7 +1003,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmZ6u3nvnArnrfTW7akBL9T2Afy2MzexfuP76EcZ8e575H"),
             attack: 6,
             defense: 6,
-            health: 4,
+            health:1,
             cost: 4,
             // ability: utf8(b"Lightning Strike"),
         };
@@ -1096,7 +1096,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmYgEa5Rv3FussydF31tndCABWE7XxnLTtscUk7yHU4GCM"),
             attack: 4,
             defense: 4,
-            health: 7,
+            health: 1,
             cost: 2,
             // ability: utf8(b"Shield Wall"),
         };
@@ -1130,7 +1130,7 @@ module capy_vs_gnome::card_deck {
             image_url: utf8(b"QmcS4qBSBkzkFT7rVtmkFsnffAoi5bjtSA9DfEF4Y8ZRiT"),
             attack: 10,
             defense: 2,
-            health: 3,
+            health: 1,
             cost: 6,
             // ability_one: utf8(b"Rally"),
             // ability_two: utf8(b"Defensive Orders"),
@@ -2296,7 +2296,7 @@ module capy_vs_gnome::card_deck {
             defense = true;
         };
 
-        if (general.health == 3 || monster.health == 6 || rider.health == 4 || soldier.health == 7) {
+        if (general.health == 1 || monster.health == 1 || rider.health == 1 || soldier.health == 1) {
             health = true;
         };
 
@@ -2576,7 +2576,7 @@ module capy_vs_gnome::card_deck {
             defense = true;
         };
 
-        if (general.health == 3 || monster.health == 6 || rider.health == 4 || soldier.health == 7) {
+        if (general.health == 1 || monster.health == 1 || rider.health == 1 || soldier.health == 1) {
             health = true;
         };
 
