@@ -3060,7 +3060,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
+    entry fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
         
         // sets which player is using turn
         let player_on_deck: u8 = 0;
