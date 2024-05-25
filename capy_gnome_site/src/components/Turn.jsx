@@ -1,39 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCardContext } from './CardContext'; 
-import { useWallet } from '@suiet/wallet-kit';  
+import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package, RANDOM } from '../../../scripts/config';
 
-
-
-// entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
-// entry fun turn_gnome_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeRider, attacker_owner_cap: &GnomeRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
-// entry fun turn_gnome_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeMonster, attacker_owner_cap: &GnomeMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
-// entry fun turn_gnome_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeGeneral, attacker_owner_cap: &GnomeGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
-
-// entry fun turn_capy_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapySoldier, attacker_owner_cap: &CapySoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
-// entry fun turn_capy_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyRider, attacker_owner_cap: &CapyRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
-// entry fun turn_capy_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyMonster, attacker_owner_cap: &CapyMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
-// entry fun turn_capy_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut CapyGeneral, attacker_owner_cap: &CapyGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut GnomeGeneral, possible_defense_monster: &mut GnomeMonster, possible_defense_rider: &mut GnomeRider, possible_defense_soldier: &mut GnomeSoldier, ctx: &mut TxContext){
-
-
-
-
-
 const Turn = () => {
+    const navigate = useNavigate();
+    const { signAndExecuteTransactionBlock } = useWallet(); 
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
     const cardFullText = "What card would you like to attack with?";
     const [actionValue, setActionValue] = useState(null);
+    const [faction, setFaction] = useState('Gnome'); // State to choose faction
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
-    const [currentPlayer, setCurrentPlayer] = useState('Player 1'); 
-    const { player1, player2 } = useCardContext();  
-    const navigate = useNavigate();
-    const { signAndExecuteTransactionBlock } = useWallet(); 
+    const [currentPlayer, setCurrentPlayer] = useState('Player 1');
 
     // Read game and turn key from local storage
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
@@ -54,20 +37,20 @@ const Turn = () => {
     const playerCards = currentPlayer === 'Player 1' ? storedPlayer1 : storedPlayer2;
     const opponentCards = currentPlayer === 'Player 1' ? storedPlayer2 : storedPlayer1;
 
-    // gets card id for attacker
+    // Get card ids for attacker
     const possible_attack_general = playerCards.generalId;
     const possible_attack_monster = playerCards.monsterId;
     const possible_attack_rider = playerCards.riderId;
     const possible_attack_soldier = playerCards.soldierId;
 
-    // gets card ids for defender
+    // Get card ids for defender
     const possible_defense_general = opponentCards.generalId;
     const possible_defense_monster = opponentCards.monsterId;
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
 
-    // gets set to the chosen attack card
-    const [AttackCard, setAttackCard] = useState('');
+    // Get the chosen attack card
+    const [attackCard, setAttackCard] = useState('');
 
     useEffect(() => {
         if (message.length < fullText.length) {
@@ -78,7 +61,6 @@ const Turn = () => {
         }
     }, [message, fullText]);
 
-    // dropdown to attack or pass
     useEffect(() => {
         if (actionValue === 55 && cardMessage.length < cardFullText.length) {
             const timer = setTimeout(() => {
@@ -100,13 +82,13 @@ const Turn = () => {
             setCardType(selectedCardType);
 
             if (selectedCardType === 'general') {
-                setAttackCard(playerCards.generalId);
+                setAttackCard(possible_attack_general);
             } else if (selectedCardType === 'monster') {
-                setAttackCard(playerCards.monsterId);
+                setAttackCard(possible_attack_monster);
             } else if (selectedCardType === 'rider') {
-                setAttackCard(playerCards.riderId);
+                setAttackCard(possible_attack_rider);
             } else if (selectedCardType === 'soldier') {
-                setAttackCard(playerCards.soldierId);
+                setAttackCard(possible_attack_soldier);
             }
         }
     };
@@ -138,15 +120,23 @@ const Turn = () => {
     
         console.log(`Attacker Address: ${attackerAddress}, Defender Address: ${defenderAddress}`);
         console.log(`Attacker Confirm Deck: ${attackerConfirmDeck}, Defender Confirm Deck: ${defenderConfirmDeck}`);
-        console.log(`Attack Card: ${AttackCard}, Defense Choice: ${defenseChoice}`);
+        console.log(`Attack Card: ${attackCard}, Defense Choice: ${defenseChoice}`);
     
+        let functionName = '';
+
+        if (faction === 'Gnome') {
+            functionName = `turn_gnome_${cardType}`;
+        } else if (faction === 'Capy') {
+            functionName = `turn_capy_${cardType}`;
+        }
+
         txb.moveCall({
-            target: `${Package}::card_deck::turn_trial`,
+            target: `${Package}::card_deck::${functionName}`,
             arguments: [
                 txb.object(RANDOM),
                 txb.object(TurnKey),  
                 txb.object(GAME),
-                txb.object(AttackCard),
+                txb.object(attackCard),
                 txb.object(attackerConfirmDeck),
                 txb.pure(defenseChoice),
                 txb.object(defenderConfirmDeck),
@@ -184,6 +174,13 @@ const Turn = () => {
             >
                 <option value="Player 1">Player 1</option>
                 <option value="Player 2">Player 2</option>
+            </select>
+            <select
+                onChange={(e) => setFaction(e.target.value)}
+                style={{ padding: '10px', marginBottom: '20px', fontFamily: 'Pixelify sans', fontSize: '16px' }}
+            >
+                <option value="Gnome">Gnome</option>
+                <option value="Capy">Capy</option>
             </select>
             <div style={scrollTextStyle}>
                 {message}
