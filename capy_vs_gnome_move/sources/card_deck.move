@@ -3058,6 +3058,33 @@ module capy_vs_gnome::card_deck {
 
 
 
+    fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
+        
+        // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+    }
+
+
+
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
     // GNOME TURNS
@@ -3077,28 +3104,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3159,28 +3165,8 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
+        pass_turn_key(turn_key, game, ctx);
 
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
 
 
 
@@ -3237,28 +3223,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3316,28 +3281,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3405,28 +3349,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3484,28 +3407,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3562,28 +3464,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
+        pass_turn_key(turn_key, game, ctx);
 
 
 
@@ -3641,29 +3522,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
-
-
-
-
-
-        // pass the turn key
-        // check the player and pass to the opposite player
-        if(player_on_deck == 1){
-            transfer::public_transfer(turn_key, game.player_two_address);
-        } else {
-            transfer::public_transfer(turn_key, game.player_one_address);
-        };
-
+        pass_turn_key(turn_key, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
