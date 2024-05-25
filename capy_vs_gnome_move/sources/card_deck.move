@@ -26,10 +26,7 @@ module capy_vs_gnome::card_deck {
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
 
 
-    // #[test_only]
-    // friend capy_vs_gnome::card_deck_tests_attacks;
-    // #[test_only]
-    // friend capy_vs_gnome::card_deck_tests_getters;
+    
 
 
 
