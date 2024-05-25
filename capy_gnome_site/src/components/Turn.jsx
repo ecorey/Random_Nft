@@ -18,14 +18,20 @@ const Turn = () => {
     const [isFinal, setIsFinal] = useState(false);
     const [currentPlayer, setCurrentPlayer] = useState('Player 1');
 
+
+
     // Read game and turn key from local storage
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
 
+
+
     // Read player data from local storage
     const storedPlayer1 = JSON.parse(localStorage.getItem('player1')) || {};
     const storedPlayer2 = JSON.parse(localStorage.getItem('player2')) || {};
+
+
 
     // Define player addresses and confirm decks
     const playerOneAddress = storedPlayer1.address;
@@ -33,9 +39,13 @@ const Turn = () => {
     const confirmDeckPlayerOne = storedPlayer1.confirmDeck;
     const confirmDeckPlayerTwo = storedPlayer2.confirmDeck;
 
+
+
     // Get player cards based on currentPlayer
     const playerCards = currentPlayer === 'Player 1' ? storedPlayer1 : storedPlayer2;
     const opponentCards = currentPlayer === 'Player 1' ? storedPlayer2 : storedPlayer1;
+
+
 
     // Get card ids for attacker
     const possible_attack_general = playerCards.generalId;
@@ -43,14 +53,21 @@ const Turn = () => {
     const possible_attack_rider = playerCards.riderId;
     const possible_attack_soldier = playerCards.soldierId;
 
+
+
     // Get card ids for defender
     const possible_defense_general = opponentCards.generalId;
     const possible_defense_monster = opponentCards.monsterId;
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
 
+
+
     // Get the chosen attack card
     const [attackCard, setAttackCard] = useState('');
+
+
+
 
     useEffect(() => {
         if (message.length < fullText.length) {
@@ -60,6 +77,9 @@ const Turn = () => {
             return () => clearTimeout(timer);
         }
     }, [message, fullText]);
+
+
+
 
     useEffect(() => {
         if (actionValue === 55 && cardMessage.length < cardFullText.length) {
@@ -75,6 +95,9 @@ const Turn = () => {
             setActionValue(Number(e.target.value));
         }
     };
+
+
+
 
     const handleCardTypeChange = (e) => {
         if (!isFinal) {
@@ -93,9 +116,15 @@ const Turn = () => {
         }
     };
 
+
+
+
     const handleDefenseChoiceChange = (e) => {
         setDefenseChoice(Number(e.target.value));
     };
+
+
+
 
     const handleTurn = async () => {
         const txb = new TransactionBlock();
@@ -137,9 +166,7 @@ const Turn = () => {
                 txb.object(TurnKey),  
                 txb.object(GAME),
                 txb.object(attackCard),
-                txb.object(attackerConfirmDeck),
                 txb.pure(defenseChoice),
-                txb.object(defenderConfirmDeck),
                 txb.object(possible_defense_general),
                 txb.object(possible_defense_monster),
                 txb.object(possible_defense_rider),
@@ -156,15 +183,90 @@ const Turn = () => {
         }
     };
 
+
+
+
+    //entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
+
+    const handleGnomeSoldierTurn = async () => {
+        const txb = new TransactionBlock();
+        txb.setGasBudget(1000000000);
+    
+        let attackerConfirmDeck;
+        let defenderConfirmDeck;
+        let attackerAddress;
+        let defenderAddress;
+    
+        if (currentPlayer === 'Player 1') {
+            attackerConfirmDeck = confirmDeckPlayerOne;
+            defenderConfirmDeck = confirmDeckPlayerTwo;
+            attackerAddress = playerOneAddress;
+            defenderAddress = playerTwoAddress;
+        } else {
+            attackerConfirmDeck = confirmDeckPlayerTwo;
+            defenderConfirmDeck = confirmDeckPlayerOne;
+            attackerAddress = playerTwoAddress;
+            defenderAddress = playerOneAddress;
+        }
+    
+        console.log(`Attacker Address: ${attackerAddress}, Defender Address: ${defenderAddress}`);
+        console.log(`Attacker Confirm Deck: ${attackerConfirmDeck}, Defender Confirm Deck: ${defenderConfirmDeck}`);
+        console.log(`Attack Card: ${attackCard}, Defense Choice: ${defenseChoice}`);
+    
+        let functionName = '';
+
+        if (faction === 'Gnome') {
+            functionName = `turn_gnome_${cardType}`;
+        } else if (faction === 'Capy') {
+            functionName = `turn_capy_${cardType}`;
+        }
+
+        txb.moveCall({
+            target: `${Package}::card_deck::gnome_soldier_vs_capy_soldier`,
+            arguments: [
+                txb.object(RANDOM),
+                txb.object(TurnKey),  
+                txb.object(GAME),
+                txb.object(possible_attack_soldier),
+                txb.pure(defenseChoice),
+                txb.object(possible_defense_general),
+                txb.object(possible_defense_monster),
+                txb.object(possible_defense_rider),
+                txb.object(possible_defense_soldier),
+            ],
+        });
+    
+        try {
+            const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+            console.log('Game Started!', gameData);
+            alert(`Congrats! Game Started! \n Digest: ${gameData.digest}`);
+        } catch (e) {
+            console.error('Sorry, Game NOT Started', e);
+        }
+    };
+
+
+
+
+
+
     useEffect(() => {
         if (isFinal) {
             handleTurn();
         }
     }, [isFinal]);
 
+
+
+
     const handleButtonClick = () => {
         setIsFinal(true);
     };
+
+
+
+
+
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: '20px auto', textAlign: 'center', fontFamily: 'Pixelify sans, sans-serif', whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
@@ -234,6 +336,11 @@ const Turn = () => {
         </div>
     );
 };
+
+
+
+
+
 
 const scrollTextStyle = {
     backgroundColor: '#232323',

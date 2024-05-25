@@ -208,7 +208,7 @@ module capy_vs_gnome::card_deck {
     //    - emit_game_stats_event
     //    - TurnKey
     //    - start_game
-    //     - pass_turn_key
+    //    - pass_turn_key
     //    - turn_gnome_soldier
     //    - turn_gnome_rider
     //    - turn_gnome_monster
