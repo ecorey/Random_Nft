@@ -15,9 +15,12 @@ module capy_vs_gnome::card_deck {
     // use sui::hash;
     use std::debug;
     use sui::clock::{Self, Clock};
-    use sui::coin::{Self, TreasuryCap};
+    use sui::coin::{Self, TreasuryCap, Coin};
+    use sui::sui::SUI;
+    use sui::balance::{Self, Balance};
     use sui::random::{Self, Random, new_generator};
 
+ 
 
     // closed-loop token
     use capy_vs_gnome::pleco::{PLECO, first_turns_mint};
@@ -255,6 +258,8 @@ module capy_vs_gnome::card_deck {
     // END OF GAME CHECKS
     //    - Winner
     //    - check_for_winner
+    // BET FUNCTIONS
+    //     - EscrowForBets
     // GNOME ATTACK FUNCTIONS
     //   - gnome_soldier_vs_capy_soldier 
     //   - gnome_soldier_vs_capy_rider
@@ -4306,7 +4311,7 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
 
 
-    // struct transfered to teh winner and used to claim the bet pot
+    // struct transferresentd to the winner and used to claim the bet pot
     struct Trophy has key, store {
         id: UID,
         winner: address,
@@ -4374,7 +4379,38 @@ module capy_vs_gnome::card_deck {
         
 
     }
+
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // BET FUNCTIONS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
     
+
+    // takes bets and puts them in the balance
+    struct EscrowForBets has key, store {
+
+        id: UID,
+        balance: Balance<SUI>,
+        player_one_contribution: u64,
+        player_two_contribution: u64,
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
