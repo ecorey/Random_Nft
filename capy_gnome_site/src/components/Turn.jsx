@@ -12,7 +12,7 @@ const Turn = () => {
     const [cardMessage, setCardMessage] = useState('');
     const cardFullText = "What card would you like to attack with?";
     const [actionValue, setActionValue] = useState(null);
-    const [faction, setFaction] = useState('Gnome'); // State to choose faction
+    const [capyOrGnome, setCapyOrGnome] = useState('Gnome'); 
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
@@ -90,9 +90,39 @@ const Turn = () => {
         }
     }, [cardMessage, cardFullText, actionValue]);
 
-    const handleNewChange = (e) => {
+
+
+
+
+    
+
+
+    const handleAttackOrPassChange = async (e) => {
+        const selectedAction = Number(e.target.value);
         if (!isFinal) {
-            setActionValue(Number(e.target.value));
+
+            setActionValue(selectedAction);
+
+            const txb = new TransactionBlock();
+            txb.setGasBudget(1000000000);
+
+            if (selectedAction === 77) {
+                await txb.moveCall({
+                    target: `${Package}::card_deck::pass_turn_key`,
+                    arguments: [txb.object(TurnKey), txb.object(TurnKey)],
+                });
+
+                try {
+                    const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+                    console.log('Turn Key Passed!', gameData);
+                    alert(`Turn Key Passed! \n Digest: ${gameData.digest}`);
+                } catch (e) {
+                    console.error('Sorry, Turn Key Not Passed', e);
+                }
+            }
+
+
+
         }
     };
 
@@ -127,6 +157,7 @@ const Turn = () => {
 
 
     const handleTurn = async () => {
+
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
     
@@ -151,36 +182,169 @@ const Turn = () => {
         console.log(`Attacker Confirm Deck: ${attackerConfirmDeck}, Defender Confirm Deck: ${defenderConfirmDeck}`);
         console.log(`Attack Card: ${attackCard}, Defense Choice: ${defenseChoice}`);
     
-        let functionName = '';
 
-        if (faction === 'Gnome') {
-            functionName = `turn_gnome_${cardType}`;
-        } else if (faction === 'Capy') {
-            functionName = `turn_capy_${cardType}`;
-        }
+        // GNOME ATTACK FUNCTIONS
+        if (capyOrGnome === 'Gnome' && attackCard === possible_attack_soldier) {
 
-        txb.moveCall({
-            target: `${Package}::card_deck::${functionName}`,
-            arguments: [
-                txb.object(RANDOM),
-                txb.object(TurnKey),  
-                txb.object(GAME),
-                txb.object(attackCard),
-                txb.pure(defenseChoice),
-                txb.object(possible_defense_general),
-                txb.object(possible_defense_monster),
-                txb.object(possible_defense_rider),
-                txb.object(possible_defense_soldier),
-            ],
-        });
-    
-        try {
-            const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
-            console.log('Game Started!', gameData);
-            alert(`Congrats! Game Started! \n Digest: ${gameData.digest}`);
-        } catch (e) {
-            console.error('Sorry, Game NOT Started', e);
-        }
+
+            txb.moveCall({
+                target: `${Package}::card_deck::gnome_soldier_vs_capy_soldier`,
+                arguments: [
+                    txb.object(RANDOM),
+                    txb.object(TurnKey),  
+                    txb.object(GAME),
+                    txb.object(possible_attack_soldier),
+                    txb.pure(defenseChoice),
+                    txb.object(possible_defense_general),
+                    txb.object(possible_defense_monster),
+                    txb.object(possible_defense_rider),
+                    txb.object(possible_defense_soldier),
+                ],
+            });
+        
+            try {
+                const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+                console.log('Gnome Soldier vs Capy Soldier!', gameData);
+                alert(`Gnome Soldier vs Capy Soldier Battle Complete! \n Digest: ${gameData.digest}`);
+            } catch (e) {
+                console.error('Sorry, Battle Error', e);
+            }
+
+
+        };
+         
+
+
+        if (capyOrGnome === 'Gnome' && attackCard === possible_attack_rider) {
+
+            txb.moveCall({
+                target: `${Package}::card_deck::gnome_soldier_vs_capy_rider`,
+                arguments: [
+                    txb.object(RANDOM),
+                    txb.object(TurnKey),  
+                    txb.object(GAME),
+                    txb.object(possible_attack_rider),
+                    txb.pure(defenseChoice),
+                    txb.object(possible_defense_general),
+                    txb.object(possible_defense_monster),
+                    txb.object(possible_defense_rider),
+                    txb.object(possible_defense_soldier),
+                ],
+            });
+        
+            try {
+                const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+                console.log('Gnome Soldier vs Capy Rider!', gameData);
+                alert(`Gnome Soldier vs Capy Rider Battle Complete! \n Digest: ${gameData.digest}`);
+            } catch (e) {
+                console.error('Sorry, Battle Error', e);
+            }
+            
+
+        };
+        
+
+
+        if (capyOrGnome === 'Gnome' && attackCard === possible_attack_monster) {
+
+            txb.moveCall({
+                target: `${Package}::card_deck::gnome_soldier_vs_capy_monster`,
+                arguments: [
+                    txb.object(RANDOM),
+                    txb.object(TurnKey),  
+                    txb.object(GAME),
+                    txb.object(possible_attack_monster),
+                    txb.pure(defenseChoice),
+                    txb.object(possible_defense_general),
+                    txb.object(possible_defense_monster),
+                    txb.object(possible_defense_rider),
+                    txb.object(possible_defense_soldier),
+                ],
+            });
+        
+            try {
+                const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+                console.log('Gnome Soldier vs Capy Monster!', gameData);
+                alert(`Gnome Soldier vs Capy Monster Battle Complete! \n Digest: ${gameData.digest}`);
+            } catch (e) {
+                console.error('Sorry, Battle Error', e);
+            }
+            
+
+        };  
+        
+        
+
+
+        if (capyOrGnome === 'Gnome' && attackCard === possible_attack_general) {
+
+            txb.moveCall({
+                target: `${Package}::card_deck::gnome_soldier_vs_capy_general`,
+                arguments: [
+                    txb.object(RANDOM),
+                    txb.object(TurnKey),  
+                    txb.object(GAME),
+                    txb.object(possible_attack_general),
+                    txb.pure(defenseChoice),
+                    txb.object(possible_defense_general),
+                    txb.object(possible_defense_monster),
+                    txb.object(possible_defense_rider),
+                    txb.object(possible_defense_soldier),
+                ],
+            });
+        
+            try {
+                const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
+                console.log('Gnome Soldier vs Capy General!', gameData);
+                alert(`Gnome Soldier vs Capy General Battle Complete! \n Digest: ${gameData.digest}`);
+            } catch (e) {
+                console.error('Sorry, Battle Error', e);
+            }
+
+        };
+
+
+         
+
+
+
+        // GNOME ATTACK FUNCTION
+
+        if (capyOrGnome === 'Capy' && attackCard === possible_attack_soldier) {
+
+
+            
+
+        };
+
+
+        if (capyOrGnome === 'Capy' && attackCard === possible_attack_rider) {
+
+
+            
+
+        };
+
+        
+        if (capyOrGnome === 'Capy' && attackCard === possible_attack_monster) {
+
+
+            
+
+        };  
+        
+        
+        if (capyOrGnome === 'Capy' && attackCard === possible_attack_general) {
+
+
+        };
+
+
+
+
+
+
+        
     };
 
 
@@ -278,7 +442,7 @@ const Turn = () => {
                 <option value="Player 2">Player 2</option>
             </select>
             <select
-                onChange={(e) => setFaction(e.target.value)}
+                onChange={(e) => setCapyOrGnome(e.target.value)}
                 style={{ padding: '10px', marginBottom: '20px', fontFamily: 'Pixelify sans', fontSize: '16px' }}
             >
                 <option value="Gnome">Gnome</option>
@@ -288,7 +452,7 @@ const Turn = () => {
                 {message}
             </div>
             {message.length === fullText.length && !isFinal && (
-                <select style={selectStyle} onChange={handleNewChange}>
+                <select style={selectStyle} onChange={handleAttackOrPassChange}>
                     <option value="">Select Action</option>
                     <option value="55">ATTACK</option>
                     <option value="77">PASS</option>
