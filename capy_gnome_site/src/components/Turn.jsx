@@ -4,7 +4,13 @@ import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Package, RANDOM } from '../../../scripts/config';
 
+
+
+
 const Turn = () => {
+
+
+
     const navigate = useNavigate();
     const { signAndExecuteTransactionBlock } = useWallet(); 
     const [message, setMessage] = useState('');
@@ -52,6 +58,12 @@ const Turn = () => {
     const possible_attack_monster = playerCards.monsterId;
     const possible_attack_rider = playerCards.riderId;
     const possible_attack_soldier = playerCards.soldierId;
+
+    // Get card owner caps
+    const possible_attack_general_owner_cap = playerCards.generalOwnerCap;
+    const possible_attack_monster_owner_cap = playerCards.monsterOwnerCap;
+    const possible_attack_rider_owner_cap = playerCards.riderOwnerCap;
+    const possible_attack_soldier_owner_cap = playerCards.soldierOwnerCap;
 
 
 
@@ -185,7 +197,7 @@ const Turn = () => {
         // GNOME ATTACK FUNCTIONS
         if (capyOrGnome === 'Gnome' && attackCard === possible_attack_soldier) {
 
-
+  
             txb.moveCall({
                 target: `${Package}::card_deck::turn_gnome_soldier`,
                 arguments: [
@@ -193,6 +205,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_soldier),
+                    txb.object(possible_attack_soldier_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -223,6 +236,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_rider),
+                    txb.object(possible_attack_rider_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -254,6 +268,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_monster),
+                    txb.object(possible_attack_monster_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -285,6 +300,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_general),
+                    txb.object(possible_attack_general_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -319,7 +335,8 @@ const Turn = () => {
                     txb.object(RANDOM),
                     txb.object(TurnKey),  
                     txb.object(GAME),
-                    txb.object(possible_attack_soldier),
+                    txb.object(possible_attack_rider),
+                    txb.object(possible_attack_soldier_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -349,6 +366,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_rider),
+                    txb.object(possible_attack_rider_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -379,6 +397,7 @@ const Turn = () => {
                     txb.object(TurnKey),  
                     txb.object(GAME),
                     txb.object(possible_attack_monster),
+                    txb.object(possible_attack_monster_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
@@ -408,7 +427,8 @@ const Turn = () => {
                     txb.object(RANDOM),
                     txb.object(TurnKey),  
                     txb.object(GAME),
-                    txb.object(possible_attack_general),
+                    txb.object(possible_attack_soldier),
+                    txb.object(possible_attack_soldier_owner_cap),
                     txb.pure(defenseChoice),
                     txb.object(possible_defense_general),
                     txb.object(possible_defense_monster),
