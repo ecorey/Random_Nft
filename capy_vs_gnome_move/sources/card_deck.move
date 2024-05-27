@@ -225,9 +225,6 @@ module capy_vs_gnome::card_deck {
     //    - HashedSelectionProvedMade
     //    - hashed_selection
     //    - prove_hashed_selection
-    // ATTACK AND DEFEND FOR TURN STRUCTURE
-    //    - DefenseCardAttacked
-    //    - defensive_posture
     // GAME GETTERS
     //    - player_one_address
     //    - player_two_address
@@ -298,6 +295,9 @@ module capy_vs_gnome::card_deck {
     // DEFENSE FUNCTIONS
     //   - frontline_defense_stance
     //   - backline_defense_stance
+    // DEFENSIVE POSTURE
+    //    - DefenseCardAttacked
+    //    - defensive_posture
     // COIN TOSS FUNCTIONS
     //   - coin_toss
     // PROBABILITY FUNCTIONS
@@ -3818,65 +3818,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // --------------------------------------------------------------------------
-    // --------------------------------------------------------------------------
-    // ATTACK AND DEFEND FOR TURN STRUCTURE
-    // --------------------------------------------------------------------------
-    // --------------------------------------------------------------------------
-
-
-
-    struct DefenseCardAttacked has copy, drop {
-        type_id: u8,
-        name: String,
-    }
-
-
-
-    // choice 1 for backline and 2 for frontline stance
-    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
-
-        let card_selected: String = utf8(b"blank");
-        let card_selected_type: u8 = 0;
-
-        // defense return 1 general, 2 monster, 3 riser, 4 soldier
-        // THIS CHOICE WILL COSET CP
-        if( choice == 1){
-
-            let card_selected_type = backline_defense_stance(r, ctx);
-
-        // FREE OPTION
-        } else  {
-
-            let card_selected_type = frontline_defense_stance(r, ctx);
-
-        };
-
-
-        if( card_selected_type == 1 ){
-            card_selected = utf8(b"general");
-        } else if ( card_selected_type == 2 ) {
-            card_selected = utf8(b"monster");
-        } else if ( card_selected_type == 3 ) {
-            card_selected = utf8(b"rider");
-        } else if ( card_selected_type == 1 ) {
-            card_selected = utf8(b"soldier");
-        };
-
-
-        event::emit( DefenseCardAttacked{
-            type_id: card_selected_type,
-            name: card_selected,
-        });
-
-
-        card_selected_type
-        
-        
-    }
     
-
-
     
 
 
@@ -7522,6 +7464,69 @@ module capy_vs_gnome::card_deck {
         value: u8,
         bool_value: bool,
     }
+
+
+
+
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // DEFENSIVE POSTURE
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+
+
+
+    struct DefenseCardAttacked has copy, drop {
+        type_id: u8,
+        name: String,
+    }
+
+
+
+    // choice 1 for backline and 2 for frontline stance
+    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
+
+        let card_selected: String = utf8(b"blank");
+        let card_selected_type: u8 = 0;
+
+        // defense return 1 general, 2 monster, 3 riser, 4 soldier
+        // THIS CHOICE WILL COSET CP
+        if( choice == 1){
+
+            let card_selected_type = backline_defense_stance(r, ctx);
+
+        // FREE OPTION
+        } else  {
+
+            let card_selected_type = frontline_defense_stance(r, ctx);
+
+        };
+
+
+        if( card_selected_type == 1 ){
+            card_selected = utf8(b"general");
+        } else if ( card_selected_type == 2 ) {
+            card_selected = utf8(b"monster");
+        } else if ( card_selected_type == 3 ) {
+            card_selected = utf8(b"rider");
+        } else if ( card_selected_type == 1 ) {
+            card_selected = utf8(b"soldier");
+        };
+
+
+        event::emit( DefenseCardAttacked{
+            type_id: card_selected_type,
+            name: card_selected,
+        });
+
+
+        card_selected_type
+        
+        
+    }
+    
+
+
 
 
 
