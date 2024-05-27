@@ -7478,7 +7478,6 @@ module capy_vs_gnome::card_deck {
 
     struct DefenseCardAttacked has copy, drop {
         type_id: u8,
-        name: String,
     }
 
 
@@ -7486,7 +7485,6 @@ module capy_vs_gnome::card_deck {
     // choice 1 for backline and 2 for frontline stance
     entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
 
-        let card_selected: String = utf8(b"blank");
         let card_selected_type: u8 = 0;
 
         // defense return 1 general, 2 monster, 3 riser, 4 soldier
@@ -7503,20 +7501,9 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        if( card_selected_type == 1 ){
-            card_selected = utf8(b"general");
-        } else if ( card_selected_type == 2 ) {
-            card_selected = utf8(b"monster");
-        } else if ( card_selected_type == 3 ) {
-            card_selected = utf8(b"rider");
-        } else if ( card_selected_type == 1 ) {
-            card_selected = utf8(b"soldier");
-        };
-
 
         event::emit( DefenseCardAttacked{
             type_id: card_selected_type,
-            name: card_selected,
         });
 
 
