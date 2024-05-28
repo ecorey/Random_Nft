@@ -208,12 +208,26 @@ module capy_vs_gnome::card_deck {
     //    - emit_game_stats_event
     //    - TurnKey
     //    - start_game
+    // TURN KEY PASS AND TURN CHECKS
     //    - pass_turn_key
+    //    - player_one_or_two
+    // ATTACK TURN CHECKS
+    //    - attack_check_soldier
+    //    - attack_check_rider
+    //    - attack_check_monster
+    //    - attack_check_general
+    // DEFENSE TURN CHECKS
+    //    - defense_check_soldier
+    //    - defense_check_rider
+    //    - defense_check_monster
+    //    - defense_check_general
+    // GNOME TURNS
     //    - turn_gnome_soldier
     //    - turn_gnome_rider
     //    - turn_gnome_monster
     //    - turn_gnome_general
     //    - turn_capy_soldier
+    // CAPY TURNS
     //    - turn_capy_rider
     //    - turn_capy_monster
     //    - turn_capy_general
