@@ -3103,6 +3103,59 @@ module capy_vs_gnome::card_deck {
 
 
 
+    fun attack_check_soldier(player_on_deck: u8, game: &mut Game){
+
+        if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {   
+                abort(1)
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {   
+                abort(1)
+        };
+    }
+
+
+    fun attack_check_rider(player_on_deck: u8, game: &mut Game){
+
+        if ((player_on_deck == 1) && (game.player_one_rider_status == 0)) {   
+                abort(1)
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_two_rider_status == 0)) {   
+                abort(1)
+        };
+    }
+
+
+    fun attack_check_monster(player_on_deck: u8, game: &mut Game){
+
+        if ((player_on_deck == 1) && (game.player_one_monster_status == 0)) {   
+                abort(1)
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_two_monster_status == 0)) {   
+                abort(1)
+        };
+    }
+
+
+    fun attack_check_general(player_on_deck: u8, game: &mut Game){
+
+        if ((player_on_deck == 1) && (game.player_one_general_status == 0)) {   
+                abort(1)
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_two_general_status == 0)) {   
+                abort(1)
+        };
+    }
+
+
+
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
     // GNOME TURNS
@@ -3121,14 +3174,7 @@ module capy_vs_gnome::card_deck {
         let player_on_deck = player_one_or_two(game, ctx);
 
 
-        if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {   
-                abort(1)
-        };
-
-
-        if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {   
-                abort(1)
-        };
+        attack_check_soldier(player_on_deck, game);
         
 
 
@@ -3175,6 +3221,21 @@ module capy_vs_gnome::card_deck {
 
         
         if ( defense_card == 2 ) {
+
+
+             if ((player_on_deck == 1) && (game.player_two_monster_status == 0)) {
+            
+                abort(1)
+            
+            };
+
+
+            if ((player_on_deck == 2) && (game.player_one_monster_status == 0)) {
+            
+                
+                abort(1)
+            
+            };
             
 
             gnome_soldier_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
@@ -3183,6 +3244,20 @@ module capy_vs_gnome::card_deck {
         }; 
         
         if ( defense_card == 3 ) {
+
+             if ((player_on_deck == 1) && (game.player_two_rider_status == 0)) {
+            
+                abort(1)
+            
+            };
+
+
+            if ((player_on_deck == 2) && (game.player_one_rider_status == 0)) {
+            
+                
+                abort(1)
+            
+            };
             
             gnome_soldier_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3191,6 +3266,20 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+             if ((player_on_deck == 1) && (game.player_two_soldier_status == 0)) {
+            
+                abort(1)
+            
+            };
+
+
+            if ((player_on_deck == 2) && (game.player_one_soldier_status == 0)) {
+            
+                
+                abort(1)
+            
+            };
 
             gnome_soldier_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3207,7 +3296,7 @@ module capy_vs_gnome::card_deck {
 
     entry fun turn_gnome_rider(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeRider, attacker_owner_cap: &GnomeRiderOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
-
+        pass_turn_key(turn_key, game, ctx);
 
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
@@ -3215,7 +3304,11 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_rider(player_on_deck, game);
 
 
 
@@ -3265,15 +3358,17 @@ module capy_vs_gnome::card_deck {
 
     entry fun turn_gnome_monster(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeMonster, attacker_owner_cap: &GnomeMonsterOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
-
+        pass_turn_key(turn_key, game, ctx);
 
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
             abort(1)
         };
 
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
 
-        pass_turn_key(turn_key, game, ctx);
+        attack_check_monster(player_on_deck, game);
 
 
 
@@ -3323,7 +3418,7 @@ module capy_vs_gnome::card_deck {
 
     entry fun turn_gnome_general(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeGeneral, attacker_owner_cap: &GnomeGeneralOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
-
+        pass_turn_key(turn_key, game, ctx);
 
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
@@ -3331,7 +3426,11 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_general(player_on_deck, game);
 
 
 
@@ -3393,13 +3492,19 @@ module capy_vs_gnome::card_deck {
 
 
 
+        pass_turn_key(turn_key, game, ctx);
+
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
             abort(1)
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_soldier(player_on_deck, game);
 
 
 
@@ -3451,13 +3556,19 @@ module capy_vs_gnome::card_deck {
 
 
 
+       pass_turn_key(turn_key, game, ctx);
+
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
             abort(1)
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_rider(player_on_deck, game);
 
 
 
@@ -3508,13 +3619,19 @@ module capy_vs_gnome::card_deck {
 
 
 
+        pass_turn_key(turn_key, game, ctx);
+
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
             abort(1)
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_monster(player_on_deck, game);
 
 
 
@@ -3566,13 +3683,19 @@ module capy_vs_gnome::card_deck {
 
 
 
+        pass_turn_key(turn_key, game, ctx);
+
         // checks if the game is closed and a winner is declared
         if(game.winner == true){
             abort(1)
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        attack_check_general(player_on_deck, game);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
