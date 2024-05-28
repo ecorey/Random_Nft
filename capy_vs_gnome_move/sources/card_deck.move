@@ -3114,23 +3114,20 @@ module capy_vs_gnome::card_deck {
     // turn trial no hash
     entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
+
+        pass_turn_key(turn_key, game, ctx);
+
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
 
-        if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {
-            
-                pass_turn_key(turn_key, game, ctx);
+        if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {   
                 abort(1)
-            
         };
 
 
-        if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {
-            
-                pass_turn_key(turn_key, game, ctx);
+        if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {   
                 abort(1)
-            
         };
         
 
@@ -3141,7 +3138,7 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        pass_turn_key(turn_key, game, ctx);
+        
 
 
 
@@ -3153,7 +3150,21 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            if ((player_on_deck == 1) && (game.player_two_general_status == 0)) {
             
+                abort(1)
+            
+            };
+
+
+            if ((player_on_deck == 2) && (game.player_one_general_status == 0)) {
+            
+                
+                abort(1)
+            
+            };
+
             // checks for winner
             gnome_soldier_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
@@ -3164,8 +3175,10 @@ module capy_vs_gnome::card_deck {
 
         
         if ( defense_card == 2 ) {
+            
 
             gnome_soldier_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
 
         }; 
         
