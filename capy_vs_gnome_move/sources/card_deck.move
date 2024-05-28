@@ -3060,6 +3060,15 @@ module capy_vs_gnome::card_deck {
 
 
 
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // TURN KEY PASS AND TURN CHECKS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
+
+
+
     entry fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
         
 
@@ -3100,6 +3109,13 @@ module capy_vs_gnome::card_deck {
 
 
     }
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+    // ATTACK TURN CHECKS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
 
 
 
@@ -3158,6 +3174,95 @@ module capy_vs_gnome::card_deck {
 
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
+    // DEFENSE TURN CHECKS
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
+
+
+    fun defense_check_soldier(player_on_deck: u8, game: &mut Game ){
+
+        if ((player_on_deck == 1) && (game.player_two_soldier_status == 0)) {
+            
+                abort(1)
+            
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_one_soldier_status == 0)) {
+        
+            
+            abort(1)
+        
+        };
+
+    }
+
+
+
+    fun defense_check_rider(player_on_deck: u8, game: &mut Game ){
+
+        if ((player_on_deck == 1) && (game.player_two_rider_status == 0)) {
+            
+                abort(1)
+            
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_one_rider_status == 0)) {
+        
+            
+            abort(1)
+        
+        };
+        
+
+    }
+
+
+
+    fun defense_check_monster(player_on_deck: u8, game: &mut Game ){
+
+        if ((player_on_deck == 1) && (game.player_two_monster_status == 0)) {
+            
+                abort(1)
+            
+            };
+
+
+        if ((player_on_deck == 2) && (game.player_one_monster_status == 0)) {
+        
+            
+            abort(1)
+        
+        };
+
+    }
+
+
+
+
+    fun defense_check_general(player_on_deck: u8, game: &mut Game ){
+
+        if ((player_on_deck == 1) && (game.player_two_general_status == 0)) {
+            
+                abort(1)
+            
+            };
+
+
+        if ((player_on_deck == 2) && (game.player_one_general_status == 0)) {
+        
+            
+            abort(1)
+        
+        };
+
+    }
+
+
+
+    //--------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
     // GNOME TURNS
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
@@ -3197,19 +3302,7 @@ module capy_vs_gnome::card_deck {
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
 
-            if ((player_on_deck == 1) && (game.player_two_general_status == 0)) {
-            
-                abort(1)
-            
-            };
-
-
-            if ((player_on_deck == 2) && (game.player_one_general_status == 0)) {
-            
-                
-                abort(1)
-            
-            };
+            defense_check_general(player_on_deck, game);
 
             // checks for winner
             gnome_soldier_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3223,19 +3316,7 @@ module capy_vs_gnome::card_deck {
         if ( defense_card == 2 ) {
 
 
-             if ((player_on_deck == 1) && (game.player_two_monster_status == 0)) {
-            
-                abort(1)
-            
-            };
-
-
-            if ((player_on_deck == 2) && (game.player_one_monster_status == 0)) {
-            
-                
-                abort(1)
-            
-            };
+            defense_check_monster(player_on_deck, game);
             
 
             gnome_soldier_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
@@ -3245,19 +3326,7 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 3 ) {
 
-             if ((player_on_deck == 1) && (game.player_two_rider_status == 0)) {
-            
-                abort(1)
-            
-            };
-
-
-            if ((player_on_deck == 2) && (game.player_one_rider_status == 0)) {
-            
-                
-                abort(1)
-            
-            };
+            defense_check_rider(player_on_deck, game);
             
             gnome_soldier_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3267,19 +3336,7 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 4 ) {
 
-             if ((player_on_deck == 1) && (game.player_two_soldier_status == 0)) {
-            
-                abort(1)
-            
-            };
-
-
-            if ((player_on_deck == 2) && (game.player_one_soldier_status == 0)) {
-            
-                
-                abort(1)
-            
-            };
+            defense_check_soldier(player_on_deck, game);
 
             gnome_soldier_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3321,6 +3378,8 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            defense_check_general(player_on_deck, game);
             
             // checks for winner
             gnome_rider_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3330,11 +3389,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             gnome_rider_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             gnome_rider_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3343,6 +3406,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             gnome_rider_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3380,6 +3445,8 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            defense_check_general(player_on_deck, game);
             
             // checks for winner
             gnome_monster_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3389,11 +3456,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             gnome_monster_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             gnome_monster_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3402,6 +3473,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             gnome_monster_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3443,6 +3516,9 @@ module capy_vs_gnome::card_deck {
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
             
+
+            defense_check_general(player_on_deck, game); 
+
             // checks for winner
             gnome_general_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
@@ -3451,11 +3527,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             gnome_general_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             gnome_general_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3464,6 +3544,9 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+
+            defense_check_soldier(player_on_deck, game);
 
             gnome_general_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3517,6 +3600,9 @@ module capy_vs_gnome::card_deck {
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
             
+
+            defense_check_general(player_on_deck, game);
+
             // checks for winner
             capy_soldier_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
@@ -3525,11 +3611,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             capy_soldier_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             capy_soldier_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3538,6 +3628,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             capy_soldier_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3580,6 +3672,8 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            defense_check_general(player_on_deck, game);
             
             // checks for winner
             capy_rider_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3589,11 +3683,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             capy_rider_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             capy_rider_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3602,6 +3700,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             capy_rider_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3643,6 +3743,8 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            defense_check_general(player_on_deck, game);
             
             // checks for winner
             capy_monster_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3652,11 +3754,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             capy_monster_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             capy_monster_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3665,6 +3771,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             capy_monster_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
@@ -3706,6 +3814,8 @@ module capy_vs_gnome::card_deck {
 
         // determines the attack functions used based on the defense card and chewcks for winner
         if (defense_card == 1 ) {
+
+            defense_check_general(player_on_deck, game);
             
             // checks for winner
             capy_general_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
@@ -3715,11 +3825,15 @@ module capy_vs_gnome::card_deck {
         
         if ( defense_card == 2 ) {
 
+            defense_check_monster(player_on_deck, game);
+
             capy_general_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
         }; 
         
         if ( defense_card == 3 ) {
+
+            defense_check_rider(player_on_deck, game);
             
             capy_general_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
@@ -3728,6 +3842,8 @@ module capy_vs_gnome::card_deck {
         
         
         if ( defense_card == 4 ) {
+
+            defense_check_soldier(player_on_deck, game);
 
             capy_general_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
 
