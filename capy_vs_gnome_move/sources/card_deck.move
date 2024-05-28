@@ -3062,16 +3062,10 @@ module capy_vs_gnome::card_deck {
 
     entry fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
         
+
+
         // sets which player is using turn
-        let player_on_deck: u8 = 0;
-
-        if(game.player_one_address == tx_context::sender(ctx)){
-            player_on_deck = 1;
-        };
-
-        if(game.player_two_address == tx_context::sender(ctx)){
-            player_on_deck = 2;
-        };
+        let player_on_deck = player_one_or_two(game, ctx);
 
 
         // pass the turn key
@@ -3087,17 +3081,58 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun player_one_or_two(game: &Game, ctx: &mut TxContext) : u8 {
+        
+
+         // sets which player is using turn
+        let player_on_deck: u8 = 0;
+
+        if(game.player_one_address == tx_context::sender(ctx)){
+            player_on_deck = 1;
+        };
+
+        if(game.player_two_address == tx_context::sender(ctx)){
+            player_on_deck = 2;
+        };
+
+
+        player_on_deck
+
+
+    }
+
+
+
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
     // GNOME TURNS
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
 
-
+    // CHECK ATACK AND DEFENSE IN PLAY
 
     // turn trial no hash
     entry fun turn_gnome_soldier(r: &Random, turn_key: TurnKey, game: &mut Game, attacker: &mut GnomeSoldier, attacker_owner_cap: &GnomeSoldierOwnerCap, defense_choice: u8,  possible_defense_general: &mut CapyGeneral, possible_defense_monster: &mut CapyMonster, possible_defense_rider: &mut CapyRider, possible_defense_soldier: &mut CapySoldier, ctx: &mut TxContext){
 
+        // checks the attack card is in play
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {
+            
+                pass_turn_key(turn_key, game, ctx);
+                abort(1)
+            
+        };
+
+
+        if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {
+            
+                pass_turn_key(turn_key, game, ctx);
+                abort(1)
+            
+        };
+        
 
 
         // checks if the game is closed and a winner is declared
