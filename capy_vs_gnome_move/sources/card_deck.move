@@ -2888,6 +2888,8 @@ module capy_vs_gnome::card_deck {
         player_two_soldier_confirmed: bool,
         player_one_backline_left: u8,
         player_two_backline_left: u8,
+        player_one_command_points: u8,
+        player_two_command_points: u8,
 
 
 
@@ -2929,6 +2931,8 @@ module capy_vs_gnome::card_deck {
         player_two_soldier_confirmed: bool,
         player_one_backline_left: u8,
         player_two_backline_left: u8,
+        player_one_command_points: u8,
+        player_two_command_points: u8,
     }
 
 
@@ -2965,6 +2969,8 @@ module capy_vs_gnome::card_deck {
             player_two_soldier_confirmed: game.player_two_soldier_confirmed,
             player_one_backline_left: game.player_one_backline_left,
             player_two_backline_left: game.player_two_backline_left,
+            player_one_command_points: game.player_one_command_points,
+            player_two_command_points: game.player_two_command_points,
         });
 
     }
@@ -3045,6 +3051,10 @@ module capy_vs_gnome::card_deck {
             // times can use the backline defense
             player_one_backline_left: 5,
             player_two_backline_left: 5,
+
+            // command points
+            player_one_command_points: 55,
+            player_two_command_points: 55,
            
         };
 
@@ -4232,6 +4242,10 @@ module capy_vs_gnome::card_deck {
     // player_two_monster_status
     // player_two_rider_status
     // player_two_soldier_status
+    // player_one_backline_left
+    // player_two_backline_left
+    // player_one_command_points
+    // player_two_command_points
 
 
 
@@ -4478,6 +4492,45 @@ module capy_vs_gnome::card_deck {
         let player_two_soldier_confirmed = game.player_two_soldier_confirmed;
 
         player_two_soldier_confirmed
+    }
+
+
+    // player one backline left
+    public fun player_one_backline_left(game: &Game) : u8 {
+
+        let player_one_backline_left = game.player_one_backline_left;
+
+        player_one_backline_left
+    }
+
+
+
+    // player two backline left
+    public fun player_two_backline_left(game: &Game) : u8 {
+
+        let player_two_backline_left = game.player_two_backline_left;
+
+        player_two_backline_left
+    }
+
+
+
+    // player one command points
+    public fun player_one_command_points(game: &Game) : u8 {
+
+        let player_one_command_points = game.player_one_command_points;
+
+        player_one_command_points
+    }
+
+
+
+    // player two command points
+    public fun player_two_command_points(game: &Game) : u8 {
+
+        let player_two_command_points = game.player_two_command_points;
+
+        player_two_command_points
     }
 
 
