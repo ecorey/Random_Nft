@@ -23,7 +23,7 @@ module capy_vs_gnome::card_deck {
  
 
     // closed-loop token
-    use capy_vs_gnome::pleco::{PLECO, first_turns_mint};
+    use capy_vs_gnome::pleco::{PLECO, winners_mint};
 
     // used for random number generation 
     use capy_vs_gnome::random_funcs::{arithmetic_is_less_than}; 
@@ -270,8 +270,6 @@ module capy_vs_gnome::card_deck {
     // END OF GAME CHECKS
     //    - Winner
     //    - check_for_winner
-    // BET FUNCTIONS
-    //     - EscrowForBets
     // GNOME ATTACK FUNCTIONS
     //   - gnome_soldier_vs_capy_soldier 
     //   - gnome_soldier_vs_capy_rider
@@ -4058,13 +4056,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // mints first turn token amount
-    public fun first_turn( cap: &mut TreasuryCap<PLECO>, recipient: address, ctx: &mut TxContext) {
-
-        first_turns_mint(cap, recipient, ctx);
-
-
-    }
+    
 
 
 
@@ -4504,6 +4496,13 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun delete_trophy(trophy: Trophy, ctx: &mut TxContext) {
+        let Trophy {id, winner: _} = trophy;
+
+        object::delete(id);
+
+    }
+
 
 
     fun check_for_winner(game: &mut Game, ctx: &mut TxContext) {
@@ -4560,36 +4559,14 @@ module capy_vs_gnome::card_deck {
 
 
 
-    //--------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
-    // BET FUNCTIONS
-    //--------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
-    
+    // mints winner pleco
+    public fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: Trophy, recipient: address, ctx: &mut TxContext) {
 
-    // takes bets and puts them in the balance
-    struct EscrowForBets has key, store {
+        winners_mint(cap, recipient, ctx);
 
-        id: UID,
-        balance: Balance<SUI>,
-        player_one_contribution: u64,
-        player_two_contribution: u64,
+        delete_trophy(trophy, ctx);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

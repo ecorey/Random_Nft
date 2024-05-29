@@ -12,6 +12,8 @@ module capy_vs_gnome::pleco {
     use sui::coin::{Self, TreasuryCap};
     use sui::transfer;
 
+    use capy_vs_gnome::card_deck::{Trophy};
+
 
     #[test_only]
     friend capy_vs_gnome::pleco_tests;
@@ -20,29 +22,8 @@ module capy_vs_gnome::pleco {
 
 
 
-
-
-
     // CONTENTS:
-    //    - init - create_currency, new_policy, share_policy, public_freeze_object, public_transfer
-    //    - first_turns_mint
-    //    - turn_mint
-    //    - reset_balance
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //    
 
 
 
@@ -95,13 +76,13 @@ module capy_vs_gnome::pleco {
 
 
 
-    // mint 4 PLECO to the user at the start of first rounds of a turn
-    public fun first_turns_mint(
+    // mints 777 PLECO to the winner
+    public fun winners_mint(
         cap: &mut TreasuryCap<PLECO>,
-        recipient: address,
+        recipient: address, 
         ctx: &mut TxContext,
     ) {
-        let token = token::mint(cap, 4, ctx);
+        let token = token::mint(cap, 777, ctx);
         let req = token::transfer(token, recipient, ctx);
 
         token::confirm_with_treasury_cap(cap, req, ctx);
@@ -110,27 +91,14 @@ module capy_vs_gnome::pleco {
 
 
 
-    // mint 1 PLECO to the user at the start of sebsequent turns
-    public fun turn_mint(
-        cap: &mut TreasuryCap<PLECO>,
-        ctx: &mut TxContext,
-    ) {
-        let token = token::mint(cap, 1, ctx);
-        let req = token::transfer(token, tx_context::sender(ctx), ctx);
-
-        token::confirm_with_treasury_cap(cap, req, ctx);
-    }
+    
 
 
 
 
 
 
-    // reset the token balance to 0, needed to start a game
-    public fun reset_balance() {
-
-    }
-
+   
 
 
 
