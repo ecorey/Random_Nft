@@ -7258,9 +7258,9 @@ module capy_vs_gnome::card_deck {
             });
 
             if (defender == 1) {
-                game.player_one_monster_status = 0;
+                game.player_one_general_status = 0;
             } else {
-                game.player_two_monster_status = 0;
+                game.player_two_general_status = 0;
             };
             
 
@@ -7621,9 +7621,9 @@ module capy_vs_gnome::card_deck {
             });
 
             if (defender == 1) {
-                game.player_one_monster_status = 0;
+                game.player_one_general_status = 0;
             } else {
-                game.player_two_monster_status = 0;
+                game.player_two_general_status = 0;
             };
             
 
