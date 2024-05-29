@@ -7784,34 +7784,53 @@ module capy_vs_gnome::card_deck {
 
 
     // choice 1 for backline and 2 for frontline stance
-    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext ) : u8 {
+    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext): u8 {
 
-        let card_selected_type: u8 = 0;
+        let card_selected_type: u8;
 
-        // defense return 1 general, 2 monster, 3 riser, 4 soldier
-        // THIS CHOICE WILL COSET CP
-        if( choice == 1){
+        if (choice == 1) {
 
-            let card_selected_type = backline_defense_stance(r, ctx);
+            card_selected_type = backline_defense_stance(r, ctx);
 
-        // FREE OPTION
-        } else  {
+            event::emit(DefenseCardAttacked {
+                type_id: card_selected_type,
+            });
 
-            let card_selected_type = frontline_defense_stance(r, ctx);
+            card_selected_type
 
-        };
+        } else if (choice == 2) {
 
+            card_selected_type = frontline_defense_stance(r, ctx);
 
+            event::emit(DefenseCardAttacked {
+                type_id: card_selected_type,
+            });
 
-        event::emit( DefenseCardAttacked{
-            type_id: card_selected_type,
-        });
+            card_selected_type
 
+        } else {
 
-        card_selected_type
-        
-        
+            
+            card_selected_type = 0; 
+
+            event::emit(DefenseCardAttacked {
+                type_id: card_selected_type,
+            });
+
+            card_selected_type
+
+        }
+
+    
     }
+
+
+
+
+        
+        
+        
+    
     
 
 
