@@ -4600,8 +4600,7 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
 
-
-
+   
 
 
 
@@ -4658,11 +4657,15 @@ module capy_vs_gnome::card_deck {
 
 
         if (soldier_attack.owner_address == game.player_one_address) {
+
             current_player = 1;
             defender = 2;
+
         } else if (soldier_attack.owner_address == game.player_two_address) {
+
             current_player = 2;
             defender = 1;
+
         };
         
         
@@ -4750,11 +4753,15 @@ module capy_vs_gnome::card_deck {
 
 
         if (soldier_attack.owner_address == game.player_one_address) {
+
             current_player = 1;
             defender = 2;
+
         } else if (soldier_attack.owner_address == game.player_two_address) {
+
             current_player = 2;
             defender = 1;
+
         };
         
         
@@ -4767,7 +4774,9 @@ module capy_vs_gnome::card_deck {
 
         // 40% probability of attack success
         if( forty_percent_probability(r, ctx) == 1) {
+
             successful = true;
+            
         };
 
 
