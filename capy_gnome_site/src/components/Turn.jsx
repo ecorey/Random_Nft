@@ -151,6 +151,38 @@ const Turn = () => {
         console.log(`Attacker Confirm Deck: ${attackerConfirmDeck}, Defender Confirm Deck: ${defenderConfirmDeck}`);
         console.log(`Attack Card: ${attackCard}, Defense Choice: ${defenseChoice}`);
 
+        console.log("DEFENSE CHOICE TYPE:");
+        console.log(typeof defenseChoice);
+        
+        console.log("RANDOM:");
+        console.log(RANDOM);
+        
+        console.log("TurnKey:");
+        console.log(TurnKey);
+        
+        console.log("GAME:");
+        console.log(GAME);
+
+        console.log("attackCard:");
+        console.log(attackCard);
+
+        console.log("attackOwnerCap:");
+        console.log(attackOwnerCap);
+
+        console.log("possible_defense_general:");
+        console.log(possible_defense_general);
+
+        console.log("possible_defense_monster:");
+        console.log(possible_defense_monster);
+
+        console.log("possible_defense_rider:");
+        console.log( possible_defense_rider);
+
+        console.log("possible_defense_soldier:");
+        console.log( possible_defense_soldier);
+
+
+
         let functionName = '';
         if (capyOrGnome === 'Gnome') {
             functionName = `turn_gnome_${cardType}`;
@@ -166,7 +198,7 @@ const Turn = () => {
                 txb.object(GAME),
                 txb.object(attackCard),
                 txb.object(attackOwnerCap),
-                txb.pure(defenseChoice),
+                txb.pure.u8(defenseChoice),
                 txb.object(possible_defense_general),
                 txb.object(possible_defense_monster),
                 txb.object(possible_defense_rider),
