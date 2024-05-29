@@ -3297,6 +3297,24 @@ module capy_vs_gnome::card_deck {
 
 
 
+    public entry fun check_command_points(player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
+
+        if(player_on_deck == 1 && game.player_one_command_points <= 0) {
+            abort(1)
+        };
+
+        if(player_on_deck == 2 && game.player_two_command_points <= 0) {
+            abort(1)
+        };
+
+    }   
+
+
+
+    
+
+
+
     //--------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
     // GNOME TURNS
@@ -3325,8 +3343,18 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
+
+        
+        if(player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points - 10
+        };
+
+        if(player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points - 10
+        };
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -3408,6 +3436,8 @@ module capy_vs_gnome::card_deck {
         };
 
 
+        
+
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
@@ -3415,6 +3445,8 @@ module capy_vs_gnome::card_deck {
         attack_check_rider(player_on_deck, game);
 
 
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -3489,11 +3521,17 @@ module capy_vs_gnome::card_deck {
             abort(1)
         };
 
+
+       
+
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
         attack_check_monster(player_on_deck, game);
 
+
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -3565,12 +3603,18 @@ module capy_vs_gnome::card_deck {
             abort(1)
         };
 
+        
+
 
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
 
         attack_check_general(player_on_deck, game);
+
+
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
 
@@ -3657,6 +3701,8 @@ module capy_vs_gnome::card_deck {
             abort(1)
         };
 
+        
+
 
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
@@ -3664,7 +3710,8 @@ module capy_vs_gnome::card_deck {
 
         attack_check_soldier(player_on_deck, game);
 
-
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game, ctx);
@@ -3740,11 +3787,19 @@ module capy_vs_gnome::card_deck {
         };
 
 
+        
+
+
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
 
         attack_check_rider(player_on_deck, game);
+
+
+
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
 
@@ -3820,11 +3875,20 @@ module capy_vs_gnome::card_deck {
         };
 
 
+
+        
+
+
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
 
         attack_check_monster(player_on_deck, game);
+
+
+
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
 
@@ -3899,12 +3963,19 @@ module capy_vs_gnome::card_deck {
             abort(1)
         };
 
+        
+
 
         // checks the attack card is in play
         let player_on_deck = player_one_or_two(game, ctx);
 
 
         attack_check_general(player_on_deck, game);
+
+
+
+        // checks command points are not 0
+        check_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -4574,6 +4645,7 @@ module capy_vs_gnome::card_deck {
 
     fun check_for_winner(game: &mut Game, ctx: &mut TxContext) {
 
+        game.winner = true;
 
         // if all cards are dead emit winner event
         if(game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
@@ -4591,7 +4663,7 @@ module capy_vs_gnome::card_deck {
             transfer::public_transfer(trophy, game.player_two_address);
 
 
-            game.winner = true;
+            
 
 
         };
@@ -4614,7 +4686,7 @@ module capy_vs_gnome::card_deck {
             transfer::public_transfer(trophy, game.player_one_address);
 
 
-            game.winner = true;
+            
 
         };
 
@@ -4627,7 +4699,7 @@ module capy_vs_gnome::card_deck {
 
 
     // mints winner pleco
-    public fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: Trophy, recipient: address, ctx: &mut TxContext) {
+    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: Trophy, recipient: address, ctx: &mut TxContext) {
 
         winners_mint(cap, recipient, ctx);
 
