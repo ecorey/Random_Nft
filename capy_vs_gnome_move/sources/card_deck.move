@@ -323,7 +323,7 @@ module capy_vs_gnome::card_deck {
     //   - sixty_percent_probability
     //   - sixty_six_percent_probability
     //   - seventy_percent_probability
-    //   - seventy_five_percent_probability
+    //   - seventy_five_percent_probabilitygnome_monster_vs_capy_soldier
     //   - eighty_percent_probability
     // TIME FUNCTIONS
     //   - get_time
@@ -5407,7 +5407,7 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(monster_attack.type_id == 3, 99);
+        assert!(monster_attack.type_id == 2, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
 
@@ -5949,8 +5949,8 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(general_attack.type_id == 2, 99);
-        assert!(monster_defense.type_id == 1, 99);
+        assert!(general_attack.type_id == 1, 99);
+        assert!(monster_defense.type_id == 2, 99);
 
     
         // 556% probability of attack success
@@ -6038,7 +6038,7 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(general_attack.type_id == 2, 99);
+        assert!(general_attack.type_id == 1, 99);
         assert!(general_defense.type_id == 1, 99);
 
     
@@ -6251,7 +6251,7 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(rider_defense.type_id == 4, 99);
+        assert!(rider_defense.type_id == 3, 99);
 
 
 
@@ -6354,7 +6354,7 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(monster_defense.type_id == 4, 99);
+        assert!(monster_defense.type_id == 2, 99);
 
 
 
@@ -6456,7 +6456,7 @@ module capy_vs_gnome::card_deck {
         
         // checks cards are correct type
         assert!(soldier_attack.type_id == 4, 99);
-        assert!(general_defense.type_id == 4, 99);
+        assert!(general_defense.type_id == 1, 99);
 
 
 
@@ -6568,7 +6568,7 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(rider_attack.type_id == 4, 99);
+        assert!(rider_attack.type_id == 3, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
 
@@ -6950,7 +6950,7 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(monster_attack.type_id == 3, 99);
+        assert!(monster_attack.type_id == 2, 99);
         assert!(soldier_defense.type_id == 4, 99);
 
 
@@ -7486,8 +7486,8 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(general_attack.type_id == 2, 99);
-        assert!(monster_defense.type_id == 1, 99);
+        assert!(general_attack.type_id == 1, 99);
+        assert!(monster_defense.type_id == 2, 99);
 
         // 556% probability of attack success
         if( fifty_five_percent_probability(r, ctx) == 1) {
@@ -7573,7 +7573,7 @@ module capy_vs_gnome::card_deck {
         
         
         // checks cards are correct type
-        assert!(general_attack.type_id == 2, 99);
+        assert!(general_attack.type_id == 1, 99);
         assert!(general_defense.type_id == 1, 99);
 
     
