@@ -2886,6 +2886,9 @@ module capy_vs_gnome::card_deck {
         player_two_monster_confirmed: bool,
         player_two_rider_confirmed: bool,
         player_two_soldier_confirmed: bool,
+        player_one_backline_left: u8,
+        player_two_backline_left: u8,
+
 
 
        
@@ -2924,6 +2927,8 @@ module capy_vs_gnome::card_deck {
         player_two_monster_confirmed: bool,
         player_two_rider_confirmed: bool,
         player_two_soldier_confirmed: bool,
+        player_one_backline_left: u8,
+        player_two_backline_left: u8,
     }
 
 
@@ -2958,6 +2963,8 @@ module capy_vs_gnome::card_deck {
             player_two_monster_confirmed: game.player_two_monster_confirmed,
             player_two_rider_confirmed: game.player_two_rider_confirmed,
             player_two_soldier_confirmed: game.player_two_soldier_confirmed,
+            player_one_backline_left: game.player_one_backline_left,
+            player_two_backline_left: game.player_two_backline_left,
         });
 
     }
@@ -3034,6 +3041,10 @@ module capy_vs_gnome::card_deck {
             player_two_monster_confirmed: false,
             player_two_rider_confirmed: false,
             player_two_soldier_confirmed: false,
+
+            // times can use the backline defense
+            player_one_backline_left: 5,
+            player_two_backline_left: 5,
            
         };
 
@@ -3309,7 +3320,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3397,7 +3408,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3476,7 +3487,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3554,7 +3565,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3646,7 +3657,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3728,7 +3739,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -3808,7 +3819,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game,  ctx);
 
 
 
@@ -3887,7 +3898,7 @@ module capy_vs_gnome::card_deck {
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
-        let defense_card = defensive_posture(r, defense_choice, ctx);
+        let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
 
 
@@ -7846,11 +7857,34 @@ module capy_vs_gnome::card_deck {
 
 
     // choice 1 for backline and 2 for frontline stance
-    entry fun defensive_posture(r: &Random, choice: u8, ctx: &mut TxContext): u8 {
+    entry fun defensive_posture(r: &Random, choice: u8, game: &mut Game, ctx: &mut TxContext): u8 {
 
         let card_selected_type: u8;
 
         if (choice == 1) {
+
+            let player_on_deck = player_one_or_two(game, ctx);
+
+            // aborts if there are no backline defense left
+            if( player_on_deck == 1 && game.player_one_backline_left == 0) {
+                abort(1);
+            };
+
+            if( player_on_deck == 2 && game.player_two_backline_left == 0) {
+                abort(1);
+            };
+
+
+            // subtract available backline defense from the player on deck
+            if( player_on_deck == 1 && game.player_one_backline_left == 0) {
+                game.player_one_backline_left = game.player_one_backline_left - 1;
+            };
+
+            if( player_on_deck == 2 && game.player_two_backline_left == 0) {
+                game.player_two_backline_left = game.player_two_backline_left - 1;
+            };
+
+            
 
             card_selected_type = backline_defense_stance(r, ctx);
 
