@@ -3321,6 +3321,8 @@ module capy_vs_gnome::card_deck {
             // checks for winner
             gnome_soldier_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
 
@@ -3336,6 +3338,9 @@ module capy_vs_gnome::card_deck {
             gnome_soldier_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
 
+            game.turn_count = game.turn_count + 1;
+
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3343,6 +3348,9 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             gnome_soldier_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3353,6 +3361,9 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             gnome_soldier_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3399,6 +3410,9 @@ module capy_vs_gnome::card_deck {
             gnome_rider_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
 
+            game.turn_count = game.turn_count + 1;
+
+
         };
         
         if ( defense_card == 2 ) {
@@ -3406,6 +3420,9 @@ module capy_vs_gnome::card_deck {
             defense_check_monster(player_on_deck, game);
 
             gnome_rider_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
         }; 
         
@@ -3416,6 +3433,9 @@ module capy_vs_gnome::card_deck {
             gnome_rider_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
 
+            game.turn_count = game.turn_count + 1;
+
+
         };
         
         
@@ -3424,6 +3444,9 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             gnome_rider_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3466,6 +3489,9 @@ module capy_vs_gnome::card_deck {
             gnome_monster_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
 
+            game.turn_count = game.turn_count + 1;
+
+
         };
         
         if ( defense_card == 2 ) {
@@ -3482,6 +3508,8 @@ module capy_vs_gnome::card_deck {
             
             gnome_monster_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
         
@@ -3491,6 +3519,9 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             gnome_monster_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3536,6 +3567,8 @@ module capy_vs_gnome::card_deck {
             // checks for winner
             gnome_general_vs_capy_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
         
@@ -3545,6 +3578,8 @@ module capy_vs_gnome::card_deck {
 
             gnome_general_vs_capy_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3552,6 +3587,8 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             gnome_general_vs_capy_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3563,6 +3600,8 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             gnome_general_vs_capy_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3621,6 +3660,9 @@ module capy_vs_gnome::card_deck {
             capy_soldier_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
 
+            game.turn_count = game.turn_count + 1;
+
+
         };
         
         if ( defense_card == 2 ) {
@@ -3629,6 +3671,8 @@ module capy_vs_gnome::card_deck {
 
             capy_soldier_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3636,6 +3680,8 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             capy_soldier_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3646,6 +3692,8 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             capy_soldier_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3692,6 +3740,8 @@ module capy_vs_gnome::card_deck {
             // checks for winner
             capy_rider_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
         
@@ -3701,6 +3751,8 @@ module capy_vs_gnome::card_deck {
 
             capy_rider_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3708,6 +3760,8 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             capy_rider_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3718,6 +3772,9 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             capy_rider_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3763,6 +3820,8 @@ module capy_vs_gnome::card_deck {
             // checks for winner
             capy_monster_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
         
@@ -3772,6 +3831,8 @@ module capy_vs_gnome::card_deck {
 
             capy_monster_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3779,6 +3840,8 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             capy_monster_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3789,6 +3852,8 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             capy_monster_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
@@ -3834,6 +3899,8 @@ module capy_vs_gnome::card_deck {
             // checks for winner
             capy_general_vs_gnome_general(r, game, attacker, attacker_owner_cap, possible_defense_general, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
 
         };
         
@@ -3843,6 +3910,8 @@ module capy_vs_gnome::card_deck {
 
             capy_general_vs_gnome_monster( r, game, attacker, attacker_owner_cap, possible_defense_monster, ctx);
 
+            game.turn_count = game.turn_count + 1;
+
         }; 
         
         if ( defense_card == 3 ) {
@@ -3850,6 +3919,8 @@ module capy_vs_gnome::card_deck {
             defense_check_rider(player_on_deck, game);
             
             capy_general_vs_gnome_rider(r, game, attacker, attacker_owner_cap, possible_defense_rider, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
 
         };
@@ -3860,6 +3931,8 @@ module capy_vs_gnome::card_deck {
             defense_check_soldier(player_on_deck, game);
 
             capy_general_vs_gnome_soldier( r, game, attacker, attacker_owner_cap, possible_defense_soldier, ctx);
+
+            game.turn_count = game.turn_count + 1;
 
         };
 
