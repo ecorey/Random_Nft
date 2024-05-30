@@ -6,13 +6,13 @@ import { Package, RANDOM } from '../../../scripts/config';
 
 const Turn = () => {
     const navigate = useNavigate();
-    const { signAndExecuteTransactionBlock } = useWallet(); 
+    const { signAndExecuteTransactionBlock } = useWallet();
     const [message, setMessage] = useState('');
     const fullText = "Would you like to ATTACK or PASS.";
     const [cardMessage, setCardMessage] = useState('');
     const cardFullText = "What card would you like to attack with?";
     const [actionValue, setActionValue] = useState(null);
-    const [capyOrGnome, setCapyOrGnome] = useState('Gnome'); 
+    const [capyOrGnome, setCapyOrGnome] = useState('Gnome');
     const [cardType, setCardType] = useState('');
     const [defenseChoice, setDefenseChoice] = useState('');
     const [isFinal, setIsFinal] = useState(false);
@@ -153,13 +153,13 @@ const Turn = () => {
 
         console.log("DEFENSE CHOICE TYPE:");
         console.log(typeof defenseChoice);
-        
+
         console.log("RANDOM:");
         console.log(RANDOM);
-        
+
         console.log("TurnKey:");
         console.log(TurnKey);
-        
+
         console.log("GAME:");
         console.log(GAME);
 
@@ -176,12 +176,10 @@ const Turn = () => {
         console.log(possible_defense_monster);
 
         console.log("possible_defense_rider:");
-        console.log( possible_defense_rider);
+        console.log(possible_defense_rider);
 
         console.log("possible_defense_soldier:");
-        console.log( possible_defense_soldier);
-
-
+        console.log(possible_defense_soldier);
 
         let functionName = '';
         if (capyOrGnome === 'Gnome') {
@@ -194,7 +192,7 @@ const Turn = () => {
             target: `${Package}::card_deck::${functionName}`,
             arguments: [
                 txb.object(RANDOM),
-                txb.object(TurnKey),  
+                txb.object(TurnKey),
                 txb.object(GAME),
                 txb.object(attackCard),
                 txb.object(attackOwnerCap),
