@@ -4829,11 +4829,11 @@ module capy_vs_gnome::card_deck {
 
 
     // mints winner pleco
-    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: Trophy, recipient: address, ctx: &mut TxContext) {
+    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: &Trophy, recipient: address, ctx: &mut TxContext) {
 
         winners_mint(cap, recipient, ctx);
 
-        delete_trophy(trophy, ctx);
+        
 
     }
 
@@ -8018,14 +8018,10 @@ module capy_vs_gnome::card_deck {
     // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
     // will indicate which permenant is being attacked
     // 5% probability for general, 5% for monster, 15% for rider, 75% for soldier
-    entry fun backline_defense_stance(r: &Random, ctx: &mut TxContext) : u8 {
+    entry fun backline_defense_stance(r: &Random, game: &mut Game, ctx: &mut TxContext) : u8 {
 
-        
-        let general = 0;
-        let monster = 0;
-        let rider = 0;
-        let soldier = 0;
-
+        let player_on_deck = player_one_or_two(game, ctx);
+        let result = 0;
 
 
         let generator = new_generator(r, ctx);
@@ -8033,55 +8029,193 @@ module capy_vs_gnome::card_deck {
 
 
 
-        if (v > 95 && v <= 100 ) {
-            general = 1;
-        }; 
-
-        if (v > 90 && v <= 95 ) {
-            monster = 1;
-        }; 
-
-        if (v > 75 && v <= 90) {
-            rider = 1;
-        }; 
-
-        if (v <= 75) {
-            soldier = 1;
+        if (player_on_deck == 1) {
+            // Player 1 combinations
+            if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 1 && game.player_two_rider_status == 1 && game.player_two_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 90)) {
+                    result = 2; // Monster
+                } else if ((v <= 90) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 1 && game.player_two_rider_status == 1 && game.player_two_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 2; // Monster
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 1 && game.player_two_rider_status == 0 && game.player_two_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 2; // Monster
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 0 && game.player_two_rider_status == 1 && game.player_two_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 1 && game.player_two_rider_status == 1 && game.player_two_general_status == 0) {
+                if (v > 95) {
+                    result = 2; // Monster
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 1 && game.player_two_rider_status == 0 && game.player_two_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 2; // Monster
+                }
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 1 && game.player_two_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 1 && game.player_two_rider_status == 1 && game.player_two_general_status == 0) {
+                if (v > 80) {
+                    result = 2; // Monster
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 1 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+                if (v > 80) {
+                    result = 2; // Monster
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 0 && game.player_two_rider_status == 1 && game.player_two_general_status == 0) {
+                if (v > 80) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 1) {
+                result = 1; // General
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 1 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+                result = 2; // Monster
+            } else if (game.player_two_soldier_status == 0 && game.player_two_monster_status == 0 && game.player_two_rider_status == 1 && game.player_two_general_status == 0) {
+                result = 3; // Rider
+            } else if (game.player_two_soldier_status == 1 && game.player_two_monster_status == 0 && game.player_two_rider_status == 0 && game.player_two_general_status == 0) {
+                result = 4; // Soldier
+            }
+        } else if (player_on_deck == 2) {
+            // Player 2 combinations
+            if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 1 && game.player_one_rider_status == 1 && game.player_one_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 90)) {
+                    result = 2; // Monster
+                } else if ((v <= 90) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 1 && game.player_one_rider_status == 1 && game.player_one_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 2; // Monster
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 1 && game.player_one_rider_status == 0 && game.player_one_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 2; // Monster
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 0 && game.player_one_rider_status == 1 && game.player_one_general_status == 1) {
+                if (v > 95) {
+                    result = 1; // General
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 1 && game.player_one_rider_status == 1 && game.player_one_general_status == 0) {
+                if (v > 95) {
+                    result = 2; // Monster
+                } else if ((v <= 95) && (v > 75)) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 1 && game.player_one_rider_status == 0 && game.player_one_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 2; // Monster
+                }
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 1 && game.player_one_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 1 && game.player_one_rider_status == 1 && game.player_one_general_status == 0) {
+                if (v > 80) {
+                    result = 2; // Monster
+                } else {
+                    result = 3; // Rider
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 1) {
+                if (v > 80) {
+                    result = 1; // General
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 1 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+                if (v > 80) {
+                    result = 2; // Monster
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 0 && game.player_one_rider_status == 1 && game.player_one_general_status == 0) {
+                if (v > 80) {
+                    result = 3; // Rider
+                } else {
+                    result = 4; // Soldier
+                }
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 1) {
+                result = 1; // General
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 1 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+                result = 2; // Monster
+            } else if (game.player_one_soldier_status == 0 && game.player_one_monster_status == 0 && game.player_one_rider_status == 1 && game.player_one_general_status == 0) {
+                result = 3; // Rider
+            } else if (game.player_one_soldier_status == 1 && game.player_one_monster_status == 0 && game.player_one_rider_status == 0 && game.player_one_general_status == 0) {
+                result = 4; // Soldier
+            }
         };
-
-
-
-        let result = 0;
-
-        if(general == 1){
-            result = 1;
-        }; 
-
-        if(monster == 1) {
-            result = 2;
-        }; 
-
-        if(rider == 1) {
-            result = 3;
-        };  
-
-        if(soldier == 1) {
-            result = 4;
-        };
-
-
-
 
         event::emit(BackLineDefense {
             value: v,
             result: result,
         });
-        
 
         result
-
-    }
-
+}
 
 
 
@@ -8141,7 +8275,7 @@ module capy_vs_gnome::card_deck {
 
             
 
-            card_selected_type = backline_defense_stance(r, ctx);
+            card_selected_type = backline_defense_stance(r, game, ctx);
 
             event::emit(DefenseCardAttacked {
                 type_id: card_selected_type,
