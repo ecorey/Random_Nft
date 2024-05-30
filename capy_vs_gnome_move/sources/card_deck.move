@@ -3190,12 +3190,12 @@ module capy_vs_gnome::card_deck {
     fun attack_check_soldier(player_on_deck: u8, game: &mut Game){
 
         if ((player_on_deck == 1) && (game.player_one_soldier_status == 0)) {   
-                abort(1)
+                abort(44)
         };
 
 
         if ((player_on_deck == 2) && (game.player_two_soldier_status == 0)) {   
-                abort(1)
+                abort(44)
         };
     }
 
@@ -3203,12 +3203,12 @@ module capy_vs_gnome::card_deck {
     fun attack_check_rider(player_on_deck: u8, game: &mut Game){
 
         if ((player_on_deck == 1) && (game.player_one_rider_status == 0)) {   
-                abort(1)
+                abort(55)
         };
 
 
         if ((player_on_deck == 2) && (game.player_two_rider_status == 0)) {   
-                abort(1)
+                abort(55)
         };
     }
 
@@ -3216,12 +3216,12 @@ module capy_vs_gnome::card_deck {
     fun attack_check_monster(player_on_deck: u8, game: &mut Game){
 
         if ((player_on_deck == 1) && (game.player_one_monster_status == 0)) {   
-                abort(1)
+                abort(66)
         };
 
 
         if ((player_on_deck == 2) && (game.player_two_monster_status == 0)) {   
-                abort(1)
+                abort(66)
         };
     }
 
@@ -3229,12 +3229,12 @@ module capy_vs_gnome::card_deck {
     fun attack_check_general(player_on_deck: u8, game: &mut Game){
 
         if ((player_on_deck == 1) && (game.player_one_general_status == 0)) {   
-                abort(1)
+                abort(77)
         };
 
 
         if ((player_on_deck == 2) && (game.player_two_general_status == 0)) {   
-                abort(1)
+                abort(77)
         };
     }
 
@@ -3251,7 +3251,7 @@ module capy_vs_gnome::card_deck {
 
         if ((player_on_deck == 1) && (game.player_two_soldier_status == 0)) {
             
-                abort(1)
+                abort(4)
             
         };
 
@@ -3259,7 +3259,7 @@ module capy_vs_gnome::card_deck {
         if ((player_on_deck == 2) && (game.player_one_soldier_status == 0)) {
         
             
-            abort(1)
+            abort(4)
         
         };
 
@@ -3271,7 +3271,7 @@ module capy_vs_gnome::card_deck {
 
         if ((player_on_deck == 1) && (game.player_two_rider_status == 0)) {
             
-                abort(1)
+                abort(5)
             
         };
 
@@ -3279,7 +3279,7 @@ module capy_vs_gnome::card_deck {
         if ((player_on_deck == 2) && (game.player_one_rider_status == 0)) {
         
             
-            abort(1)
+            abort(5)
         
         };
         
@@ -3292,7 +3292,7 @@ module capy_vs_gnome::card_deck {
 
         if ((player_on_deck == 1) && (game.player_two_monster_status == 0)) {
             
-                abort(1)
+                abort(6)
             
             };
 
@@ -3300,7 +3300,7 @@ module capy_vs_gnome::card_deck {
         if ((player_on_deck == 2) && (game.player_one_monster_status == 0)) {
         
             
-            abort(1)
+            abort(6)
         
         };
 
@@ -3313,7 +3313,7 @@ module capy_vs_gnome::card_deck {
 
         if ((player_on_deck == 1) && (game.player_two_general_status == 0)) {
             
-                abort(1)
+                abort(7)
             
             };
 
@@ -3321,7 +3321,7 @@ module capy_vs_gnome::card_deck {
         if ((player_on_deck == 2) && (game.player_one_general_status == 0)) {
         
             
-            abort(1)
+            abort(7)
         
         };
 
@@ -3342,14 +3342,13 @@ module capy_vs_gnome::card_deck {
     public entry fun check_command_points(player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
 
-        let check_one;
 
-        if((player_on_deck == 1) && (game.player_one_command_points > 0)) {
-            check_one = true;
+        if((player_on_deck == 1) && (game.player_one_command_points <= 0)) {
+            abort(999);
         };
         
-        if((player_on_deck == 2) && (game.player_two_command_points > 0)) {
-            check_one = true;
+        if((player_on_deck == 2) && (game.player_two_command_points <= 0)) {
+            abort(999);
         };
          
         
@@ -3457,7 +3456,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
 
         soldier_command_points(player_on_deck, game, ctx);(player_on_deck, game, ctx);
@@ -3555,7 +3554,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         rider_command_points(player_on_deck, game, ctx);
 
@@ -3642,7 +3641,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         monster_command_points(player_on_deck, game, ctx);
 
@@ -3727,7 +3726,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         general_command_points(player_on_deck, game, ctx);
 
@@ -3826,7 +3825,7 @@ module capy_vs_gnome::card_deck {
         attack_check_soldier(player_on_deck, game);
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         soldier_command_points(player_on_deck, game, ctx);
 
@@ -3916,7 +3915,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
 
         rider_command_points(player_on_deck, game, ctx);
@@ -4008,7 +4007,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         monster_command_points(player_on_deck, game, ctx);
 
@@ -4097,7 +4096,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        check_command_points(player_on_deck, game, ctx);
+        // check_command_points(player_on_deck, game, ctx);
 
         general_command_points(player_on_deck, game, ctx);
 
@@ -6400,16 +6399,16 @@ module capy_vs_gnome::card_deck {
 
         // checks cards is still in gameplay
         if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
+            abort(99)
         };
 
 
         if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
+            abort(99)
         };
 
 
@@ -6507,16 +6506,16 @@ module capy_vs_gnome::card_deck {
 
         // checks cards is still in gameplay
         if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
+            abort(99)
         };
 
 
         if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
+            abort(99)
         };
 
 
@@ -6610,16 +6609,16 @@ module capy_vs_gnome::card_deck {
 
         // checks cards is still in gameplay
         if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
+            abort(99)
         };
 
 
         if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
+            abort(99)
         };
 
 
@@ -6712,16 +6711,16 @@ module capy_vs_gnome::card_deck {
 
         // checks cards is still in gameplay
         if(game.player_one_soldier_status == 0 && current_player == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && current_player == 2) {
-            abort(1)
+            abort(99)
         };
 
 
         if(game.player_one_soldier_status == 0 && defender == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_soldier_status == 0 && defender == 2) {
-            abort(1)
+            abort(99)
         };
 
 
@@ -6825,16 +6824,16 @@ module capy_vs_gnome::card_deck {
 
         // checks cards is still in gameplay
         if(game.player_one_rider_status == 0 && current_player == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_rider_status == 0 && current_player == 2) {
-            abort(1)
+            abort(99)
         };
 
 
         if(game.player_one_rider_status == 0 && defender == 1) {
-            abort(1)
+            abort(99)
         } else if (game.player_two_rider_status == 0 && defender == 2) {
-            abort(1)
+            abort(99)
         };
 
 
@@ -8116,11 +8115,11 @@ module capy_vs_gnome::card_deck {
 
             // aborts if there are no backline defense left
             if( player_on_deck == 1 && game.player_two_backline_left == 0) {
-                abort(1);
+                abort(444);
             };
 
             if( player_on_deck == 2 && game.player_one_backline_left == 0) {
-                abort(1);
+                abort(444);
             };
 
 
