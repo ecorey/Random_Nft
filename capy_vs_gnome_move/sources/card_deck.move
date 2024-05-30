@@ -8132,22 +8132,22 @@ module capy_vs_gnome::card_deck {
             let player_on_deck = player_one_or_two(game, ctx);
 
             // aborts if there are no backline defense left
-            if( player_on_deck == 1 && game.player_one_backline_left == 0) {
+            if( player_on_deck == 1 && game.player_two_backline_left == 0) {
                 abort(1);
             };
 
-            if( player_on_deck == 2 && game.player_two_backline_left == 0) {
+            if( player_on_deck == 2 && game.player_one_backline_left == 0) {
                 abort(1);
             };
 
 
             // subtract available backline defense from the player on deck
-            if( player_on_deck == 1 && game.player_one_backline_left == 0) {
-                game.player_one_backline_left = game.player_one_backline_left - 1;
+            if( player_on_deck == 1 ) {
+                game.player_two_backline_left = game.player_two_backline_left - 1;
             };
 
-            if( player_on_deck == 2 && game.player_two_backline_left == 0) {
-                game.player_two_backline_left = game.player_two_backline_left - 1;
+            if( player_on_deck == 2 ) {
+                game.player_one_backline_left = game.player_one_backline_left - 1;
             };
 
             
