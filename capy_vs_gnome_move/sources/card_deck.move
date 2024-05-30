@@ -3340,13 +3340,17 @@ module capy_vs_gnome::card_deck {
 
     public entry fun check_command_points(player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if(player_on_deck == 1 && game.player_one_command_points <= 0) {
-            abort(1)
-        };
 
-        if(player_on_deck == 2 && game.player_two_command_points <= 0) {
-            abort(1)
+        let check_one = false;
+
+        if((player_on_deck == 1) && (game.player_one_command_points > 0)) {
+            check_one = true;
+        } else if((player_on_deck == 2) && (game.player_two_command_points > 0)) {
+            check_one = true;
+        } else {
+            abort(1);
         };
+        
 
     }   
 
@@ -3354,18 +3358,28 @@ module capy_vs_gnome::card_deck {
 
     entry fun soldier_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 2 >= 0)) {
 
-            game.player_one_command_points = game.player_one_command_points - 2
-
-        } else if((player_on_deck == 2) && (game.player_one_command_points - 2 >= 0)) {
-
-            game.player_two_command_points = game.player_two_command_points - 2
-
-        }else {
+        if((player_on_deck == 1) && (game.player_one_command_points - 2 <= 0)) {
 
             abort(1);
 
+        };
+
+
+        if (player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points - 2
+        };
+
+        
+        if((player_on_deck == 2) && (game.player_two_command_points - 2 <= 0)) {
+
+            abort(1);
+
+        };
+
+
+        if (player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points - 2
         };
 
         
@@ -3376,18 +3390,27 @@ module capy_vs_gnome::card_deck {
 
     entry fun rider_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 4 >= 0)) {
-
-            game.player_one_command_points = game.player_one_command_points - 4
-
-        } else if((player_on_deck == 2) && (game.player_one_command_points - 4 >= 0)) {
-
-            game.player_two_command_points = game.player_two_command_points - 4
-
-        }else {
+        if((player_on_deck == 1) && (game.player_one_command_points - 4 <= 0)) {
 
             abort(1);
 
+        };
+
+
+        if (player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points - 4
+        };
+
+        
+        if((player_on_deck == 2) && (game.player_two_command_points - 4 <= 0)) {
+
+            abort(1);
+
+        };
+
+
+        if (player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points - 4
         };
         
     }
@@ -3396,18 +3419,27 @@ module capy_vs_gnome::card_deck {
 
     entry fun monster_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 6 >= 0)) {
-
-            game.player_one_command_points = game.player_one_command_points - 6
-
-        } else if((player_on_deck == 2) && (game.player_one_command_points - 6 >= 0)) {
-
-            game.player_two_command_points = game.player_two_command_points - 6
-
-        }else {
+        if((player_on_deck == 1) && (game.player_one_command_points - 6 <= 0)) {
 
             abort(1);
 
+        };
+
+
+        if (player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points - 6
+        };
+
+        
+        if((player_on_deck == 2) && (game.player_two_command_points - 6 <= 0)) {
+
+            abort(1);
+
+        };
+
+
+        if (player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points - 6
         };
         
     }
@@ -3416,18 +3448,27 @@ module capy_vs_gnome::card_deck {
 
     entry fun general_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 8 >= 0)) {
-
-            game.player_one_command_points = game.player_one_command_points - 8
-
-        } else if((player_on_deck == 2) && (game.player_one_command_points - 8 >= 0)) {
-
-            game.player_two_command_points = game.player_two_command_points - 8
-
-        }else {
+        if((player_on_deck == 1) && (game.player_one_command_points - 8 <= 0)) {
 
             abort(1);
 
+        };
+
+
+        if (player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points - 8
+        };
+
+        
+        if((player_on_deck == 2) && (game.player_two_command_points - 8 <= 0)) {
+
+            abort(1);
+
+        };
+
+
+        if (player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points - 8
         };
         
     }
