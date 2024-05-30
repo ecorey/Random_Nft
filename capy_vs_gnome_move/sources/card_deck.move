@@ -3458,10 +3458,10 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
 
-        // soldier_command_points(player_on_deck, game, ctx);
+        soldier_command_points(player_on_deck, game, ctx);
 
 
         
@@ -3556,9 +3556,9 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
-        // rider_command_points(player_on_deck, game, ctx);
+        rider_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -3643,7 +3643,7 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
         monster_command_points(player_on_deck, game, ctx);
 
@@ -3728,9 +3728,9 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
-        // general_command_points(player_on_deck, game, ctx);
+        general_command_points(player_on_deck, game, ctx);
 
 
 
@@ -3827,9 +3827,9 @@ module capy_vs_gnome::card_deck {
         attack_check_soldier(player_on_deck, game);
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
-        // soldier_command_points(player_on_deck, game, ctx);
+        soldier_command_points(player_on_deck, game, ctx);
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game, ctx);
@@ -3917,10 +3917,10 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
 
-        // rider_command_points(player_on_deck, game, ctx);
+        rider_command_points(player_on_deck, game, ctx);
 
 
 
@@ -4009,9 +4009,9 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
-        // monster_command_points(player_on_deck, game, ctx);
+        monster_command_points(player_on_deck, game, ctx);
 
 
 
@@ -4098,9 +4098,9 @@ module capy_vs_gnome::card_deck {
 
 
         // checks command points are not 0
-        // check_command_points(player_on_deck, game, ctx);
+        check_command_points(player_on_deck, game, ctx);
 
-        // general_command_points(player_on_deck, game, ctx);
+        general_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
