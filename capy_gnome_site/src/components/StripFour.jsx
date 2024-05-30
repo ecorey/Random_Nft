@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const StripThree = () => {
+const StripFour = () => {
 
     
     const navigate = useNavigate(); 
@@ -12,13 +12,11 @@ const StripThree = () => {
 
  
 
-    const handleTurn = () => {
-        navigate('/turn');  
+    const handleWinning = () => {
+        navigate('/winnings');  
     };
 
-    const handleGameStats = () => {
-        navigate('/gamestats');  
-    };
+    
 
 
    
@@ -36,8 +34,8 @@ const StripThree = () => {
             fontFamily: 'pixelify sans'
         }}>
         
-        <button style={buttonStyle} onClick={handleTurn}>BATTLE</button>
-        <button style={buttonStyle} onClick={handleGameStats}>GAME STATS</button>
+        <button style={buttonStyle} onClick={handleWinning}>CLAIM WINNING</button>
+        
 
 
 
@@ -60,6 +58,6 @@ const buttonStyle = {
 
 
 
-export default StripThree;
+export default StripFour;
 
 
