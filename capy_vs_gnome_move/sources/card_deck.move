@@ -3055,8 +3055,8 @@ module capy_vs_gnome::card_deck {
             player_two_backline_left: 5,
 
             // command points
-            player_one_command_points: 80,
-            player_two_command_points: 80,
+            player_one_command_points: 4,
+            player_two_command_points: 4,
            
         };
 
@@ -3138,9 +3138,9 @@ module capy_vs_gnome::card_deck {
 
         // gives 10 cp by passing the turn
         if(player_on_deck == 1){
-            game.player_one_command_points = game.player_one_command_points + 10;
+            game.player_one_command_points = game.player_one_command_points + 8;
         } else {
-            game.player_two_command_points = game.player_two_command_points + 10;
+            game.player_two_command_points = game.player_two_command_points + 8;
         };
 
 
@@ -3423,6 +3423,19 @@ module capy_vs_gnome::card_deck {
 
 
 
+
+    fun add_turn_command_points(player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
+
+        if (player_on_deck == 1) {
+            game.player_one_command_points = game.player_one_command_points + 4
+        };
+
+        
+        if (player_on_deck == 2) {
+            game.player_two_command_points = game.player_two_command_points + 4
+        };
+        
+    }
     
 
 
@@ -3463,6 +3476,9 @@ module capy_vs_gnome::card_deck {
 
         soldier_command_points(player_on_deck, game, ctx);
 
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
 
         
         
@@ -3558,7 +3574,14 @@ module capy_vs_gnome::card_deck {
         // checks command points are not 0
         check_command_points(player_on_deck, game, ctx);
 
+
         rider_command_points(player_on_deck, game, ctx);
+
+
+
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -3648,6 +3671,10 @@ module capy_vs_gnome::card_deck {
         monster_command_points(player_on_deck, game, ctx);
 
 
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
+
+
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game, ctx);
 
@@ -3731,6 +3758,10 @@ module capy_vs_gnome::card_deck {
         check_command_points(player_on_deck, game, ctx);
 
         general_command_points(player_on_deck, game, ctx);
+
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
 
 
 
@@ -3829,7 +3860,16 @@ module capy_vs_gnome::card_deck {
         // checks command points are not 0
         check_command_points(player_on_deck, game, ctx);
 
+
+
         soldier_command_points(player_on_deck, game, ctx);
+
+
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
+
+
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game, ctx);
@@ -3915,12 +3955,20 @@ module capy_vs_gnome::card_deck {
         attack_check_rider(player_on_deck, game);
 
 
+        
+
+
 
         // checks command points are not 0
         check_command_points(player_on_deck, game, ctx);
 
 
         rider_command_points(player_on_deck, game, ctx);
+
+
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
 
 
 
@@ -4014,6 +4062,10 @@ module capy_vs_gnome::card_deck {
         monster_command_points(player_on_deck, game, ctx);
 
 
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
+
+
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game,  ctx);
@@ -4101,6 +4153,10 @@ module capy_vs_gnome::card_deck {
         check_command_points(player_on_deck, game, ctx);
 
         general_command_points(player_on_deck, game, ctx);
+
+
+        // add command points for next turn
+        add_turn_command_points(player_on_deck, game, ctx);
 
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
@@ -4841,7 +4897,7 @@ module capy_vs_gnome::card_deck {
     public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: &Trophy, ctx: &mut TxContext) {
 
         let recipient = trophy.winner;
-        
+
         winners_mint(cap, recipient, ctx);
 
         
