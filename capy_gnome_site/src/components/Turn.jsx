@@ -86,14 +86,14 @@ const Turn = () => {
                 const txb = new TransactionBlock();
                 txb.setGasBudget(1000000000);
                 txb.moveCall({
-                    target: `${Package}::card_deck::pass_turn_key`,
+                    target: `${Package}::card_deck::pass_turn_key_on_pass`,
                     arguments: [txb.object(TurnKey), txb.object(GAME)],
                 });
 
                 try {
                     const gameData = await signAndExecuteTransactionBlock({ transactionBlock: txb });
-                    console.log('Turn Key Passed!', gameData);
-                    alert(`Turn Key Passed! \n Digest: ${gameData.digest}`);
+                    console.log('Turn Key Passed and CP ADDED!', gameData);
+                    alert(`Turn Key Passed and CP ADDED! \n Digest: ${gameData.digest}`);
                 } catch (e) {
                     console.error('Sorry, Turn Key Not Passed', e);
                 }
