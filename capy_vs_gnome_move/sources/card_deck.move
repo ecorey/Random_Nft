@@ -3338,18 +3338,20 @@ module capy_vs_gnome::card_deck {
     // -------------------------------------------------------------------------------
 
 
+    // set the false 
     public entry fun check_command_points(player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
 
-        let check_one = false;
+        let check_one;
 
         if((player_on_deck == 1) && (game.player_one_command_points > 0)) {
             check_one = true;
-        } else if((player_on_deck == 2) && (game.player_two_command_points > 0)) {
-            check_one = true;
-        } else {
-            abort(1);
         };
+        
+        if((player_on_deck == 2) && (game.player_two_command_points > 0)) {
+            check_one = true;
+        };
+         
         
 
     }   
@@ -3358,26 +3360,11 @@ module capy_vs_gnome::card_deck {
 
     entry fun soldier_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-
-        if((player_on_deck == 1) && (game.player_one_command_points - 2 <= 0)) {
-
-            abort(1);
-
-        };
-
-
         if (player_on_deck == 1) {
             game.player_one_command_points = game.player_one_command_points - 2
         };
 
         
-        if((player_on_deck == 2) && (game.player_two_command_points - 2 <= 0)) {
-
-            abort(1);
-
-        };
-
-
         if (player_on_deck == 2) {
             game.player_two_command_points = game.player_two_command_points - 2
         };
@@ -3390,24 +3377,12 @@ module capy_vs_gnome::card_deck {
 
     entry fun rider_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 4 <= 0)) {
-
-            abort(1);
-
-        };
-
-
+       
         if (player_on_deck == 1) {
             game.player_one_command_points = game.player_one_command_points - 4
         };
 
         
-        if((player_on_deck == 2) && (game.player_two_command_points - 4 <= 0)) {
-
-            abort(1);
-
-        };
-
 
         if (player_on_deck == 2) {
             game.player_two_command_points = game.player_two_command_points - 4
@@ -3419,25 +3394,13 @@ module capy_vs_gnome::card_deck {
 
     entry fun monster_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 6 <= 0)) {
-
-            abort(1);
-
-        };
-
 
         if (player_on_deck == 1) {
             game.player_one_command_points = game.player_one_command_points - 6
         };
 
         
-        if((player_on_deck == 2) && (game.player_two_command_points - 6 <= 0)) {
-
-            abort(1);
-
-        };
-
-
+       
         if (player_on_deck == 2) {
             game.player_two_command_points = game.player_two_command_points - 6
         };
@@ -3448,11 +3411,6 @@ module capy_vs_gnome::card_deck {
 
     entry fun general_command_points( player_on_deck: u8, game: &mut Game, ctx: &mut TxContext) {
 
-        if((player_on_deck == 1) && (game.player_one_command_points - 8 <= 0)) {
-
-            abort(1);
-
-        };
 
 
         if (player_on_deck == 1) {
@@ -3460,11 +3418,7 @@ module capy_vs_gnome::card_deck {
         };
 
         
-        if((player_on_deck == 2) && (game.player_two_command_points - 8 <= 0)) {
-
-            abort(1);
-
-        };
+        
 
 
         if (player_on_deck == 2) {
@@ -3515,14 +3469,7 @@ module capy_vs_gnome::card_deck {
 
 
         
-        if(player_on_deck == 1) {
-            game.player_one_command_points = game.player_one_command_points - 5
-        };
-
-        if(player_on_deck == 2) {
-            game.player_two_command_points = game.player_two_command_points - 5
-        };
-
+        
 
         // returns 1 for genreal, 2 for monster, 3 for rider, and 4 for soldier
         let defense_card = defensive_posture(r, defense_choice, game, ctx);
