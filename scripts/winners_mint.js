@@ -21,8 +21,8 @@ const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 
-const PLECO_TREASURY_CAP = "";
-const TROPHY = "";
+const PLECO_TREASURY_CAP = "0xc80242ee50d2219400a8ead664db10ffcf28996d8c3a915673007180c7519470";
+const TROPHY = "0x86969bcb6787976704f2c88887b4fb5993bbdeb6e39faa8ec46a486719b02e05";
 
 
 
