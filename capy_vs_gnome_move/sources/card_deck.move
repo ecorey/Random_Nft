@@ -271,10 +271,13 @@ module capy_vs_gnome::card_deck {
     //    - player_two_soldier_confirmed
     // END OF GAME CHECKS
     //    - Trophy
+    //    - Trophy_Owner_Cap
     //    - Winner
-    //    - delete_trophy
+    //    - delete_trophy_owner_cap
     //    - check_for_winner
-    //    - winner_mint
+    //    - winners_mint
+    //    - claim_winnings_and_send_trophy_cap_to_treasurer
+    //    - treasurer_mint_to_winner
     // GNOME ATTACK FUNCTIONS
     //   - gnome_soldier_vs_capy_soldier 
     //   - gnome_soldier_vs_capy_rider
