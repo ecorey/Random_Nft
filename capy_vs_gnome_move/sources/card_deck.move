@@ -4809,6 +4809,7 @@ module capy_vs_gnome::card_deck {
     struct TrophyOwnerCap has key, store {
         id: UID,
         trophy: ID,
+        winner: address,
     }
 
 
@@ -4821,7 +4822,12 @@ module capy_vs_gnome::card_deck {
 
 
 
-   
+   fun delete_trophy_owner_cap(trophy_owner_cap: TrophyOwnerCap) {
+
+        let TrophyOwnerCap {id, trophy: _, winner: _} = trophy_owner_cap;
+
+        object::delete(id);
+    }
 
 
 
@@ -4848,6 +4854,7 @@ module capy_vs_gnome::card_deck {
             let trophy_owner_cap = TrophyOwnerCap {
                 id: object::new(ctx),
                 trophy: object::id(&trophy),
+                winner: game.player_two_address,
             };
 
 
@@ -4872,13 +4879,21 @@ module capy_vs_gnome::card_deck {
                 player_two_winner: false,
             });
 
-
             let trophy = Trophy {
                 id: object::new(ctx),
                 winner: game.player_one_address,
             };
 
-            transfer::public_transfer(trophy, game.player_one_address);
+            let trophy_owner_cap = TrophyOwnerCap {
+                id: object::new(ctx),
+                trophy: object::id(&trophy),
+                winner: game.player_one_address,
+            };
+
+
+            transfer::public_share_object(trophy);
+
+            transfer::public_transfer(trophy_owner_cap, game.player_one_address);
 
 
             
@@ -4886,7 +4901,18 @@ module capy_vs_gnome::card_deck {
         };
 
 
-        
+
+    }
+
+
+
+
+    // use to send the contract cretor the trophy owner cap to get the PLECO
+    public entry fun claim_winnings(trophy_owner_cap: TrophyOwnerCap, recipient: address, ctx: &mut TxContext) {
+
+
+        transfer::public_transfer(trophy_owner_cap, recipient);
+
 
     }
 
@@ -4894,11 +4920,14 @@ module capy_vs_gnome::card_deck {
 
 
     // mints winner pleco
-    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: &Trophy, ctx: &mut TxContext) {
+    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy_owner_cap: TrophyOwnerCap, ctx: &mut TxContext) {
 
-        let recipient = trophy.winner;
+        let recipient = trophy_owner_cap.winner;
 
         winners_mint(cap, recipient, ctx);
+
+
+        delete_trophy_owner_cap(trophy_owner_cap);
 
         
 
