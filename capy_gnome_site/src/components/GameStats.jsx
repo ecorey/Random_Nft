@@ -19,6 +19,8 @@ const GameStats = () => {
         const txb = new TransactionBlock();
         txb.setGasBudget(1000000000);
 
+        console.log("GAME:", GAME);
+
         try {
             // Emit the event
             txb.moveCall({

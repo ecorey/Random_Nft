@@ -48,10 +48,12 @@ const Strip = () => {
                 <button style={buttonStyle} onClick={handleTransferCapyDeck}>MINT CAPY DECK</button>
                 <button style={buttonStyle} onClick={handleTransferGnomeDeck}>MINT GNOME DECK</button>
             
-                <div style={{ flexGrow: 1 }}></div> 
-            <button style={buttonStyle} onClick={handleConfirmDeck}>CONFIRM DECK</button>
-            <button style={buttonStyle} onClick={handleStartGame}>START GAME</button>
-            <button style={buttonStyle} onClick={handleGameConfig}>GAME CONFIG</button>
+                <div style={{ flexGrow: 1 }}></div>
+
+                <button style={buttonStyle} onClick={handleGameConfig}>GAME CONFIG</button> 
+                <button style={buttonStyle} onClick={handleConfirmDeck}>CONFIRM DECK</button>
+                <button style={buttonStyle} onClick={handleStartGame}>START GAME</button>
+            
             </div>
             
         </div>
