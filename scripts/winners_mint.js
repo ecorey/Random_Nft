@@ -21,9 +21,9 @@ const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 
-const PLECO_TREASURY_CAP = "0x5218d5f77ce05d86297b52239632f7bfe92e2d78658b8e706789852caf54cde3";
-const TROPHY = "0x8b04360023f57a12af5f09276a534f7048637efd0311427edf1ebd0fd530ba5e";
-const RECIPIENT = "0x707395068fdb96fa34e1d3376386d70bbca4c66829e89b285b4a43a4ce1ffa79";
+const PLECO_TREASURY_CAP = "";
+const TROPHY = "";
+
 
 
 
@@ -64,7 +64,6 @@ const client = new SuiClient({
             arguments: [
                 txb.object(PLECO_TREASURY_CAP),
                 txb.object(TROPHY),
-                txb.pure.address(RECIPIENT),
             ],
         });
         
