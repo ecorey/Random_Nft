@@ -4908,7 +4908,7 @@ module capy_vs_gnome::card_deck {
 
 
     // use to send the contract cretor the trophy owner cap to get the PLECO
-    public entry fun claim_winnings(trophy_owner_cap: TrophyOwnerCap, recipient: address, ctx: &mut TxContext) {
+    public entry fun claim_winnings_and_send_trophy_cap_to_treasurer(trophy_owner_cap: TrophyOwnerCap, recipient: address, ctx: &mut TxContext) {
 
 
         transfer::public_transfer(trophy_owner_cap, recipient);
@@ -4920,7 +4920,7 @@ module capy_vs_gnome::card_deck {
 
 
     // mints winner pleco
-    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy_owner_cap: TrophyOwnerCap, ctx: &mut TxContext) {
+    public entry fun treasurer_mint_to_winner( cap: &mut TreasuryCap<PLECO>, trophy_owner_cap: TrophyOwnerCap, ctx: &mut TxContext) {
 
         let recipient = trophy_owner_cap.winner;
 

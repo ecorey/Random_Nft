@@ -21,8 +21,8 @@ const privateKeyBytes = new Uint8Array(privateKeyArray);
 const keypairdev = Ed25519Keypair.fromSecretKey(privateKeyBytes);
 
 
-const PLECO_TREASURY_CAP = "0xc80242ee50d2219400a8ead664db10ffcf28996d8c3a915673007180c7519470";
-const TROPHY = "0x86969bcb6787976704f2c88887b4fb5993bbdeb6e39faa8ec46a486719b02e05";
+const PLECO_TREASURY_CAP = "0xace53f11c6a1c2c46a3cc09ed398a549fa8e370e35b34d1c116e05ecaf888ded";
+const TROPHY = "0xd1f05c78071d461f18ea6b7e24d2962a1b524b5ac5b0e186072e34cb35859e87";
 
 
 
@@ -60,7 +60,7 @@ const client = new SuiClient({
 
 
         txb.moveCall({
-            target: `${Package}::card_deck::winner_mint`,
+            target: `${Package}::card_deck::treasurer_mint_to_winner`,
             arguments: [
                 txb.object(PLECO_TREASURY_CAP),
                 txb.object(TROPHY),
