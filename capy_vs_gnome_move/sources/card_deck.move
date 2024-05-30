@@ -4750,6 +4750,12 @@ module capy_vs_gnome::card_deck {
     }
 
 
+    struct TrophyOwnerCap has key, store {
+        id: UID,
+        trophy: ID,
+    }
+
+
     
     // winner event
     struct Winner has copy, drop {
@@ -4759,12 +4765,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    entry fun delete_trophy(trophy: Trophy, ctx: &mut TxContext) {
-        let Trophy {id, winner: _} = trophy;
-
-        object::delete(id);
-
-    }
+   
 
 
 
@@ -4788,7 +4789,15 @@ module capy_vs_gnome::card_deck {
                 winner: game.player_two_address,
             };
 
-            transfer::public_transfer(trophy, game.player_two_address);
+            let trophy_owner_cap = TrophyOwnerCap {
+                id: object::new(ctx),
+                trophy: object::id(&trophy),
+            };
+
+
+            transfer::public_share_object(trophy);
+
+            transfer::public_transfer(trophy_owner_cap, game.player_two_address);
 
 
             
@@ -4829,8 +4838,10 @@ module capy_vs_gnome::card_deck {
 
 
     // mints winner pleco
-    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: &Trophy, recipient: address, ctx: &mut TxContext) {
+    public entry fun winner_mint( cap: &mut TreasuryCap<PLECO>, trophy: &Trophy, ctx: &mut TxContext) {
 
+        let recipient = trophy.winner;
+        
         winners_mint(cap, recipient, ctx);
 
         
@@ -7891,35 +7902,6 @@ module capy_vs_gnome::card_deck {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // -----------------------------------------------------------------------
     // -----------------------------------------------------------------------
     // DEFENSE FUNCTIONS
@@ -7935,10 +7917,6 @@ module capy_vs_gnome::card_deck {
 
 
     // frontline defense stance
-    // free CP
-    // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
-    // will indicate which permenant is being attacked
-    // 25% probability for each permenant
     entry fun frontline_defense_stance(r: &Random, game: &mut Game, ctx: &mut TxContext) : u8 {
         
         let player_on_deck = player_one_or_two(game, ctx);
@@ -8146,10 +8124,6 @@ module capy_vs_gnome::card_deck {
 
 
     // backline defense stance
-    // add 1 CP cost
-    // returns 1 for general, 2 for monster, 3 for rider, 4 for soldier
-    // will indicate which permenant is being attacked
-    // 5% probability for general, 5% for monster, 15% for rider, 75% for soldier
     entry fun backline_defense_stance(r: &Random, game: &mut Game, ctx: &mut TxContext) : u8 {
 
         let player_on_deck = player_one_or_two(game, ctx);
