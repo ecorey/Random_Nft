@@ -3128,6 +3128,36 @@ module capy_vs_gnome::card_deck {
 
 
 
+    entry fun pass_turn_key_on_pass(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
+        
+        
+
+        // sets which player is using turn
+        let player_on_deck = player_one_or_two(game, ctx);
+
+
+        // gives 10 cp by passing the turn
+        if(player_on_deck == 1){
+            game.player_one_command_points = game.player_one_command_points + 10;
+        } else {
+            game.player_two_command_points = game.player_two_command_points + 10;
+        };
+
+
+        // pass the turn key
+        // check the player and pass to the opposite player
+        if(player_on_deck == 1){
+            transfer::public_transfer(turn_key, game.player_two_address);
+        } else {
+            transfer::public_transfer(turn_key, game.player_one_address);
+        };
+
+
+    }
+
+
+
+
     entry fun player_one_or_two(game: &Game, ctx: &mut TxContext) : u8 {
         
 
