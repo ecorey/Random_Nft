@@ -3119,7 +3119,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-
+    // pass the turn key without giving CP
     entry fun pass_turn_key(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
         
 
@@ -3140,7 +3140,7 @@ module capy_vs_gnome::card_deck {
     }
 
 
-
+    // turn key pass and give CP for passing the turn
     entry fun pass_turn_key_on_pass(turn_key: TurnKey, game: &mut Game, ctx: &mut TxContext){
         
         
