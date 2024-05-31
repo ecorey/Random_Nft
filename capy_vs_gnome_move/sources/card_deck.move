@@ -210,6 +210,7 @@ module capy_vs_gnome::card_deck {
     //    - start_game
     // TURN KEY PASS AND TURN CHECKS
     //    - pass_turn_key
+    //    - pass_turn_key_on_pass
     //    - player_one_or_two
     // ATTACK TURN CHECKS
     //    - attack_check_soldier
@@ -223,6 +224,11 @@ module capy_vs_gnome::card_deck {
     //    - defense_check_general
     //    - COMMAND POINTS FOR TURNS
     //    - check_command_points
+    //    - soldier_command_points
+    //    - rider_command_points
+    //    - monster_command_points
+    //    - general_command_points
+    //    - add_turn_command_points
     // GNOME TURNS
     //    - turn_gnome_soldier
     //    - turn_gnome_rider
@@ -269,6 +275,10 @@ module capy_vs_gnome::card_deck {
     //    - player_two_monster_confirmed
     //    - player_two_rider_confirmed
     //    - player_two_soldier_confirmed
+    //    - player_one_backline_left
+    //    - player_two_backline_left
+    //    - player_one_command_points
+    //    - player_two_command_points
     // END OF GAME CHECKS
     //    - Trophy
     //    - Trophy_Owner_Cap
@@ -3054,8 +3064,8 @@ module capy_vs_gnome::card_deck {
             player_two_soldier_confirmed: false,
 
             // times can use the backline defense
-            player_one_backline_left: 5,
-            player_two_backline_left: 5,
+            player_one_backline_left: 3,
+            player_two_backline_left: 3,
 
             // command points
             player_one_command_points: 4,
