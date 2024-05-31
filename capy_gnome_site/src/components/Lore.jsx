@@ -99,47 +99,47 @@ const Lore = () => {
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 1, Scene 1: The Stream</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
                 The scene opens in the decentralized virtual realm, a place of consensus.<br /><br /><br />
-                <strong>Capy General:</strong> "Was today I overheard from a Capy Soldier who calimed to have been wandering in unknown nodes that a Gnome Soldier was spotted off in the distance not far from the Great Firewall."<br /><br />
-                <strong>Capy Monster:</strong> "Aye, General, their Monster even I hear lurks by drinking our from our data streams at night that slowly trickle through small leaks."<br /><br />
-                <strong>Capy General:</strong> [Appearing Alarmed] "Leaks?? Why is this the first of heard?? Rider spread the word and ready for war!"<br /><br />
+                <strong>Capy General:</strong> "Was today I overheard from a Capy Soldier, who claimed to have been wandering in unknown validators, that a Gnome Soldier was spotted off in the distance not far from the Bullsharks swim."<br /><br />
+                <strong>Capy Monster:</strong> "Aye, General, their Monster even I hear lurks by and speaks of breaking the network."<br /><br />
+                <strong>Capy General:</strong> [Appearing Alarmed] "Breaking... The Network?? Why is this the first of this I have heard?? Rider spread the word and ready for war!"<br /><br />
                 <strong>Capy Rider:</strong> "I shall ride..."<br /><br />
                 The Capy Rider nods and fades off into a digital mist.<br /><br />
             </p>
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 1, Scene 2: The Meeting</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
-                In a hidden file, a Gnome Soldier and a Capy Soldier meet by chance.<br /><br /><br />
+                In a hidden DAG, a Gnome Soldier and a Capy Soldier meet by chance.<br /><br /><br />
                 <strong>Gnome Soldier:</strong> "Oh, what script brought me to thee? Your pixels outshine the encrypted stars!"<br /><br />
-                <strong>Capy Soldier:</strong> "And you, besmitting a Capy? Yet here, beneath the shadowed data, my heart reboots."<br /><br />
-                <strong>Gnome Soldier:</strong> "Let us write a new script and instantiate a global variable, one that challenges fate and randomness itself."<br /><br />
-                <strong>Capy Soldier:</strong> "Such variables are volatile here, let us move at once."<br /><br />
+                <strong>Capy Soldier:</strong> "And you, besmitting a Capy? Yet here, besides the dynamic fields, my heart reboots."<br /><br />
+                <strong>Gnome Soldier:</strong> "Let us write a new package and instantiate a global variable, one that challenges fate and randomness itself."<br /><br />
+                <strong>Capy Soldier:</strong> "Such variables are normally volatile here, let us move at once."<br /><br />
             </p>
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 2, Scene 1: The Letter</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
                 In the depths of the virtual realm, next to a devnet faucet a Gnome General writes a letter.<br /><br /><br />
-                <strong>Gnome General:</strong> "Wherefore art thou, War? Though I once gained tokens daily now I only know empty balances."<br /><br />
+                <strong>Gnome General:</strong> "Wherefore art thou, War? Though I once gained PLECO daily now I only know empty balances."<br /><br />
                 <strong>Gnome General:</strong> "Where once I attacked and defended, trusting only the chain and its randomness, now I am long to be battled hardend"<br /><br />
-                <strong>Gnome General:</strong> "I once never saved my Tokens only sepnding them in constant battle, now I hodl only to ..."<br /><br />
-                <strong>Gnome Monster:</strong> [Enters Panicked] "The Capy know."<br /><br />
+                <strong>Gnome General:</strong> "I never once saved my command points only sepnding it for constant battle, now I hodl only to ..."<br /><br />
+                <strong>Gnome Monster:</strong> [Enters Panicked] "The Capy General has been updated...."<br /><br />
             </p>
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 2, Scene 2: The Confrontation</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
-                As the digital dawn breaks, both families gather where the data rivers converge.<br /><br /><br />
-                <strong>Capy Soldier:</strong> "Today we go to battle not to bed!!"<br /><br />
+                As the digital dawn breaks, both families gather where the data streams converge.<br /><br /><br />
+                <strong>Capy Soldier:</strong> "Today we go to battle!!"<br /><br />
                 <strong>Gnome Soldier:</strong> "Let thine fate be left to the randomness on chain!"<br /><br />
-                <strong>Capy Soldier and Gnome Soldier:</strong> [Drawing weapons and Shouting] "For Tokens!!"<br /><br />
-                As the battle initializes, the Capy Rider and Gnome Monster rush forward.<br /><br />
+                <strong>Capy Soldier and Gnome Soldier:</strong> [Drawing weapons and Shouting] "For PLECO!!"<br /><br />
+                As the battle begins, the Capy Rider and Gnome Monster rush forward.<br /><br />
                 <strong>Capy Rider:</strong> "Gnome Monster your turn has come!!"<br /><br />
                 <strong>Gnome Monster:</strong> "Oh my unquechable thirst what path has it lead to? Let us battle!!"<br /><br />
             </p>
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 3, Scene 1: The Resolution</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
                 The warriors look over the smoldering battlefield.<br /><br /><br />
-                <strong>Capy General:</strong>"Fortunes made and Fortunes lost"<br /><br />
-                <strong>Gnome General:</strong> "I should have placed a larger wager, yet also a wager that was less."<br /><br />
+                <strong>Capy General:</strong>"PLECO made and PLECO lost"<br /><br />
+                <strong>Gnome General:</strong> "I should have passed more, yet also have passed less."<br /><br />
                 As the Capys and Gnomes reflect, the realm softly reboots, a glowing testament to the memory of cards played, cards lost, and the readiness for a new game.<br /><br />
                 <strong>Capy Soldier:</strong> "Again?"<br /><br />
                 <strong>Gnome Soldier:</strong>[Smiles with a Glimmer in the Eye]"Again!"<br /><br />
-                The scene dims, leaving a pile of shiny tokens laying just out of reach.<br /><br />
+                The scene dims, leaving a pile of shiny PLECO laying just out of reach.<br /><br />
             </p>
 
 
