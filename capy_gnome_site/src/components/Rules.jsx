@@ -34,27 +34,19 @@ const Rules = () => {
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Permanents</p>
             <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '16px' }}>
                 <strong>General</strong><br />
-                Attack: 10<br />
-                Defense: 2<br />
-                Health: 3<br />
-                Cost: 6<br />
+                Health: 1<br />
+                Cost: 8<br />
                 <br />
                 <strong>Monster</strong><br />
-                Attack: 8<br />
-                Defense: 8<br />
-                Health: 6<br />
-                Cost: 5<br />
+                Health: 1<br />
+                Cost: 6<br />
                 <br />
                 <strong>Rider</strong><br />
-                Attack: 6<br />
-                Defense: 6<br />
-                Health: 4<br />
+                Health: 1<br />
                 Cost: 4<br />
                 <br />
                 <strong>Soldier</strong><br />
-                Attack: 4<br />
-                Defense: 4<br />
-                Health: 7<br />
+                Health: 1<br />
                 Cost: 2<br />
             </p>
 
@@ -90,18 +82,42 @@ const Rules = () => {
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Defensive Positions</p>
             <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '16px' }}>
-                <strong>Frontline: (CP: FREE)</strong><br />
-                - Soldier: 25%<br />
-                - Rider: 25%<br />
-                - Monster: 25%<br />
-                - General: 25%<br />
-                <br />
-                <strong>Backline: (CP: 1)</strong><br />
-                - Soldier: 75%<br />
-                - Rider: 15%<br />
-                - Monster: 5%<br />
-                - General: 5%<br />
-            </p>
+            <strong>Frontline Defense Stance Percent Chance of Being Attacked According to Cards Left:</strong><br />
+            (g: general, m: monster, r: rider, s: soldier)<br />
+            g: 25%, m: 25%, r: 25%, s: 25%<br />
+            g: 33%, m: 33%, r: 34%<br />
+            g: 33%, m: 33%, s: 34%<br />
+            g: 33%, r: 33%, s: 34%<br />
+            m: 33%, r: 33%, s: 34%<br />
+            g: 50%, m: 50%<br />
+            g: 50%, r: 50%<br />
+            m: 50%, r: 50%<br />
+            g: 50%, s: 50%<br />
+            m: 50%, s: 50%<br />
+            r: 50%, s: 50%<br />
+            g: 100%<br />
+            m: 100%<br />
+            r: 100%<br />
+            s: 100%<br />
+            <br />
+            <strong>Backline Defense Stance Percent Chance of Being Attacked According to Cards Left:</strong><br />
+            (g: general, m: monster, r: rider, s: soldier)<br />
+            g: 5%, m: 5%, r: 15%, s: 75%<br />
+            g: 5%, m: 20%, r: 75%<br />
+            g: 5%, m: 20%, s: 75%<br />
+            g: 5%, r: 20%, s: 75%<br />
+            m: 5%, r: 20%, s: 75%<br />
+            g: 20%, m: 80%<br />
+            g: 20%, r: 80%<br />
+            m: 20%, r: 80%<br />
+            g: 20%, s: 80%<br />
+            m: 20%, s: 80%<br />
+            r: 20%, s: 80%<br />
+            g: 100%<br />
+            m: 100%<br />
+            r: 100%<br />
+            s: 100%<br />
+        </p>
 
 
 
