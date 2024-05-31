@@ -2375,7 +2375,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-    // markes in the game object the card is confirmed for gameplay, ,if a caard is not confirmed gameplay cannot continue
+    // markes in the game object the card is confirmed for gameplay,if a card is not confirmed gameplay cannot continue
     entry fun confirm_gnome_soldier(card: &GnomeSoldier, confirmed_deck: &ConfirmedDeck, game: &mut Game, ctx: &mut TxContext) {
 
         let card_confirmed = false;
@@ -3012,7 +3012,7 @@ module capy_vs_gnome::card_deck {
     // starts game by:
     // taking a coin flip guess and is correct sending it to the player one address
     // if guess is not correct the turn key goes to player two
-    // the game object makes all permanents alive
+    // the game object sets all permanents in play by setting status to 1
     public entry fun start_game(coin_flip_guess: u8, r: &Random, player_one_address: address, player_two_address: address,  confirm_deck_player_one: &ConfirmedDeck, confirm_deck_player_two: &ConfirmedDeck, ctx: &mut TxContext)  {
 
        let coin_flip_result = coin_toss(r, ctx);
@@ -3054,14 +3054,14 @@ module capy_vs_gnome::card_deck {
             winner: false,
 
             // confirmation status
-            player_one_general_confirmed: false,
-            player_one_monster_confirmed: false,
-            player_one_rider_confirmed: false,
-            player_one_soldier_confirmed: false,
-            player_two_general_confirmed: false,
-            player_two_monster_confirmed: false,
-            player_two_rider_confirmed: false,
-            player_two_soldier_confirmed: false,
+            player_one_general_confirmed: true,
+            player_one_monster_confirmed: true,
+            player_one_rider_confirmed: true,
+            player_one_soldier_confirmed: true,
+            player_two_general_confirmed: true,
+            player_two_monster_confirmed: true,
+            player_two_rider_confirmed: true,
+            player_two_soldier_confirmed: true,
 
             // times can use the backline defense
             player_one_backline_left: 3,
@@ -4281,11 +4281,7 @@ module capy_vs_gnome::card_deck {
 
 
 
-        // checks the turn is correct by odd or even
-        // if(game.even_turns == ctx && game.turn_count % 2 == 0) {
-        //     // correct check
-        // };
-
+   
 
         
 

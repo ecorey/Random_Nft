@@ -39,7 +39,7 @@ export const CardProvider = ({ children }) => {
         confirmDeck: ''
     }));
 
-    // Effect to update localStorage when player1 or player2 data changes
+    // effect to update localStorage when player1 or player2 data changes
     useEffect(() => {
         localStorage.setItem('player', JSON.stringify(player));
         localStorage.setItem('player1', JSON.stringify(player1));

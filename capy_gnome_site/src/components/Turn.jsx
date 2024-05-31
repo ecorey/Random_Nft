@@ -18,44 +18,44 @@ const Turn = () => {
     const [isFinal, setIsFinal] = useState(false);
     const [currentPlayer, setCurrentPlayer] = useState('Player 1');
 
-    // Read game and turn key from local storage
+    // read game and turn key from local storage
     const gameSetup = JSON.parse(localStorage.getItem('gameSetup')) || { game: "Not set", turnkey: "Not set" };
     const GAME = gameSetup.game;
     const TurnKey = gameSetup.turnkey;
 
-    // Read player data from local storage
+    // read player data from local storage
     const storedPlayer1 = JSON.parse(localStorage.getItem('player1')) || {};
     const storedPlayer2 = JSON.parse(localStorage.getItem('player2')) || {};
 
-    // Define player addresses and confirm decks
+    // define player addresses and confirm decks
     const playerOneAddress = storedPlayer1.address;
     const playerTwoAddress = storedPlayer2.address;
     const confirmDeckPlayerOne = storedPlayer1.confirmDeck;
     const confirmDeckPlayerTwo = storedPlayer2.confirmDeck;
 
-    // Get player cards based on currentPlayer
+    // get player cards based on currentPlayer
     const playerCards = currentPlayer === 'Player 1' ? storedPlayer1 : storedPlayer2;
     const opponentCards = currentPlayer === 'Player 1' ? storedPlayer2 : storedPlayer1;
 
-    // Get card ids for attacker
+    // get card ids for attacker
     const possible_attack_general = playerCards.generalId;
     const possible_attack_monster = playerCards.monsterId;
     const possible_attack_rider = playerCards.riderId;
     const possible_attack_soldier = playerCards.soldierId;
 
-    // Get card owner caps
+    // get card owner caps
     const possible_attack_general_owner_cap = playerCards.generalOwnerCap;
     const possible_attack_monster_owner_cap = playerCards.monsterOwnerCap;
     const possible_attack_rider_owner_cap = playerCards.riderOwnerCap;
     const possible_attack_soldier_owner_cap = playerCards.soldierOwnerCap;
 
-    // Get card ids for defender
+    // get card ids for defender
     const possible_defense_general = opponentCards.generalId;
     const possible_defense_monster = opponentCards.monsterId;
     const possible_defense_rider = opponentCards.riderId;
     const possible_defense_soldier = opponentCards.soldierId;
 
-    // Get the chosen attack card
+    // get the chosen attack card
     const [attackCard, setAttackCard] = useState('');
     const [attackOwnerCap, setAttackOwnerCap] = useState('');
 
@@ -82,7 +82,7 @@ const Turn = () => {
         if (!isFinal) {
             setActionValue(selectedAction);
 
-            if (selectedAction === 77) { // If PASS is selected
+            if (selectedAction === 77) { // if PASS is selected
                 const txb = new TransactionBlock();
                 txb.setGasBudget(1000000000);
                 txb.moveCall({
