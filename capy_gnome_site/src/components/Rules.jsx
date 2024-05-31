@@ -16,18 +16,12 @@ const Rules = () => {
             <h1>Rules</h1>
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>Overview</p>
-            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '16px'}}>
-            - TRUST THE CHAIN<br />
-            <br />
-            - Coin Toss: The player to go first is determined by a 50/50 coin toss.<br />
-            <br />
-            - First Turn: For the first turn each player starts with 3 /6/9 CP and will earn 1 CP at the start of each turn after that.<br />
-            <br />
-            - The game depends on being able to build up CP by using cheaper defenses and less costly plays and needing to bluff the other player.<br />
-            <br />
-            - When a player has a turn they will chose to attack or pass. If they attack they will be limited by their CP. The defender at the beginning of the turn is given the option of which defense to play. The outcome of the battle is then decided and the points are updated.<br />
-            <br />
-            - The winner is determined by last man standing as each players permanents add up to 10 LP. <br />
+            <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '16px' }}>
+                Players Mint their Decks, set the game configuration, confirm their decks, start the game, and battle.<br />
+                Each player starts with 4 command points and earns 4 additional command points each turn.<br />
+                If a player passes on a turn they earn an additional 8 command points.<br />
+                Players have 3 backline defenses to use and then must rely on the front line only.<br />
+                Use the Game Stats to emit an event and keep track of the battle.<br />
             </p>
 
 
