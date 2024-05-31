@@ -17,10 +17,11 @@ const Rules = () => {
 
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px'}}>Overview</p>
             <p style={{ fontFamily: 'pixelify sans', color: 'white', fontSize: '16px' }}>
-                Players Mint their Decks, set the game configuration, confirm their decks, start the game, and battle.<br />
-                Each player starts with 4 command points and earns 4 additional command points each turn.<br />
-                If a player passes on a turn they earn an additional 8 command points.<br />
-                Players have 3 backline defenses to use and then must rely on the front line only.<br />
+                Players Mint their Decks, set the Game Configuration, Confirm their Decks, Start the Game, and BATTLE.<br />
+                Each player starts with 4 Command Points and earns 4 additional command points each turn.<br />
+                Players use the TurnKey to keep track of turns.<br />
+                If a player Passes on a turn they earn an additional 8 command points.<br />
+                Players have 3 backline Defenses to use and then must rely on the front line only.<br />
                 Use the Game Stats to emit an event and keep track of the battle.<br />
             </p>
 
