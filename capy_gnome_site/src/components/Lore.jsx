@@ -96,7 +96,7 @@ const Lore = () => {
 
 
 
-            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 1, Scene 1: The Stream</p><br />
+            <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '28px', paddingTop: '45px'}}>Act 1, Scene 1: Breaking the Network</p><br />
             <p style={{fontFamily: 'pixelify sans', color: 'white', fontSize: '18px'}}>
                 The scene opens in the decentralized virtual realm, a place of consensus.<br /><br /><br />
                 <strong>Capy General:</strong> "Was today I overheard from a Capy Soldier, who claimed to have been wandering in unknown validators, that a Gnome Soldier was spotted off in the distance not far from the Bullsharks swim."<br /><br />
